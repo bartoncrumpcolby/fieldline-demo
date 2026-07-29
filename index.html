@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FieldLine — AI Receptionist, Live Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #141519;
+    --panel: #1d1f24;
+    --panel-2: #24272d;
+    --line: #33363d;
+    --ink: #eceef0;
+    --muted: #8b909a;
+    --amber: #ffb000;
+    --amber-deep: #e09400;
+    --amber-glow: rgba(255,176,0,.14);
+    --led-green: #43d17c;
+    --red: #e04b3a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Barlow", sans-serif;
+    color: var(--ink);
+    background:
+      linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px) 0 0 / 100% 44px,
+      linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px) 0 0 / 44px 100%,
+      radial-gradient(1000px 520px at 75% -10%, rgba(255,176,0,.07), transparent 60%),
+      var(--bg);
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 16px 20px;
+  }
+  .shell { width: 100%; max-width: 700px; }
+
+  /* ── top bar ─────────────────────────────── */
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo .mark {
+    width: 30px; height: 30px; flex: none;
+    background: var(--amber);
+    clip-path: polygon(0 0, 100% 0, 100% 62%, 62% 62%, 62% 100%, 0 100%);
+    position: relative;
+  }
+  .logo .mark::after {
+    content: ""; position: absolute; left: 6px; top: 6px;
+    width: 11px; height: 11px; background: var(--bg);
+  }
+  .logo span {
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 26px; font-weight: 800; letter-spacing: .02em;
+    text-transform: uppercase; line-height: 1;
+  }
+  .logo span b { color: var(--amber); font-weight: 800; }
+  .tagline {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px; color: var(--muted); letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+
+  /* ── headline ────────────────────────────── */
+  .brand { margin-bottom: 14px; display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 4px; }
+  .brand h1 {
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: clamp(30px, 4.4vw, 42px); font-weight: 800;
+    text-transform: uppercase; letter-spacing: .015em; line-height: 1;
+  }
+  .brand h1 em { font-style: normal; color: var(--amber); }
+  .brand .sub {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px; color: var(--muted); letter-spacing: .06em;
+  }
+
+  /* ── console panel ───────────────────────── */
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: 0 24px 60px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.04);
+    overflow: hidden;
+    position: relative;
+  }
+  /* hazard strip along the top edge */
+  .card::before {
+    content: ""; display: block; height: 5px;
+    background: repeating-linear-gradient(
+      -45deg, var(--amber) 0 12px, #2a2214 12px 24px);
+  }
+
+  .card-head {
+    display: flex; align-items: center; gap: 14px;
+    padding: 13px 18px;
+    background: var(--panel-2);
+    border-bottom: 1px solid var(--line);
+  }
+  .avatar-wrap { position: relative; width: 46px; height: 46px; flex: none; }
+  .avatar {
+    position: absolute; inset: 0; border-radius: 8px;
+    background: linear-gradient(160deg, var(--amber), var(--amber-deep));
+    color: #17130a;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 800; font-size: 20px; z-index: 2;
+  }
+  .ring {
+    position: absolute; inset: 0; border-radius: 8px;
+    border: 2px solid var(--amber); opacity: 0; z-index: 1;
+  }
+  .speaking .ring { animation: ring 1.5s ease-out infinite; }
+  .speaking .ring.r2 { animation-delay: .5s; }
+  @keyframes ring {
+    0%   { transform: scale(1); opacity: .6; }
+    100% { transform: scale(1.75); opacity: 0; }
+  }
+
+  .head-info { flex: 1; min-width: 0; }
+  .head-info .unit {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px; color: var(--muted); letter-spacing: .16em;
+    text-transform: uppercase; margin-bottom: 2px;
+  }
+  .head-info .name {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 700; font-size: 19px; letter-spacing: .02em;
+  }
+  .status {
+    display: flex; align-items: center; gap: 7px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px; color: var(--muted); letter-spacing: .05em;
+    margin-top: 2px;
+  }
+  .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #4a4e56; flex: none;
+    box-shadow: 0 0 0 2px rgba(255,255,255,.05);
+  }
+  .dot.live {
+    background: var(--led-green);
+    box-shadow: 0 0 8px var(--led-green);
+    animation: pulse 1.3s infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: .35 } }
+
+  .timer {
+    font-family: "IBM Plex Mono", monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: 15px; font-weight: 600; color: var(--amber);
+    background: #17130a;
+    border: 1px solid #3d3212;
+    border-radius: 6px; padding: 6px 12px;
+    opacity: 0; transition: opacity .3s;
+  }
+  .timer.on { opacity: 1; }
+
+  /* ── transcript ──────────────────────────── */
+  .transcript {
+    height: clamp(220px, calc(100vh - 440px), 380px);
+    overflow-y: auto; padding: 20px 18px;
+    display: flex; flex-direction: column; gap: 11px;
+    scroll-behavior: smooth;
+  }
+  .transcript::-webkit-scrollbar { width: 8px; }
+  .transcript::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+
+  .bubble {
+    max-width: 82%; padding: 10px 14px;
+    font-size: 15px; line-height: 1.5;
+    animation: rise .3s cubic-bezier(.2,.9,.3,1);
+    border-radius: 4px;
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .bubble.assistant {
+    background: var(--amber-glow);
+    border-left: 3px solid var(--amber);
+    align-self: flex-start;
+  }
+  .bubble.user {
+    background: var(--panel-2);
+    border-right: 3px solid #4a4e56;
+    align-self: flex-end; text-align: left;
+  }
+  .bubble .who {
+    display: block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9.5px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: .14em; margin-bottom: 4px; color: var(--muted);
+  }
+  .bubble.assistant .who { color: var(--amber); }
+  .placeholder {
+    color: var(--muted); text-align: center; margin: auto;
+    font-family: "IBM Plex Mono", monospace; font-size: 12.5px; letter-spacing: .04em;
+  }
+
+  /* ── job captured plate ──────────────────── */
+  .summary {
+    margin: 0 18px 4px; padding: 12px 16px;
+    background: #17130a;
+    border: 1px solid #4d3c10;
+    border-left: 4px solid var(--amber);
+    border-radius: 6px;
+    display: none; align-items: center; gap: 13px;
+    animation: rise .4s cubic-bezier(.2,.9,.3,1);
+  }
+  .summary.show { display: flex; }
+  .summary .tick {
+    width: 32px; height: 32px; flex: none; border-radius: 6px;
+    background: var(--amber); color: #17130a;
+    font-weight: 800; font-size: 17px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .summary .txt { font-size: 13.5px; line-height: 1.45; color: var(--muted); }
+  .summary .txt b {
+    display: block; color: var(--ink);
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 16px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+  }
+
+  /* ── controls ────────────────────────────── */
+  .controls {
+    padding: 14px 18px 16px; text-align: center;
+    background: var(--panel-2); border-top: 1px solid var(--line);
+  }
+  button {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 800; font-size: 19px; letter-spacing: .07em;
+    text-transform: uppercase;
+    border: 0; border-radius: 6px; padding: 13px 46px; cursor: pointer;
+    background: linear-gradient(160deg, var(--amber), var(--amber-deep));
+    color: #17130a;
+    box-shadow: 0 4px 0 #8a5c00, 0 8px 24px rgba(255,176,0,.25);
+    transition: transform .08s, box-shadow .08s;
+  }
+  button:hover { transform: translateY(-1px); }
+  button:active { transform: translateY(2px); box-shadow: 0 2px 0 #8a5c00; }
+  button.end {
+    background: linear-gradient(160deg, #e04b3a, #b93527);
+    color: #fff; box-shadow: 0 4px 0 #6e1f16, 0 8px 24px rgba(224,75,58,.25);
+  }
+  button:disabled {
+    background: #4a4e56; color: #8b909a;
+    box-shadow: 0 4px 0 #2c2f34; cursor: wait;
+  }
+  .hint {
+    margin-top: 10px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px; color: var(--muted); letter-spacing: .04em;
+  }
+
+  /* ── footer ──────────────────────────────── */
+  .foot {
+    display: flex; justify-content: center; gap: 22px; flex-wrap: wrap;
+    margin-top: 14px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .foot span::before { content: "▸ "; color: var(--amber); }
+  .powered {
+    text-align: center; margin-top: 9px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10.5px; color: #5b5f68; letter-spacing: .1em; text-transform: uppercase;
+  }
+  .powered b { color: var(--amber); }
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar">
+    <div class="logo">
+      <div class="mark"></div>
+      <span>Field<b>Line</b></span>
+    </div>
+    <div class="tagline">AI receptionists for the trades</div>
+  </div>
+
+  <div class="brand">
+    <h1>Missed calls <em>cost jobs.</em></h1>
+    <div class="sub">LIVE DEMO — HEATING &amp; PLUMBING DEPLOYMENT</div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <div class="avatar-wrap" id="avatarWrap">
+        <div class="ring"></div><div class="ring r2"></div>
+        <div class="avatar">S</div>
+      </div>
+      <div class="head-info">
+        <div class="unit">Receptionist · Unit 01</div>
+        <div class="name">Summit Heating &amp; Plumbing</div>
+        <div class="status"><span class="dot" id="dot"></span><span id="statusText">READY — PRESS CALL TO START</span></div>
+      </div>
+      <div class="timer" id="timer">0:00</div>
+    </div>
+
+    <div class="transcript" id="transcript">
+      <div class="placeholder" id="placeholder">// conversation appears here, live</div>
+    </div>
+
+    <div class="summary" id="summary">
+      <div class="tick">✓</div>
+      <div class="txt"><b>Job captured</b>Details logged and sent straight to the engineer — nothing lost to voicemail.</div>
+    </div>
+
+    <div class="controls">
+      <button id="callBtn">☎&nbsp; Start demo call</button>
+      <div class="hint">uses your microphone — talk to it like a real customer</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Answers 24/7</span><span>Captures every job</span><span>Texts the engineer instantly</span>
+  </div>
+  <div class="powered">Powered by <b>FieldLine</b></div>
+</div>
+
+<script type="module">
+  import Vapi from "https://esm.sh/@vapi-ai/web";
+
+  const PUBLIC_KEY   = "4e35005b-04bc-4948-8db1-6143a9027ca2";
+  const ASSISTANT_ID = "8c43a99f-1765-4fa1-8f6c-dd5f27ac7205";
+
+  const vapi = new Vapi(PUBLIC_KEY);
+  const btn = document.getElementById("callBtn");
+  const dot = document.getElementById("dot");
+  const statusText = document.getElementById("statusText");
+  const transcript = document.getElementById("transcript");
+  const avatarWrap = document.getElementById("avatarWrap");
+  const timerEl = document.getElementById("timer");
+  const summary = document.getElementById("summary");
+
+  let inCall = false;
+  let lastBubble = { role: null, el: null };
+  let timerInt = null, seconds = 0, hadConversation = false;
+
+  function setStatus(text, live) {
+    statusText.textContent = text.toUpperCase();
+    dot.className = "dot" + (live ? " live" : "");
+  }
+
+  function startTimer() {
+    seconds = 0; timerEl.textContent = "0:00"; timerEl.classList.add("on");
+    timerInt = setInterval(() => {
+      seconds++;
+      timerEl.textContent = `${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,"0")}`;
+    }, 1000);
+  }
+  function stopTimer() { clearInterval(timerInt); }
+
+  function addOrUpdateBubble(role, text) {
+    const ph = document.getElementById("placeholder");
+    if (ph) ph.remove();
+    hadConversation = true;
+    if (lastBubble.role === role && lastBubble.el) {
+      lastBubble.el.querySelector(".text").textContent = text;
+    } else {
+      const div = document.createElement("div");
+      div.className = "bubble " + (role === "assistant" ? "assistant" : "user");
+      div.innerHTML = `<span class="who">${role === "assistant" ? "Receptionist" : "Caller"}</span><span class="text"></span>`;
+      div.querySelector(".text").textContent = text;
+      transcript.appendChild(div);
+      lastBubble = { role, el: div };
+    }
+    transcript.scrollTop = transcript.scrollHeight;
+  }
+
+  btn.addEventListener("click", async () => {
+    if (!inCall) {
+      btn.disabled = true;
+      summary.classList.remove("show");
+      setStatus("Connecting…", false);
+      try {
+        await vapi.start(ASSISTANT_ID);
+      } catch (e) {
+        setStatus("Couldn't connect — check keys", false);
+        btn.disabled = false;
+      }
+    } else {
+      vapi.stop();
+    }
+  });
+
+  vapi.on("call-start", () => {
+    inCall = true; hadConversation = false;
+    btn.disabled = false;
+    btn.textContent = "End call";
+    btn.classList.add("end");
+    setStatus("On a call", true);
+    startTimer();
+  });
+
+  vapi.on("call-end", () => {
+    inCall = false;
+    btn.disabled = false;
+    btn.textContent = "☎  Start demo call";
+    btn.classList.remove("end");
+    setStatus("Call ended", false);
+    stopTimer();
+    avatarWrap.classList.remove("speaking");
+    lastBubble = { role: null, el: null };
+    if (hadConversation) summary.classList.add("show");
+  });
+
+  vapi.on("speech-start", () => avatarWrap.classList.add("speaking"));
+  vapi.on("speech-end", () => avatarWrap.classList.remove("speaking"));
+
+  vapi.on("message", (m) => {
+    if (m.type === "transcript" && m.transcript) {
+      addOrUpdateBubble(m.role, m.transcript);
+      if (m.transcriptType === "final") lastBubble = { role: null, el: null };
+    }
+  });
+
+  vapi.on("error", (e) => {
+    console.error(e);
+    setStatus("Error — see console", false);
+    btn.disabled = false;
+  });
+</script>
+</body>
+</html>
