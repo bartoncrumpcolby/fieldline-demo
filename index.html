@@ -73,6 +73,12 @@
   .lede { font-size: 18px; margin-bottom: 26px; max-width: 30em; }
   .lede b { color: var(--ink); font-weight: 600; }
   .hero-cta { max-width: 330px; }
+  .note {
+    margin-top: 30px; padding: 15px 17px;
+    background: var(--surface); border-left: 3px solid var(--amber);
+    border-radius: 0 8px 8px 0; font-size: 15.5px; max-width: 30em;
+  }
+  .note b { color: var(--ink); font-weight: 600; }
 
   /* ── demo panel ─────────────────────── */
   .panel {
@@ -207,6 +213,12 @@
         <a class="btn" href="https://calendly.com/fieldline-colby/30min">Book a 15-minute call</a>
         <p class="under-btn">Free for a fortnight · live in 48 hours · no contract</p>
       </div>
+
+      <div class="note">
+        <b>It doesn't replace your office.</b> Your line rings exactly as it does
+        now through the day. FieldLine only picks up the ones nobody's there to
+        take — evenings, weekends, and when the line's already engaged.
+      </div>
     </div>
 
     <div class="panel">
@@ -223,9 +235,8 @@
       <div class="transcript" id="transcript">
         <div class="bubble assistant"><span class="who">FieldLine</span><span class="text">Good evening, Summit Heating. We're closed now, but I can take your details and get someone out to you.</span></div>
         <div class="bubble user"><span class="who">Caller</span><span class="text">Boiler's packed in. No heat, no hot water.</span></div>
-        <div class="bubble assistant"><span class="who">FieldLine</span><span class="text">Sorry to hear it. Is it leaking at all, or just not firing up?</span></div>
-        <div class="bubble user"><span class="who">Caller</span><span class="text">No leak, it's just dead.</span></div>
-        <div class="bubble assistant"><span class="who">FieldLine</span><span class="text">Right, got that. Can I take your postcode and a number for you?</span></div>
+        <div class="bubble assistant"><span class="who">FieldLine</span><span class="text">Sorry to hear it. Can I take your postcode and a number, and I'll get someone out to you first thing?</span></div>
+        <div class="bubble user"><span class="who">Caller</span><span class="text">B73 5PL. It's 07812 445190.</span></div>
       </div>
       <div class="summary" id="summary">
         <div><b>Job captured</b>Details texted straight to the engineer on call.</div>
