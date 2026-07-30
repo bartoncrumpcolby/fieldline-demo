@@ -106,6 +106,25 @@
   .bubble.assistant .text { color: var(--ink); }
   .bubble.user { align-self: flex-end; text-align: right; }
   .placeholder { color: var(--muted); font-size: 15px; margin: auto; text-align: center; }
+  .sample-tag {
+    font-size: 12.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 7px;
+  }
+  .sample-tag.hide { display: none; }
+
+  /* the text the engineer gets — the actual outcome they're buying */
+  .sms-wrap { max-width: 380px; margin: 34px auto 0; text-align: center; }
+  .sms {
+    background: var(--bg); border: 1px solid var(--line); border-radius: 14px;
+    padding: 16px 18px; text-align: left; box-shadow: 0 1px 3px rgba(0,0,0,.05);
+  }
+  .sms .from {
+    font-size: 12.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+    color: var(--amber-ink); margin-bottom: 8px;
+  }
+  .sms p { font-size: 15.5px; color: var(--ink); line-height: 1.5; }
+  .sms .meta { font-size: 13.5px; color: var(--muted); margin-top: 9px; }
+  .sms-cap { font-size: 15px; color: var(--muted); margin-top: 12px; }
   .summary {
     display: none; align-items: flex-start; gap: 10px;
     background: #f0f7f3; border: 1px solid #cfe5da; border-radius: 8px;
@@ -191,8 +210,13 @@
         <span id="statusText">Not connected</span>
         <span id="timer">0:00</span>
       </div>
+      <div class="sample-tag" id="sampleTag">Example — 8:42pm, Sunday</div>
       <div class="transcript" id="transcript">
-        <div class="placeholder" id="placeholder">The conversation will appear here</div>
+        <div class="bubble assistant"><span class="who">FieldLine</span><span class="text">Good evening, Summit Heating. We're closed at the minute, but I can take the details and get someone out to you. What's happened?</span></div>
+        <div class="bubble user"><span class="who">Caller</span><span class="text">Boiler's stopped, we've got no heat and no hot water at all.</span></div>
+        <div class="bubble assistant"><span class="who">FieldLine</span><span class="text">Sorry to hear that. Is there any water leaking from it, or is it just not firing up?</span></div>
+        <div class="bubble user"><span class="who">Caller</span><span class="text">No leak, it's just dead.</span></div>
+        <div class="bubble assistant"><span class="who">FieldLine</span><span class="text">Right, I've got that. Can I take your postcode and the best number to get you on?</span></div>
       </div>
       <div class="summary" id="summary">
         <div><b>Job captured</b>Details texted straight to the engineer on call.</div>
@@ -216,6 +240,18 @@
         <li><b>It answers and texts you the job</b>Name, number, address, what's wrong
           and how urgent — before you've even picked up.</li>
       </ol>
+
+      <div class="sms-wrap">
+        <div class="sms">
+          <div class="from">New job · FieldLine</div>
+          <p>Dave Whitmore · 07812 445 190<br>
+             14 Ashfield Road, B73 5PL<br>
+             No heat, no hot water. Boiler not firing, no leak.<br>
+             Happy to wait until the morning.</p>
+          <div class="meta">Logged 8:47pm, Sunday</div>
+        </div>
+        <p class="sms-cap">This is what lands on your phone.</p>
+      </div>
     </section>
   </div>
 </div>
@@ -307,6 +343,9 @@
 
   vapi.on("call-start", () => {
     inCall = true; hadConversation = false;
+    // clear the worked example so the real conversation starts on a clean slate
+    transcript.innerHTML = "";
+    document.getElementById("sampleTag").classList.add("hide");
     btn.disabled = false;
     btn.textContent = "End the call";
     btn.classList.add("stop");
