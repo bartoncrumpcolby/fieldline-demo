@@ -270,6 +270,52 @@
     font-size: 10.5px; color: #5b5f68; letter-spacing: .1em; text-transform: uppercase;
   }
   .powered b { color: var(--amber); }
+
+  /* ── booking CTA ─────────────────────────── */
+  .cta {
+    margin-top: 20px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 24px 22px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: repeating-linear-gradient(-45deg, var(--amber) 0 12px, #2a2214 12px 24px);
+  }
+  .cta h2 {
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: clamp(24px, 3.6vw, 32px); font-weight: 800;
+    text-transform: uppercase; letter-spacing: .015em; line-height: 1.05;
+    margin-bottom: 10px;
+  }
+  .cta h2 em { font-style: normal; color: var(--amber); }
+  .cta p {
+    font-size: 15px; line-height: 1.55; color: var(--muted);
+    max-width: 520px; margin: 0 auto 18px;
+  }
+  .cta-btn {
+    display: inline-block;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 800; font-size: 19px; letter-spacing: .07em; text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 6px; padding: 13px 40px;
+    background: linear-gradient(160deg, var(--amber), var(--amber-deep));
+    color: #17130a;
+    box-shadow: 0 4px 0 #8a5c00, 0 8px 24px rgba(255,176,0,.25);
+    transition: transform .08s, box-shadow .08s;
+  }
+  .cta-btn:hover { transform: translateY(-1px); }
+  .cta-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 #8a5c00; }
+  .cta-note {
+    margin-top: 12px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase;
+  }
+  .cta-note b { color: var(--amber); }
 </style>
 </head>
 <body>
@@ -279,12 +325,12 @@
       <div class="mark"></div>
       <span>Field<b>Line</b></span>
     </div>
-    <div class="tagline">AI receptionists for the trades</div>
+    <div class="tagline">Out-of-hours cover for heating firms</div>
   </div>
 
   <div class="brand">
-    <h1>Missed calls <em>cost jobs.</em></h1>
-    <div class="sub">LIVE DEMO — HEATING &amp; PLUMBING DEPLOYMENT</div>
+    <h1>Your office shuts at 5. <em>The emergencies don't.</em></h1>
+    <div class="sub">LIVE DEMO — TALK TO IT LIKE A CUSTOMER WOULD AT 8PM</div>
   </div>
 
   <div class="card">
@@ -317,8 +363,19 @@
   </div>
 
   <div class="foot">
-    <span>Answers 24/7</span><span>Captures every job</span><span>Texts the engineer instantly</span>
+    <span>Covers nights &amp; weekends</span><span>Works out how urgent it is</span><span>Texts whoever's on call</span>
   </div>
+
+  <div class="cta">
+    <h2>Get it sorted before the <em>winter rush</em></h2>
+    <p>Your office covers 40 hours a week. Nobody covers the other 128. I'll set this
+      up on your line free for a fortnight, and it answers the ones that come in after
+      you've shut. If it catches you a job you'd have lost, we carry on at £299 a
+      month, no contract. If not, no harm done.</p>
+    <a class="cta-btn" href="mailto:fieldline.colby@gmail.com?subject=Out%20of%20hours%20cover&amp;body=Hi%20Colby%2C%20interested%20in%20the%20free%20fortnight.%20Our%20firm%20is%3A" id="bookBtn">Get the free fortnight</a>
+    <div class="cta-note">Live in <b>48 hours</b> · your daytime line works exactly as it does now</div>
+  </div>
+
   <div class="powered">Powered by <b>FieldLine</b></div>
 </div>
 
