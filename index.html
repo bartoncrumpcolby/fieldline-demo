@@ -55,7 +55,9 @@
     transition: filter .12s;
   }
   .btn:hover { filter: brightness(.95); }
-  .btn.secondary { background: var(--bg); color: var(--ink); border: 1.5px solid var(--line); }
+  /* solid dark so it reads as pressable against the grey panel — amber stays
+     reserved for the booking CTA so the two don't compete */
+  .btn.secondary { background: var(--ink); color: #fff; border: 0; }
   .btn:disabled { background: var(--line); color: var(--muted); cursor: wait; }
   .btn.stop { background: var(--bg); color: var(--ink); border: 1.5px solid var(--line); }
   .under-btn { font-size: 14px; color: var(--muted); text-align: center; margin-top: 11px; }
