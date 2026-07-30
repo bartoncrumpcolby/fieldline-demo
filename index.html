@@ -316,6 +316,20 @@
     font-size: 11px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase;
   }
   .cta-note b { color: var(--amber); }
+
+  /* ── mobile (60-70% of traffic opens this on a phone) ── */
+  @media (max-width: 520px) {
+    body { padding: 12px 14px; }
+    .topbar { flex-direction: column; align-items: flex-start; gap: 4px; }
+    .brand h1 { font-size: 28px; }
+    /* full-width tap targets — a gaffer is using this one-handed */
+    button, .cta-btn { width: 100%; padding-left: 0; padding-right: 0; display: block; }
+    .cta { padding: 20px 16px; }
+    .card-head { gap: 10px; padding: 12px 14px; }
+    .timer { padding: 5px 9px; font-size: 14px; }
+    .transcript { padding: 16px 14px; }
+    .foot { gap: 10px 18px; font-size: 10px; }
+  }
 </style>
 </head>
 <body>
@@ -372,7 +386,7 @@
       up on your line free for a fortnight, and it answers the ones that come in after
       you've shut. If it catches you a job you'd have lost, we carry on at £299 a
       month, no contract. If not, no harm done.</p>
-    <a class="cta-btn" href="mailto:fieldline.colby@gmail.com?subject=Out%20of%20hours%20cover&amp;body=Hi%20Colby%2C%20interested%20in%20the%20free%20fortnight.%20Our%20firm%20is%3A" id="bookBtn">Get the free fortnight</a>
+    <a class="cta-btn" href="https://calendly.com/fieldline-colby/30min" id="bookBtn">Book a 10-min call</a>
     <div class="cta-note">Live in <b>48 hours</b> · your daytime line works exactly as it does now</div>
   </div>
 
