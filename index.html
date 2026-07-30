@@ -42,7 +42,9 @@
     width: 8px; height: 8px; background: var(--bg);
   }
   .logo span { font-size: 19px; font-weight: 700; color: var(--ink); letter-spacing: -.01em; }
-  .header-cta { display: none; }
+  /* .btn.header-cta, not .header-cta — .btn sets display:block later in the
+     sheet and would otherwise override a plain .header-cta rule */
+  .btn.header-cta { display: none; }
 
   /* ── buttons ────────────────────────── */
   .btn {
@@ -202,7 +204,7 @@
 
   /* ── desktop ────────────────────────── */
   @media (min-width: 900px) {
-    .header-cta {
+    .btn.header-cta {
       display: inline-block; width: auto; font-size: 15px; padding: 10px 20px;
     }
     .hero { padding: 66px 0 74px; }
