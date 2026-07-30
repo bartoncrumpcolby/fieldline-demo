@@ -178,6 +178,28 @@
 
   footer { border-top: 1px solid var(--line); padding: 26px 0 44px; font-size: 14px; color: var(--muted); }
 
+  /* ── phone ──────────────────────────── */
+  @media (max-width: 620px) {
+    .wrap { padding: 0 17px; }
+    .hero { padding: 32px 0 38px; }
+    .hero-grid { gap: 26px; }
+    .lede { font-size: 17px; margin-bottom: 22px; }
+    .hero-cta { max-width: none; }
+    .note { margin-top: 24px; padding: 13px 15px; font-size: 15px; }
+
+    .panel { padding: 15px; }
+    .transcript {
+      padding: 11px; max-height: none;   /* let it breathe rather than clip */
+      min-height: 0; gap: 8px;
+    }
+    /* the column is narrow — give the bubbles nearly all of it */
+    .bubble { max-width: 94%; padding: 9px 12px; font-size: 14.5px; }
+
+    section.how, section.offer { padding: 38px 0; }
+    .steps li { padding: 18px 17px; }
+    .sms-wrap { margin-top: 26px; }
+  }
+
   /* ── desktop ────────────────────────── */
   @media (min-width: 900px) {
     .header-cta {
