@@ -173,6 +173,33 @@
   }
   .steps b { display: block; color: var(--ink); font-weight: 600; margin-bottom: 4px; font-size: 17px; }
 
+  /* ── contrast: the painful "before" (CRO: make the status quo hurt) ── */
+  section.contrast { padding: 52px 0; }
+  .timeline { border-left: 2px solid var(--line); margin-top: 24px; }
+  .timeline li {
+    list-style: none; position: relative;
+    padding: 0 0 22px 26px; font-size: 16.5px;
+  }
+  .timeline li::before {
+    content: ""; position: absolute; left: -7px; top: 8px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--line);
+  }
+  .timeline li:last-child { padding-bottom: 0; }
+  .timeline li:last-child::before { background: #c0392b; }
+  .timeline .t { display: block; font-weight: 600; color: var(--ink); }
+  .timeline li:last-child .t { color: #a3271c; }
+
+  /* ── founding clients (honest stand-in until real testimonials exist) ── */
+  .founding {
+    background: var(--bg); border: 1px solid var(--line);
+    border-left: 3px solid var(--amber);
+    border-radius: 0 10px 10px 0; padding: 22px 22px;
+    max-width: 640px; margin: 0 auto; text-align: left;
+  }
+  .founding h3 { font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+  .founding p { font-size: 16px; }
+
   /* ── tiers ──────────────────────────── */
   section.tiers { padding: 52px 0; }
   .tier-grid { display: grid; gap: 18px; margin-top: 26px; }
@@ -334,6 +361,19 @@
 </div>
 
 <div class="wrap">
+  <section class="contrast">
+    <h2 class="sec">What a missed call actually costs</h2>
+    <p class="sec-sub">One Sunday evening, start to finish.</p>
+    <ul class="timeline">
+      <li><span class="t">8:41pm — their boiler packs in</span>No heat, no hot water, kids in the house.</li>
+      <li><span class="t">8:42pm — they ring you</span>It rings out. Voicemail. They don't leave one.</li>
+      <li><span class="t">8:43pm — they ring the next firm on Google</span>Someone picks up.</li>
+      <li><span class="t">Monday — that firm fits the new boiler</span>You never find out it happened.</li>
+    </ul>
+  </section>
+</div>
+
+<div class="wrap">
   <section class="tiers">
     <h2 class="sec">Two ways to do it</h2>
     <p class="sec-sub">Both free for a fortnight. Both live in 48 hours. No contract either way.</p>
@@ -351,7 +391,7 @@
           <li class="muted">Doesn't answer the phone</li>
           <li class="muted">Doesn't sort urgent from routine</li>
         </ul>
-        <a class="btn secondary" href="https://calendly.com/fieldline-colby/30min">Start free</a>
+        <a class="btn secondary" href="https://calendly.com/fieldline-colby/30min">Book a call</a>
       </div>
 
       <div class="tier featured">
@@ -367,7 +407,7 @@
           <li>Flags what's urgent and what can wait</li>
           <li>Catches the ones who'd never text</li>
         </ul>
-        <a class="btn" href="https://calendly.com/fieldline-colby/30min">Start free</a>
+        <a class="btn" href="https://calendly.com/fieldline-colby/30min">Book a call</a>
       </div>
     </div>
   </section>
@@ -377,7 +417,13 @@
   <div class="wrap">
     <section class="offer">
       <div class="offer-in">
-        <h2 class="sec">Get it sorted before winter</h2>
+        <div class="founding">
+          <h3>I'm taking on my first few firms now</h3>
+          <p>They get it set up with no setup fee, in exchange for honest feedback
+            and a word from them if it works. So you'd get it cheaper than anyone
+            after you, and I've got every reason to make sure it actually lands.</p>
+        </div>
+        <h2 class="sec" style="margin-top:34px">Get it sorted before winter</h2>
         <p>Whichever you pick, I'll set it up on your line free for a fortnight so
           you can see what it catches. If it wins you a job you'd have lost, we
           carry on. If it doesn't, no harm done and you owe me nothing.</p>
