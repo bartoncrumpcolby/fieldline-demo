@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FieldLine — out of hours cover for heating firms</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:       #ffffff;
-    --surface:  #f6f6f4;
-    --line:     #e3e3df;
-    --ink:      #17181a;
+    --bg:       #faf8f4;
+    --surface:  #f1ede4;
+    --line:     #ddd6c8;
+    --ink:      #14140f;
     --body:     #4a4d52;
     --muted:    #85888e;
     --amber:    #ffb000;
@@ -41,7 +41,7 @@
     content: ""; position: absolute; left: 4.4px; top: 4.4px;
     width: 8px; height: 8px; background: var(--bg);
   }
-  .logo span { font-size: 19px; font-weight: 700; color: var(--ink); letter-spacing: -.01em; }
+  .logo span { font-family: "Archivo", sans-serif; font-size: 19px; font-weight: 800; color: var(--ink); letter-spacing: -.01em; }
   /* .btn.header-cta, not .header-cta — .btn sets display:block later in the
      sheet and would otherwise override a plain .header-cta rule */
   .btn.header-cta { display: none; }
@@ -49,8 +49,8 @@
   /* ── buttons ────────────────────────── */
   .btn {
     display: block; width: 100%; text-align: center;
-    font-family: inherit; font-size: 17px; font-weight: 600;
-    border: 0; border-radius: 8px; padding: 15px 24px; cursor: pointer;
+    font-family: "Archivo", sans-serif; font-size: 17px; font-weight: 600;
+    border: 0; border-radius: 3px; padding: 15px 24px; cursor: pointer;
     background: var(--amber); color: #17130a; text-decoration: none;
     transition: filter .12s;
   }
@@ -66,13 +66,15 @@
   .hero { padding-top: 46px; padding-bottom: 52px; }
   .hero-grid { display: grid; gap: 38px; }
   .eyebrow {
-    display: inline-block; font-size: 13.5px; font-weight: 600;
-    letter-spacing: .04em; text-transform: uppercase; color: var(--amber-ink);
-    border-left: 3px solid var(--amber); padding-left: 9px; margin-bottom: 16px;
+    display: inline-block; font-family: "Archivo", sans-serif;
+    font-size: 12px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: #17130a;
+    background: var(--amber); padding: 5px 10px; margin-bottom: 18px;
   }
   h1 {
-    font-size: clamp(31px, 5.2vw, 47px); font-weight: 700; color: var(--ink);
-    line-height: 1.11; letter-spacing: -.025em; margin-bottom: 16px;
+    font-family: "Archivo", sans-serif;
+    font-size: clamp(32px, 5.4vw, 50px); font-weight: 800; color: var(--ink);
+    line-height: 1.04; letter-spacing: -.035em; margin-bottom: 16px;
   }
   .lede { font-size: 18px; margin-bottom: 26px; max-width: 30em; }
   .lede b { color: var(--ink); font-weight: 600; }
@@ -80,14 +82,14 @@
   .note {
     margin-top: 30px; padding: 15px 17px;
     background: var(--surface); border-left: 3px solid var(--amber);
-    border-radius: 0 8px 8px 0; font-size: 15.5px; max-width: 30em;
+    border-radius: 0 3px 3px 0; font-size: 15.5px; max-width: 30em;
   }
   .note b { color: var(--ink); font-weight: 600; }
 
   /* ── demo panel ─────────────────────── */
   .panel {
     background: var(--surface); border: 1px solid var(--line);
-    border-radius: 12px; padding: 20px;
+    border-radius: 3px; padding: 20px;
   }
   .panel-head { margin-bottom: 15px; }
   .panel-head h2 { font-size: 19px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
@@ -101,7 +103,7 @@
   #timer { margin-left: auto; font-variant-numeric: tabular-nums; opacity: 0; }
   #timer.on { opacity: 1; }
   .transcript {
-    background: var(--bg); border: 1px solid var(--line); border-radius: 8px;
+    background: var(--bg); border: 1px solid var(--line); border-radius: 3px;
     min-height: 190px; max-height: 400px; overflow-y: auto;
     padding: 14px; margin-bottom: 14px;
     display: flex; flex-direction: column; gap: 9px;
@@ -116,7 +118,7 @@
   }
   .bubble.assistant {
     align-self: flex-start; background: #fffaf0; border: 1px solid #f2e3c4;
-    border-bottom-left-radius: 4px;
+    border-bottom-left-radius: 3px;
   }
   .bubble.assistant .who { color: var(--amber-ink); }
   .bubble.assistant .text { color: var(--ink); }
@@ -134,7 +136,7 @@
   /* the text the engineer gets — the actual outcome they're buying */
   .sms-wrap { max-width: 380px; margin: 34px auto 0; text-align: center; }
   .sms {
-    background: var(--bg); border: 1px solid var(--line); border-radius: 14px;
+    background: var(--bg); border: 1px solid var(--line); border-radius: 3px;
     padding: 16px 18px; text-align: left; box-shadow: 0 1px 3px rgba(0,0,0,.05);
   }
   .sms .from {
@@ -146,7 +148,7 @@
   .sms-cap { font-size: 15px; color: var(--muted); margin-top: 12px; }
   .summary {
     display: none; align-items: flex-start; gap: 10px;
-    background: #f0f7f3; border: 1px solid #cfe5da; border-radius: 8px;
+    background: #f0f7f3; border: 1px solid #cfe5da; border-radius: 3px;
     padding: 12px 14px; margin-bottom: 14px; font-size: 15px; color: #1f5c42;
   }
   .summary.show { display: flex; }
@@ -155,21 +157,25 @@
   /* ── how it works ───────────────────── */
   section.how { padding: 52px 0; }
   h2.sec {
-    font-size: clamp(23px, 3vw, 30px); font-weight: 700; color: var(--ink);
-    letter-spacing: -.02em; margin-bottom: 8px;
+    font-family: "Archivo", sans-serif;
+    font-size: clamp(24px, 3.1vw, 33px); font-weight: 800; color: var(--ink);
+    letter-spacing: -.03em; margin-bottom: 8px;
   }
   .sec-sub { font-size: 17px; color: var(--muted); margin-bottom: 30px; }
   .steps { display: grid; gap: 18px; counter-reset: s; list-style: none; }
   .steps li {
     counter-increment: s; background: var(--bg);
-    border: 1px solid var(--line); border-radius: 10px;
+    border: 1px solid var(--line); border-radius: 3px;
     padding: 22px 20px; font-size: 16px;
   }
+  /* big editorial numeral + rule instead of the circled-badge pattern */
+  .steps li { padding-top: 0; border: 0; border-top: 2px solid var(--ink); background: none; }
   .steps li::before {
-    content: counter(s); display: flex; align-items: center; justify-content: center;
-    width: 30px; height: 30px; border-radius: 50%;
-    background: var(--amber); color: #17130a;
-    font-size: 15px; font-weight: 700; margin-bottom: 13px;
+    content: "0" counter(s);
+    font-family: "Archivo", sans-serif;
+    font-size: 46px; font-weight: 800; line-height: 1;
+    color: var(--amber); letter-spacing: -.04em;
+    display: block; margin: 16px 0 14px;
   }
   .steps b { display: block; color: var(--ink); font-weight: 600; margin-bottom: 4px; font-size: 17px; }
 
@@ -194,7 +200,7 @@
   .founding {
     background: var(--bg); border: 1px solid var(--line);
     border-left: 3px solid var(--amber);
-    border-radius: 0 10px 10px 0; padding: 22px 22px;
+    border-radius: 0 3px 3px 0; padding: 22px 22px;
     max-width: 640px; margin: 0 auto; text-align: left;
   }
   .founding h3 { font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
@@ -205,7 +211,7 @@
   .tier-grid { display: grid; gap: 18px; margin-top: 26px; }
   .tier {
     background: var(--bg); border: 1px solid var(--line);
-    border-radius: 12px; padding: 24px 22px; display: flex; flex-direction: column;
+    border-radius: 3px; padding: 24px 22px; display: flex; flex-direction: column;
   }
   .tier.featured { border: 2px solid var(--amber); }
   .tier .tag {
@@ -214,8 +220,8 @@
     background: var(--amber); color: #17130a;
     padding: 4px 9px; border-radius: 4px; margin-bottom: 12px;
   }
-  .tier h3 { font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
-  .tier .price { font-size: 30px; font-weight: 700; color: var(--ink); letter-spacing: -.02em; }
+  .tier h3 { font-family: "Archivo", sans-serif; font-size: 20px; font-weight: 800; color: var(--ink); margin-bottom: 4px; }
+  .tier .price { font-family: "Archivo", sans-serif; font-size: 32px; font-weight: 800; color: var(--ink); letter-spacing: -.02em; }
   .tier .price span { font-size: 16px; font-weight: 500; color: var(--muted); }
   .tier .blurb { font-size: 15.5px; margin: 10px 0 16px; }
   .tier ul { list-style: none; margin-bottom: 20px; }
@@ -241,7 +247,7 @@
      page rather than a link out, so there's one less click to book */
   .cal-wrap {
     margin: 26px auto 0; max-width: 700px;
-    border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+    border: 1px solid var(--line); border-radius: 3px; overflow: hidden;
     background: var(--bg);
   }
   .calendly-inline-widget { min-width: 300px; height: 680px; }
