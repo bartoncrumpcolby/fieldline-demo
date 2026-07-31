@@ -237,6 +237,15 @@
   .offer .price { color: var(--ink); font-weight: 600; }
   .offer .btn { max-width: 330px; margin: 0 auto; }
 
+  /* embedded booking calendar — the template puts the calendar itself on the
+     page rather than a link out, so there's one less click to book */
+  .cal-wrap {
+    margin: 26px auto 0; max-width: 700px;
+    border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+    background: var(--bg);
+  }
+  .calendly-inline-widget { min-width: 300px; height: 680px; }
+
   footer { border-top: 1px solid var(--line); padding: 26px 0 44px; font-size: 14px; color: var(--muted); }
 
   /* ── phone ──────────────────────────── */
@@ -423,11 +432,16 @@
             and a word from them if it works. So you'd get it cheaper than anyone
             after you, and I've got every reason to make sure it actually lands.</p>
         </div>
-        <h2 class="sec" style="margin-top:34px">Get it sorted before winter</h2>
-        <p>Whichever you pick, I'll set it up on your line free for a fortnight so
-          you can see what it catches. If it wins you a job you'd have lost, we
-          carry on. If it doesn't, no harm done and you owe me nothing.</p>
-        <a class="btn" href="https://calendly.com/fieldline-colby/30min">Book a 15-minute call</a>
+        <h2 class="sec" style="margin-top:34px">Book your call</h2>
+        <p>Fifteen minutes, no hard sell. I'll ask how you handle calls now, and if
+          I can help I'll set it up on your line free for a fortnight. If it wins
+          you a job you'd have lost, we carry on. If not, no harm done and you owe
+          me nothing.</p>
+      </div>
+
+      <div class="cal-wrap">
+        <div class="calendly-inline-widget"
+             data-url="https://calendly.com/fieldline-colby/30min?hide_gdpr_banner=1&primary_color=ffb000"></div>
       </div>
     </section>
   </div>
@@ -439,6 +453,10 @@
     Colby Barton · fieldline.colby@gmail.com
   </div>
 </footer>
+
+<!-- loaded async and last so it can't slow the page down — CRO module is strict
+     about load speed, and this widget is the heaviest thing on the page -->
+<script src="https://assets.calendly.com/assets/external/widget.js" async defer></script>
 
 <script type="module">
   import Vapi from "https://esm.sh/@vapi-ai/web";
