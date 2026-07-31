@@ -4,313 +4,257 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FieldLine — out of hours cover for trades</title>
+<meta name="description" content="An out of hours receptionist for trade businesses. It answers the calls you miss, works out the job, and texts it to whoever's on call.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+  /* FieldLine — bold flat, black-dominant, one vivid accent.
+     Amber only ever appears as a fill or a highlight behind text. It is never
+     coloured text on a light background: that was the muddy, "dried mustard"
+     failure the earlier versions kept hitting. */
   :root {
-    --bg:        #fafaf8;  /* near-white, only a whisper of warmth */
-    --surface:   #f1f0eb;  /* light stone */
-    --line:      #e2dfd6;
-    --ink:       #17171a;
-    --body:      #55534c;
-    --muted:     #8a867c;
-    --amber:     #ffb000;  /* the only warm note — earns its place */
-    --amber-ink: #8a5c00;  /* amber as text on light backgrounds */
-    --green:     #2f7d55;
-    /* dark surface — amber is built for this, and the page needs the contrast */
-    --dark:      #1c1c20;
-    --dark-line: #34343c;
-    --dark-ink:  #ecebe6;
-    --dark-mute: #97938a;
+    --black:    #0e0e10;
+    --ink:      #17171a;
+    --paper:    #ffffff;
+    --stone:    #f4f3f0;
+    --line:     #e4e2dc;
+    --body:     #55534d;
+    --muted:    #8a877f;
+    --amber:    #ffb81a;
+    --amber-dk: #b57d00;
+    --on-dark:  #eceae5;
+    --dark-mute:#95928a;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
     font-family: "Barlow", -apple-system, system-ui, sans-serif;
-    color: var(--body); background: var(--bg);
+    color: var(--body); background: var(--paper);
     line-height: 1.55; -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
-  .band { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 26px; }
+  h1, h2, h3 { font-family: "Archivo", sans-serif; letter-spacing: -.035em; }
 
-  /* ── header ─────────────────────────── */
-  header { border-bottom: 1px solid var(--line); }
-  .header-in { display: flex; align-items: center; justify-content: space-between; padding-top: 18px; padding-bottom: 18px; }
-  .logo { display: flex; align-items: center; gap: 9px; }
+  /* amber as a marker highlight behind words */
+  .hl {
+    background: var(--amber); color: var(--black);
+    padding: 0 .16em;
+    -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  }
+
+  /* ── buttons: solid fill, hard border, offset shadow — pressable, not flat ── */
+  .btn {
+    display: inline-block; text-align: center; text-decoration: none;
+    font-family: "Archivo", sans-serif; font-size: 17px; font-weight: 800;
+    letter-spacing: -.01em; cursor: pointer;
+    background: var(--amber); color: var(--black);
+    border: 2px solid var(--black); border-radius: 999px;
+    padding: 14px 30px;
+    box-shadow: 4px 4px 0 var(--black);
+    transition: transform .1s ease, box-shadow .1s ease;
+  }
+  .btn:hover { transform: translate(1px,1px); box-shadow: 3px 3px 0 var(--black); }
+  .btn:active { transform: translate(4px,4px); box-shadow: 0 0 0 var(--black); }
+  .btn.block { display: block; width: 100%; }
+  .btn:disabled { background: #d6d4ce; border-color: #b3b1ab; box-shadow: 4px 4px 0 #b3b1ab; cursor: wait; }
+  .btn.stop { background: var(--paper); }
+  .header-cta { display: none; font-size: 14px; padding: 9px 20px;
+                border-color: var(--amber); box-shadow: 3px 3px 0 var(--amber-dk); }
+  .under-btn { font-size: 14px; color: var(--muted); margin-top: 14px; }
+
+  /* ── header ─────────────────────────────────────────── */
+  header { background: var(--black); }
+  .header-in { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+  .logo { display: flex; align-items: center; gap: 10px; }
   .logo .mark {
-    width: 22px; height: 22px; flex: none; background: var(--amber);
+    width: 24px; height: 24px; flex: none; background: var(--amber);
     clip-path: polygon(0 0, 100% 0, 100% 62%, 62% 62%, 62% 100%, 0 100%);
     position: relative;
   }
   .logo .mark::after {
-    content: ""; position: absolute; left: 4.4px; top: 4.4px;
-    width: 8px; height: 8px; background: var(--bg);
+    content: ""; position: absolute; left: 4.8px; top: 4.8px;
+    width: 8.8px; height: 8.8px; background: var(--black);
   }
-  .logo span { font-family: "Archivo", sans-serif; font-size: 19px; font-weight: 800; color: var(--ink); letter-spacing: -.01em; }
-  /* .btn.header-cta, not .header-cta — .btn sets display:block later in the
-     sheet and would otherwise override a plain .header-cta rule */
-  .btn.header-cta { display: none; }
+  .logo span { font-family: "Archivo", sans-serif; font-size: 20px; font-weight: 900; color: #fff; letter-spacing: -.03em; }
 
-  /* ── buttons ────────────────────────── */
-  .btn {
-    display: block; width: 100%; text-align: center;
-    font-family: "Archivo", sans-serif; font-size: 17px; font-weight: 600;
-    border: 0; border-radius: 3px; padding: 15px 24px; cursor: pointer;
-    background: var(--amber); color: #17130a; text-decoration: none;
-    transition: filter .12s;
-  }
-  .btn:hover { filter: brightness(.95); }
-  /* solid dark so it reads as pressable against the grey panel — amber stays
-     reserved for the booking CTA so the two don't compete */
-  .btn.secondary { background: var(--amber); color: #17130a; border: 0; }
-  .btn:disabled { background: var(--line); color: var(--muted); cursor: wait; }
-  .btn.stop { background: transparent; color: var(--dark-ink); border: 1.5px solid var(--dark-line); }
-  .under-btn { font-size: 14px; color: var(--muted); text-align: center; margin-top: 11px; }
-  .panel .under-btn { color: var(--dark-mute); }
-
-  /* ── hero ───────────────────────────── */
-  .hero { padding-top: 46px; padding-bottom: 52px; }
-  .hero-grid { display: grid; gap: 38px; }
+  /* ── hero: black band ───────────────────────────────── */
+  .hero { background: var(--black); color: var(--on-dark); padding: 54px 0 62px; }
+  .hero-grid { display: grid; gap: 40px; align-items: start; }
   .eyebrow {
     display: inline-block; font-family: "Archivo", sans-serif;
-    font-size: 12px; font-weight: 700; letter-spacing: .12em;
-    text-transform: uppercase; color: #17130a;
-    background: var(--amber); padding: 5px 10px; margin-bottom: 18px;
+    font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 20px;
   }
-  h1 {
-    font-family: "Archivo", sans-serif;
-    font-size: clamp(32px, 5.4vw, 50px); font-weight: 800; color: var(--ink);
-    line-height: 1.04; letter-spacing: -.035em; margin-bottom: 16px;
-  }
-  h1 em { font-style: normal; color: var(--ink); }
-  .lede { font-size: 18px; margin-bottom: 26px; max-width: 30em; }
-  .lede b { color: var(--ink); font-weight: 600; }
-  .hero-cta { max-width: 330px; }
+  h1 { font-size: clamp(36px, 5.6vw, 58px); font-weight: 900; color: #fff; line-height: 1.06; margin-bottom: 20px; }
+  .lede { font-size: 18.5px; color: #b9b6af; max-width: 30em; margin-bottom: 28px; }
+  .lede b { color: #fff; font-weight: 600; }
   .note {
-    margin-top: 30px; padding: 15px 17px;
-    background: var(--surface); border-left: 3px solid var(--amber);
-    border-radius: 0 3px 3px 0; font-size: 15.5px; max-width: 30em;
+    margin-top: 32px; padding: 16px 18px; max-width: 32em;
+    background: #17171a; border-left: 3px solid var(--amber);
+    font-size: 15.5px; color: #b8b5ae;
   }
-  .note b { color: var(--ink); font-weight: 600; }
+  .note b { color: #fff; font-weight: 600; }
 
-  /* ── demo panel ─────────────────────── */
+  /* ── demo card: white on black, maximum separation ──── */
   .panel {
-    background: var(--dark); border: 0;
-    border-top: 3px solid var(--amber);
-    padding: 24px; color: var(--dark-ink);
+    background: var(--paper); border: 2px solid var(--black);
+    box-shadow: 6px 6px 0 var(--amber);
+    padding: 22px; color: var(--body);
   }
-  .panel-head { margin-bottom: 17px; }
-  .panel-head h2 {
-    font-family: "Archivo", sans-serif; font-size: 20px; font-weight: 800;
-    color: #fff; margin-bottom: 4px; letter-spacing: -.02em;
-  }
-  .panel-head p { font-size: 15px; color: var(--dark-mute); }
-  .statusline {
-    display: flex; align-items: center; gap: 8px;
-    font-size: 14px; color: var(--dark-mute); margin-bottom: 15px;
-  }
-  .dot { width: 7px; height: 7px; border-radius: 50%; background: #55555f; flex: none; }
-  .dot.live { background: var(--green); }
+  .panel-head h2 { font-size: 20px; font-weight: 800; color: var(--ink); margin-bottom: 3px; }
+  .panel-head p { font-size: 15px; color: var(--muted); margin-bottom: 15px; }
+  .statusline { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); margin-bottom: 14px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: #cfcdc7; flex: none; }
+  .dot.live { background: #22a35c; box-shadow: 0 0 0 3px rgba(34,163,92,.18); }
   #timer { margin-left: auto; font-variant-numeric: tabular-nums; opacity: 0; }
   #timer.on { opacity: 1; }
-  .transcript {
-    min-height: 190px; max-height: 400px; overflow-y: auto;
-    padding: 2px 0 4px; margin-bottom: 16px;
-    display: flex; flex-direction: column; gap: 10px;
-  }
-  .bubble {
-    font-size: 15px; line-height: 1.45; max-width: 85%;
-    padding: 9px 13px; border-radius: 13px;
-  }
-  .bubble .who {
-    display: block; font-size: 10.5px; font-weight: 700; text-transform: uppercase;
-    letter-spacing: .07em; color: var(--dark-mute); margin-bottom: 3px;
-  }
-  .bubble.assistant {
-    align-self: flex-start; background: rgba(255,176,0,.13);
-    border-left: 2px solid var(--amber);
-    border-radius: 3px 13px 13px 3px; color: #fff;
-  }
-  .bubble.assistant .who { color: var(--amber); }
-  .bubble.assistant .text { color: #fff; }
-  .bubble.user {
-    align-self: flex-end; background: #2b2b32;
-    border-bottom-right-radius: 3px; color: var(--dark-ink);
-  }
-  .placeholder { color: var(--muted); font-size: 15px; margin: auto; text-align: center; }
   .sample-tag {
-    font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-    color: var(--dark-mute); margin-bottom: 13px;
-    padding-bottom: 10px; border-bottom: 1px solid var(--dark-line);
+    font-family: "Archivo", sans-serif; font-size: 11px; font-weight: 800;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+    padding-bottom: 10px; border-bottom: 2px solid var(--line); margin-bottom: 14px;
   }
   .sample-tag.hide { display: none; }
-
-  /* the text the engineer gets — the actual outcome they're buying */
-  .sms-wrap { max-width: 380px; margin: 34px auto 0; text-align: center; }
-  .sms {
-    background: var(--bg); border: 1px solid var(--line); border-radius: 3px;
-    padding: 16px 18px; text-align: left; box-shadow: 0 1px 3px rgba(0,0,0,.05);
+  .transcript {
+    min-height: 180px; max-height: 380px; overflow-y: auto;
+    display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px;
   }
-  .sms .from {
-    font-family: "Archivo", sans-serif;
-    font-size: 11.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase;
-    color: var(--ink); margin-bottom: 9px;
-    padding-bottom: 8px; border-bottom: 1px solid var(--line);
+  .bubble { font-size: 15px; line-height: 1.45; max-width: 86%; padding: 10px 14px; }
+  .bubble .who {
+    display: block; font-family: "Archivo", sans-serif; font-size: 10px; font-weight: 800;
+    letter-spacing: .1em; text-transform: uppercase; margin-bottom: 3px;
   }
-  .sms p { font-size: 15.5px; color: var(--ink); line-height: 1.5; }
-  .sms .meta { font-size: 13.5px; color: var(--muted); margin-top: 9px; }
-  .sms-cap { font-size: 15px; color: var(--muted); margin-top: 12px; }
+  .bubble.assistant {
+    align-self: flex-start; background: #fff2cc; border: 1.5px solid var(--black);
+    border-radius: 3px 14px 14px 14px; color: var(--ink);
+  }
+  .bubble.assistant .who { color: var(--amber-dk); }
+  .bubble.user {
+    align-self: flex-end; background: var(--stone); border: 1.5px solid #d5d3cd;
+    border-radius: 14px 3px 14px 14px; color: var(--ink);
+  }
+  .bubble.user .who { color: var(--muted); }
+  .placeholder { color: var(--muted); font-size: 15px; margin: auto; text-align: center; }
   .summary {
-    display: none; align-items: flex-start; gap: 10px;
-    background: rgba(47,125,85,.16); border: 1px solid rgba(47,125,85,.4); border-radius: 3px;
-    padding: 12px 14px; margin-bottom: 14px; font-size: 15px; color: #a8d8bd;
+    display: none; gap: 10px; background: #e8f6ee; border: 1.5px solid #9ed4b6;
+    padding: 12px 14px; margin-bottom: 16px; font-size: 15px; color: #1c5b3c;
   }
   .summary.show { display: flex; }
-  .summary b { display: block; color: #d6f0e2; }
+  .summary b { display: block; color: #10402a; }
 
-  /* ── how it works ───────────────────── */
-  section.how { padding: 52px 0; }
-  h2.sec {
-    font-family: "Archivo", sans-serif;
-    font-size: clamp(24px, 3.1vw, 33px); font-weight: 800; color: var(--ink);
-    letter-spacing: -.03em; margin-bottom: 8px;
-  }
-  .sec-sub { font-size: 17px; color: var(--muted); margin-bottom: 30px; }
-  .steps { display: grid; gap: 18px; counter-reset: s; list-style: none; }
-  .steps li {
-    counter-increment: s; background: var(--bg);
-    border: 1px solid var(--line); border-radius: 3px;
-    padding: 22px 20px; font-size: 16px;
-  }
-  /* big editorial numeral + rule instead of the circled-badge pattern */
-  .steps li { padding-top: 0; border: 0; border-top: 2px solid var(--ink); background: none; }
+  /* ── sections ───────────────────────────────────────── */
+  section { padding: 62px 0; }
+  .sec-head { margin-bottom: 34px; }
+  h2.sec { font-size: clamp(27px, 3.6vw, 40px); font-weight: 900; color: var(--ink); line-height: 1.05; }
+  .sec-sub { font-size: 17.5px; color: var(--muted); margin-top: 10px; }
+  .dark { background: var(--black); color: var(--on-dark); }
+  .dark h2.sec { color: #fff; }
+  .dark .sec-sub { color: var(--dark-mute); }
+
+  /* how it works */
+  .steps { display: grid; gap: 26px; counter-reset: s; list-style: none; }
+  .steps li { counter-increment: s; border-top: 3px solid var(--black); padding-top: 18px; font-size: 16px; }
   .steps li::before {
-    content: "0" counter(s);
-    font-family: "Archivo", sans-serif;
-    font-size: 46px; font-weight: 800; line-height: 1;
-    color: var(--amber); letter-spacing: -.04em;
-    display: block; margin: 16px 0 14px;
+    content: "0" counter(s); display: block;
+    font-family: "Archivo", sans-serif; font-size: 42px; font-weight: 900;
+    color: var(--amber); line-height: 1; margin-bottom: 12px;
+    -webkit-text-stroke: 1.5px var(--black);
   }
-  .steps b { display: block; color: var(--ink); font-weight: 600; margin-bottom: 4px; font-size: 17px; }
+  .steps b { display: block; font-family: "Archivo", sans-serif; font-size: 18px;
+             font-weight: 800; color: var(--ink); margin-bottom: 6px; letter-spacing: -.02em; }
 
-  /* ── contrast: the painful "before" (CRO: make the status quo hurt) ── */
-  section.contrast { padding: 52px 0; }
-  .timeline { border-left: 2px solid var(--line); margin-top: 24px; }
-  .timeline li {
-    list-style: none; position: relative;
-    padding: 0 0 22px 26px; font-size: 16.5px;
+  /* the job text — the actual outcome they're buying */
+  .sms-wrap { max-width: 400px; margin: 46px auto 0; text-align: center; }
+  .sms { background: var(--paper); border: 2px solid var(--black); box-shadow: 5px 5px 0 var(--amber); padding: 18px 20px; text-align: left; }
+  .sms .from {
+    font-family: "Archivo", sans-serif; font-size: 11px; font-weight: 800;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--ink);
+    padding-bottom: 9px; border-bottom: 2px solid var(--line); margin-bottom: 11px;
   }
+  .sms p { font-size: 15.5px; color: var(--ink); line-height: 1.5; }
+  .sms .meta { font-size: 13.5px; color: var(--muted); margin-top: 10px; }
+  .sms-cap { font-size: 15px; color: var(--muted); margin-top: 14px; }
+
+  /* the cost timeline — on black, so it lands bleak */
+  .timeline { list-style: none; border-left: 2px solid #33333a; margin-top: 26px; }
+  .timeline li { position: relative; padding: 0 0 26px 28px; font-size: 16.5px; color: var(--dark-mute); }
   .timeline li::before {
-    content: ""; position: absolute; left: -7px; top: 8px;
-    width: 12px; height: 12px; border-radius: 50%;
-    background: var(--line);
+    content: ""; position: absolute; left: -8px; top: 7px;
+    width: 14px; height: 14px; background: #33333a; border: 2px solid var(--black);
   }
   .timeline li:last-child { padding-bottom: 0; }
-  .timeline li:last-child::before { background: #c0392b; }
-  .timeline .t { display: block; font-weight: 600; color: var(--ink); }
-  .timeline li:last-child .t { color: #a3271c; }
+  .timeline li:last-child::before { background: var(--amber); }
+  .timeline .t { display: block; font-family: "Archivo", sans-serif; font-weight: 800;
+                 font-size: 17px; color: #fff; letter-spacing: -.02em; margin-bottom: 3px; }
+  .timeline li:last-child .t { color: var(--amber); }
 
-  /* ── founding clients (honest stand-in until real testimonials exist) ── */
-  .founding {
-    background: var(--bg); border: 1px solid var(--line);
-    border-left: 3px solid var(--amber);
-    border-radius: 0 3px 3px 0; padding: 22px 22px;
-    max-width: 640px; margin: 0 auto; text-align: left;
-  }
-  .founding h3 { font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
-  .founding p { font-size: 16px; }
-
-  /* ── tiers ──────────────────────────── */
-  section.tiers { padding: 52px 0; }
-  .tier-grid { display: grid; gap: 18px; margin-top: 26px; }
-  .tier {
-    background: var(--bg); border: 1px solid var(--line);
-    border-radius: 3px; padding: 24px 22px; display: flex; flex-direction: column;
-  }
-  .tier.featured { border: 2px solid var(--amber); }
+  /* tiers */
+  .tier-grid { display: grid; gap: 22px; margin-top: 34px; }
+  .tier { background: var(--paper); border: 2px solid var(--black); padding: 26px 24px; display: flex; flex-direction: column; }
+  .tier.featured { box-shadow: 7px 7px 0 var(--amber); }
   .tier .tag {
-    align-self: flex-start; font-size: 11.5px; font-weight: 700;
-    letter-spacing: .07em; text-transform: uppercase;
-    background: var(--amber); color: #17130a;
-    padding: 4px 9px; border-radius: 4px; margin-bottom: 12px;
+    align-self: flex-start; font-family: "Archivo", sans-serif; font-size: 11px; font-weight: 800;
+    letter-spacing: .1em; text-transform: uppercase;
+    background: var(--black); color: var(--amber); padding: 5px 11px; margin-bottom: 14px;
   }
-  .tier h3 { font-family: "Archivo", sans-serif; font-size: 20px; font-weight: 800; color: var(--ink); margin-bottom: 4px; }
-  .tier .price { font-family: "Archivo", sans-serif; font-size: 32px; font-weight: 800; color: var(--ink); letter-spacing: -.02em; }
-  .tier .price span { font-size: 16px; font-weight: 500; color: var(--muted); }
-  .tier .blurb { font-size: 15.5px; margin: 10px 0 16px; }
-  .tier ul { list-style: none; margin-bottom: 20px; }
-  .tier li {
-    font-size: 15.5px; padding-left: 24px; position: relative; margin-bottom: 9px;
-  }
-  .tier li::before {
-    content: "✓"; position: absolute; left: 0; top: 0;
-    color: var(--ink); font-weight: 700;
-  }
+  .tier h3 { font-size: 22px; font-weight: 900; color: var(--ink); margin-bottom: 6px; }
+  .tier .price { font-family: "Archivo", sans-serif; font-size: 40px; font-weight: 900;
+                 color: var(--ink); letter-spacing: -.04em; line-height: 1; }
+  .tier .price span { font-family: "Barlow", sans-serif; font-size: 16px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+  .tier .blurb { font-size: 15.5px; margin: 12px 0 18px; }
+  .tier ul { list-style: none; margin-bottom: 24px; }
+  .tier li { font-size: 15.5px; padding-left: 26px; position: relative; margin-bottom: 10px; color: var(--ink); }
+  .tier li::before { content: "✓"; position: absolute; left: 0; font-weight: 700; color: var(--amber-dk); }
   .tier li.muted { color: var(--muted); }
-  .tier li.muted::before { content: "—"; color: var(--muted); }
+  .tier li.muted::before { content: "✕"; color: #c4c1ba; }
   .tier .btn { margin-top: auto; }
 
-  /* ── offer ──────────────────────────── */
-  section.offer { padding: 52px 0; text-align: center; }
-  .offer-in { max-width: 620px; margin: 0 auto; }
-  .offer p { font-size: 17.5px; margin-bottom: 24px; }
-  .offer .price { color: var(--ink); font-weight: 600; }
-  .offer .btn { max-width: 330px; margin: 0 auto; }
+  /* founding clients */
+  .founding { max-width: 660px; margin: 0 auto; background: #17171a; border-left: 3px solid var(--amber); padding: 24px; }
+  .founding h3 { font-size: 19px; font-weight: 800; color: #fff; margin-bottom: 9px; }
+  .founding p { font-size: 16px; color: #b8b5ae; }
 
-  /* closing block — the page's destination. Dark, high contrast, unmissable.
-     A Calendly iframe was tried here and dropped: too heavy, and a blank
-     680px void if it ever fails to load is worse than no calendar at all. */
-  .close-block {
-    background: var(--ink); color: #d8d3c6;
-    padding: 54px 30px; text-align: center;
-  }
-  .close-block h2 {
-    font-family: "Archivo", sans-serif; font-weight: 800;
-    font-size: clamp(26px, 3.6vw, 38px); letter-spacing: -.03em;
-    color: #fdfcf9; line-height: 1.08; margin-bottom: 14px;
-  }
-  .close-block h2 em { font-style: normal; color: var(--amber); }
-  .close-block p {
-    font-size: 17.5px; max-width: 30em; margin: 0 auto 26px; color: #b3ada0;
-  }
-  .close-block .btn { max-width: 330px; margin: 0 auto; font-size: 18px; padding: 17px 24px; }
-  .close-block .under-btn { color: #8d8779; margin-top: 14px; }
+  /* close — full amber band, the loudest thing on the page */
+  .close-block { background: var(--amber); color: var(--black); padding: 66px 26px; text-align: center; }
+  .close-block h2 { font-size: clamp(30px, 4.4vw, 46px); font-weight: 900; line-height: 1.04; margin-bottom: 16px; }
+  .close-block p { font-size: 18px; max-width: 30em; margin: 0 auto 30px; color: #4a3f1e; }
+  .close-block .btn { background: var(--black); color: var(--amber); box-shadow: 4px 4px 0 rgba(0,0,0,.28); }
+  .close-block .under-btn { color: #6f5f2c; }
 
-  footer { border-top: 1px solid var(--line); padding: 26px 0 44px; font-size: 14px; color: var(--muted); }
+  footer { background: var(--black); color: var(--dark-mute); padding: 30px 0 46px; font-size: 14px; }
+  footer b { color: #fff; font-weight: 600; }
 
-  /* ── phone ──────────────────────────── */
-  @media (max-width: 620px) {
-    .wrap { padding: 0 24px; }
-    .hero { padding-top: 32px; padding-bottom: 38px; }
-    .hero-grid { gap: 26px; }
-    .lede { font-size: 17px; margin-bottom: 22px; }
-    .hero-cta { max-width: none; }
-    .note { margin-top: 24px; padding: 13px 15px; font-size: 15px; }
-
-    .panel { padding: 17px; }
-    .transcript {
-      padding: 13px; max-height: none;   /* let it breathe rather than clip */
-      min-height: 0; gap: 9px;
-    }
-    /* the column is narrow — give the bubbles nearly all of it */
-    .bubble { max-width: 94%; padding: 9px 12px; font-size: 14.5px; }
-
-    section.how, section.offer { padding: 38px 0; }
-    .steps li { padding: 18px 17px; }
-    .sms-wrap { margin-top: 26px; }
+  /* ── one restrained load reveal ─────────────────────── */
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: no-preference) {
+    .rise { opacity: 0; animation: rise .5s cubic-bezier(.2,.7,.3,1) forwards; }
+    .rise.d1 { animation-delay: .05s } .rise.d2 { animation-delay: .11s }
+    .rise.d3 { animation-delay: .17s } .rise.d4 { animation-delay: .23s }
+    .hero .panel { opacity: 0; animation: rise .6s cubic-bezier(.2,.7,.3,1) .2s forwards; }
   }
 
-  /* ── desktop ────────────────────────── */
+  /* ── phone ──────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .wrap { padding: 0 20px; }
+    .hero { padding: 38px 0 44px; }
+    .hero-grid { gap: 30px; }
+    section { padding: 46px 0; }
+    .btn { display: block; width: 100%; }
+    .panel { padding: 18px; box-shadow: 4px 4px 0 var(--amber); }
+    .transcript { max-height: none; min-height: 0; }
+    .bubble { max-width: 94%; }
+    .close-block { padding: 48px 20px; }
+    .sms-wrap { margin-top: 34px; }
+  }
+
+  /* ── desktop ────────────────────────────────────────── */
   @media (min-width: 900px) {
-    .btn.header-cta {
-      display: inline-block; width: auto; font-size: 15px; padding: 10px 20px;
-    }
-    .hero { padding-top: 66px; padding-bottom: 74px; }
-    .hero-grid { grid-template-columns: 1.02fr .98fr; gap: 56px; align-items: start; }
-    .hero-copy { padding-top: 6px; }
-    .steps { grid-template-columns: repeat(3, 1fr); gap: 22px; }
-    .tier-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
-    section.how, section.offer, section.tiers { padding: 70px 0; }
+    .header-cta { display: inline-block; }
+    .hero { padding: 76px 0 88px; }
+    .hero-grid { grid-template-columns: 1.03fr .97fr; gap: 58px; }
+    .steps { grid-template-columns: repeat(3, 1fr); gap: 30px; }
+    .tier-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+    section { padding: 84px 0; }
   }
 </style>
 </head>
@@ -323,24 +267,23 @@
   </div>
 </header>
 
-<div class="wrap hero">
-  <div class="hero-grid">
-    <div class="hero-copy">
-      <span class="eyebrow">Out of hours cover for trades</span>
-      <h1>You shut at 5. <em>The emergencies don't.</em></h1>
-      <p class="lede">Something goes wrong at 8pm, they ring you, and it goes to
+<div class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow rise d1">Out of hours cover for trades</span>
+      <h1 class="rise d2">You shut at 5.<br><span class="hl">The emergencies don't.</span></h1>
+      <p class="lede rise d3">Something goes wrong at 8pm, they ring you, and it goes to
         voicemail — and they've rung the next firm before you've even heard it.
         <b>FieldLine answers the calls that come in after you've shut</b>, works out
         what the job is, and texts it to whoever's on call.</p>
-      <div class="hero-cta">
+      <div class="rise d4">
         <a class="btn" href="https://calendly.com/fieldline-colby/30min">Book a 15-minute call</a>
         <p class="under-btn">Free for a fortnight · live in 48 hours · no contract</p>
       </div>
-
-      <div class="note">
-        <b>It doesn't replace anyone.</b> Your line rings exactly as it does now
-        through the day. FieldLine only picks up the ones nobody's there to take —
-        evenings, weekends, and when the line's already engaged.
+      <div class="note rise d4">
+        <b>It doesn't replace anyone.</b> Your line rings exactly as it does now through
+        the day. FieldLine only picks up the ones nobody's there to take — evenings,
+        weekends, and when the line's already engaged.
       </div>
     </div>
 
@@ -364,65 +307,70 @@
       <div class="summary" id="summary">
         <div><b>Job captured</b>Details texted straight to the engineer on call.</div>
       </div>
-      <button class="btn secondary" id="callBtn">Start the call</button>
-      <p class="under-btn">Uses your microphone. Nothing is recorded.</p>
+      <button class="btn block" id="callBtn">Start the call</button>
+      <p class="under-btn" style="text-align:center">Uses your microphone. Nothing is recorded.</p>
     </div>
   </div>
 </div>
 
-<div class="band">
+<section>
   <div class="wrap">
-    <section class="how">
+    <div class="sec-head">
       <h2 class="sec">How it works</h2>
       <p class="sec-sub">Set up once. Nothing changes about how you work in the day.</p>
-      <ol class="steps">
-        <li><b>I set it up with your details</b>Your services, your area, your prices,
-          and what counts as an emergency.</li>
-        <li><b>You divert your out of hours calls</b>One code on your phone, takes two
-          minutes. Your daytime line carries on exactly as it does now.</li>
-        <li><b>It answers and texts you the job</b>Name, number, address, what's wrong
-          and how urgent — before you've even picked up.</li>
-      </ol>
+    </div>
+    <ol class="steps">
+      <li><b>I set it up with your details</b>Your services, your area, your prices, and
+        what counts as an emergency.</li>
+      <li><b>You divert your out of hours calls</b>One code on your phone, takes two
+        minutes. Your daytime line carries on exactly as it does now.</li>
+      <li><b>It answers and texts you the job</b>Name, number, address, what's wrong and
+        how urgent — before you've even picked up.</li>
+    </ol>
 
-      <div class="sms-wrap">
-        <div class="sms">
-          <div class="from">New job · FieldLine</div>
-          <p>Dave Whitmore · 07812 445 190<br>
-             14 Ashfield Road, B73 5PL<br>
-             No heat, no hot water. Boiler not firing, no leak.<br>
-             Happy to wait until the morning.</p>
-          <div class="meta">Logged 8:47pm, Sunday</div>
-        </div>
-        <p class="sms-cap">This is what lands on your phone.</p>
+    <div class="sms-wrap">
+      <div class="sms">
+        <div class="from">New job · FieldLine</div>
+        <p>Dave Whitmore · 07812 445 190<br>
+           14 Ashfield Road, B73 5PL<br>
+           No heat, no hot water. Boiler not firing, no leak.<br>
+           Happy to wait until the morning.</p>
+        <div class="meta">Logged 8:47pm, Sunday</div>
       </div>
-    </section>
+      <p class="sms-cap">This is what lands on your phone.</p>
+    </div>
   </div>
-</div>
+</section>
 
-<div class="wrap">
-  <section class="contrast">
-    <h2 class="sec">What a missed call actually costs</h2>
-    <p class="sec-sub">One Sunday evening, start to finish.</p>
-    <ul class="timeline">
-      <li><span class="t">8:41pm — their boiler packs in</span>No heat, no hot water, kids in the house.</li>
-      <li><span class="t">8:42pm — they ring you</span>It rings out. Voicemail. They don't leave one.</li>
-      <li><span class="t">8:43pm — they ring the next firm on Google</span>Someone picks up.</li>
-      <li><span class="t">Monday — that firm fits the new boiler</span>You never find out it happened.</li>
-    </ul>
+<div class="dark">
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="sec">What a missed call actually costs</h2>
+        <p class="sec-sub">One Sunday evening, start to finish.</p>
+      </div>
+      <ul class="timeline">
+        <li><span class="t">8:41pm — their boiler packs in</span>No heat, no hot water, kids in the house.</li>
+        <li><span class="t">8:42pm — they ring you</span>It rings out. Voicemail. They don't leave one.</li>
+        <li><span class="t">8:43pm — they ring the next firm on Google</span>Someone picks up.</li>
+        <li><span class="t">Monday — that firm fits the new boiler</span>You never find out it happened.</li>
+      </ul>
+    </div>
   </section>
 </div>
 
-<div class="wrap">
-  <section class="tiers">
-    <h2 class="sec">Two ways to do it</h2>
-    <p class="sec-sub">Both free for a fortnight. Both live in 48 hours. No contract either way.</p>
-
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec">Two ways to do it</h2>
+      <p class="sec-sub">Both free for a fortnight. Both live in 48 hours. No contract either way.</p>
+    </div>
     <div class="tier-grid">
       <div class="tier">
         <h3>Text Back</h3>
         <div class="price">£99<span> / month</span></div>
-        <p class="blurb">Every call you miss gets a reply within seconds, so they
-          stop ringing round.</p>
+        <p class="blurb">Every call you miss gets a reply within seconds, so they stop
+          ringing round.</p>
         <ul>
           <li>Instant text to anyone you miss</li>
           <li>They reply with the job, it lands on your phone</li>
@@ -430,7 +378,7 @@
           <li class="muted">Doesn't answer the phone</li>
           <li class="muted">Doesn't sort urgent from routine</li>
         </ul>
-        <a class="btn secondary" href="https://calendly.com/fieldline-colby/30min">Book a call</a>
+        <a class="btn block" href="https://calendly.com/fieldline-colby/30min">Book a call</a>
       </div>
 
       <div class="tier featured">
@@ -446,39 +394,37 @@
           <li>Flags what's urgent and what can wait</li>
           <li>Catches the ones who'd never text</li>
         </ul>
-        <a class="btn" href="https://calendly.com/fieldline-colby/30min">Book a call</a>
+        <a class="btn block" href="https://calendly.com/fieldline-colby/30min">Book a call</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="dark">
+  <section>
+    <div class="wrap">
+      <div class="founding">
+        <h3>I'm taking on my first few firms now</h3>
+        <p>They get it set up with no setup fee, in exchange for honest feedback and a
+          word from them if it works. So you'd get it cheaper than anyone after you,
+          and I've got every reason to make sure it actually lands.</p>
       </div>
     </div>
   </section>
 </div>
 
-<div class="band">
-  <div class="wrap">
-    <section class="offer">
-      <div class="offer-in">
-        <div class="founding">
-          <h3>I'm taking on my first few firms now</h3>
-          <p>They get it set up with no setup fee, in exchange for honest feedback
-            and a word from them if it works. So you'd get it cheaper than anyone
-            after you, and I've got every reason to make sure it actually lands.</p>
-        </div>
-      </div>
-    </section>
-  </div>
-</div>
-
 <div class="close-block">
-  <h2>Get it sorted before <em>winter</em></h2>
-  <p>Fifteen minutes on the phone, no hard sell. I'll ask how you handle calls now,
-    and if I can help I'll set it up on your line free for a fortnight. If it wins
-    you a job you'd have lost, we carry on. If not, you owe me nothing.</p>
+  <h2>Get it sorted before winter</h2>
+  <p>Fifteen minutes on the phone, no hard sell. I'll ask how you handle calls now, and
+    if I can help I'll set it up on your line free for a fortnight. If it wins you a job
+    you'd have lost, we carry on. If not, you owe me nothing.</p>
   <a class="btn" href="https://calendly.com/fieldline-colby/30min">Book a 15-minute call</a>
   <p class="under-btn">Live in 48 hours · no contract · your daytime line doesn't change</p>
 </div>
 
 <footer>
   <div class="wrap">
-    FieldLine — out of hours call cover for trade businesses.<br>
+    <b>FieldLine</b> — out of hours call cover for trade businesses.<br>
     Colby Barton · fieldline.colby@gmail.com
   </div>
 </footer>
