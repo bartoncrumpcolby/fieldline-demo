@@ -247,6 +247,12 @@
   .rep-row.total b { font-size:27px; }
   .hero .sms-cap { color:var(--dark-mute); }
 
+  .either { display:grid; gap:20px; margin-top:34px; }
+  .either-col { border-top:3px solid var(--black); padding-top:15px; }
+  .either-col h3 { font-family:"Archivo",sans-serif; font-size:19px; font-weight:900;
+    color:var(--ink); margin-bottom:7px; letter-spacing:-.02em; }
+  .either-col p { font-size:16px; color:var(--body); }
+
   .close-block { background:var(--amber); color:var(--black); padding:64px 26px; text-align:center; }
   .close-block h2 { font-size:clamp(29px,4.2vw,44px); font-weight:900; line-height:1.05; margin-bottom:14px; }
   .close-block p { font-size:18px; max-width:32em; margin:0 auto 28px; color:#4a3f1e; }
@@ -285,6 +291,7 @@
     .phases { grid-template-columns:1fr 1fr; gap:34px 44px; }
     .fit-grid { grid-template-columns:1fr 1fr; gap:48px; }
     .find-grid { grid-template-columns:repeat(3,1fr); gap:26px; }
+    .either { grid-template-columns:1fr 1fr; gap:40px; }
     .demo-wrap { grid-template-columns:1fr 1fr; gap:54px; }
     section { padding:84px 0; }
   }
@@ -355,9 +362,21 @@
           number is usually the reason people carry on.</p>
       </div>
     </div>
-    <p class="findings-note">Then you decide. Some keep the text back and leave it there.
-      Some want the calls answered properly. Either is fine, and we'll say which we'd do
-      in your position.</p>
+    <div class="either">
+      <div class="either-col">
+        <h3>If the number is high</h3>
+        <p>You are losing work you already won. The fix is answering, chasing and booking
+          what comes in, so nothing gets past you.</p>
+      </div>
+      <div class="either-col">
+        <h3>If the number is low</h3>
+        <p>Then missed calls are not your problem, not enough people are ringing. The fix
+          is further up: getting found, and getting more enquiries in the first place.</p>
+      </div>
+    </div>
+    <p class="findings-note">Either way you finish the week knowing which one you are, which
+      is more than most people running a business can tell you. We will say which we would
+      do in your position, and if the answer is nothing, we will say that too.</p>
   </div>
 </section>
 <section>
@@ -396,9 +415,10 @@
       </div>
       <div class="svc">
         <span class="n">05</span>
-        <h3>Websites that take enquiries</h3>
-        <p>Built to turn someone looking you up into a phone call or a form, wired into
-          everything above. Live in a week, and you own it outright.</p>
+        <h3>Getting found, and getting enquiries</h3>
+        <p>A site built to turn someone looking you up into a phone call, your Google
+          listing sorted, and the local searches you should be showing up for. For when
+          the problem is volume, not handling.</p>
       </div>
       <div class="svc">
         <span class="n">06</span>
