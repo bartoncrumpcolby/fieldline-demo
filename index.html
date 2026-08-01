@@ -169,7 +169,8 @@
     background:var(--stone); color:var(--muted); padding:4px 10px; }
 
   /* the job text, the actual outcome they are buying */
-  .sms-wrap { max-width:400px; margin:46px auto 0; text-align:center; }
+  .sms-wrap { max-width:400px; margin:0 auto; text-align:center; }
+  .hero .sms-cap { color:var(--dark-mute); }
   .sms { background:var(--paper); border:2px solid var(--black); box-shadow:5px 5px 0 var(--amber);
     padding:18px 20px; text-align:left; }
   .sms .from { font-family:"Archivo",sans-serif; font-size:11px; font-weight:800;
@@ -274,12 +275,13 @@
 <header>
   <div class="wrap header-in">
     <a class="logo" href="/"><span class="mark"></span><span>FieldLine</span></a>
-    <a class="btn header-cta" href="https://calendly.com/fieldline-colby/30min">Book an intro call</a>
+    <a class="btn header-cta" href="https://calendly.com/fieldline-colby/30min">Book a call</a>
   </div>
 </header>
 
 <div class="hero">
-  <div class="wrap">
+  <div class="wrap hero-grid">
+    <div>
     <span class="eyebrow rise d1">Systems for businesses where the phone matters</span>
     <h1 class="rise d2">Find out what you're<br><span class="hl">already missing.</span></h1>
     <p class="lede rise d3">Nobody logs the calls that ring out, so the number is always a
@@ -288,6 +290,18 @@
     <div class="rise d4">
       <a class="btn" href="https://calendly.com/fieldline-colby/30min">Book a call</a>
       <p class="under-btn">15 minutes to set it up. Nothing changes about how you work.</p>
+      </div>
+    </div>
+    <div class="sms-wrap">
+      <div class="sms">
+        <div class="from">New enquiry · FieldLine</div>
+        <p>Dave Whitmore · 07812 445 190<br>
+           14 Ashfield Road, M19 2QT<br>
+           Leak under the kitchen sink, water coming through.<br>
+           Happy to wait until the morning.</p>
+        <div class="meta">Logged 8:47pm, Sunday</div>
+      </div>
+      <p class="sms-cap">A call they never would have got. This is what lands on the phone.</p>
     </div>
   </div>
 </div>
@@ -460,9 +474,8 @@
           enquiries come in, who handles them, and what happens when nobody can.</span></li>
         <li><b>We tell you what's worth doing</b><span>Sometimes that's most of the list.
           Sometimes it's one thing. Sometimes it's nothing, and we'll say so.</span></li>
-        <li><b>Live in days, not months</b><span>Call handling goes on within 48 hours.
-          Everything else follows once you've seen that working.</span></li>
-        <li><b>We keep it running</b><span>Changes, tuning and the reporting. You're not
+        <li><b>Live in days, and we keep it running</b><span>Whatever you go ahead with
+          is on within 48 hours. Changes, tuning and reporting are ours, you are not
           handed a login and left to it.</span></li>
       </ol>
     </div>
@@ -504,7 +517,7 @@
   <h2>Find out what you're missing</h2>
   <p>Fifteen minutes to set it up, then a week of it running quietly in the background.
     At the end you get the list and you decide what to do about it.</p>
-  <a class="btn" href="https://calendly.com/fieldline-colby/30min">Find a time</a>
+  <a class="btn" href="https://calendly.com/fieldline-colby/30min">Book a call</a>
   <p class="under-btn">Nothing changes about how you work. Nothing to sign.</p>
 </div>
 
