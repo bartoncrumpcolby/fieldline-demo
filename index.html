@@ -227,6 +227,24 @@
   .demo-wrap { display:grid; gap:34px; align-items:start; }
   .rule-am { width:64px; height:5px; background:var(--amber); margin-bottom:18px; }
 
+  /* the findings card, the consultancy deliverable rather than one product */
+  .report-wrap { max-width:420px; margin:0 auto; text-align:center; }
+  .report { background:var(--paper); border:2px solid var(--black);
+    box-shadow:6px 6px 0 var(--amber); text-align:left; }
+  .rep-head { display:flex; align-items:center; justify-content:space-between;
+    background:var(--black); padding:12px 18px;
+    font-family:"Archivo",sans-serif; font-size:12px; font-weight:800;
+    letter-spacing:.12em; text-transform:uppercase; color:#fff; }
+  .rep-eg { color:var(--amber); font-size:10px; letter-spacing:.14em; }
+  .rep-row { display:flex; align-items:baseline; justify-content:space-between;
+    gap:14px; padding:13px 18px; border-bottom:1px solid var(--line);
+    font-size:15.5px; color:var(--body); }
+  .rep-row b { font-family:"Archivo",sans-serif; font-size:21px; font-weight:900;
+    color:var(--ink); letter-spacing:-.03em; }
+  .rep-row.total { border-bottom:0; background:var(--stone); }
+  .rep-row.total b { font-size:27px; }
+  .hero .sms-cap { color:var(--dark-mute); }
+
   .close-block { background:var(--amber); color:var(--black); padding:64px 26px; text-align:center; }
   .close-block h2 { font-size:clamp(29px,4.2vw,44px); font-weight:900; line-height:1.05; margin-bottom:14px; }
   .close-block p { font-size:18px; max-width:32em; margin:0 auto 28px; color:#4a3f1e; }
@@ -292,16 +310,19 @@
       <p class="under-btn">15 minutes to set it up. Nothing changes about how you work.</p>
       </div>
     </div>
-    <div class="sms-wrap">
-      <div class="sms">
-        <div class="from">New enquiry · FieldLine</div>
-        <p>Dave Whitmore · 07812 445 190<br>
-           14 Ashfield Road, M19 2QT<br>
-           Leak under the kitchen sink, water coming through.<br>
-           Happy to wait until the morning.</p>
-        <div class="meta">Logged 8:47pm, Sunday</div>
+    <div class="report-wrap">
+      <div class="report">
+        <div class="rep-head">
+          <span>What we found</span>
+          <span class="rep-eg">Example</span>
+        </div>
+        <div class="rep-row"><span>Calls that rang out</span><b>34</b></div>
+        <div class="rep-row"><span>Answered the text back</span><b>22</b></div>
+        <div class="rep-row"><span>Real enquiries</span><b>11</b></div>
+        <div class="rep-row"><span>Busiest window</span><b>Sun, 6 to 9pm</b></div>
+        <div class="rep-row total"><span>At your average job value</span><b>£3,080</b></div>
       </div>
-      <p class="sms-cap">A call they never would have got. This is what lands on the phone.</p>
+      <p class="sms-cap">One week, on a line the owner thought was quiet.</p>
     </div>
   </div>
 </div>
@@ -452,6 +473,23 @@
     </div>
   </section>
 </div>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sms-wrap">
+      <div class="sms">
+        <div class="from">New enquiry · FieldLine</div>
+        <p>Dave Whitmore · 07812 445 190<br>
+           14 Ashfield Road, M19 2QT<br>
+           Leak under the kitchen sink, water coming through.<br>
+           Happy to wait until the morning.</p>
+        <div class="meta">Logged 8:47pm, Sunday</div>
+      </div>
+      <p class="sms-cap">One example of what gets captured. It picks up whatever matters in
+        your line of work and sends it where it needs to go.</p>
+    </div>
+  </div>
+</section>
 
 <div class="contrast">
   <div class="wrap">
