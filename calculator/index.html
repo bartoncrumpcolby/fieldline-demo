@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rough maths | FieldLine</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<meta name="theme-color" content="#141519">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --black:#0e0e10; --ink:#17171a; --paper:#ffffff; --stone:#f4f3f0;
+    --line:#e4e2dc; --body:#55534d; --muted:#8a877f; --amber:#ffb81a; --amber-dk:#b57d00;
+    --dark-mute:#95928a; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:"Barlow",-apple-system,system-ui,sans-serif; color:var(--body);
+    background:var(--stone); line-height:1.55; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1140px; margin:0 auto; padding:0 26px; }
+  h1,h2,h3 { font-family:"Archivo",sans-serif; letter-spacing:-.035em; }
+  a { color:inherit; }
+  header { background:var(--black); }
+  .header-in { display:flex; align-items:center; justify-content:space-between; padding:16px 0; }
+  .logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .logo .mark { width:24px; height:24px; flex:none; background:var(--amber); position:relative;
+    clip-path:polygon(0 0,100% 0,100% 62%,62% 62%,62% 100%,0 100%); }
+  .logo .mark::after { content:""; position:absolute; left:4.8px; top:4.8px;
+    width:8.8px; height:8.8px; background:var(--black); }
+  .logo span { font-family:"Archivo",sans-serif; font-size:20px; font-weight:900; color:#fff; letter-spacing:-.03em; }
+  .back { color:var(--amber); text-decoration:none; font-size:14px; font-weight:600; }
+  section { padding:52px 0; }
+  /* Rough maths, deliberately understated. It is a hook into the free week, not
+     the offer. Their own numbers make the point better than any copy can, but an
+     estimate is still an estimate and the page says so. */
+  .calc { background:var(--stone); border-top:1px solid var(--line); }
+  .calc-in { max-width:820px; margin:0 auto; }
+  .calc-head { text-align:center; margin-bottom:26px; }
+  .calc-head h2 { font-size:clamp(23px,3vw,32px); font-weight:900; color:var(--ink); }
+  .calc-head p { font-size:16px; color:var(--muted); margin-top:8px; }
+  .calc-box { background:var(--paper); border:2px solid var(--black); padding:24px 22px; }
+  .fld { margin-bottom:20px; }
+  .fld label { display:flex; justify-content:space-between; align-items:baseline;
+    font-size:15px; color:var(--body); margin-bottom:9px; }
+  .fld label b { font-family:"Archivo",sans-serif; font-size:19px; font-weight:900;
+    color:var(--ink); letter-spacing:-.02em; }
+  .fld input[type=range] { width:100%; accent-color:var(--amber-dk); height:22px; }
+  .calc-out { display:grid; gap:2px; background:var(--line); border:2px solid var(--black); margin-top:6px; }
+  .co { background:var(--paper); padding:16px 18px; text-align:center; }
+  .co span { display:block; font-size:13.5px; color:var(--muted); margin-bottom:4px; }
+  .co b { font-family:"Archivo",sans-serif; font-size:clamp(24px,4vw,32px);
+    font-weight:900; color:var(--ink); letter-spacing:-.03em; }
+  .co.big { background:var(--black); }
+  .co.big span { color:var(--dark-mute); }
+  .co.big b { color:var(--amber); }
+  .calc-note { margin-top:20px; font-size:16px; color:var(--body); text-align:center; }
+  .calc-note b { color:var(--ink); }
+
+  .calc { background:transparent; border-top:0; }
+  @media (min-width:820px) { .calc-out { grid-template-columns:1fr 1fr 1fr; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-in">
+    <a class="logo" href="/"><span class="mark"></span><span>FieldLine</span></a>
+    <a class="back" href="/">Back to the site</a>
+  </div>
+</header>
+
+<section class="calc">
+  <div class="wrap calc-in">
+    <div class="calc-head">
+      <h2>Rough idea of what it is worth</h2>
+      <p>Drag these to your own numbers. It takes ten seconds and it is only a guess.</p>
+    </div>
+    <div class="calc-box">
+      <div class="fld">
+        <label for="cMissed">Calls a week nobody gets to <b id="vMissed">12</b></label>
+        <input id="cMissed" type="range" min="1" max="80" value="12">
+      </div>
+      <div class="fld">
+        <label for="cConv">How many of those would have been work <b id="vConv">33%</b></label>
+        <input id="cConv" type="range" min="5" max="80" value="33">
+      </div>
+      <div class="fld" style="margin-bottom:24px">
+        <label for="cVal">What an average job is worth <b id="vVal">£280</b></label>
+        <input id="cVal" type="range" min="50" max="5000" step="10" value="280">
+      </div>
+      <div class="calc-out">
+        <div class="co"><span>Missed a month</span><b id="oMonth">52</b></div>
+        <div class="co"><span>That were real work</span><b id="oJobs">17</b></div>
+        <div class="co big"><span>A year, at your numbers</span><b id="oYear">£57,000</b></div>
+      </div>
+      <p class="calc-note"><b>That is a guess though, built on numbers you just estimated.</b>
+        The free week gives you the real one, off your actual line.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Guess-level maths on purpose. The point is to make them curious enough to
+  // want the real number, which is what the free week produces.
+  (function () {
+    const el = id => document.getElementById(id);
+    const missed = el("cMissed"), conv = el("cConv"), val = el("cVal");
+    if (!missed) return;
+    const gbp = n => "£" + Math.round(n).toLocaleString("en-GB");
+    function run() {
+      const perMonth = missed.value * 4.33;
+      const jobs = perMonth * (conv.value / 100);
+      el("vMissed").textContent = missed.value;
+      el("vConv").textContent = conv.value + "%";
+      el("vVal").textContent = gbp(val.value);
+      el("oMonth").textContent = Math.round(perMonth);
+      el("oJobs").textContent = Math.round(jobs);
+      el("oYear").textContent = gbp(jobs * val.value * 12);
+    }
+    [missed, conv, val].forEach(i => i.addEventListener("input", run));
+    run();
+  })();
+</script>
+
+</body>
+</html>
