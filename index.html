@@ -208,6 +208,24 @@
   .no li::before { content:"\2715"; color:#b23b3b; }
   .no li { color:var(--muted); }
 
+
+  /* the findings, what the free week actually hands them */
+  .findings { background:var(--stone); }
+  .find-grid { display:grid; gap:24px; margin-top:30px; }
+  .find { background:var(--paper); border:2px solid var(--black); padding:24px 22px;
+    box-shadow:4px 4px 0 var(--amber); }
+  .find .fn { font-family:"Archivo",sans-serif; font-size:12px; font-weight:800;
+    letter-spacing:.14em; color:var(--amber-dk); display:block; margin-bottom:9px; }
+  .find h3 { font-size:20px; font-weight:900; color:var(--ink); margin-bottom:8px; line-height:1.15; }
+  .find p { font-size:16px; color:var(--body); }
+  .findings-note { margin-top:28px; font-size:17px; color:var(--body); max-width:44em; }
+
+  /* demo now sits mid page as proof rather than the pitch */
+  .demo-band .sec { color:#fff; }
+  .demo-band .sec-sub { color:var(--dark-mute); margin-top:12px; }
+  .demo-wrap { display:grid; gap:34px; align-items:start; }
+  .rule-am { width:64px; height:5px; background:var(--amber); margin-bottom:18px; }
+
   .close-block { background:var(--amber); color:var(--black); padding:64px 26px; text-align:center; }
   .close-block h2 { font-size:clamp(29px,4.2vw,44px); font-weight:900; line-height:1.05; margin-bottom:14px; }
   .close-block p { font-size:18px; max-width:32em; margin:0 auto 28px; color:#4a3f1e; }
@@ -245,6 +263,8 @@
     .svcs { grid-template-columns:repeat(3,1fr); }
     .phases { grid-template-columns:1fr 1fr; gap:34px 44px; }
     .fit-grid { grid-template-columns:1fr 1fr; gap:48px; }
+    .find-grid { grid-template-columns:repeat(3,1fr); gap:26px; }
+    .demo-wrap { grid-template-columns:1fr 1fr; gap:54px; }
     section { padding:84px 0; }
   }
 </style>
@@ -259,62 +279,54 @@
 </header>
 
 <div class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <span class="eyebrow rise d1">Systems for businesses where the phone matters</span>
-      <h1 class="rise d2">Your phone shouldn't<br><span class="hl">run your day.</span></h1>
-      <p class="lede rise d3">Calls answered and qualified, jobs booked, quotes chased, and
-        the site it all runs through. <b>Your team stops being interrupted, and you stop
-        finding out on Monday what you missed on Friday.</b></p>
-      <div class="rise d4">
-        <a class="btn" href="https://calendly.com/fieldline-colby/30min">Book an intro call</a>
-        <p class="under-btn">15 minutes. We'll tell you straight if there's nothing worth doing.</p>
-      </div>
-    </div>
-    <div class="panel">
-      <div class="panel-head">
-        <h2>Hear it for yourself</h2>
-        <p>A real call, not a recording. Pick a business and ring it.</p>
-      </div>
-      <!-- The selector does more work than any copy on this page. It proves the
-           system is configured per business rather than one bot for plumbers,
-           which is the whole difference between a product and a consultancy. -->
-      <div class="picker" id="picker" role="group" aria-label="Choose a business type">
-        <button class="pick on" data-id="8c43a99f-1765-4fa1-8f6c-dd5f27ac7205" data-biz="Summit Heating"
-                data-hint="Press the button and tell it your boiler's packed in.&lt;br&gt;It answers like it would at 9pm on a Sunday.">A heating firm</button>
-        <button class="pick" data-id="a6bced72-7d98-4aa8-8f0e-4875d2ee3470" data-biz="Bridgeway Dental"
-                data-hint="Press the button and tell it you've got toothache.&lt;br&gt;It answers like reception would when they're on another call.">A dental practice</button>
-        <button class="pick" data-id="53b36745-f556-4729-a75d-4d42c5e1d9c2" data-biz="Kingsgate Lettings"
-                data-hint="Press the button and ask about a flat you've seen.&lt;br&gt;Or say you're a landlord and see how it changes tack.">A lettings agent</button>
-      </div>
-      <div class="statusline">
-        <span class="dot" id="dot"></span>
-        <span id="statusText">Not connected</span>
-        <span id="timer">0:00</span>
-      </div>
-      <div class="transcript" id="transcript">
-        <!-- Empty state, not a canned transcript. Fake bubbles sitting in a panel
-             that's meant to show a live call read as leftover placeholder work. -->
-        <div class="placeholder" id="placeholder">
-          <span class="ph-icon" aria-hidden="true"></span>
-          <b>You're the customer</b>
-          Press the button and tell it your boiler's packed in.<br>
-          It answers like it would at 9pm on a Sunday.
-        </div>
-      </div>
-      <div class="summary" id="summary">
-        <div><b>Details captured</b>Sent straight to whoever needs to see it at <span id="bizLabel">Summit Heating</span>.</div>
-      </div>
-      <button class="btn block" id="callBtn">Start the call</button>
-      <p class="under-btn" style="text-align:center">Uses your microphone. Nothing is recorded.</p>
+  <div class="wrap">
+    <span class="eyebrow rise d1">Systems for businesses where the phone matters</span>
+    <h1 class="rise d2">Find out what you're<br><span class="hl">already missing.</span></h1>
+    <p class="lede rise d3">Nobody logs the calls that ring out, so the number is always a
+      guess. <b>We'll put missed call text back on your line for a week, free, and at the
+      end you get the list.</b> Who rang, what they wanted, and what it was worth.</p>
+    <div class="rise d4">
+      <a class="btn" href="https://calendly.com/fieldline-colby/30min">Book a call</a>
+      <p class="under-btn">15 minutes to set it up. Nothing changes about how you work.</p>
     </div>
   </div>
 </div>
 
+<section class="findings">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec">What you get at the end of the week</h2>
+      <p class="sec-sub">Not an opinion about your phones. The actual list.</p>
+    </div>
+    <div class="find-grid">
+      <div class="find">
+        <span class="fn">01</span>
+        <h3>Every call you missed</h3>
+        <p>Date, time and number for each one. Most people are surprised by the total and
+          more surprised by when they happened.</p>
+      </div>
+      <div class="find">
+        <span class="fn">02</span>
+        <h3>What they actually wanted</h3>
+        <p>Each one gets a text back asking what they need. Their answers come to you, so
+          you know which were worth having.</p>
+      </div>
+      <div class="find">
+        <span class="fn">03</span>
+        <h3>What it was worth</h3>
+        <p>We put your own average job value against the ones that were real work. That
+          number is usually the reason people carry on.</p>
+      </div>
+    </div>
+    <p class="findings-note">Then you decide. Some keep the text back and leave it there.
+      Some want the calls answered properly. Either is fine, and we'll say which we'd do
+      in your position.</p>
+  </div>
+</section>
 <section>
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="sec">Where we usually start</h2>
+      <h2 class="sec">Where it usually goes from there</h2>
       <p class="sec-sub">We work with dental practices, lettings agents, maintenance firms and anyone
         else where the phone is how the work arrives. Most come to us about one of these
         and we find two or three more once we have had a proper look.</p>
@@ -373,6 +385,59 @@
     </div>
   </div>
 </section>
+
+
+<div class="dark demo-band">
+  <section>
+    <div class="wrap demo-wrap">
+      <div class="demo-copy">
+        <div class="rule-am"></div>
+        <h2 class="sec">If you want the calls answered too</h2>
+        <p class="sec-sub">Text back catches them. This one picks up and has the conversation,
+          works out what the job is and how urgent, then sends it on.</p>
+        <p class="sec-sub">Pick an industry and ring it yourself. It is a live call, not a
+          recording, and it is the same system configured three different ways.</p>
+      </div>
+<div class="panel">
+      <div class="panel-head">
+        <h2>Hear it for yourself</h2>
+        <p>A real call, not a recording. Pick a business and ring it.</p>
+      </div>
+      <!-- The selector does more work than any copy on this page. It proves the
+           system is configured per business rather than one bot for plumbers,
+           which is the whole difference between a product and a consultancy. -->
+      <div class="picker" id="picker" role="group" aria-label="Choose a business type">
+        <button class="pick on" data-id="8c43a99f-1765-4fa1-8f6c-dd5f27ac7205" data-biz="Summit Heating"
+                data-hint="Press the button and tell it your boiler's packed in.&lt;br&gt;It answers like it would at 9pm on a Sunday.">A heating firm</button>
+        <button class="pick" data-id="a6bced72-7d98-4aa8-8f0e-4875d2ee3470" data-biz="Bridgeway Dental"
+                data-hint="Press the button and tell it you've got toothache.&lt;br&gt;It answers like reception would when they're on another call.">A dental practice</button>
+        <button class="pick" data-id="53b36745-f556-4729-a75d-4d42c5e1d9c2" data-biz="Kingsgate Lettings"
+                data-hint="Press the button and ask about a flat you've seen.&lt;br&gt;Or say you're a landlord and see how it changes tack.">A lettings agent</button>
+      </div>
+      <div class="statusline">
+        <span class="dot" id="dot"></span>
+        <span id="statusText">Not connected</span>
+        <span id="timer">0:00</span>
+      </div>
+      <div class="transcript" id="transcript">
+        <!-- Empty state, not a canned transcript. Fake bubbles sitting in a panel
+             that's meant to show a live call read as leftover placeholder work. -->
+        <div class="placeholder" id="placeholder">
+          <span class="ph-icon" aria-hidden="true"></span>
+          <b>You're the customer</b>
+          Press the button and tell it your boiler's packed in.<br>
+          It answers like it would at 9pm on a Sunday.
+        </div>
+      </div>
+      <div class="summary" id="summary">
+        <div><b>Details captured</b>Sent straight to whoever needs to see it at <span id="bizLabel">Summit Heating</span>.</div>
+      </div>
+      <button class="btn block" id="callBtn">Start the call</button>
+      <p class="under-btn" style="text-align:center">Uses your microphone. Nothing is recorded.</p>
+    </div>
+    </div>
+  </section>
+</div>
 
 <div class="contrast">
   <div class="wrap">
@@ -436,11 +501,11 @@
 </div>
 
 <div class="close-block">
-  <h2>Book an intro call</h2>
-  <p>Fifteen minutes. We'll ask how enquiries reach you now and what happens when nobody
-    can get to them. If there's nothing worth doing, we'll tell you that.</p>
+  <h2>Find out what you're missing</h2>
+  <p>Fifteen minutes to set it up, then a week of it running quietly in the background.
+    At the end you get the list and you decide what to do about it.</p>
   <a class="btn" href="https://calendly.com/fieldline-colby/30min">Find a time</a>
-  <p class="under-btn">No prep needed. Nothing to sign.</p>
+  <p class="under-btn">Nothing changes about how you work. Nothing to sign.</p>
 </div>
 
 <footer>
