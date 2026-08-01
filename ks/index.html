@@ -78,9 +78,31 @@
       var(--hero-img); background-size:cover; background-position:center right; }
   .hero.shot-bg::after { display:none; }
   @media (max-width:759px) {
+    /* Lighter than desktop so the photo is actually visible on a phone, but
+       still dark enough behind the text at the top. */
     .hero.shot-bg { background-image:
-      linear-gradient(180deg, rgba(20,26,23,.93) 0%, rgba(20,26,23,.88) 70%, rgba(20,26,23,.95) 100%),
-      var(--hero-img); }
+      linear-gradient(180deg, rgba(12,18,30,.92) 0%, rgba(12,18,30,.80) 55%, rgba(12,18,30,.66) 100%),
+      var(--hero-img); background-position:center; }
+
+    /* Phone tuning. This is what he opens it on, so the first screen has to be
+       the name, what they do and a button, with nothing wasted. */
+    .hero { padding:30px 0 36px; }
+    .hero h1 { font-size:clamp(30px,8.6vw,44px); }
+    .hero p { font-size:16.5px; margin-bottom:20px; }
+    .kicker { font-size:11.5px; margin-bottom:10px; }
+    /* The sticky bar already carries a second action, so a second hero button
+       just pushes the phone number down the screen. */
+    .hero .btn.ghost { display:none; }
+    .hero small { margin-top:12px; }
+    .brand-logo img { height:42px; max-width:185px; }
+    .bar { padding:11px 0; }
+    .sec-title { font-size:clamp(24px,7vw,32px); }
+    section { padding:38px 0; scroll-margin-top:8px; }
+    .gallery { gap:8px; }
+    /* Anything under 16px makes iOS zoom the page when the field is tapped. */
+    .qform input, .qform textarea { font-size:16px; }
+    .sticky a { padding:17px 8px calc(17px + env(safe-area-inset-bottom)); }
+    body { padding-bottom:78px; }
   }
   .kicker { font-family:"Oswald",sans-serif; text-transform:uppercase; font-size:13px;
     letter-spacing:.16em; color:var(--accent); margin-bottom:14px; }
