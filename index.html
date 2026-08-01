@@ -146,7 +146,14 @@
     border-radius: 14px 3px 14px 14px; color: var(--ink);
   }
   .bubble.user .who { color: var(--muted); }
-  .placeholder { color: var(--muted); font-size: 15px; margin: auto; text-align: center; }
+  .placeholder { color: var(--muted); font-size: 15px; margin: auto; text-align: center; padding: 8px 16px; line-height: 1.5; }
+  .placeholder b { display: block; font-family: "Archivo", sans-serif; font-size: 16px;
+                   font-weight: 800; color: var(--ink); margin-bottom: 5px; letter-spacing: -.01em; }
+  .placeholder .ph-icon {
+    display: block; width: 30px; height: 30px; margin: 0 auto 12px;
+    background: var(--amber); border: 2px solid var(--black);
+    clip-path: polygon(0 0, 100% 0, 100% 62%, 62% 62%, 62% 100%, 0 100%);
+  }
   .summary {
     display: none; gap: 10px; background: #e8f6ee; border: 1.5px solid #9ed4b6;
     padding: 12px 14px; margin-bottom: 16px; font-size: 15px; color: #1c5b3c;
@@ -302,19 +309,22 @@
     <div class="panel">
       <div class="panel-head">
         <h2>Hear it for yourself</h2>
-        <p>Ring it like a customer would. Tell it your boiler's packed in.</p>
+        <p>A real call, not a recording. Takes about a minute.</p>
       </div>
       <div class="statusline">
         <span class="dot" id="dot"></span>
         <span id="statusText">Not connected</span>
         <span id="timer">0:00</span>
       </div>
-      <div class="sample-tag" id="sampleTag">Example — 8:42pm, Sunday</div>
       <div class="transcript" id="transcript">
-        <div class="bubble assistant"><span class="who">FieldLine</span><span class="text">Evening, Summit Heating. The office is shut now, but I can take your details and get it straight over to the engineer on call. What's happened?</span></div>
-        <div class="bubble user"><span class="who">Caller</span><span class="text">Boiler's packed in. No heat, no hot water.</span></div>
-        <div class="bubble assistant"><span class="who">FieldLine</span><span class="text">Sorry about that. Can I take your postcode and the best number to get you on?</span></div>
-        <div class="bubble user"><span class="who">Caller</span><span class="text">B73 5PL, and it's 07812 445190.</span></div>
+        <!-- Empty state, not a canned transcript. Fake bubbles sitting in a panel
+             that's meant to show a live call read as leftover placeholder work. -->
+        <div class="placeholder" id="placeholder">
+          <span class="ph-icon" aria-hidden="true"></span>
+          <b>You're the customer</b>
+          Press the button and tell it your boiler's packed in.<br>
+          It answers like it would at 9pm on a Sunday.
+        </div>
       </div>
       <div class="summary" id="summary">
         <div><b>Job captured</b>Details texted straight to the engineer on call.</div>
@@ -508,9 +518,8 @@
 
   vapi.on("call-start", () => {
     inCall = true; hadConversation = false;
-    // clear the worked example so the real conversation starts on a clean slate
+    // clear the empty state so the real conversation starts on a clean slate
     transcript.innerHTML = "";
-    document.getElementById("sampleTag").classList.add("hide");
     btn.disabled = false;
     btn.textContent = "End the call";
     btn.classList.add("stop");
