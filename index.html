@@ -72,6 +72,17 @@
   }
   .panel-head h2 { font-size: 20px; font-weight: 800; color: var(--ink); margin-bottom: 3px; }
   .panel-head p { font-size: 15px; color: var(--muted); margin-bottom: 15px; }
+  .picker { display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap; }
+  .pick {
+    flex: 1 1 auto; font-family: "Archivo", sans-serif; font-size: 13px; font-weight: 800;
+    letter-spacing: -.01em; padding: 9px 13px; cursor: pointer; white-space: nowrap;
+    background: var(--paper); color: var(--muted);
+    border: 2px solid var(--line); border-radius: 999px;
+    transition: background .12s ease, color .12s ease, border-color .12s ease;
+  }
+  .pick:hover { border-color: var(--black); color: var(--ink); }
+  .pick.on { background: var(--black); color: #fff; border-color: var(--black); }
+  .pick:disabled { opacity: .45; cursor: not-allowed; }
   .statusline { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); margin-bottom: 14px; }
   .dot { width: 8px; height: 8px; border-radius: 50%; background: #cfcdc7; flex: none; }
   .dot.live { background: #22a35c; box-shadow: 0 0 0 3px rgba(34,163,92,.18); }
@@ -263,7 +274,16 @@
     <div class="panel">
       <div class="panel-head">
         <h2>Hear it for yourself</h2>
-        <p>A real call, not a recording. Takes about a minute.</p>
+        <p>A real call, not a recording. Pick a business and ring it.</p>
+      </div>
+      <!-- The selector does more work than any copy on this page. It proves the
+           system is configured per business rather than one bot for plumbers,
+           which is the whole difference between a product and a consultancy. -->
+      <div class="picker" id="picker" role="group" aria-label="Choose a business type">
+        <button class="pick on" data-id="8c43a99f-1765-4fa1-8f6c-dd5f27ac7205"
+                data-hint="Press the button and tell it your boiler's packed in.&lt;br&gt;It answers like it would at 9pm on a Sunday.">A heating firm</button>
+        <button class="pick" data-id="a6bced72-7d98-4aa8-8f0e-4875d2ee3470"
+                data-hint="Press the button and tell it you've got toothache.&lt;br&gt;It answers like reception would when they're on another call.">A dental practice</button>
       </div>
       <div class="statusline">
         <span class="dot" id="dot"></span>
@@ -430,7 +450,8 @@
   import Vapi from "https://esm.sh/@vapi-ai/web";
 
   const PUBLIC_KEY   = "4e35005b-04bc-4948-8db1-6143a9027ca2";
-  const ASSISTANT_ID = "8c43a99f-1765-4fa1-8f6c-dd5f27ac7205";
+  // Which business the demo answers as. Set by the picker, read at call time.
+  let ASSISTANT_ID = "8c43a99f-1765-4fa1-8f6c-dd5f27ac7205";
 
   const vapi = new Vapi(PUBLIC_KEY);
   const btn = document.getElementById("callBtn");
@@ -475,6 +496,23 @@
     transcript.scrollTop = transcript.scrollHeight;
   }
 
+  // Switching business also swaps the prompt text, so the empty state always
+  // tells them what to actually say. Locked out mid-call.
+  const picker = document.getElementById("picker");
+  picker.addEventListener("click", (e) => {
+    const b = e.target.closest(".pick");
+    if (!b || inCall) return;
+    picker.querySelectorAll(".pick").forEach(x => x.classList.remove("on"));
+    b.classList.add("on");
+    ASSISTANT_ID = b.dataset.id;
+    const ph = document.getElementById("placeholder");
+    if (ph) {
+      const who = ph.querySelector("b");
+      ph.innerHTML = `<span class="ph-icon" aria-hidden="true"></span><b>${
+        who ? who.textContent : "You're the customer"}</b>${b.dataset.hint}`;
+    }
+  });
+
   btn.addEventListener("click", async () => {
     if (!inCall) {
       btn.disabled = true;
@@ -496,6 +534,7 @@
     // clear the empty state so the real conversation starts on a clean slate
     transcript.innerHTML = "";
     btn.disabled = false;
+    document.querySelectorAll(".pick").forEach(b => b.disabled = true);
     btn.textContent = "End the call";
     btn.classList.add("stop");
     setStatus("Connected, go ahead", true);
@@ -503,6 +542,7 @@
   });
 
   vapi.on("call-end", () => {
+    document.querySelectorAll(".pick").forEach(b => b.disabled = false);
     inCall = false;
     btn.disabled = false;
     btn.textContent = "Start the call";
