@@ -3,112 +3,68 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FieldLine, out of hours cover for trades</title>
-<meta name="description" content="An out of hours receptionist for trade businesses. It answers the calls you miss, works out the job, and texts it to whoever's on call.">
+<title>FieldLine | Systems for businesses where the phone matters</title>
+<meta name="description" content="Calls answered and qualified, jobs booked, quotes chased, and the site it all runs through. You get the hours back and nothing gets missed.">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#141519">
-<!-- Link preview: this URL gets pasted into cold emails and Facebook posts,
-     so it needs to unfurl with the mark rather than a blank card. -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://getfieldline.co.uk/">
-<meta property="og:title" content="FieldLine, out of hours cover for trades">
-<meta property="og:description" content="It answers the calls that come in when your office is shut, works out the job, and texts it to whoever's on call.">
+<meta property="og:title" content="FieldLine | Systems for businesses where the phone matters">
+<meta property="og:description" content="Calls answered and qualified, jobs booked, quotes chased. You get the hours back and nothing gets missed.">
 <meta property="og:image" content="https://getfieldline.co.uk/icon-512.png">
 <meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  /* FieldLine — bold flat, black-dominant, one vivid accent.
-     Amber only ever appears as a fill or a highlight behind text. It is never
-     coloured text on a light background: that was the muddy, "dried mustard"
-     failure the earlier versions kept hitting. */
   :root {
-    --black:    #0e0e10;
-    --ink:      #17171a;
-    --paper:    #ffffff;
-    --stone:    #f4f3f0;
-    --line:     #e4e2dc;
-    --body:     #55534d;
-    --muted:    #8a877f;
-    --amber:    #ffb81a;
-    --amber-dk: #b57d00;
-    --on-dark:  #eceae5;
-    --dark-mute:#95928a;
+    --black:#0e0e10; --ink:#17171a; --paper:#ffffff; --stone:#f4f3f0;
+    --line:#e4e2dc; --body:#55534d; --muted:#8a877f;
+    --amber:#ffb81a; --amber-dk:#b57d00; --on-dark:#eceae5; --dark-mute:#95928a;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:"Barlow",-apple-system,system-ui,sans-serif; color:var(--body);
+    background:var(--paper); line-height:1.55; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1140px; margin:0 auto; padding:0 26px; }
+  h1,h2,h3 { font-family:"Archivo",sans-serif; letter-spacing:-.035em; }
+  a { color:inherit; }
+  .hl { background:var(--amber); color:var(--black); padding:0 .16em;
+    -webkit-box-decoration-break:clone; box-decoration-break:clone; }
 
-  body {
-    font-family: "Barlow", -apple-system, system-ui, sans-serif;
-    color: var(--body); background: var(--paper);
-    line-height: 1.55; -webkit-font-smoothing: antialiased;
-  }
-  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 26px; }
-  h1, h2, h3 { font-family: "Archivo", sans-serif; letter-spacing: -.035em; }
+  .btn { display:inline-block; text-align:center; text-decoration:none;
+    font-family:"Archivo",sans-serif; font-size:17px; font-weight:800; letter-spacing:-.01em;
+    background:var(--amber); color:var(--black); border:2px solid var(--black);
+    border-radius:999px; padding:14px 30px; box-shadow:4px 4px 0 var(--black);
+    transition:transform .1s ease, box-shadow .1s ease; cursor:pointer; }
+  .btn:hover { transform:translate(1px,1px); box-shadow:3px 3px 0 var(--black); }
+  .btn:active { transform:translate(4px,4px); box-shadow:0 0 0 var(--black); }
+  .btn.block { display:block; width:100%; }
+  .btn:disabled { background:#d6d4ce; border-color:#b3b1ab; box-shadow:4px 4px 0 #b3b1ab; cursor:wait; }
+  .btn.stop { background:var(--paper); }
+  .btn.ghost { background:transparent; color:#fff; border-color:var(--amber); box-shadow:none; }
+  .header-cta { display:none; font-size:14px; padding:9px 20px;
+    border-color:var(--amber); box-shadow:3px 3px 0 var(--amber-dk); }
+  .under-btn { font-size:14px; color:var(--muted); margin-top:14px; }
 
-  /* amber as a marker highlight behind words */
-  .hl {
-    background: var(--amber); color: var(--black);
-    padding: 0 .16em;
-    -webkit-box-decoration-break: clone; box-decoration-break: clone;
-  }
+  header { background:var(--black); }
+  .header-in { display:flex; align-items:center; justify-content:space-between; padding:16px 0; }
+  .logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .logo .mark { width:24px; height:24px; flex:none; background:var(--amber); position:relative;
+    clip-path:polygon(0 0,100% 0,100% 62%,62% 62%,62% 100%,0 100%); }
+  .logo .mark::after { content:""; position:absolute; left:4.8px; top:4.8px;
+    width:8.8px; height:8.8px; background:var(--black); }
+  .logo span { font-family:"Archivo",sans-serif; font-size:20px; font-weight:900; color:#fff; letter-spacing:-.03em; }
 
-  /* ── buttons: solid fill, hard border, offset shadow — pressable, not flat ── */
-  .btn {
-    display: inline-block; text-align: center; text-decoration: none;
-    font-family: "Archivo", sans-serif; font-size: 17px; font-weight: 800;
-    letter-spacing: -.01em; cursor: pointer;
-    background: var(--amber); color: var(--black);
-    border: 2px solid var(--black); border-radius: 999px;
-    padding: 14px 30px;
-    box-shadow: 4px 4px 0 var(--black);
-    transition: transform .1s ease, box-shadow .1s ease;
-  }
-  .btn:hover { transform: translate(1px,1px); box-shadow: 3px 3px 0 var(--black); }
-  .btn:active { transform: translate(4px,4px); box-shadow: 0 0 0 var(--black); }
-  .btn.block { display: block; width: 100%; }
-  .btn:disabled { background: #d6d4ce; border-color: #b3b1ab; box-shadow: 4px 4px 0 #b3b1ab; cursor: wait; }
-  .btn.stop { background: var(--paper); }
-  .header-cta { display: none; font-size: 14px; padding: 9px 20px;
-                border-color: var(--amber); box-shadow: 3px 3px 0 var(--amber-dk); }
-  .under-btn { font-size: 14px; color: var(--muted); margin-top: 14px; }
-
-  /* ── header ─────────────────────────────────────────── */
-  header { background: var(--black); }
-  .header-in { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
-  .logo { display: flex; align-items: center; gap: 10px; }
-  .logo .mark {
-    width: 24px; height: 24px; flex: none; background: var(--amber);
-    clip-path: polygon(0 0, 100% 0, 100% 62%, 62% 62%, 62% 100%, 0 100%);
-    position: relative;
-  }
-  .logo .mark::after {
-    content: ""; position: absolute; left: 4.8px; top: 4.8px;
-    width: 8.8px; height: 8.8px; background: var(--black);
-  }
-  .logo span { font-family: "Archivo", sans-serif; font-size: 20px; font-weight: 900; color: #fff; letter-spacing: -.03em; }
-
-  /* ── hero: black band ───────────────────────────────── */
-  .hero { background: var(--black); color: var(--on-dark); padding: 54px 0 62px; }
-  .hero-grid { display: grid; gap: 40px; align-items: start; }
-  .eyebrow {
-    display: inline-block; font-family: "Archivo", sans-serif;
-    font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
-    color: var(--amber); margin-bottom: 20px;
-  }
-  h1 { font-size: clamp(36px, 5.6vw, 58px); font-weight: 900; color: #fff; line-height: 1.06; margin-bottom: 20px; }
-  .lede { font-size: 18.5px; color: #b9b6af; max-width: 30em; margin-bottom: 28px; }
-  .lede b { color: #fff; font-weight: 600; }
-  .note {
-    margin-top: 32px; padding: 16px 18px; max-width: 32em;
-    background: #17171a; border-left: 3px solid var(--amber);
-    font-size: 15.5px; color: #b8b5ae;
-  }
-  .note b { color: #fff; font-weight: 600; }
-
-  /* ── demo card: white on black, maximum separation ──── */
+  .hero { background:var(--black); color:var(--on-dark); padding:54px 0 62px; }
+  .hero-grid { display:grid; gap:40px; align-items:start; }
+  .eyebrow { display:inline-block; font-family:"Archivo",sans-serif; font-size:12px;
+    font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--amber); margin-bottom:20px; }
+  h1 { font-size:clamp(34px,5.4vw,56px); font-weight:900; color:#fff; line-height:1.06; margin-bottom:20px; }
+  .lede { font-size:18.5px; color:#b9b6af; max-width:31em; margin-bottom:28px; }
+  .lede b { color:#fff; font-weight:600; }
+/* ── demo card: white on black, maximum separation ──── */
   .panel {
     background: var(--paper); border: 2px solid var(--black);
     box-shadow: 6px 6px 0 var(--amber);
@@ -182,128 +138,103 @@
   .steps b { display: block; font-family: "Archivo", sans-serif; font-size: 18px;
              font-weight: 800; color: var(--ink); margin-bottom: 6px; letter-spacing: -.02em; }
 
-  /* the job text — the actual outcome they're buying */
-  .sms-wrap { max-width: 400px; margin: 46px auto 0; text-align: center; }
-  .sms { background: var(--paper); border: 2px solid var(--black); box-shadow: 5px 5px 0 var(--amber); padding: 18px 20px; text-align: left; }
-  .sms .from {
-    font-family: "Archivo", sans-serif; font-size: 11px; font-weight: 800;
-    letter-spacing: .1em; text-transform: uppercase; color: var(--ink);
-    padding-bottom: 9px; border-bottom: 2px solid var(--line); margin-bottom: 11px;
-  }
-  .sms p { font-size: 15.5px; color: var(--ink); line-height: 1.5; }
-  .sms .meta { font-size: 13.5px; color: var(--muted); margin-top: 10px; }
-  .sms-cap { font-size: 15px; color: var(--muted); margin-top: 14px; }
+  
+  section { padding:56px 0; }
+  .sec-head { margin-bottom:32px; max-width:40em; }
+  h2.sec { font-size:clamp(27px,3.6vw,40px); font-weight:900; color:var(--ink); line-height:1.05; }
+  .sec-sub { font-size:17.5px; color:var(--muted); margin-top:10px; }
+  .dark { background:var(--black); }
+  .dark h2.sec { color:#fff; }
+  .dark .sec-sub { color:var(--dark-mute); }
 
-  /* the cost timeline — on black, so it lands bleak */
-  .timeline { list-style: none; border-left: 2px solid #33333a; margin-top: 26px; }
-  .timeline li { position: relative; padding: 0 0 26px 28px; font-size: 16.5px; color: var(--dark-mute); }
-  .timeline li::before {
-    content: ""; position: absolute; left: -8px; top: 7px;
-    width: 14px; height: 14px; background: #33333a; border: 2px solid var(--black);
-  }
-  .timeline li:last-child { padding-bottom: 0; }
-  .timeline li:last-child::before { background: var(--amber); }
-  .timeline .t { display: block; font-family: "Archivo", sans-serif; font-weight: 800;
-                 font-size: 17px; color: #fff; letter-spacing: -.02em; margin-bottom: 3px; }
-  .timeline li:last-child .t { color: var(--amber); }
+  /* the six things, numbered so it reads as a system not a menu */
+  .svcs { display:grid; gap:2px; background:var(--line); border:2px solid var(--black); }
+  .svc { background:var(--paper); padding:26px 24px; }
+  .svc .n { font-family:"Archivo",sans-serif; font-size:12px; font-weight:800;
+    letter-spacing:.14em; color:var(--amber-dk); display:block; margin-bottom:9px; }
+  .svc h3 { font-size:21px; font-weight:900; color:var(--ink); margin-bottom:8px; line-height:1.15; }
+  .svc p { font-size:16px; color:var(--body); }
+  .svc .flag { display:inline-block; margin-top:12px; font-size:13px; font-weight:600;
+    background:var(--stone); color:var(--muted); padding:4px 10px; }
 
-  /* tiers */
-  .tier-grid { display: grid; gap: 22px; margin-top: 34px; }
-  .tier { background: var(--paper); border: 2px solid var(--black); padding: 26px 24px; display: flex; flex-direction: column; }
-  .tier.featured { box-shadow: 7px 7px 0 var(--amber); }
-  .tier .tag {
-    align-self: flex-start; font-family: "Archivo", sans-serif; font-size: 11px; font-weight: 800;
-    letter-spacing: .1em; text-transform: uppercase;
-    background: var(--black); color: var(--amber); padding: 5px 11px; margin-bottom: 14px;
-  }
-  .tier h3 { font-size: 22px; font-weight: 900; color: var(--ink); margin-bottom: 6px; }
-  .tier .price { font-family: "Archivo", sans-serif; font-size: 40px; font-weight: 900;
-                 color: var(--ink); letter-spacing: -.04em; line-height: 1; }
-  .tier .price span { font-family: "Barlow", sans-serif; font-size: 16px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
-  .tier .blurb { font-size: 15.5px; margin: 12px 0 18px; }
-  .tier ul { list-style: none; margin-bottom: 24px; }
-  .tier li { font-size: 15.5px; padding-left: 26px; position: relative; margin-bottom: 10px; color: var(--ink); }
-  .tier li::before { content: "✓"; position: absolute; left: 0; font-weight: 700; color: var(--amber-dk); }
-  .tier li.muted { color: var(--muted); }
-  .tier li.muted::before { content: "✕"; color: #c4c1ba; }
-  .tier .btn { margin-top: auto; }
+  /* the job text, the actual outcome they are buying */
+  .sms-wrap { max-width:400px; margin:46px auto 0; text-align:center; }
+  .sms { background:var(--paper); border:2px solid var(--black); box-shadow:5px 5px 0 var(--amber);
+    padding:18px 20px; text-align:left; }
+  .sms .from { font-family:"Archivo",sans-serif; font-size:11px; font-weight:800;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink);
+    padding-bottom:9px; border-bottom:2px solid var(--line); margin-bottom:11px; }
+  .sms p { font-size:15.5px; color:var(--ink); line-height:1.5; }
+  .sms .meta { font-size:13.5px; color:var(--muted); margin-top:10px; }
+  .sms-cap { font-size:15px; color:var(--muted); margin-top:14px; }
 
-  /* founding clients */
-  .founding { max-width: 660px; margin: 0 auto; background: #17171a; border-left: 3px solid var(--amber); padding: 24px; }
-  .founding h3 { font-size: 19px; font-weight: 800; color: #fff; margin-bottom: 9px; }
-  .founding p { font-size: 16px; color: #b8b5ae; }
+  .phases { list-style:none; counter-reset:p; display:grid; gap:26px; margin-top:30px; }
+  .phases li { counter-increment:p; position:relative; padding-left:56px; }
+  .phases li::before { content:counter(p); position:absolute; left:0; top:-4px;
+    width:38px; height:38px; display:flex; align-items:center; justify-content:center;
+    background:var(--amber); color:var(--black);
+    font-family:"Archivo",sans-serif; font-weight:800; font-size:19px; }
+  .phases b { display:block; font-family:"Archivo",sans-serif; font-size:19px;
+    color:#fff; margin-bottom:5px; letter-spacing:-.02em; }
+  .phases span { color:var(--dark-mute); font-size:16.5px; }
 
-  /* CONTRAST SECTION (Tools for War). Job is dislodgement: make the old way
-     feel worse than changing. Short lines, lots of air, payoff last in amber. */
-  .contrast { background: var(--stone); padding: 62px 0; text-align: center; }
-  .contrast p {
-    font-family: "Archivo", sans-serif; font-weight: 800; letter-spacing: -.03em;
-    font-size: clamp(21px, 3.4vw, 33px); line-height: 1.16; color: var(--ink);
-    max-width: 20ch; margin: 0 auto 18px;
-  }
-  .contrast p:last-child { margin-bottom: 0; }
-  .contrast p:last-child span { background: var(--amber); padding: 0 .16em;
-    -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  /* CONTRAST SECTION, Tools for War. Make the old way feel worse than changing. */
+  .contrast { background:var(--stone); padding:60px 0; text-align:center; }
+  .contrast p { font-family:"Archivo",sans-serif; font-weight:800; letter-spacing:-.03em;
+    font-size:clamp(21px,3.4vw,33px); line-height:1.16; color:var(--ink);
+    max-width:21ch; margin:0 auto 18px; }
+  .contrast p:last-child { margin-bottom:0; }
+  .contrast p:last-child span { background:var(--amber); padding:0 .16em;
+    -webkit-box-decoration-break:clone; box-decoration-break:clone; }
 
-  /* BENEFIT SECTION (Tools for War). Headline is always the outcome, the
-     paragraph underneath is the feature that delivers it. Features tell,
-     benefits sell. */
-  .benefits { display: grid; gap: 30px; margin-top: 34px; }
-  .benefit { border-top: 3px solid var(--black); padding-top: 16px; }
-  .benefit h3 {
-    font-size: 21px; font-weight: 900; color: var(--ink);
-    line-height: 1.12; margin-bottom: 8px;
-  }
-  .benefit p { font-size: 16px; color: var(--body); }
+  .fit { background:var(--stone); }
+  .fit-grid { display:grid; gap:26px; margin-top:26px; }
+  .fit-col h3 { font-size:19px; font-weight:900; color:var(--ink); margin-bottom:10px; }
+  .fit-col ul { list-style:none; }
+  .fit-col li { font-size:16.5px; padding:9px 0 9px 26px; position:relative; border-bottom:1px solid var(--line); }
+  .fit-col li::before { position:absolute; left:0; font-weight:800; }
+  .yes li::before { content:"\2713"; color:#1f7a4d; }
+  .no li::before { content:"\2715"; color:#b23b3b; }
+  .no li { color:var(--muted); }
 
-  .price-note { max-width: 34em; margin: 30px auto 0; text-align: center;
-    font-size: 16px; color: var(--muted); }
+  .close-block { background:var(--amber); color:var(--black); padding:64px 26px; text-align:center; }
+  .close-block h2 { font-size:clamp(29px,4.2vw,44px); font-weight:900; line-height:1.05; margin-bottom:14px; }
+  .close-block p { font-size:18px; max-width:32em; margin:0 auto 28px; color:#4a3f1e; }
+  .close-block .btn { background:var(--black); color:var(--amber); box-shadow:4px 4px 0 rgba(0,0,0,.28); }
+  .close-block .under-btn { color:#6f5f2c; }
 
-  /* close — full amber band, the loudest thing on the page */
-  .close-block { background: var(--amber); color: var(--black); padding: 66px 26px; text-align: center; }
-  .close-block h2 { font-size: clamp(30px, 4.4vw, 46px); font-weight: 900; line-height: 1.04; margin-bottom: 16px; }
-  .close-block p { font-size: 18px; max-width: 30em; margin: 0 auto 30px; color: #4a3f1e; }
-  .close-block .btn { background: var(--black); color: var(--amber); box-shadow: 4px 4px 0 rgba(0,0,0,.28); }
-  .close-block .under-btn { color: #6f5f2c; }
+  footer { background:var(--black); color:var(--dark-mute); padding:30px 0 46px; font-size:14px; }
+  footer b { color:#fff; font-weight:600; }
+  footer a { color:var(--amber); }
 
-  footer { background: var(--black); color: var(--dark-mute); padding: 30px 0 46px; font-size: 14px; }
-  footer b { color: #fff; font-weight: 600; }
-
-  /* ── one restrained load reveal ─────────────────────── */
-  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
   @media (prefers-reduced-motion: no-preference) {
-    .rise { opacity: 0; animation: rise .5s cubic-bezier(.2,.7,.3,1) forwards; }
-    .rise.d1 { animation-delay: .05s } .rise.d2 { animation-delay: .11s }
-    .rise.d3 { animation-delay: .17s } .rise.d4 { animation-delay: .23s }
-    .hero .panel { opacity: 0; animation: rise .6s cubic-bezier(.2,.7,.3,1) .2s forwards; }
+    .rise { opacity:0; animation:rise .5s cubic-bezier(.2,.7,.3,1) forwards; }
+    .rise.d1 { animation-delay:.05s } .rise.d2 { animation-delay:.11s }
+    .rise.d3 { animation-delay:.17s } .rise.d4 { animation-delay:.23s }
+    .hero .panel { opacity:0; animation:rise .6s cubic-bezier(.2,.7,.3,1) .2s forwards; }
+    @keyframes rise { from { opacity:0; transform:translateY(14px) } to { opacity:1; transform:none } }
   }
 
-  /* ── phone ──────────────────────────────────────────── */
-  @media (max-width: 640px) {
-    .wrap { padding: 0 20px; }
-    .hero { padding: 38px 0 44px; }
-    .hero-grid { gap: 30px; }
-    section { padding: 46px 0; }
-    /* :not(.header-cta) matters — a bare .btn rule here sits later in the file
-       than .header-cta{display:none}, so it un-hid the header button on phones
-       and stretched it full-width across the logo. */
-    .btn:not(.header-cta) { display: block; width: 100%; }
-    .panel { padding: 18px; box-shadow: 4px 4px 0 var(--amber); }
-    .transcript { max-height: none; min-height: 0; }
-    .bubble { max-width: 94%; }
-    .close-block { padding: 48px 20px; }
-    .sms-wrap { margin-top: 34px; }
+  @media (max-width:640px) {
+    .wrap { padding:0 20px; }
+    .hero { padding:38px 0 44px; }
+    .hero-grid { gap:30px; }
+    section { padding:46px 0; }
+    .btn:not(.header-cta) { display:block; width:100%; }
+    .panel { padding:18px; box-shadow:4px 4px 0 var(--amber); }
+    .transcript { max-height:none; min-height:0; }
+    .bubble { max-width:94%; }
+    .close-block { padding:48px 20px; }
+    .sms-wrap { margin-top:34px; }
   }
-
-  /* ── desktop ────────────────────────────────────────── */
-  @media (min-width: 900px) {
-    .header-cta { display: inline-block; }
-    .hero { padding: 76px 0 88px; }
-    .hero-grid { grid-template-columns: 1.03fr .97fr; gap: 58px; }
-    .steps { grid-template-columns: repeat(3, 1fr); gap: 30px; }
-    .tier-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
-    .benefits { grid-template-columns: repeat(3, 1fr); gap: 34px; }
-    section { padding: 84px 0; }
+  @media (min-width:900px) {
+    .header-cta { display:inline-block; }
+    .hero { padding:76px 0 88px; }
+    .hero-grid { grid-template-columns:1.03fr .97fr; gap:58px; }
+    .svcs { grid-template-columns:repeat(3,1fr); }
+    .phases { grid-template-columns:1fr 1fr; gap:34px 44px; }
+    .fit-grid { grid-template-columns:1fr 1fr; gap:48px; }
+    section { padding:84px 0; }
   }
 </style>
 </head>
@@ -311,31 +242,24 @@
 
 <header>
   <div class="wrap header-in">
-    <div class="logo"><span class="mark"></span><span>FieldLine</span></div>
-    <a class="btn header-cta" href="https://calendly.com/fieldline-colby/30min">Book a call</a>
+    <a class="logo" href="/"><span class="mark"></span><span>FieldLine</span></a>
+    <a class="btn header-cta" href="https://calendly.com/fieldline-colby/30min">Book an intro call</a>
   </div>
 </header>
 
 <div class="hero">
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow rise d1">Out of hours cover for trades</span>
-      <h1 class="rise d2">You shut at 5.<br><span class="hl">The emergencies don't.</span></h1>
-      <p class="lede rise d3">Something goes wrong at 8pm, they ring you, and it goes to
-        voicemail, and they've rung the next firm before you've even heard it.
-        <b>FieldLine answers the calls that come in after you've shut</b>, works out
-        what the job is, and texts it to whoever's on call.</p>
+      <span class="eyebrow rise d1">Systems for businesses where the phone matters</span>
+      <h1 class="rise d2">Your phone shouldn't<br><span class="hl">run your day.</span></h1>
+      <p class="lede rise d3">Calls answered and qualified, jobs booked, quotes chased, and
+        the site it all runs through. <b>Your team stops being interrupted, and you stop
+        finding out on Monday what you missed on Friday.</b></p>
       <div class="rise d4">
-        <a class="btn" href="https://calendly.com/fieldline-colby/30min">Book a 15-minute call</a>
-        <p class="under-btn">Free for a fortnight · live in 48 hours · no contract</p>
-      </div>
-      <div class="note rise d4">
-        <b>It doesn't replace anyone.</b> Your line rings exactly as it does now through
-        the day. FieldLine only picks up the ones nobody's there to take. Evenings,
-        weekends, and when the line's already engaged.
+        <a class="btn" href="https://calendly.com/fieldline-colby/30min">Book an intro call</a>
+        <p class="under-btn">15 minutes. We'll tell you straight if there's nothing worth doing.</p>
       </div>
     </div>
-
     <div class="panel">
       <div class="panel-head">
         <h2>Hear it for yourself</h2>
@@ -362,23 +286,53 @@
       <button class="btn block" id="callBtn">Start the call</button>
       <p class="under-btn" style="text-align:center">Uses your microphone. Nothing is recorded.</p>
     </div>
-  </div>
-</div>
 
 <section>
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="sec">How it works</h2>
-      <p class="sec-sub">Set up once. Nothing changes about how you work in the day.</p>
+      <h2 class="sec">Where we usually start</h2>
+      <p class="sec-sub">Most people come to us about one of these. We normally find two or
+        three more once we've had a proper look at how the work reaches you.</p>
     </div>
-    <ol class="steps">
-      <li><b>I set it up with your details</b>Your services, your area, your prices, and
-        what counts as an emergency.</li>
-      <li><b>You divert your out of hours calls</b>One code on your phone, takes two
-        minutes. Your daytime line carries on exactly as it does now.</li>
-      <li><b>It answers and texts you the job</b>Name, number, address, what's wrong and
-        how urgent, before you've even picked up.</li>
-    </ol>
+    <div class="svcs">
+      <div class="svc">
+        <span class="n">01</span>
+        <h3>Call handling and out of hours</h3>
+        <p>Every call answered, including the ones nobody's there for. It works out what the
+          job is, how urgent it is, and sends it to whoever's on. Your daytime line doesn't change.</p>
+        <span class="flag">Ring the demo yourself, top of this page</span>
+      </div>
+      <div class="svc">
+        <span class="n">02</span>
+        <h3>Missed call follow up</h3>
+        <p>Anyone you can't get to gets a reply within seconds, so they stop ringing round.
+          They tell us what they need and it lands with you as a message.</p>
+      </div>
+      <div class="svc">
+        <span class="n">03</span>
+        <h3>Booking and diary</h3>
+        <p>Enquiries turned into appointments without anyone typing them out. Slots confirmed,
+          reminders sent, and no double bookings to unpick on a Monday.</p>
+      </div>
+      <div class="svc">
+        <span class="n">04</span>
+        <h3>Quote and enquiry chasing</h3>
+        <p>The quotes that go quiet get followed up properly instead of forgotten. Most
+          businesses lose more here than anywhere else and never see it happen.</p>
+      </div>
+      <div class="svc">
+        <span class="n">05</span>
+        <h3>Websites that take enquiries</h3>
+        <p>Built to turn someone looking you up into a phone call or a form, wired into
+          everything above. Live in a week, and you own it outright.</p>
+      </div>
+      <div class="svc">
+        <span class="n">06</span>
+        <h3>Reporting you'd actually read</h3>
+        <p>Calls in, calls missed before and after, what they turned into. So you can see
+          whether any of this is working rather than take our word for it.</p>
+      </div>
+    </div>
 
     <div class="sms-wrap">
       <div class="sms">
@@ -389,132 +343,84 @@
            Happy to wait until the morning.</p>
         <div class="meta">Logged 8:47pm, Sunday</div>
       </div>
-      <p class="sms-cap">This is what lands on your phone.</p>
+      <p class="sms-cap">This is what lands with whoever's on.</p>
     </div>
   </div>
 </section>
+
+<div class="contrast">
+  <div class="wrap">
+    <p>No more three people stopping what they're doing every time it rings.</p>
+    <p>No more quotes going quiet and nobody noticing.</p>
+    <p>No more finding out on Monday that someone else got the job.</p>
+    <p><span>Just the work, logged, and your day back.</span></p>
+  </div>
+</div>
 
 <div class="dark">
   <section>
     <div class="wrap">
       <div class="sec-head">
-        <h2 class="sec">What a missed call actually costs</h2>
-        <p class="sec-sub">One Sunday evening, start to finish.</p>
+        <h2 class="sec">How it goes</h2>
+        <p class="sec-sub">No lock in, and nothing built before we know it's worth building.</p>
       </div>
-      <ul class="timeline">
-        <li><span class="t">8:41pm. their boiler packs in</span>No heat, no hot water, kids in the house.</li>
-        <li><span class="t">8:42pm. they ring you</span>It rings out. Voicemail. They don't leave one.</li>
-        <li><span class="t">8:43pm. they ring the next firm on Google</span>Someone picks up.</li>
-        <li><span class="t">Monday. That firm fits the new boiler</span>You never find out it happened.</li>
-      </ul>
+      <ol class="phases">
+        <li><b>A look at how it works now</b><span>Fifteen minutes on the phone. Where
+          enquiries come in, who handles them, and what happens when nobody can.</span></li>
+        <li><b>We tell you what's worth doing</b><span>Sometimes that's most of the list.
+          Sometimes it's one thing. Sometimes it's nothing, and we'll say so.</span></li>
+        <li><b>Live in days, not months</b><span>Call handling goes on within 48 hours.
+          Everything else follows once you've seen that working.</span></li>
+        <li><b>We keep it running</b><span>Changes, tuning and the reporting. You're not
+          handed a login and left to it.</span></li>
+      </ol>
     </div>
   </section>
 </div>
 
-<div class="contrast">
-  <div class="wrap">
-    <p>No more finding out on Monday that someone else got the job.</p>
-    <p>No more choosing between your tea and your phone.</p>
-    <p>No more voicemails nobody leaves.</p>
-    <p><span>Just the job, on your phone, in the morning.</span></p>
-  </div>
-</div>
-
-<section>
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="sec">What you actually get</h2>
-      <p class="sec-sub">What it means for you, and the bit that does it.</p>
-    </div>
-    <div class="benefits">
-      <div class="benefit">
-        <h3>Your evenings back</h3>
-        <p>It picks up everything that comes in after you shut, so you are not
-           watching your phone through your tea in case it is a job.</p>
-      </div>
-      <div class="benefit">
-        <h3>Know before you ring back</h3>
-        <p>Name, number, address, what has gone and how urgent, texted to whoever
-           is on call. You decide what is worth going out for.</p>
-      </div>
-      <div class="benefit">
-        <h3>Nothing changes in the day</h3>
-        <p>One code diverts your out of hours calls. Your daytime line rings
-           exactly as it does now, and you can switch it off whenever.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="sec">Two ways to do it</h2>
-      <p class="sec-sub">Both free for a fortnight. Both live in 48 hours. No contract either way.</p>
-    </div>
-    <div class="tier-grid">
-      <div class="tier">
-        <h3>Text Back</h3>
-        <p class="blurb">Every call you miss gets a reply within seconds, so they stop
-          ringing round.</p>
-        <ul>
-          <li>Instant text to anyone you miss</li>
-          <li>They reply with the job, it lands on your phone</li>
-          <li>Covers nights, weekends and an engaged line</li>
-          <li class="muted">Doesn't answer the phone</li>
-          <li class="muted">Doesn't sort urgent from routine</li>
-        </ul>
-        <a class="btn block" href="https://calendly.com/fieldline-colby/30min">Book a call</a>
-      </div>
-
-      <div class="tier featured">
-        <span class="tag">Most cover</span>
-        <h3>Full Receptionist</h3>
-        <p class="blurb">It actually picks up, works out the job, and sends it to
-          whoever's on call.</p>
-        <ul>
-          <li>Everything in Text Back</li>
-          <li>Answers the call and talks to them</li>
-          <li>Gets name, number, address and the fault</li>
-          <li>Flags what's urgent and what can wait</li>
-          <li>Catches the ones who'd never text</li>
-        </ul>
-        <a class="btn block" href="https://calendly.com/fieldline-colby/30min">Book a call</a>
-      </div>
-    </div>
-
-    <p class="price-note">Price depends on how many calls you get and which one you
-      want. It's a two minute conversation, not a mystery. Book a slot and I'll tell
-      you straight.</p>
-  </div>
-</section>
-
-<div class="dark">
+<div class="fit">
   <section>
     <div class="wrap">
-      <div class="founding">
-        <h3>I'm taking on my first few firms now</h3>
-        <p>They get it set up with no setup fee, in exchange for honest feedback and a
-          word from them if it works. So you'd get it cheaper than anyone after you,
-          and I've got every reason to make sure it actually lands.</p>
+      <div class="sec-head">
+        <h2 class="sec">Who this is for</h2>
+        <p class="sec-sub">We'd rather tell you now than waste your fifteen minutes.</p>
+      </div>
+      <div class="fit-grid">
+        <div class="fit-col">
+          <h3>A good fit</h3>
+          <ul class="yes">
+            <li>You've got staff, and the phone interrupts them all day</li>
+            <li>A missed enquiry costs you hundreds, not tenners</li>
+            <li>Somebody's job is to answer the phone</li>
+            <li>You already pay for software and it earns its keep</li>
+          </ul>
+        </div>
+        <div class="fit-col">
+          <h3>Not for you</h3>
+          <ul class="no">
+            <li>One person and a mobile</li>
+            <li>Average job under a couple of hundred quid</li>
+            <li>You want it built and handed over with no involvement after</li>
+            <li>You're after the cheapest thing going</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 </div>
 
 <div class="close-block">
-  <h2>Get it sorted before winter</h2>
-  <p>Fifteen minutes on the phone, no hard sell. I'll ask how you handle calls now, and
-    if I can help I'll set it up on your line free for a fortnight. If it wins you a job
-    you'd have lost, we carry on. If not, you owe me nothing.</p>
-  <a class="btn" href="https://calendly.com/fieldline-colby/30min">Book a 15-minute call</a>
-  <p class="under-btn">Live in 48 hours · no contract · your daytime line doesn't change</p>
+  <h2>Book an intro call</h2>
+  <p>Fifteen minutes. We'll ask how enquiries reach you now and what happens when nobody
+    can get to them. If there's nothing worth doing, we'll tell you that.</p>
+  <a class="btn" href="https://calendly.com/fieldline-colby/30min">Find a time</a>
+  <p class="under-btn">No prep needed. Nothing to sign.</p>
 </div>
 
 <footer>
   <div class="wrap">
-    <b>FieldLine</b>, out of hours call cover for trade businesses.<br>
-    Colby Barton · <a href="mailto:colby@getfieldline.co.uk">colby@getfieldline.co.uk</a>
+    <b>FieldLine</b>, systems for businesses where the phone matters.<br>
+    Colby Barton-Crump · <a href="mailto:colby@getfieldline.co.uk">colby@getfieldline.co.uk</a>
   </div>
 </footer>
 
@@ -618,5 +524,6 @@
     btn.disabled = false;
   });
 </script>
+
 </body>
 </html>
