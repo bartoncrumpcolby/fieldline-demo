@@ -280,11 +280,11 @@
            system is configured per business rather than one bot for plumbers,
            which is the whole difference between a product and a consultancy. -->
       <div class="picker" id="picker" role="group" aria-label="Choose a business type">
-        <button class="pick on" data-id="8c43a99f-1765-4fa1-8f6c-dd5f27ac7205"
+        <button class="pick on" data-id="8c43a99f-1765-4fa1-8f6c-dd5f27ac7205" data-biz="Summit Heating"
                 data-hint="Press the button and tell it your boiler's packed in.&lt;br&gt;It answers like it would at 9pm on a Sunday.">A heating firm</button>
-        <button class="pick" data-id="a6bced72-7d98-4aa8-8f0e-4875d2ee3470"
+        <button class="pick" data-id="a6bced72-7d98-4aa8-8f0e-4875d2ee3470" data-biz="Bridgeway Dental"
                 data-hint="Press the button and tell it you've got toothache.&lt;br&gt;It answers like reception would when they're on another call.">A dental practice</button>
-        <button class="pick" data-id="53b36745-f556-4729-a75d-4d42c5e1d9c2"
+        <button class="pick" data-id="53b36745-f556-4729-a75d-4d42c5e1d9c2" data-biz="Kingsgate Lettings"
                 data-hint="Press the button and ask about a flat you've seen.&lt;br&gt;Or say you're a landlord and see how it changes tack.">A lettings agent</button>
       </div>
       <div class="statusline">
@@ -303,7 +303,7 @@
         </div>
       </div>
       <div class="summary" id="summary">
-        <div><b>Details captured</b>Sent straight to whoever needs to see it.</div>
+        <div><b>Details captured</b>Sent straight to whoever needs to see it at <span id="bizLabel">Summit Heating</span>.</div>
       </div>
       <button class="btn block" id="callBtn">Start the call</button>
       <p class="under-btn" style="text-align:center">Uses your microphone. Nothing is recorded.</p>
@@ -456,6 +456,10 @@
   const PUBLIC_KEY   = "4e35005b-04bc-4948-8db1-6143a9027ca2";
   // Which business the demo answers as. Set by the picker, read at call time.
   let ASSISTANT_ID = "8c43a99f-1765-4fa1-8f6c-dd5f27ac7205";
+  // The transcript labelled every reply "FieldLine", so picking dental gave you
+  // Bridgeway Dental answering under a FieldLine label. Showing the business it
+  // is actually answering as is the whole point of the picker.
+  let BIZ_NAME = "Summit Heating";
 
   const vapi = new Vapi(PUBLIC_KEY);
   const btn = document.getElementById("callBtn");
@@ -492,7 +496,7 @@
     } else {
       const div = document.createElement("div");
       div.className = "bubble " + (role === "assistant" ? "assistant" : "user");
-      div.innerHTML = `<span class="who">${role === "assistant" ? "FieldLine" : "You"}</span><span class="text"></span>`;
+      div.innerHTML = `<span class="who">${role === "assistant" ? BIZ_NAME : "Caller"}</span><span class="text"></span>`;
       div.querySelector(".text").textContent = text;
       transcript.appendChild(div);
       lastBubble = { role, el: div };
@@ -509,6 +513,8 @@
     picker.querySelectorAll(".pick").forEach(x => x.classList.remove("on"));
     b.classList.add("on");
     ASSISTANT_ID = b.dataset.id;
+    BIZ_NAME = b.dataset.biz;
+    document.getElementById("bizLabel").textContent = BIZ_NAME;
     const ph = document.getElementById("placeholder");
     if (ph) {
       const who = ph.querySelector("b");
@@ -541,7 +547,7 @@
     document.querySelectorAll(".pick").forEach(b => b.disabled = true);
     btn.textContent = "End the call";
     btn.classList.add("stop");
-    setStatus("Connected, go ahead", true);
+    setStatus("Connected to " + BIZ_NAME + ", go ahead", true);
     startTimer();
   });
 
