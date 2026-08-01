@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fusion Home Repairs | Plumbing, heating and home repairs in Tameside</title>
+<meta name="description" content="Fusion Home Repairs, plumbing, heating and home repairs covering Tameside. Call 07547 734770.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141a17; --accent: #1a72b8; --accent-dk: #14588f;
+    --paper: #f4f6f4; --muted: #697a70; --line: #d9d5cd;
+    --hero-img: url('hero.jpg');
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    font-family:"Public Sans",system-ui,sans-serif; background:var(--paper);
+    color:var(--ink); font-size:17px; line-height:1.6;
+    padding-bottom:72px; /* room for the sticky call bar */
+  }
+  h1,h2,h3,.display { font-family:"Oswald",sans-serif; text-transform:uppercase;
+    letter-spacing:.01em; line-height:1.02; font-weight:700; }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 20px; }
+  a { color:inherit; }
+
+  /* top bar */
+  header { background:var(--ink); color:#fff; border-bottom:5px solid var(--accent); }
+  .bar { display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px 0; }
+  .brand { font-family:"Oswald",sans-serif; text-transform:uppercase;
+    font-size:21px; font-weight:700; letter-spacing:.02em; }
+  .brand span { color:var(--accent); }
+  .brand-logo { display:block; line-height:0; }
+  .brand-logo img { height:44px; width:auto; max-width:220px; object-fit:contain; display:block; }
+  .callnow { display:none; background:var(--accent); color:var(--ink); text-decoration:none;
+    font-weight:700; padding:11px 20px; font-size:17px; white-space:nowrap; }
+
+  /* Quote form. Some people will not ring a stranger, especially for a job they
+     think is too small to bother someone with. This catches those. */
+  .quote-sec { background:var(--ink); color:#fff; }
+  .quote-grid { display:grid; gap:28px; }
+  .quote-sec .sec-title { color:#fff; }
+  .quote-sec .sec-sub { color:#9aa0a8; }
+  .qform { display:grid; gap:12px; }
+  .qform label { font-size:14px; font-weight:600; color:#c9ccd2; margin-bottom:-6px; }
+  .qform input, .qform textarea {
+    font-family:inherit; font-size:16px; padding:13px 14px; color:var(--ink);
+    background:#fff; border:2px solid var(--ink); border-radius:0; width:100%; }
+  .qform input:focus, .qform textarea:focus { outline:3px solid var(--accent); outline-offset:1px; }
+  .qform textarea { min-height:110px; resize:vertical; }
+  .qform button {
+    font-family:"Oswald",sans-serif; text-transform:uppercase; letter-spacing:.03em;
+    font-size:20px; font-weight:700; padding:16px; cursor:pointer;
+    background:var(--accent); color:var(--ink); border:3px solid var(--accent); }
+  .qform button:hover { background:var(--accent-dk); border-color:var(--accent-dk); }
+  .qform .note { font-size:13.5px; color:#9aa0a8; }
+  .orcall { border-left:4px solid var(--accent); padding-left:18px; }
+  .orcall h3 { font-size:19px; margin-bottom:8px; }
+  .orcall p { color:#9aa0a8; font-size:16px; margin-bottom:14px; }
+  .orcall a.big { font-family:"Oswald",sans-serif; font-size:clamp(26px,5vw,34px);
+    color:var(--accent); text-decoration:none; letter-spacing:.01em; }
+
+  /* hero */
+  .hero { background:var(--ink); color:#fff; padding:44px 0 52px; position:relative; overflow:hidden; }
+  .hero::after { content:""; position:absolute; right:-90px; top:-90px; width:320px; height:320px;
+    background:var(--accent); opacity:.10; transform:rotate(45deg); }
+  /* Photo behind the hero. Heavy overlay on purpose: the picture is atmosphere,
+     the headline and the phone number still have to be the loudest thing. */
+  .hero.shot-bg { background-image:
+      linear-gradient(90deg, rgba(20,26,23,.97) 0%, rgba(20,26,23,.90) 46%, rgba(20,26,23,.58) 100%),
+      var(--hero-img); background-size:cover; background-position:center right; }
+  .hero.shot-bg::after { display:none; }
+  @media (max-width:759px) {
+    .hero.shot-bg { background-image:
+      linear-gradient(180deg, rgba(20,26,23,.93) 0%, rgba(20,26,23,.88) 70%, rgba(20,26,23,.95) 100%),
+      var(--hero-img); }
+  }
+  .kicker { font-family:"Oswald",sans-serif; text-transform:uppercase; font-size:13px;
+    letter-spacing:.16em; color:var(--accent); margin-bottom:14px; }
+  .hero h1 { font-size:clamp(34px,8vw,62px); margin-bottom:16px; }
+  .hero h1 em { font-style:normal; color:var(--accent); }
+  .hero p { color:#c9ccd2; font-size:18px; max-width:52ch; margin-bottom:26px; }
+  .cta-row { display:flex; flex-direction:column; gap:12px; max-width:340px; }
+  .btn { display:block; text-align:center; text-decoration:none; font-weight:700;
+    padding:16px 26px; font-size:19px; border:3px solid var(--accent); }
+  .btn.primary { background:var(--accent); color:var(--ink); }
+  .btn.ghost { color:#fff; }
+  .hero small { display:block; margin-top:14px; color:#9aa0a8; font-size:14px; }
+
+  /* Credentials strip. Deliberately quiet: a solid colour band of ticks is the
+     most template-looking thing you can put on a trade site, and it competes
+     with the hero. Hairline rules and small caps read as considered instead. */
+  .trust { background:var(--paper); border-bottom:1px solid var(--line); }
+  .trust ul { list-style:none; display:grid; grid-template-columns:1fr 1fr;
+    gap:0; padding:0; }
+  .trust li {
+    font-family:"Oswald",sans-serif; text-transform:uppercase;
+    font-size:12.5px; letter-spacing:.11em; font-weight:600; color:var(--ink);
+    padding:16px 4px 16px 18px; position:relative;
+    border-bottom:1px solid var(--line); }
+  .trust li::before {
+    content:""; position:absolute; left:0; top:50%; transform:translateY(-50%);
+    width:7px; height:7px; background:var(--accent); }
+  .trust li:nth-child(odd) { border-right:1px solid var(--line); }
+  .trust li:nth-last-child(-n+2) { border-bottom:0; }
+
+  /* sections */
+  section { padding:52px 0; }
+  .sec-title { font-size:clamp(26px,5.5vw,40px); margin-bottom:8px; }
+  .sec-sub { color:var(--muted); margin-bottom:30px; }
+  .rule { width:64px; height:5px; background:var(--accent); margin-bottom:18px; }
+
+  .svcs { display:grid; gap:2px; background:var(--line); border:2px solid var(--ink); }
+  .svc { background:var(--paper); padding:22px 20px; }
+  .svc h3 { font-size:20px; margin-bottom:7px; }
+  .svc p { color:var(--muted); font-size:16px; }
+
+  .urgent { background:var(--ink); color:#fff; padding:26px 20px; text-align:center; }
+  .urgent strong { display:block; font-size:19px; margin-bottom:12px; }
+  .urgent a { display:inline-block; background:var(--accent); color:var(--ink);
+    text-decoration:none; font-weight:700; padding:14px 30px; font-size:20px; }
+
+  .areas { background:var(--ink); color:#fff; }
+  .areas .sec-sub { color:#9aa0a8; }
+  .areas ul { list-style:none; display:flex; flex-wrap:wrap; gap:10px; }
+  .areas li { border:2px solid #3a3f47; padding:8px 16px; font-weight:600; font-size:15px; }
+
+  .why { display:grid; gap:24px; }
+  .why div h3 { font-size:19px; margin-bottom:6px; }
+  .why div p { color:var(--muted); font-size:16px; }
+
+  /* Job photos. The single most persuasive thing on a trade site, and the one
+     thing they actually want to add themselves, so it gets real estate. */
+  .gallery { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .shot { aspect-ratio:4/3; border:2px dashed #bdb9b0; background:#eceae5;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:14px; color:var(--muted); }
+  .shot span { font-family:"Oswald",sans-serif; text-transform:uppercase;
+    font-size:13px; letter-spacing:.1em; color:var(--accent-dk); margin-bottom:6px; }
+  .shot small { font-size:13px; line-height:1.4; }
+  .shot.filled { border:2px solid var(--ink); background:none; padding:0; }
+  .shot img { width:100%; height:100%; object-fit:cover; }
+
+  .quote { border-left:6px solid var(--accent); padding:6px 0 6px 20px; margin-bottom:24px; }
+  .quote p { font-size:18px; margin-bottom:6px; }
+  .quote cite { font-style:normal; color:var(--muted); font-size:15px; font-weight:600; }
+  /* Clearly a slot, not a fake review. Showing invented quotes to a prospect
+     looking at their own mockup is a fast way to lose their trust. */
+  .quote.placeholder { border-left-style:dashed; opacity:.72; }
+  .quote.placeholder p { font-style:italic; }
+
+  .final { background:var(--accent); color:var(--ink); text-align:center; }
+  .final h2 { font-size:clamp(26px,6vw,42px); margin-bottom:10px; }
+  .final p { margin-bottom:22px; font-weight:500; }
+  .final a { display:inline-block; background:var(--ink); color:#fff; text-decoration:none;
+    font-weight:700; padding:16px 34px; font-size:21px; }
+
+  footer { background:var(--ink); color:#8b9199; padding:28px 0; font-size:14px; }
+  footer strong { color:#fff; }
+
+  /* sticky call bar, the single most important element on a trade site */
+  .sticky { position:fixed; left:0; right:0; bottom:0; display:flex; z-index:50;
+    border-top:3px solid var(--ink); }
+  .sticky a { flex:1; text-align:center; text-decoration:none; font-weight:700;
+    padding:18px 8px; font-size:18px; }
+  .sticky .call { background:var(--accent); color:var(--ink); }
+  .sticky .txt { background:var(--ink); color:#fff; flex:0 0 40%; }
+
+  @media (min-width:760px) {
+    .callnow { display:inline-block; }
+    .cta-row { flex-direction:row; max-width:none; }
+    .btn { flex:0 0 auto; }
+    .trust ul { grid-template-columns:repeat(4,1fr); }
+    .trust li { border-bottom:0; padding:18px 4px 18px 20px; }
+    .trust li:nth-child(odd) { border-right:0; }
+    .trust li + li { border-left:1px solid var(--line); }
+    .svcs { grid-template-columns:1fr 1fr; }
+    .why { grid-template-columns:repeat(3,1fr); }
+    body { padding-bottom:0; }
+    .sticky { display:none; }
+    section { padding:72px 0; }
+  }
+  @media (min-width:1000px) { .svcs { grid-template-columns:repeat(3,1fr); } }
+  @media (min-width:760px) { .quote-grid { grid-template-columns:1.3fr 1fr; gap:44px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <div class="brand">FUSION HOME REPAIRS<span>.</span></div>
+    <a class="callnow" href="#quote">Request a quote</a>
+  </div>
+</header>
+
+<div class="hero shot-bg">
+  <div class="wrap">
+    <div class="kicker">Plumbing, heating and home repairs &middot; Tameside</div>
+    <h1>From a dripping tap<br><em>to a full bathroom.</em></h1>
+    <p>Plumbing, heating and home repairs across Tameside, Glossop and Stockport. City and Guilds qualified, CIPHE member.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="tel:+447547734770">Call 07547 734770</a>
+      <a class="btn ghost" href="#services">What we do</a>
+    </div>
+    <small>Free quotes. No call out charge for quoted work.</small>
+  </div>
+</div>
+
+<div class="trust">
+  <div class="wrap">
+    <ul><li>City &amp; Guilds qualified</li><li>CIPHE member</li><li>No call out charge</li><li>Discount for OAPs</li></ul>
+  </div>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="rule"></div>
+    <h2 class="sec-title">What we do</h2>
+    <p class="sec-sub">If it is not listed, ring and ask. It is usually a yes.</p>
+    <div class="svcs">
+      <article class="svc">
+        <h3>Dripping taps</h3>
+        <p>Repaired or replaced, and the washer done properly so it stays fixed.</p>
+      </article>
+      <article class="svc">
+        <h3>Toilets</h3>
+        <p>Inlet and flush valves replaced. The one that runs all night, sorted.</p>
+      </article>
+      <article class="svc">
+        <h3>Bathrooms</h3>
+        <p>Full renovations down to a single swap. Left clean and working.</p>
+      </article>
+      <article class="svc">
+        <h3>Showers fitted</h3>
+        <p>Supplied and fitted, or swapped over for the one you have picked.</p>
+      </article>
+      <article class="svc">
+        <h3>Outside taps</h3>
+        <p>Fitted with an isolator so it will not freeze and split.</p>
+      </article>
+      <article class="svc">
+        <h3>Flat pack furniture</h3>
+        <p>Assembled properly, square and solid, with nothing left over.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<section class="areas">
+  <div class="wrap">
+    <div class="rule"></div>
+    <h2 class="sec-title">Where we cover</h2>
+    <p class="sec-sub">Based in Tameside. If you are just outside, ring and ask.</p>
+    <ul><li>Tameside</li><li>Glossop</li><li>Stockport</li></ul>
+  </div>
+</section>
+
+
+<section>
+  <div class="wrap">
+    <div class="rule"></div>
+    <h2 class="sec-title">Why people use us</h2>
+    <div class="why"><div><h3>Straight price</h3><p>Quoted before anything starts, and it does not change once we are in.</p></div><div><h3>No call out charge</h3><p>You do not pay for me to come and look at it.</p></div><div><h3>Discount for OAPs</h3><p>Just mention it when you ring.</p></div></div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="rule"></div>
+    <h2 class="sec-title">Recent jobs</h2>
+    <p class="sec-sub">A few of the jobs we have done recently.</p>
+    <div class="gallery"><div class="shot filled"><img src="job1.jpg" alt="Work by Fusion Home Repairs"></div><div class="shot filled"><img src="job2.jpg" alt="Work by Fusion Home Repairs"></div><div class="shot filled"><img src="job3.jpg" alt="Work by Fusion Home Repairs"></div><div class="shot filled"><img src="job4.jpg" alt="Work by Fusion Home Repairs"></div></div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="rule"></div>
+    <h2 class="sec-title">What people say</h2>
+    <p class="sec-sub">In our customers' own words.</p>
+    <div class="quote placeholder"><p>Your Google review goes here, word for word.</p><cite>Customer name, area</cite></div><div class="quote placeholder"><p>And another one here. Real reviews in your customers' own words do more than anything else on this page.</p><cite>Customer name, area</cite></div>
+  </div>
+</section>
+
+<section class="quote-sec" id="quote">
+  <div class="wrap">
+    <div class="rule"></div>
+    <h2 class="sec-title">Request a quote</h2>
+    <p class="sec-sub">Tell us what needs doing and we will come back to you with a price.</p>
+    <div class="quote-grid">
+      <form class="qform" action="#" method="post">
+        <label for="qname">Your name</label>
+        <input id="qname" name="name" type="text" autocomplete="name" required>
+
+        <label for="qphone">Phone number</label>
+        <input id="qphone" name="phone" type="tel" autocomplete="tel" required>
+
+        <label for="qemail">Email (optional)</label>
+        <input id="qemail" name="email" type="email" autocomplete="email">
+
+        <label for="qjob">What needs doing?</label>
+        <textarea id="qjob" name="job" placeholder="A dripping tap, a full bathroom, or anything in between."></textarea>
+
+        <button type="submit">Send it over</button>
+        <p class="note">We will get back to you the same day where we can. No call out charge for quoted work.</p>
+      </form>
+
+      <div class="orcall">
+        <h3>Or just ring</h3>
+        <p>If it is urgent, or you would rather talk it through, the phone is quicker.</p>
+        <a class="big" href="tel:+447547734770">07547 734770</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <strong>Fusion Home Repairs</strong><br>
+    Plumbing, heating and home repairs covering Tameside and the surrounding area.<br>
+    Telephone 07547 734770<br>Email <a href="mailto:fusionhomerepairs@gmail.com" style="color:#fff">fusionhomerepairs@gmail.com</a>
+    
+  </div>
+</footer>
+
+<div class="sticky">
+  <a class="call" href="tel:+447547734770">Call now</a>
+  <a class="txt" href="#quote">Get a quote</a>
+</div>
+
+</body>
+</html>
