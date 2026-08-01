@@ -256,6 +256,15 @@
     color:var(--ink); margin-bottom:7px; letter-spacing:-.02em; }
   .either-col p { font-size:16px; color:var(--body); }
 
+  .pathnum { display:inline-block; font-family:"Archivo",sans-serif; font-size:11px;
+    font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--amber-dk);
+    margin-bottom:8px; }
+  .pathlist { list-style:none; margin-top:14px; }
+  .pathlist li { font-size:15.5px; color:var(--body); padding:7px 0 7px 20px;
+    position:relative; border-top:1px solid var(--line); }
+  .pathlist li::before { content:""; position:absolute; left:0; top:16px;
+    width:7px; height:7px; background:var(--amber); }
+
   .close-block { background:var(--amber); color:var(--black); padding:64px 26px; text-align:center; }
   .close-block h2 { font-size:clamp(29px,4.2vw,44px); font-weight:900; line-height:1.05; margin-bottom:14px; }
   .close-block p { font-size:18px; max-width:32em; margin:0 auto 28px; color:#4a3f1e; }
@@ -317,9 +326,10 @@
     <div>
     <span class="eyebrow rise d1">Systems for businesses where the phone matters</span>
     <h1 class="rise d2">Find out what you're<br><span class="hl">already missing.</span></h1>
-    <p class="lede rise d3">Nobody logs the calls that ring out, so the number is always a
-      guess. <b>We'll put missed call text back on your line for a week, free, and at the
-      end you get the list.</b> Who rang, what they wanted, and what it was worth.</p>
+    <p class="lede rise d3">Either you are losing work that already found you, or not enough
+      is finding you. Most people cannot tell you which. <b>We put something on your line for
+      a week, free, and at the end you get the real numbers</b> and we fix whichever one it
+      turns out to be.</p>
     <div class="rise d4">
       <a class="btn" href="https://calendly.com/fieldline-colby/30min">Book a call</a>
       <p class="under-btn">15 minutes to set it up. Nothing changes about how you work.</p>
@@ -345,8 +355,8 @@
 <section class="findings">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="sec">What you get at the end of the week</h2>
-      <p class="sec-sub">Not an opinion about your phones. The actual list.</p>
+      <h2 class="sec">The week tells you which one you are</h2>
+      <p class="sec-sub">Not an opinion about your phones. Real numbers off your own line, then a straight answer about what to do with them.</p>
     </div>
     <div class="find-grid">
       <div class="find">
@@ -370,14 +380,28 @@
     </div>
     <div class="either">
       <div class="either-col">
-        <h3>If the number is high</h3>
-        <p>You are losing work you already won. The fix is answering, chasing and booking
-          what comes in, so nothing gets past you.</p>
+        <span class="pathnum">Path one</span>
+        <h3>The number is high</h3>
+        <p>You are losing work that already found you. Every enquiry gets answered,
+          qualified and logged, the quotes that go quiet get chased, and jobs go in the
+          diary without anyone typing them out.</p>
+        <ul class="pathlist">
+          <li>Call handling, including out of hours</li>
+          <li>Missed call follow up</li>
+          <li>Quote chasing and booking</li>
+        </ul>
       </div>
       <div class="either-col">
-        <h3>If the number is low</h3>
-        <p>Then missed calls are not your problem, not enough people are ringing. The fix
-          is further up: getting found, and getting more enquiries in the first place.</p>
+        <span class="pathnum">Path two</span>
+        <h3>The number is low</h3>
+        <p>Then missed calls are not your problem, not enough people are ringing at all.
+          That is a different job and it happens further up: being findable, and giving
+          people a reason to pick up the phone.</p>
+        <ul class="pathlist">
+          <li>A site built to turn a search into a call</li>
+          <li>Your Google listing and local search</li>
+          <li>Outbound to the customers you want more of</li>
+        </ul>
       </div>
     </div>
     <p class="findings-note">Either way you finish the week knowing which one you are, which
@@ -425,16 +449,15 @@
       </div>
       <div class="svc">
         <span class="n">05</span>
-        <h3>Getting found, and getting enquiries</h3>
+        <h3>Getting found</h3>
         <p>A site built to turn someone looking you up into a phone call, your Google
-          listing sorted, and the local searches you should be showing up for. For when
-          the problem is volume, not handling.</p>
+          listing sorted, and the local searches you should be showing up for but are not.</p>
       </div>
       <div class="svc">
         <span class="n">06</span>
-        <h3>Reporting you'd actually read</h3>
-        <p>Calls in, calls missed before and after, what they turned into. So you can see
-          whether any of this is working rather than take our word for it.</p>
+        <h3>Going out and finding it</h3>
+        <p>When waiting to be found is not enough. We build the list of the customers you
+          actually want, and the outreach that reaches them, so the phone rings more.</p>
       </div>
     </div>
   </div>
