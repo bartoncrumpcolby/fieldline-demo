@@ -258,7 +258,10 @@
     .hero { padding: 38px 0 44px; }
     .hero-grid { gap: 30px; }
     section { padding: 46px 0; }
-    .btn { display: block; width: 100%; }
+    /* :not(.header-cta) matters — a bare .btn rule here sits later in the file
+       than .header-cta{display:none}, so it un-hid the header button on phones
+       and stretched it full-width across the logo. */
+    .btn:not(.header-cta) { display: block; width: 100%; }
     .panel { padding: 18px; box-shadow: 4px 4px 0 var(--amber); }
     .transcript { max-height: none; min-height: 0; }
     .bubble { max-width: 94%; }
