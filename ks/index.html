@@ -170,6 +170,27 @@
   .shot.filled { border:2px solid var(--ink); background:none; padding:0; }
   .shot img { width:100%; height:100%; object-fit:cover; }
 
+  /* Transformation section, Tools for War. Numbered so the process feels short
+     and known, which is the whole point of showing it. */
+  .howto { background:var(--paper); }
+  .steps { list-style:none; counter-reset:s; display:grid; gap:22px; margin-top:26px; }
+  .steps li { counter-increment:s; position:relative; padding-left:52px; font-size:16.5px; color:var(--muted); }
+  .steps li::before {
+    content:counter(s); position:absolute; left:0; top:-2px;
+    width:36px; height:36px; display:flex; align-items:center; justify-content:center;
+    font-family:"Oswald",sans-serif; font-weight:700; font-size:19px;
+    background:var(--accent); color:var(--ink); }
+  .steps li b { display:block; font-family:"Oswald",sans-serif; text-transform:uppercase;
+    font-size:18px; color:var(--ink); margin-bottom:4px; letter-spacing:.01em; }
+
+  /* Contrast section, Tools for War. Short lines, plenty of air, so the old way
+     lands as something to get away from. */
+  .contrast { background:var(--ink); color:#fff; text-align:center; padding:52px 0; }
+  .contrast p { font-family:"Oswald",sans-serif; text-transform:uppercase;
+    font-size:clamp(19px,4.2vw,27px); line-height:1.25; letter-spacing:.01em;
+    max-width:24ch; margin:0 auto 16px; }
+  .contrast p:last-child { margin-bottom:0; color:var(--accent); }
+
   .quote { border-left:6px solid var(--accent); padding:6px 0 6px 20px; margin-bottom:24px; }
   .quote p { font-size:18px; margin-bottom:6px; }
   .quote cite { font-style:normal; color:var(--muted); font-size:15px; font-weight:600; }
@@ -279,6 +300,20 @@
   <strong>No heat, no water or something that will not wait?</strong>
   <a href="tel:+447855016798">Ring 07855 016798</a>
 </div>
+
+<section class="howto">
+  <div class="wrap">
+    <div class="rule"></div>
+    <h2 class="sec-title">Sorted in three steps</h2>
+    <ol class="steps"><li><b>Ring or drop us a message</b>Tell us what it&#x27;s doing. We&#x27;ll say straight away if it&#x27;s something we can sort.</li><li><b>We come and look</b>We turn up when we said, find the fault and give you the price before we touch anything.</li><li><b>It&#x27;s fixed</b>Job done, tested, and the mess comes with us. You get the paperwork the same day.</li></ol>
+  </div>
+</section>
+
+<section class="contrast">
+  <div class="wrap">
+    <p>No waiting in all day for someone who never turns up.</p><p>No price going up once they&#x27;re under the boiler.</p><p>No being talked into a new one you don&#x27;t need.</p><p>Just a straight price and a job done right.</p>
+  </div>
+</section>
 
 <section class="areas">
   <div class="wrap">
