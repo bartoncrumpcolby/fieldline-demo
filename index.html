@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FieldLine — out of hours cover for trades</title>
+<title>FieldLine, out of hours cover for trades</title>
 <meta name="description" content="An out of hours receptionist for trade businesses. It answers the calls you miss, works out the job, and texts it to whoever's on call.">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
@@ -13,7 +13,7 @@
      so it needs to unfurl with the mark rather than a blank card. -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://getfieldline.co.uk/">
-<meta property="og:title" content="FieldLine — out of hours cover for trades">
+<meta property="og:title" content="FieldLine, out of hours cover for trades">
 <meta property="og:description" content="It answers the calls that come in when your office is shut, works out the job, and texts it to whoever's on call.">
 <meta property="og:image" content="https://getfieldline.co.uk/icon-512.png">
 <meta name="twitter:card" content="summary">
@@ -233,6 +233,29 @@
   .founding h3 { font-size: 19px; font-weight: 800; color: #fff; margin-bottom: 9px; }
   .founding p { font-size: 16px; color: #b8b5ae; }
 
+  /* CONTRAST SECTION (Tools for War). Job is dislodgement: make the old way
+     feel worse than changing. Short lines, lots of air, payoff last in amber. */
+  .contrast { background: var(--stone); padding: 62px 0; text-align: center; }
+  .contrast p {
+    font-family: "Archivo", sans-serif; font-weight: 800; letter-spacing: -.03em;
+    font-size: clamp(21px, 3.4vw, 33px); line-height: 1.16; color: var(--ink);
+    max-width: 20ch; margin: 0 auto 18px;
+  }
+  .contrast p:last-child { margin-bottom: 0; }
+  .contrast p:last-child span { background: var(--amber); padding: 0 .16em;
+    -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+  /* BENEFIT SECTION (Tools for War). Headline is always the outcome, the
+     paragraph underneath is the feature that delivers it. Features tell,
+     benefits sell. */
+  .benefits { display: grid; gap: 30px; margin-top: 34px; }
+  .benefit { border-top: 3px solid var(--black); padding-top: 16px; }
+  .benefit h3 {
+    font-size: 21px; font-weight: 900; color: var(--ink);
+    line-height: 1.12; margin-bottom: 8px;
+  }
+  .benefit p { font-size: 16px; color: var(--body); }
+
   /* close — full amber band, the loudest thing on the page */
   .close-block { background: var(--amber); color: var(--black); padding: 66px 26px; text-align: center; }
   .close-block h2 { font-size: clamp(30px, 4.4vw, 46px); font-weight: 900; line-height: 1.04; margin-bottom: 16px; }
@@ -276,6 +299,7 @@
     .hero-grid { grid-template-columns: 1.03fr .97fr; gap: 58px; }
     .steps { grid-template-columns: repeat(3, 1fr); gap: 30px; }
     .tier-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+    .benefits { grid-template-columns: repeat(3, 1fr); gap: 34px; }
     section { padding: 84px 0; }
   }
 </style>
@@ -295,7 +319,7 @@
       <span class="eyebrow rise d1">Out of hours cover for trades</span>
       <h1 class="rise d2">You shut at 5.<br><span class="hl">The emergencies don't.</span></h1>
       <p class="lede rise d3">Something goes wrong at 8pm, they ring you, and it goes to
-        voicemail — and they've rung the next firm before you've even heard it.
+        voicemail, and they've rung the next firm before you've even heard it.
         <b>FieldLine answers the calls that come in after you've shut</b>, works out
         what the job is, and texts it to whoever's on call.</p>
       <div class="rise d4">
@@ -304,7 +328,7 @@
       </div>
       <div class="note rise d4">
         <b>It doesn't replace anyone.</b> Your line rings exactly as it does now through
-        the day. FieldLine only picks up the ones nobody's there to take — evenings,
+        the day. FieldLine only picks up the ones nobody's there to take. Evenings,
         weekends, and when the line's already engaged.
       </div>
     </div>
@@ -350,7 +374,7 @@
       <li><b>You divert your out of hours calls</b>One code on your phone, takes two
         minutes. Your daytime line carries on exactly as it does now.</li>
       <li><b>It answers and texts you the job</b>Name, number, address, what's wrong and
-        how urgent — before you've even picked up.</li>
+        how urgent, before you've even picked up.</li>
     </ol>
 
     <div class="sms-wrap">
@@ -375,14 +399,49 @@
         <p class="sec-sub">One Sunday evening, start to finish.</p>
       </div>
       <ul class="timeline">
-        <li><span class="t">8:41pm — their boiler packs in</span>No heat, no hot water, kids in the house.</li>
-        <li><span class="t">8:42pm — they ring you</span>It rings out. Voicemail. They don't leave one.</li>
-        <li><span class="t">8:43pm — they ring the next firm on Google</span>Someone picks up.</li>
-        <li><span class="t">Monday — that firm fits the new boiler</span>You never find out it happened.</li>
+        <li><span class="t">8:41pm. their boiler packs in</span>No heat, no hot water, kids in the house.</li>
+        <li><span class="t">8:42pm. they ring you</span>It rings out. Voicemail. They don't leave one.</li>
+        <li><span class="t">8:43pm. they ring the next firm on Google</span>Someone picks up.</li>
+        <li><span class="t">Monday. That firm fits the new boiler</span>You never find out it happened.</li>
       </ul>
     </div>
   </section>
 </div>
+
+<div class="contrast">
+  <div class="wrap">
+    <p>No more finding out on Monday that someone else got the job.</p>
+    <p>No more choosing between your tea and your phone.</p>
+    <p>No more voicemails nobody leaves.</p>
+    <p><span>Just the job, on your phone, in the morning.</span></p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec">What you actually get</h2>
+      <p class="sec-sub">What it means for you, and the bit that does it.</p>
+    </div>
+    <div class="benefits">
+      <div class="benefit">
+        <h3>Your evenings back</h3>
+        <p>It picks up everything that comes in after you shut, so you are not
+           watching your phone through your tea in case it is a job.</p>
+      </div>
+      <div class="benefit">
+        <h3>Know before you ring back</h3>
+        <p>Name, number, address, what has gone and how urgent, texted to whoever
+           is on call. You decide what is worth going out for.</p>
+      </div>
+      <div class="benefit">
+        <h3>Nothing changes in the day</h3>
+        <p>One code diverts your out of hours calls. Your daytime line rings
+           exactly as it does now, and you can switch it off whenever.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section>
   <div class="wrap">
@@ -449,7 +508,7 @@
 
 <footer>
   <div class="wrap">
-    <b>FieldLine</b> — out of hours call cover for trade businesses.<br>
+    <b>FieldLine</b>, out of hours call cover for trade businesses.<br>
     Colby Barton · <a href="mailto:colby@getfieldline.co.uk">colby@getfieldline.co.uk</a>
   </div>
 </footer>
@@ -526,7 +585,7 @@
     btn.disabled = false;
     btn.textContent = "End the call";
     btn.classList.add("stop");
-    setStatus("Connected — go ahead", true);
+    setStatus("Connected, go ahead", true);
     startTimer();
   });
 
