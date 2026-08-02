@@ -1,83 +1,123 @@
-/* Autonomously look, as an override.
-   Tokens lifted from autonomously-ai.com's own stylesheet, plus the three
-   things their build does that ours does not: radial glow behind the hero,
-   gradient on the primary button, and a much larger corner radius. */
+/* Autonomously look, rebuilt from the rendered site rather than from tokens.
+   The first attempt guessed glow and gradients that are not there. What they
+   actually do:
+     - the ENTIRE page is blue, medium blue, with darker blue rounded panels
+       floating on it. There are no white sections anywhere.
+     - hero is centred typography. No two column, no hero card.
+     - a faint grid is printed over the hero.
+     - the accent is a lighter blue fading across the final word.
+     - big corner radius, ~28px on panels, pill buttons with an arrow.
+     - a rounded geometric typeface, not a grotesk. */
+
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap");
 
 :root {
-  --ink:#04198c;          /* their --brand-deep, 230deg at 97% saturation */
-  --black:#0b1a65;        /* their dark card */
-  --paper:#f8fafc;
-  --stone:#bcdfff;        /* their --brand-light, vivid */
-  --line:#c6dcf7;
-  --body:#334499;         /* every text colour on their site is blue */
-  --muted:#5d72c0;
-  --amber:#025ae8;        /* --brand-primary */
-  --amber-dk:#0247bd;
-  --sky:#6ab5fa;          /* --brand-accent, for use on dark */
-  --on-dark:#dbe9ff;
-  --dark-mute:#8fa6d8;
-  --r:16px;
+  --ink:#ffffff;
+  --black:#16308f;
+  --paper:#3b70d6;        /* the page itself is blue */
+  --stone:#2c56bd;
+  --line:rgba(255,255,255,.14);
+  --body:#dbe6fb;
+  --muted:#b3c8f2;
+  --amber:#8fc0ff;
+  --amber-dk:#bcdcff;
+  --sky:#9fcaff;
+  --on-dark:#e8f0ff;
+  --dark-mute:#b3c8f2;
+  --r:28px;
+  --panel:#1e3fa8;
 }
 
-/* Radial glow behind the hero, the signature move. */
+body { background:var(--paper); color:var(--body);
+  font-family:"Outfit",-apple-system,system-ui,sans-serif; }
+h1, h2, h3, .nav .brand b, .btn, .co b, .rep-row b {
+  font-family:"Outfit",-apple-system,system-ui,sans-serif; letter-spacing:-.02em; }
+
+/* Every band becomes a floating rounded panel on the blue page. */
+.hero, .findings, .steps3, .benefits, .bookwrap, .dark, .contrast, .close-block, .fit {
+  background:var(--panel); border-radius:var(--r);
+  max-width:1300px; margin:0 auto 26px; padding-left:26px; padding-right:26px;
+}
+.hero { margin-top:0; }
+.close-block { margin-bottom:0; }
+
+/* Centred typographic hero with the printed grid. */
 .hero {
-  position:relative; overflow:hidden;
+  position:relative; overflow:hidden; text-align:center;
   background:
-    radial-gradient(900px 460px at 22% -8%, rgba(47,109,240,.42), transparent 62%),
-    radial-gradient(700px 420px at 88% 8%, rgba(35,2,248,.30), transparent 60%),
-    linear-gradient(180deg, #071046 0%, #04198c 58%, #0b1a65 100%);
+    linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px) 0 0/64px 64px,
+    linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px) 0 0/64px 64px,
+    linear-gradient(180deg, #16308f 0%, #1c3aa4 62%, #2a54c4 100%);
 }
-.hero::after {
-  content:""; position:absolute; inset:auto 0 -1px 0; height:130px;
-  background:linear-gradient(180deg, transparent, var(--paper));
-  pointer-events:none;
+.hero .hero-grid { grid-template-columns:1fr !important; }
+.hero .eyebrow { color:var(--sky); }
+.hero h1 { font-size:clamp(38px,6vw,68px); font-weight:700; letter-spacing:-.035em;
+  line-height:1.06; margin-left:auto; margin-right:auto; max-width:15ch; }
+/* Their accent is a gradient across the highlighted words, fading lighter. */
+.hero .hl {
+  background:linear-gradient(100deg, #a9cdff 0%, #dcecff 60%, rgba(220,236,255,.55) 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
 }
-.hero .wrap { position:relative; z-index:1; }
+.hero .lede { margin-left:auto; margin-right:auto; max-width:46ch; color:var(--body); }
+.hero .lede b { color:#fff; }
+.hero .hero-by { margin-left:auto; margin-right:auto; text-align:center;
+  border-top-color:rgba(255,255,255,.16); }
+.hero .under-btn { text-align:center; }
+/* The report card still earns its place, it just sits under the copy. */
+.hero .report-wrap { margin:34px auto 0; }
 
-/* Gradient primary button with a lift. */
+/* Glassy pill button with the light-blue fill they use. */
 .btn, .nav .navcta {
-  background:linear-gradient(135deg, #2f6df0 0%, #025ae8 55%, #1f3fd0 100%);
-  border-color:transparent; color:#fff;
-  box-shadow:0 10px 26px -12px rgba(2,90,232,.85);
+  border-radius:999px; border:1px solid rgba(255,255,255,.28);
+  background:linear-gradient(180deg, rgba(175,209,255,.95), rgba(140,186,250,.92));
+  color:#12276f; font-weight:600;
+  box-shadow:0 10px 30px -12px rgba(10,30,110,.7);
 }
 .btn:hover, .nav .navcta:hover {
-  background:linear-gradient(135deg, #4b83f5 0%, #1266ef 55%, #2a4ade 100%);
-  border-color:transparent;
-  box-shadow:0 14px 34px -12px rgba(2,90,232,.95);
+  background:linear-gradient(180deg, #cfe4ff, #a9cdff); color:#0e2160;
+  border-color:rgba(255,255,255,.45);
 }
+.btn::after { content:" \2192"; }
 
-/* Glassier cards, bigger radius, blue-tinted shadow. */
-.panel, .report, .find, .ben, .cside, .sms, .s3grid li, .svc, #cal-inline {
-  border-radius:var(--r);
-  border:1px solid rgba(2,90,232,.14);
-  box-shadow:0 1px 2px rgba(4,25,140,.05), 0 18px 44px -22px rgba(4,25,140,.34);
+/* Panels within panels go one step lighter, never white. */
+.panel, .report, .find, .ben, .cside, .sms, .s3grid li, .svc, #cal-inline, .co {
+  background:#2a4fba; border:1px solid rgba(255,255,255,.14);
+  border-radius:20px; box-shadow:0 18px 44px -24px rgba(6,20,80,.75);
+  color:var(--body);
 }
-.find:hover, .ben:hover, .s3grid li:hover, .svc:hover {
-  box-shadow:0 26px 60px -26px rgba(4,25,140,.46);
-  transform:translateY(-3px);
-}
+.report, .panel { background:#2a4fba; }
+.rep-head { background:rgba(0,0,0,.22); color:#fff; }
+.rep-row { border-bottom-color:rgba(255,255,255,.12); color:var(--body); }
+.rep-row b, .find h3, .ben h3, .s3grid h3, .svc h3, .either-col h3, .cside h3 { color:#fff; }
+.rep-row.total { background:rgba(255,255,255,.07); }
+.find p, .ben p, .s3grid p, .svc p, .either-col p, .csteps li { color:var(--body); }
+.fn, .s3n, .pathnum, .svc .n, .clab { color:var(--sky) !important; }
 
-/* Dark bands pick up the same tint rather than sitting flat. */
-.dark, .close-block {
-  background:
-    radial-gradient(760px 380px at 78% 0%, rgba(47,109,240,.26), transparent 62%),
-    linear-gradient(180deg, #0b1a65 0%, #071046 100%);
-}
-.contrast { background:linear-gradient(180deg, #e6f1ff 0%, var(--stone) 100%); }
+h2.sec, .dark h2.sec, .close-block h2 { color:#fff; }
+.sec-sub, .findings-note, .ben-fine { color:var(--muted); }
+.contrast p { color:#fff; }
+.contrast p:last-child span { color:var(--sky); }
+.either-col { border-top-color:rgba(255,255,255,.22); }
+.pathlist li { border-top-color:rgba(255,255,255,.12); color:var(--body); }
+.pathlist li::before { background:var(--sky); }
+.phases li::before { border-color:var(--sky); color:var(--sky); }
+.crow { border-color:rgba(255,255,255,.16); }
+.cval { color:#fff; }
+.cnote, .cfine { color:var(--muted); }
 
-/* The nav pill goes dark and glassy, as theirs is. */
+/* Dark translucent nav pill, as theirs is. */
 .nav {
-  background:rgba(7,16,70,.72);
-  border-color:rgba(255,255,255,.12);
-  box-shadow:0 10px 30px -14px rgba(4,25,140,.6);
+  background:rgba(16,38,120,.72); border-color:rgba(255,255,255,.16);
+  box-shadow:0 10px 30px -14px rgba(6,20,80,.8);
 }
-.navwrap.stuck .nav { background:rgba(7,16,70,.9); }
+.navwrap.stuck .nav { background:rgba(16,38,120,.92); }
 .nav .brand b { color:#fff; }
-.nav a.link { color:#b9c8ef; }
-.nav a.link:hover { color:#fff; background:rgba(255,255,255,.08); }
-.nav a.link.here { color:#fff; }
+.nav a.link { color:#c3d6f8; }
+.nav a.link:hover, .nav a.link.here { color:#fff; background:rgba(255,255,255,.1); }
 .nav .tel { color:#fff; }
 .nav .tel:hover { color:var(--sky); }
-.nav .brand .mark::after { background:#071046; }
+.nav .brand .mark::after { background:#16308f; }
 
-footer { background:linear-gradient(180deg, #071046, #04102e); }
+footer { background:transparent; color:var(--muted); }
+footer b { color:#fff; }
+footer a { color:var(--sky); }
