@@ -356,6 +356,16 @@
   .footlinks a { color:var(--amber); text-decoration:none; }
   @media (min-width:820px) { .foot { grid-template-columns:1.4fr 1fr 1fr; gap:40px; } }
 
+  .benefits { background:var(--paper); }
+  .ben-grid { display:grid; gap:22px; margin-top:40px;
+    grid-template-columns:repeat(2,1fr); }
+  .ben { background:#fff; border:1px solid var(--line); padding:28px 26px 30px; }
+  .ben h3 { font-family:"Archivo",sans-serif; font-weight:800; font-size:20px;
+    letter-spacing:-.02em; color:var(--ink); margin-bottom:10px; }
+  .ben p { font-size:15.5px; color:var(--body); }
+  .ben-fine { margin-top:26px; font-size:15.5px; color:var(--muted); max-width:64ch; }
+  @media (max-width:820px) { .ben-grid { grid-template-columns:1fr; } }
+
 </style>
 </head>
 <body>
@@ -429,6 +439,42 @@
 </section>
 
 
+<section class="benefits">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec">What the week actually involves</h2>
+      <p class="sec-sub">Less than you would think. That is the point of doing it this way round.</p>
+    </div>
+    <div class="ben-grid">
+      <div class="ben">
+        <h3>You are running before lunch</h3>
+        <p>Setup takes about fifteen minutes on a call with us. Nothing to install, no
+          training for your team and no project to manage. The week can start the same
+          day you decide to do it.</p>
+      </div>
+      <div class="ben">
+        <h3>Nothing changes about how you work</h3>
+        <p>It sits on the line you already have. No porting, no new handsets and no
+          downtime. Your phone rings exactly as it does now, and your team answers it
+          exactly as they do now.</p>
+      </div>
+      <div class="ben">
+        <h3>The callers you miss hear from you anyway</h3>
+        <p>Every call that rings out gets a text within seconds asking what the person
+          needed. Most of them reply, and their answers come straight to you. A missed
+          call stops being a dead end.</p>
+      </div>
+      <div class="ben">
+        <h3>You get a number, not an opinion</h3>
+        <p>At the end we price the real enquiries against your own average job value.
+          That figure is yours to keep whatever you decide next, and it is usually the
+          reason people carry on.</p>
+      </div>
+    </div>
+    <p class="ben-fine">No cost and no obligation. If the week says there is nothing worth
+      doing, we will tell you that and you will have lost a quarter of an hour.</p>
+  </div>
+</section>
 <div class="fit">
   <section>
     <div class="wrap">

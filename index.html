@@ -356,6 +356,24 @@
   .footlinks a { color:var(--amber); text-decoration:none; }
   @media (min-width:820px) { .foot { grid-template-columns:1.4fr 1fr 1fr; gap:40px; } }
 
+  .steps3 { background:var(--paper); }
+  .s3grid { list-style:none; display:grid; gap:22px; margin-top:40px;
+    grid-template-columns:repeat(3,1fr); }
+  .s3grid li { background:#fff; border:1px solid var(--line); padding:28px 26px 30px; }
+  .s3n { display:block; font-family:"Archivo",sans-serif; font-size:11px; font-weight:700;
+    letter-spacing:.13em; text-transform:uppercase; color:var(--amber-dk); margin-bottom:14px; }
+  .s3grid h3 { font-family:"Archivo",sans-serif; font-weight:800; font-size:21px;
+    letter-spacing:-.02em; color:var(--ink); margin-bottom:10px; }
+  .s3grid p { font-size:15.5px; color:var(--body); }
+  @media (max-width:820px) { .s3grid { grid-template-columns:1fr; } }
+
+  .bookwrap { background:var(--stone); }
+  /* overflow must not be hidden: the embed sizes itself by postMessage and
+     clipping it hides the month view on short viewports. */
+  #cal-inline { background:#fff; border:1px solid var(--line); overflow:auto;
+    min-height:640px; border-radius:var(--r,10px); }
+  #cal-inline iframe { border:0; }
+
 </style>
 </head>
 <body>
@@ -529,13 +547,82 @@
 
 <div class="contrast">
   <div class="wrap">
-    <p>No more three people stopping what they're doing every time it rings.</p>
+    <p>No more "we probably don't miss many."</p>
     <p>No more quotes going quiet and nobody noticing.</p>
     <p>No more finding out on Monday that someone else got the job.</p>
-    <p><span>Just the work, logged, and your day back.</span></p>
+    <p>Every unanswered call is work that already found you.</p>
+    <p><span>Stop paying for new leads before you stop losing the ones you have.</span></p>
   </div>
 </div>
 
+<section class="steps3">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec">How the free week works</h2>
+      <p class="sec-sub">Three steps, seven days, and a number at the end of it. Nothing to sign and nothing to install.</p>
+    </div>
+    <ol class="s3grid">
+      <li>
+        <span class="s3n">Step 1</span>
+        <h3>Book the week</h3>
+        <p>Fifteen minutes on the phone to check your line is a fit, then we set it up.
+          No new handsets, no downtime, and no change to how your team works.</p>
+      </li>
+      <li>
+        <span class="s3n">Step 2</span>
+        <h3>We count what you miss</h3>
+        <p>For seven days every unanswered call gets logged, and every caller gets a text
+          asking what they needed. Their answers come straight to you.</p>
+      </li>
+      <li>
+        <span class="s3n">Step 3</span>
+        <h3>You see what it was worth</h3>
+        <p>You get the list, priced against your own average job. Then you know what the
+          phone is costing you, and what it takes to stop it.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="bookwrap" id="book">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec">Pick a time</h2>
+      <p class="sec-sub">Fifteen minutes, on the phone. No prep needed and nothing to sign.</p>
+    </div>
+    <div id="cal-inline"></div>
+  </div>
+</section>
+
+<script type="text/javascript">
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal; let ar = arguments;
+      if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; }
+      if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1];
+        api.q = api.q || [];
+        if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api;
+          p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); }
+        else { p(cal, ar); }
+        return; }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+
+  // Origin MUST be app.cal.com. The iframe is served from there, so pointing
+  // this at cal.com makes the embed reject its own postMessage handshake as
+  // cross origin, the "loading" skeleton never clears and you get a blank box.
+  Cal("init", "15min", { origin: "https://app.cal.com" });
+  Cal.ns["15min"]("inline", {
+    elementOrSelector: "#cal-inline",
+    calLink: "colbybarton-crump/15min",
+    config: { layout: "month_view" }
+  });
+  Cal.ns["15min"]("ui", { hideEventTypeDetails: false, layout: "month_view",
+              cssVarsPerTheme: { light: { "cal-brand": "#2f6ae0" } } });
+</script>
 <div class="close-block">
   <h2>Find out what you're missing</h2>
   <p>Fifteen minutes to set it up, then a week of it running quietly in the background.

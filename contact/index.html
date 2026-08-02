@@ -384,8 +384,10 @@
   @media (min-width:900px) { .cwrap { grid-template-columns:1.15fr .85fr; gap:60px; } }
 
   .bookwrap { background:var(--stone); }
-  #cal-inline { background:#fff; border:1px solid var(--line); overflow:hidden;
-    min-height:640px; }
+  /* overflow must not be hidden: the embed sizes itself by postMessage and
+     clipping it hides the month view on short viewports. */
+  #cal-inline { background:#fff; border:1px solid var(--line); overflow:auto;
+    min-height:640px; border-radius:var(--r,10px); }
   #cal-inline iframe { border:0; }
 
 </style>
@@ -465,19 +467,26 @@
       let cal = C.Cal; let ar = arguments;
       if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; }
       if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1];
-        api.q = api.q || []; typeof namespace === "string" ? (cal.ns[namespace] = api) && p(api, ar) : p(cal, ar); return; }
+        api.q = api.q || [];
+        if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api;
+          p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); }
+        else { p(cal, ar); }
+        return; }
       p(cal, ar);
     };
   })(window, "https://app.cal.com/embed/embed.js", "init");
 
-  Cal("init", { origin: "https://cal.com" });
-  Cal("inline", {
+  // Origin MUST be app.cal.com. The iframe is served from there, so pointing
+  // this at cal.com makes the embed reject its own postMessage handshake as
+  // cross origin, the "loading" skeleton never clears and you get a blank box.
+  Cal("init", "15min", { origin: "https://app.cal.com" });
+  Cal.ns["15min"]("inline", {
     elementOrSelector: "#cal-inline",
     calLink: "colbybarton-crump/15min",
-    layout: "month_view"
+    config: { layout: "month_view" }
   });
-  Cal("ui", { hideEventTypeDetails: false, layout: "month_view",
-              styles: { branding: { brandColor: "#2f6ae0" } } });
+  Cal.ns["15min"]("ui", { hideEventTypeDetails: false, layout: "month_view",
+              cssVarsPerTheme: { light: { "cal-brand": "#2f6ae0" } } });
 </script>
 <div class="close-block">
   <h2>Find out what you're missing</h2>
