@@ -263,6 +263,15 @@
   .pathlist li::before { content:""; position:absolute; left:0; top:16px;
     width:7px; height:7px; background:var(--amber); }
 
+  /* Results, styled and waiting. See the commented block in the body. */
+  .results { display:grid; gap:24px; margin-top:30px; }
+  .result { border-top:1px solid #33333a; padding-top:18px; }
+  .rlabel { display:block; font-family:"Archivo",sans-serif; font-size:11px; font-weight:700;
+    letter-spacing:.13em; text-transform:uppercase; color:var(--amber); margin-bottom:10px; }
+  .rnum { display:block; font-family:"Archivo",sans-serif; font-size:clamp(38px,6vw,54px);
+    font-weight:800; letter-spacing:-.04em; color:#fff; line-height:1; margin-bottom:10px; }
+  .result p { color:var(--dark-mute); font-size:16.5px; }
+
   .close-block { background:var(--black); color:var(--on-dark); padding:78px 26px; text-align:center;
     border-top:1px solid #26262b; }
   .close-block h2 { font-size:clamp(28px,4vw,42px); font-weight:800; line-height:1.08;
@@ -307,6 +316,7 @@
     .fit-grid { grid-template-columns:1fr 1fr; gap:48px; }
     .find-grid { grid-template-columns:repeat(3,1fr); gap:26px; }
     .either { grid-template-columns:1fr 1fr; gap:40px; }
+    .results { grid-template-columns:repeat(3,1fr); gap:40px; }
     .demo-wrap { grid-template-columns:1fr 1fr; gap:54px; }
     section { padding:104px 0; }
   }
@@ -332,7 +342,7 @@
       turns out to be.</p>
     <div class="rise d4">
       <a class="btn" href="https://calendly.com/fieldline-colby/30min">Book a call</a>
-      <p class="under-btn">15 minutes to set it up. Nothing changes about how you work.</p>
+      <p class="under-btn">15 minutes to set up, live on your line within 48 hours. Nothing changes about how you work.</p>
       </div>
     </div>
     <div class="report-wrap">
@@ -546,21 +556,55 @@
   <section>
     <div class="wrap">
       <div class="sec-head">
-        <h2 class="sec">How it goes</h2>
-        <p class="sec-sub">No lock in, and nothing built before we know it's worth building.</p>
+        <h2 class="sec">Measure. Diagnose. Fix.</h2>
+        <p class="sec-sub">The same three steps every time. Nothing gets built before we know it is worth building, and no lock in at any point.</p>
       </div>
       <ol class="phases">
-        <li><b>A look at how it works now</b><span>Fifteen minutes on the phone. Where
-          enquiries come in, who handles them, and what happens when nobody can.</span></li>
-        <li><b>We tell you what's worth doing</b><span>Sometimes that's most of the list.
-          Sometimes it's one thing. Sometimes it's nothing, and we'll say so.</span></li>
-        <li><b>Live in days, and we keep it running</b><span>Whatever you go ahead with
-          is on within 48 hours. Changes, tuning and reporting are ours, you are not
-          handed a login and left to it.</span></li>
+        <li><b>Measure</b><span>A week on your line, quietly. Every call that rings
+          out gets logged and the caller gets asked what they needed.</span></li>
+        <li><b>Diagnose</b><span>We show you the numbers and tell you which problem you
+          have got. Sometimes it is one thing, sometimes it is nothing, and we say so.</span></li>
+        <li><b>Fix</b><span>Whatever you go ahead with is live within 48 hours. Changes,
+          tuning and reporting stay ours. You are not handed a login and left to it.</span></li>
       </ol>
     </div>
   </section>
 </div>
+
+
+<!-- RESULTS. Uncomment the moment the first free week produces a real number.
+     This is the slot Rory fills with three case studies and it is the single
+     biggest thing missing from this page. Do not put anything in it that did
+     not happen.
+
+<div class="dark">
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="sec">What it found</h2>
+        <p class="sec-sub">Real weeks, real lines, real numbers.</p>
+      </div>
+      <div class="results">
+        <div class="result">
+          <span class="rlabel">Maintenance firm, Stockport</span>
+          <b class="rnum">34</b>
+          <p>calls a week nobody got to. Eleven were real work. They had no idea.</p>
+        </div>
+        <div class="result">
+          <span class="rlabel">CLIENT, TOWN</span>
+          <b class="rnum">00</b>
+          <p>WHAT THE NUMBER MEANS, IN THEIR WORDS WHERE POSSIBLE.</p>
+        </div>
+        <div class="result">
+          <span class="rlabel">CLIENT, TOWN</span>
+          <b class="rnum">00</b>
+          <p>WHAT THE NUMBER MEANS.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+-->
 
 <div class="fit">
   <section>
