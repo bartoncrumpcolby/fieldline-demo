@@ -94,8 +94,13 @@
   @media (max-width:640px) {
     .wrap { padding:0 20px; }
     .calc-box { padding:24px 20px; }
-    .btn { display:block; }
+    .btn { display:block; min-height:48px; }
+    /* the nav was 404px wide inside a 390px viewport, which scrolled the page
+       sideways. The brand already links home, so the worded link can go. */
+    .nav .back { display:none; }
+    .nav { padding:7px 8px 7px 14px; }
   }
+  .nav .navcta { min-height:44px; display:inline-flex; align-items:center; }
 </style>
 </head>
 <body>

@@ -410,6 +410,12 @@
   .close-block { border-top:0; }
 
 
+  @media (max-width:640px) {
+    .pick { padding:12px 14px; min-height:44px; }
+    .btn { min-height:48px; }
+  }
+
+
   .navwrap { position:sticky; top:0; z-index:70; padding:14px 20px;
     display:flex; justify-content:center; pointer-events:none; }
   .nav { pointer-events:auto; display:flex; align-items:center; gap:6px;
@@ -445,6 +451,8 @@
     .nav a.link, .nav .tel { display:inline-block; }
     .nav { gap:2px; padding:7px 8px 7px 18px; }
   }
+  /* 44px is the smallest thing a thumb hits reliably. The pill CTA was 39. */
+  .nav .navcta { min-height:44px; display:inline-flex; align-items:center; }
 
   .foot { display:grid; gap:22px; }
   .footlinks { display:flex; flex-wrap:wrap; gap:16px; }
@@ -475,13 +483,6 @@
     color:#fff; letter-spacing:-.02em; margin-bottom:6px; }
 
 </style>
-<script>
-  // Look switcher for /preview/. Adds the Autonomously override stylesheet when
-  // ?look=auton is present. Costs nothing on a normal visit: no param, no fetch.
-  if (location.search.indexOf("look=auton") > -1) {
-    document.write('<link rel="stylesheet" href="/look-auton.css">');
-  }
-</script>
 </head>
 <body>
 
