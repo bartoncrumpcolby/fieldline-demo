@@ -485,7 +485,10 @@
     calLink: "colbybarton-crump/15min",
     config: { layout: "month_view" }
   });
+  // Forced light. Left on auto it follows the visitor's OS setting and a dark
+  // calendar drops into the middle of a pale blue page.
   Cal.ns["15min"]("ui", { hideEventTypeDetails: false, layout: "month_view",
+              theme: "light",
               cssVarsPerTheme: { light: { "cal-brand": "#2f6ae0" } } });
 </script>
 <div class="close-block">
