@@ -375,6 +375,41 @@
   @media (min-width:900px) { .hero { padding-top:142px; } }
 
 
+  /* ── stripe fix ──────────────────────────────────────────────
+     Four light/dark flips down the page read as stripes. Lyfta has two: a dark
+     hero, one long light run where the emphasis lives in dark CARDS, then a
+     dark foot. The demo band is now light with a dark demo card inside it, so
+     the middle of the page stays one continuous surface. */
+  .demo-band { background:var(--paper); }
+  .demo-band h2.sec { color:var(--ink); }
+  .demo-band .sec-sub { color:var(--muted); }
+  .demo-band .sms-cap { color:var(--muted); }
+  .rule-am { background:var(--amber); }
+
+  /* the demo itself inverts, so it is the darkest thing in the light run */
+  .demo-band .panel { background:var(--ink); border-color:var(--ink);
+    box-shadow:var(--sh-lift); color:var(--on-dark); }
+  .demo-band .panel-head h2, .demo-band .panel-head h3, .demo-band .demo-h3 { color:#fff; }
+  .demo-band .panel-head p { color:var(--dark-mute); }
+  .demo-band .statusline { color:var(--dark-mute); }
+  .demo-band .sample-tag { color:var(--dark-mute); border-bottom-color:rgba(255,255,255,.18); }
+  .demo-band .pick { background:rgba(255,255,255,.08); color:var(--on-dark);
+    border-color:rgba(255,255,255,.22); }
+  .demo-band .pick:hover { border-color:#fff; color:#fff; }
+  .demo-band .pick.on { background:#fff; color:var(--ink); border-color:#fff; }
+  .demo-band .placeholder { color:var(--dark-mute); }
+  .demo-band .placeholder b { color:#fff; }
+  .demo-band .bubble.assistant { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.2);
+    color:var(--on-dark); }
+  .demo-band .bubble.user { background:rgba(255,255,255,.04); border-color:rgba(255,255,255,.14);
+    color:var(--on-dark); }
+  .demo-band .bubble .who { color:var(--sky); }
+  .demo-band .under-btn { color:var(--dark-mute); }
+
+  /* close block and footer now touch, so the bottom is one dark mass */
+  .close-block { border-top:0; }
+
+
   .navwrap { position:sticky; top:0; z-index:70; padding:14px 20px;
     display:flex; justify-content:center; pointer-events:none; }
   .nav { pointer-events:auto; display:flex; align-items:center; gap:6px;

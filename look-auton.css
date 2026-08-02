@@ -34,7 +34,8 @@ h1, h2, h3, .nav .brand b, .btn, .co b, .rep-row b {
   font-family:"Outfit",-apple-system,system-ui,sans-serif; letter-spacing:-.02em; }
 
 /* Every band becomes a floating rounded panel on the blue page. */
-.hero, .findings, .steps3, .benefits, .bookwrap, .dark, .contrast, .close-block, .fit {
+.hero, .findings, .steps3, .benefits, .bookwrap, .dark, .demo-band, .contrast,
+.close-block, .fit {
   background:var(--panel); border-radius:var(--r);
   max-width:1300px; margin:0 auto 26px; padding-left:26px; padding-right:26px;
 }
@@ -121,3 +122,16 @@ h2.sec, .dark h2.sec, .close-block h2 { color:#fff; }
 footer { background:transparent; color:var(--muted); }
 footer b { color:#fff; }
 footer a { color:var(--sky); }
+
+/* demo band: the base sheet inverts this card using --ink, which is white here */
+.demo-band .panel { background:#2a4fba !important; border-color:rgba(255,255,255,.14);
+  color:var(--body); }
+.demo-band h2.sec, .demo-band .panel-head h3, .demo-band .demo-h3 { color:#fff; }
+.demo-band .sec-sub, .demo-band .panel-head p, .demo-band .sms-cap,
+.demo-band .statusline, .demo-band .under-btn { color:var(--muted); }
+.demo-band .pick { background:rgba(255,255,255,.1); color:var(--on-dark);
+  border-color:rgba(255,255,255,.24); }
+.demo-band .pick.on { background:#fff; color:#16308f; border-color:#fff; }
+.demo-band .placeholder b { color:#fff; }
+.demo-band .bubble .who { color:var(--sky); }
+.rule-am { background:var(--sky); }
