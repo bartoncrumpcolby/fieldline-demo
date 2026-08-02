@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accent preview | FieldLine</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:"Barlow",-apple-system,system-ui,sans-serif; background:#0e0e10;
+    color:#eceae5; height:100vh; display:flex; flex-direction:column; }
+  .bar { flex:none; padding:14px 20px; border-bottom:1px solid #26262b;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .bar h1 { font-family:"Archivo",sans-serif; font-size:15px; font-weight:800;
+    letter-spacing:-.01em; margin-right:8px; }
+  .bar .hint { font-size:13px; color:#8a877f; margin-left:auto; }
+  button { font-family:"Archivo",sans-serif; font-size:12.5px; font-weight:700;
+    letter-spacing:.02em; padding:9px 15px; cursor:pointer; color:#eceae5;
+    background:transparent; border:1px solid #33333a; border-radius:2px;
+    display:flex; align-items:center; gap:8px; }
+  button:hover { border-color:#6a6a72; }
+  button.on { border-color:#eceae5; background:#1a1a1f; }
+  .sw { width:13px; height:13px; border-radius:2px; display:inline-block; }
+  iframe { flex:1; width:100%; border:0; background:#fff; }
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <h1>Accent preview</h1>
+  <button data-a="#ffb81a" data-d="#b57d00" class="on"><span class="sw" style="background:#ffb81a"></span>Amber, current</button>
+  <button data-a="#17817a" data-d="#0f5f5a"><span class="sw" style="background:#17817a"></span>Deep teal</button>
+  <button data-a="#c9962e" data-d="#8f6a1c"><span class="sw" style="background:#c9962e"></span>Brass</button>
+  <button data-a="#9e2a2b" data-d="#741f20"><span class="sw" style="background:#9e2a2b"></span>Oxblood</button>
+  <button data-a="#4a7fb5" data-d="#2f5c88"><span class="sw" style="background:#4a7fb5"></span>Slate blue</button>
+  <button data-a="#2f6df0" data-d="#1f4fc0"><span class="sw" style="background:#2f6df0"></span>Tech blue</button>
+  <span class="hint">Same page, accent swapped. Scroll inside it.</span>
+</div>
+
+<iframe id="site" src="/"></iframe>
+
+<script>
+  // Same origin, so the accent variables can be written straight into the
+  // document rather than rebuilding the page six times.
+  const frame = document.getElementById("site");
+  const btns = [...document.querySelectorAll("button")];
+  let pending = null;
+
+  function paint(accent, dark) {
+    const doc = frame.contentDocument;
+    if (!doc) return;
+    let tag = doc.getElementById("accent-override");
+    if (!tag) {
+      tag = doc.createElement("style");
+      tag.id = "accent-override";
+      doc.head.appendChild(tag);
+    }
+    tag.textContent = ":root{--amber:" + accent + ";--amber-dk:" + dark + ";}";
+  }
+
+  btns.forEach(b => b.addEventListener("click", () => {
+    btns.forEach(x => x.classList.remove("on"));
+    b.classList.add("on");
+    pending = [b.dataset.a, b.dataset.d];
+    paint(pending[0], pending[1]);
+  }));
+
+  // reapply after any navigation inside the frame
+  frame.addEventListener("load", () => { if (pending) paint(pending[0], pending[1]); });
+</script>
+
+</body>
+</html>
