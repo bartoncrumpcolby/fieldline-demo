@@ -7,11 +7,15 @@
 <meta name="description" content="Why FieldLine exists, and who is behind it.">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="theme-color" content="#0b0f1a">
+<meta name="theme-color" content="#16233e">
 <meta property="og:type" content="website">
 <meta property="og:title" content="About | FieldLine">
 <meta property="og:description" content="Why FieldLine exists, and who is behind it.">
 <meta property="og:image" content="https://getfieldline.co.uk/icon-512.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:site_name" content="FieldLine">
+<link rel="canonical" href="https://getfieldline.co.uk/about/">
+<meta property="og:url" content="https://getfieldline.co.uk/about/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -416,6 +420,13 @@
   .prose p:first-child { font-size:20px; color:var(--ink); }
 
 </style>
+<script>
+  // Look switcher for /preview/. Adds the Autonomously override stylesheet when
+  // ?look=auton is present. Costs nothing on a normal visit: no param, no fetch.
+  if (location.search.indexOf("look=auton") > -1) {
+    document.write('<link rel="stylesheet" href="/look-auton.css">');
+  }
+</script>
 </head>
 <body>
 

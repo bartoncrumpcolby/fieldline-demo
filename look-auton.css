@@ -1,0 +1,83 @@
+/* Autonomously look, as an override.
+   Tokens lifted from autonomously-ai.com's own stylesheet, plus the three
+   things their build does that ours does not: radial glow behind the hero,
+   gradient on the primary button, and a much larger corner radius. */
+
+:root {
+  --ink:#04198c;          /* their --brand-deep, 230deg at 97% saturation */
+  --black:#0b1a65;        /* their dark card */
+  --paper:#f8fafc;
+  --stone:#bcdfff;        /* their --brand-light, vivid */
+  --line:#c6dcf7;
+  --body:#334499;         /* every text colour on their site is blue */
+  --muted:#5d72c0;
+  --amber:#025ae8;        /* --brand-primary */
+  --amber-dk:#0247bd;
+  --sky:#6ab5fa;          /* --brand-accent, for use on dark */
+  --on-dark:#dbe9ff;
+  --dark-mute:#8fa6d8;
+  --r:16px;
+}
+
+/* Radial glow behind the hero, the signature move. */
+.hero {
+  position:relative; overflow:hidden;
+  background:
+    radial-gradient(900px 460px at 22% -8%, rgba(47,109,240,.42), transparent 62%),
+    radial-gradient(700px 420px at 88% 8%, rgba(35,2,248,.30), transparent 60%),
+    linear-gradient(180deg, #071046 0%, #04198c 58%, #0b1a65 100%);
+}
+.hero::after {
+  content:""; position:absolute; inset:auto 0 -1px 0; height:130px;
+  background:linear-gradient(180deg, transparent, var(--paper));
+  pointer-events:none;
+}
+.hero .wrap { position:relative; z-index:1; }
+
+/* Gradient primary button with a lift. */
+.btn, .nav .navcta {
+  background:linear-gradient(135deg, #2f6df0 0%, #025ae8 55%, #1f3fd0 100%);
+  border-color:transparent; color:#fff;
+  box-shadow:0 10px 26px -12px rgba(2,90,232,.85);
+}
+.btn:hover, .nav .navcta:hover {
+  background:linear-gradient(135deg, #4b83f5 0%, #1266ef 55%, #2a4ade 100%);
+  border-color:transparent;
+  box-shadow:0 14px 34px -12px rgba(2,90,232,.95);
+}
+
+/* Glassier cards, bigger radius, blue-tinted shadow. */
+.panel, .report, .find, .ben, .cside, .sms, .s3grid li, .svc, #cal-inline {
+  border-radius:var(--r);
+  border:1px solid rgba(2,90,232,.14);
+  box-shadow:0 1px 2px rgba(4,25,140,.05), 0 18px 44px -22px rgba(4,25,140,.34);
+}
+.find:hover, .ben:hover, .s3grid li:hover, .svc:hover {
+  box-shadow:0 26px 60px -26px rgba(4,25,140,.46);
+  transform:translateY(-3px);
+}
+
+/* Dark bands pick up the same tint rather than sitting flat. */
+.dark, .close-block {
+  background:
+    radial-gradient(760px 380px at 78% 0%, rgba(47,109,240,.26), transparent 62%),
+    linear-gradient(180deg, #0b1a65 0%, #071046 100%);
+}
+.contrast { background:linear-gradient(180deg, #e6f1ff 0%, var(--stone) 100%); }
+
+/* The nav pill goes dark and glassy, as theirs is. */
+.nav {
+  background:rgba(7,16,70,.72);
+  border-color:rgba(255,255,255,.12);
+  box-shadow:0 10px 30px -14px rgba(4,25,140,.6);
+}
+.navwrap.stuck .nav { background:rgba(7,16,70,.9); }
+.nav .brand b { color:#fff; }
+.nav a.link { color:#b9c8ef; }
+.nav a.link:hover { color:#fff; background:rgba(255,255,255,.08); }
+.nav a.link.here { color:#fff; }
+.nav .tel { color:#fff; }
+.nav .tel:hover { color:var(--sky); }
+.nav .brand .mark::after { background:#071046; }
+
+footer { background:linear-gradient(180deg, #071046, #04102e); }

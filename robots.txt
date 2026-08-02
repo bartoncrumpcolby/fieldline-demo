@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /preview/
+Disallow: /ks/
+Disallow: /fusion/
+Disallow: /fusion2/
+
+Sitemap: https://getfieldline.co.uk/sitemap.xml
