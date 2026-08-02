@@ -4,21 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact | FieldLine</title>
-<meta name="description" content="Ring 07471 192640, email colby@getfieldline.co.uk, or book 15 minutes.">
+<meta name="description" content="Ring 07999 098245, email colby@getfieldline.co.uk, or book 15 minutes.">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0b0f1a">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Contact | FieldLine">
-<meta property="og:description" content="Ring 07471 192640, email colby@getfieldline.co.uk, or book 15 minutes.">
+<meta property="og:description" content="Ring 07999 098245, email colby@getfieldline.co.uk, or book 15 minutes.">
 <meta property="og:image" content="https://getfieldline.co.uk/icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --black:#0b0f1a; --ink:#141a27; --paper:#ffffff; --stone:#f3f5f9;
-    --line:#dfe4ec; --body:#4d5665; --muted:#7d8798;
+    --black:#0a1020; --ink:#111c38; --paper:#eef3fc; --stone:#dfe8f8;
+    --line:#c8d6ee; --body:#3f4c66; --muted:#6d7c96;
     --amber:#4d8cff; --amber-dk:#2f6ae0; --on-dark:#e6eaf2; --dark-mute:#8d97a8;
   }
   * { box-sizing:border-box; margin:0; padding:0; }
@@ -64,7 +64,7 @@
   .lede b { color:#fff; font-weight:600; }
 /* ── demo card: white on black, maximum separation ──── */
   .panel {
-    background: var(--paper); border: 2px solid var(--black);
+    background: #fff; border: 1px solid var(--line);
     padding: 22px; color: var(--body);
   }
   .panel-head h2 { font-size: 20px; font-weight: 800; color: var(--ink); margin-bottom: 3px; }
@@ -157,7 +157,7 @@
 
   /* the six things, numbered so it reads as a system not a menu */
   .svcs { display:grid; gap:1px; background:var(--line); border:1px solid var(--line); }
-  .svc { background:var(--paper); padding:26px 24px; }
+  .svc { background:#fff; padding:26px 24px; }
   .svc .n { font-family:"Archivo",sans-serif; font-size:11px; font-weight:800;
     letter-spacing:.13em; text-transform:uppercase; color:var(--amber-dk);
     display:block; margin-bottom:10px; }
@@ -171,7 +171,7 @@
   .demo-copy .sms-wrap { margin:30px 0 0; text-align:left; }
   .demo-copy .sms-cap { color:var(--dark-mute); font-size:14.5px; }
   .hero .sms-cap { color:var(--dark-mute); }
-  .sms { background:var(--paper); border:2px solid var(--black); padding:18px 20px; text-align:left; }
+  .sms { background:#fff; border:1px solid var(--line); padding:18px 20px; text-align:left; }
   .sms .from { font-family:"Archivo",sans-serif; font-size:11px; font-weight:800;
     letter-spacing:.1em; text-transform:uppercase; color:var(--ink);
     padding-bottom:9px; border-bottom:2px solid var(--line); margin-bottom:11px; }
@@ -211,7 +211,7 @@
   /* the findings, what the free week actually hands them */
   .findings { background:var(--stone); }
   .find-grid { display:grid; gap:24px; margin-top:30px; }
-  .find { background:var(--paper); border:1px solid var(--line); padding:26px 24px;
+  .find { background:#fff; border:1px solid var(--line); padding:26px 24px;
     }
   .find .fn { font-family:"Archivo",sans-serif; font-size:12px; font-weight:800;
     letter-spacing:.14em; color:var(--amber-dk); display:block; margin-bottom:9px; }
@@ -227,7 +227,7 @@
 
   /* the findings card, the consultancy deliverable rather than one product */
   .report-wrap { max-width:420px; margin:0 auto; text-align:center; }
-  .report { background:var(--paper); border:1px solid var(--line);
+  .report { background:#fff; border:1px solid var(--line);
     text-align:left; }
   .rep-head { display:flex; align-items:center; justify-content:space-between;
     background:var(--black); padding:12px 18px;
@@ -356,16 +356,32 @@
   .footlinks a { color:var(--amber); text-decoration:none; }
   @media (min-width:820px) { .foot { grid-template-columns:1.4fr 1fr 1fr; gap:40px; } }
 
-  .contactgrid { display:grid; gap:2px; background:var(--line);
-    border:1px solid var(--line); margin-top:10px; }
-  .ccard { background:var(--paper); padding:26px 24px; }
+  .cwrap { display:grid; gap:34px; }
+  .crow { display:block; text-decoration:none; border-top:1px solid var(--line);
+    padding:22px 0; transition:padding-left .15s ease; }
+  .crow:last-child { border-bottom:1px solid var(--line); }
+  .crow:hover { padding-left:8px; }
   .clab { display:block; font-family:"Archivo",sans-serif; font-size:11px; font-weight:700;
-    letter-spacing:.13em; text-transform:uppercase; color:var(--amber-dk); margin-bottom:10px; }
-  .cbig { font-family:"Archivo",sans-serif; font-size:26px; font-weight:800;
-    letter-spacing:-.03em; color:var(--ink); text-decoration:none; }
-  .cbig.sm { font-size:19px; }
-  .cbig:hover { color:var(--amber-dk); }
-  @media (min-width:820px) { .contactgrid { grid-template-columns:repeat(3,1fr); } }
+    letter-spacing:.13em; text-transform:uppercase; color:var(--amber-dk); margin-bottom:8px; }
+  .cval { display:block; font-family:"Archivo",sans-serif; font-weight:800;
+    font-size:clamp(21px,2.6vw,27px); letter-spacing:-.03em; color:var(--ink);
+    white-space:nowrap; margin-bottom:5px; }
+  .cnote { display:block; font-size:15px; color:var(--muted); }
+  .cside { background:#fff; border:1px solid var(--line); padding:30px 28px; }
+  .cside h3 { font-family:"Archivo",sans-serif; font-size:20px; font-weight:800;
+    color:var(--ink); margin-bottom:20px; letter-spacing:-.02em; }
+  .csteps { list-style:none; counter-reset:c; }
+  .csteps li { counter-increment:c; position:relative; padding:0 0 20px 34px;
+    font-size:15.5px; color:var(--body); }
+  .csteps li::before { content:counter(c); position:absolute; left:0; top:1px;
+    width:22px; height:22px; display:flex; align-items:center; justify-content:center;
+    border:1px solid var(--amber-dk); color:var(--amber-dk); border-radius:50%;
+    font-family:"Archivo",sans-serif; font-weight:700; font-size:12px; }
+  .csteps b { display:block; font-family:"Archivo",sans-serif; font-size:16px;
+    color:var(--ink); margin-bottom:3px; letter-spacing:-.01em; }
+  .cfine { font-size:14.5px; color:var(--muted); border-top:1px solid var(--line);
+    padding-top:16px; }
+  @media (min-width:900px) { .cwrap { grid-template-columns:1.15fr .85fr; gap:60px; } }
 
 </style>
 </head>
@@ -378,32 +394,50 @@
     <a class="link" href="/method/">Method</a>
     <a class="link" href="/about/">About</a>
     <a class="link here" href="/contact/">Contact</a>
-    <a class="tel" href="tel:+447471192640">07471 192640</a>
-    <a class="navcta" href="https://calendly.com/fieldline-colby">Book a call</a>
+    <a class="tel" href="tel:+447999098245">07999 098245</a>
+    <a class="navcta" href="https://cal.com/colbybarton-crump/15min">Schedule a call</a>
   </nav>
 </div>
 
 
 <section style="padding-top:112px">
-  <div class="wrap" style="max-width:760px">
+  <div class="wrap">
     <div class="sec-head">
       <h2 class="sec">Get in touch</h2>
       <p class="sec-sub">Quickest is the phone. If it is out of hours you will get the
         thing this whole business is about, which tells you most of what you need to know.</p>
     </div>
-    <div class="contactgrid">
-      <div class="ccard">
-        <span class="clab">Phone</span>
-        <a class="cbig" href="tel:+447471192640">07471 192640</a>
+    <div class="cwrap">
+      <div>
+        <a class="crow" href="tel:+447999098245">
+          <span class="clab">Phone</span>
+          <span class="cval">07999 098245</span>
+          <span class="cnote">Mon to Sat, and it is answered out of hours too</span>
+        </a>
+        <a class="crow" href="mailto:colby@getfieldline.co.uk">
+          <span class="clab">Email</span>
+          <span class="cval">colby@getfieldline.co.uk</span>
+          <span class="cnote">Usually back within a couple of hours</span>
+        </a>
+        <a class="crow" href="https://cal.com/colbybarton-crump/15min">
+          <span class="clab">Schedule a call</span>
+          <span class="cval">15 minutes, whenever suits</span>
+          <span class="cnote">No prep needed, nothing to sign</span>
+        </a>
       </div>
-      <div class="ccard">
-        <span class="clab">Email</span>
-        <a class="cbig sm" href="mailto:colby@getfieldline.co.uk">colby@getfieldline.co.uk</a>
-      </div>
-      <div class="ccard">
-        <span class="clab">Book a time</span>
-        <a class="cbig sm" href="https://calendly.com/fieldline-colby">15 minutes, whenever suits</a>
-      </div>
+      <aside class="cside">
+        <h3>What happens when you do</h3>
+        <ol class="csteps">
+          <li><b>We talk for fifteen minutes</b>How enquiries reach you now, who handles
+            them, and what happens when nobody can.</li>
+          <li><b>We set the week up</b>Takes about fifteen minutes and nothing changes
+            about how you work. Your line rings exactly as it does now.</li>
+          <li><b>You get the numbers</b>What you missed, what those people wanted, and
+            what it was worth. Then you decide, and we say what we would do.</li>
+        </ol>
+        <p class="cfine">If there is nothing worth doing we will tell you that. It costs
+          us a quarter of an hour to find out and it costs you the same.</p>
+      </aside>
     </div>
   </div>
 </section>
@@ -411,7 +445,7 @@
   <h2>Find out what you're missing</h2>
   <p>Fifteen minutes to set it up, then a week of it running quietly in the background.
     At the end you get the list and you decide what to do about it.</p>
-  <a class="btn" href="https://calendly.com/fieldline-colby/30min">Book a call</a>
+  <a class="btn" href="https://cal.com/colbybarton-crump/15min">Schedule a call</a>
   <p class="under-btn">Nothing changes about how you work. Nothing to sign.</p>
 </div>
 
@@ -431,7 +465,7 @@
       <a href="/calculator/">Rough maths</a>
     </div>
     <div>
-      <a href="tel:+447471192640">07471 192640</a><br>
+      <a href="tel:+447999098245">07999 098245</a><br>
       <a href="mailto:colby@getfieldline.co.uk">colby@getfieldline.co.uk</a>
     </div>
   </div>
