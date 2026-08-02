@@ -383,6 +383,11 @@
     padding-top:16px; }
   @media (min-width:900px) { .cwrap { grid-template-columns:1.15fr .85fr; gap:60px; } }
 
+  .bookwrap { background:var(--stone); }
+  #cal-inline { background:#fff; border:1px solid var(--line); overflow:hidden;
+    min-height:640px; }
+  #cal-inline iframe { border:0; }
+
 </style>
 </head>
 <body>
@@ -419,7 +424,7 @@
           <span class="cval">colby@getfieldline.co.uk</span>
           <span class="cnote">Usually back within a couple of hours</span>
         </a>
-        <a class="crow" href="https://cal.com/colbybarton-crump/15min">
+        <a class="crow" href="#book">
           <span class="clab">Schedule a call</span>
           <span class="cval">15 minutes, whenever suits</span>
           <span class="cnote">No prep needed, nothing to sign</span>
@@ -441,6 +446,39 @@
     </div>
   </div>
 </section>
+
+<section class="bookwrap" id="book">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec">Pick a time</h2>
+      <p class="sec-sub">Fifteen minutes, on the phone. No prep needed and nothing to sign.</p>
+    </div>
+    <div id="cal-inline"></div>
+  </div>
+</section>
+
+<script type="text/javascript">
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal; let ar = arguments;
+      if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; }
+      if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1];
+        api.q = api.q || []; typeof namespace === "string" ? (cal.ns[namespace] = api) && p(api, ar) : p(cal, ar); return; }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+
+  Cal("init", { origin: "https://cal.com" });
+  Cal("inline", {
+    elementOrSelector: "#cal-inline",
+    calLink: "colbybarton-crump/15min",
+    layout: "month_view"
+  });
+  Cal("ui", { hideEventTypeDetails: false, layout: "month_view",
+              styles: { branding: { brandColor: "#2f6ae0" } } });
+</script>
 <div class="close-block">
   <h2>Find out what you're missing</h2>
   <p>Fifteen minutes to set it up, then a week of it running quietly in the background.
