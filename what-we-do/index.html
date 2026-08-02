@@ -17,9 +17,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --black:#0a1020; --ink:#111c38; --paper:#eef3fc; --stone:#dfe8f8;
-    --line:#c8d6ee; --body:#3f4c66; --muted:#6d7c96;
-    --amber:#4d8cff; --amber-dk:#2f6ae0; --on-dark:#e6eaf2; --dark-mute:#8d97a8;
+    /* Lifted from autonomously-ai.com's own tokens. The thing that makes their
+       blue read as blue is saturation, not hue: their dark is a rich indigo
+       (230deg, 97% sat), not the grey-navy we had. Every text colour is blue
+       too, which is the part that was missing. */
+    --black:#0b1a65; --ink:#04198c; --paper:#f2f7ff; --stone:#bcdfff;
+    --line:#a9cdf5; --body:#3a4a85; --muted:#6376ab;
+    --amber:#025ae8; --amber-dk:#0246b8; --on-dark:#dbe9ff; --dark-mute:#8fa6d8;
   }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { font-family:"Barlow",-apple-system,system-ui,sans-serif; color:var(--body);
