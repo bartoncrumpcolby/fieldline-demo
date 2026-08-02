@@ -1,137 +1,83 @@
-/* Autonomously look, rebuilt from the rendered site rather than from tokens.
-   The first attempt guessed glow and gradients that are not there. What they
-   actually do:
-     - the ENTIRE page is blue, medium blue, with darker blue rounded panels
-       floating on it. There are no white sections anywhere.
-     - hero is centred typography. No two column, no hero card.
-     - a faint grid is printed over the hero.
-     - the accent is a lighter blue fading across the final word.
-     - big corner radius, ~28px on panels, pill buttons with an arrow.
-     - a rounded geometric typeface, not a grotesk. */
+/* Autonomously look, take three.
+   Take two made the whole page blue, which is what they do. It does not
+   survive the transplant: their all-blue works because photographs break it
+   up, and this site has none, so it just reads as a wall.
+
+   So this keeps the parts of the design that are actually theirs, and leaves
+   the body light:
+     - centred typographic hero, no two-column
+     - faint printed grid over it
+     - gradient across the accent words, fading lighter
+     - glassy pill CTA with an arrow
+     - rounded geometric typeface, big radius
+   Everything below the hero stays on the light palette. */
 
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap");
 
-:root {
-  --ink:#ffffff;
-  --black:#16308f;
-  --paper:#3b70d6;        /* the page itself is blue */
-  --stone:#2c56bd;
-  --line:rgba(255,255,255,.14);
-  --body:#dbe6fb;
-  --muted:#b3c8f2;
-  --amber:#8fc0ff;
-  --amber-dk:#bcdcff;
-  --sky:#9fcaff;
-  --on-dark:#e8f0ff;
-  --dark-mute:#b3c8f2;
-  --r:28px;
-  --panel:#1e3fa8;
-}
+:root { --r:18px; }
 
-body { background:var(--paper); color:var(--body);
-  font-family:"Outfit",-apple-system,system-ui,sans-serif; }
-h1, h2, h3, .nav .brand b, .btn, .co b, .rep-row b {
-  font-family:"Outfit",-apple-system,system-ui,sans-serif; letter-spacing:-.02em; }
+body { font-family:"Outfit",-apple-system,system-ui,sans-serif; }
+h1, h2, h3, .nav .brand b, .btn, .co b, .rep-row b, .cval, .rnum {
+  font-family:"Outfit",-apple-system,system-ui,sans-serif; letter-spacing:-.025em; }
 
-/* Every band becomes a floating rounded panel on the blue page. */
-.hero, .findings, .steps3, .benefits, .bookwrap, .dark, .demo-band, .contrast,
-.close-block, .fit {
-  background:var(--panel); border-radius:var(--r);
-  max-width:1300px; margin:0 auto 26px; padding-left:26px; padding-right:26px;
-}
-.hero { margin-top:0; }
-.close-block { margin-bottom:0; }
-
-/* Centred typographic hero with the printed grid. */
+/* ── the hero, which is the whole point of this look ─────────── */
 .hero {
   position:relative; overflow:hidden; text-align:center;
+  border-bottom-left-radius:34px; border-bottom-right-radius:34px;
   background:
-    linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px) 0 0/64px 64px,
-    linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px) 0 0/64px 64px,
-    linear-gradient(180deg, #16308f 0%, #1c3aa4 62%, #2a54c4 100%);
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px) 0 0/64px 64px,
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px) 0 0/64px 64px,
+    linear-gradient(180deg, #10267c 0%, #16308f 58%, #2148b8 100%);
 }
 .hero .hero-grid { grid-template-columns:1fr !important; }
-.hero .eyebrow { color:var(--sky); }
-.hero h1 { font-size:clamp(38px,6vw,68px); font-weight:700; letter-spacing:-.035em;
-  line-height:1.06; margin-left:auto; margin-right:auto; max-width:15ch; }
-/* Their accent is a gradient across the highlighted words, fading lighter. */
+.hero .eyebrow { color:#9fcaff; }
+.hero h1 { font-size:clamp(38px,6vw,66px); font-weight:700; letter-spacing:-.035em;
+  line-height:1.06; margin:0 auto 22px; max-width:15ch; }
 .hero .hl {
-  background:linear-gradient(100deg, #a9cdff 0%, #dcecff 60%, rgba(220,236,255,.55) 100%);
+  background:linear-gradient(100deg, #a9cdff 0%, #dcecff 58%, rgba(220,236,255,.6) 100%);
   -webkit-background-clip:text; background-clip:text; color:transparent;
 }
-.hero .lede { margin-left:auto; margin-right:auto; max-width:46ch; color:var(--body); }
+.hero .lede { margin:0 auto 28px; max-width:46ch; color:#c3d6f8; }
 .hero .lede b { color:#fff; }
-.hero .hero-by { margin-left:auto; margin-right:auto; text-align:center;
+.hero .under-btn { text-align:center; color:#a9bce6; }
+.hero .hero-by { margin:10px auto 0; text-align:center; color:#a9bce6;
   border-top-color:rgba(255,255,255,.16); }
-.hero .under-btn { text-align:center; }
-/* The report card still earns its place, it just sits under the copy. */
-.hero .report-wrap { margin:34px auto 0; }
+.hero .report-wrap { margin:36px auto 0; }
+.hero .report { box-shadow:0 40px 80px -40px rgba(4,16,70,.9); }
 
-/* Glassy pill button with the light-blue fill they use. */
-.btn, .nav .navcta {
-  border-radius:999px; border:1px solid rgba(255,255,255,.28);
-  background:linear-gradient(180deg, rgba(175,209,255,.95), rgba(140,186,250,.92));
+/* Glassy pill CTA with their arrow. Hero and nav only, so the rest of the site
+   keeps the solid blue button and the page does not turn into a sweet shop. */
+.hero .btn, .nav .navcta {
+  border-radius:999px; border:1px solid rgba(255,255,255,.3);
+  background:linear-gradient(180deg, rgba(186,215,255,.96), rgba(146,190,251,.94));
   color:#12276f; font-weight:600;
-  box-shadow:0 10px 30px -12px rgba(10,30,110,.7);
+  box-shadow:0 12px 32px -12px rgba(8,26,100,.8);
 }
-.btn:hover, .nav .navcta:hover {
-  background:linear-gradient(180deg, #cfe4ff, #a9cdff); color:#0e2160;
-  border-color:rgba(255,255,255,.45);
+.hero .btn:hover, .nav .navcta:hover {
+  background:linear-gradient(180deg, #d6e8ff, #aed3ff);
+  color:#0e2160; border-color:rgba(255,255,255,.5);
 }
 .btn::after { content:" \2192"; }
 
-/* Panels within panels go one step lighter, never white. */
-.panel, .report, .find, .ben, .cside, .sms, .s3grid li, .svc, #cal-inline, .co {
-  background:#2a4fba; border:1px solid rgba(255,255,255,.14);
-  border-radius:20px; box-shadow:0 18px 44px -24px rgba(6,20,80,.75);
-  color:var(--body);
-}
-.report, .panel { background:#2a4fba; }
-.rep-head { background:rgba(0,0,0,.22); color:#fff; }
-.rep-row { border-bottom-color:rgba(255,255,255,.12); color:var(--body); }
-.rep-row b, .find h3, .ben h3, .s3grid h3, .svc h3, .either-col h3, .cside h3 { color:#fff; }
-.rep-row.total { background:rgba(255,255,255,.07); }
-.find p, .ben p, .s3grid p, .svc p, .either-col p, .csteps li { color:var(--body); }
-.fn, .s3n, .pathnum, .svc .n, .clab { color:var(--sky) !important; }
-
-h2.sec, .dark h2.sec, .close-block h2 { color:#fff; }
-.sec-sub, .findings-note, .ben-fine { color:var(--muted); }
-.contrast p { color:#fff; }
-.contrast p:last-child span { color:var(--sky); }
-.either-col { border-top-color:rgba(255,255,255,.22); }
-.pathlist li { border-top-color:rgba(255,255,255,.12); color:var(--body); }
-.pathlist li::before { background:var(--sky); }
-.phases li::before { border-color:var(--sky); color:var(--sky); }
-.crow { border-color:rgba(255,255,255,.16); }
-.cval { color:#fff; }
-.cnote, .cfine { color:var(--muted); }
-
-/* Dark translucent nav pill, as theirs is. */
-.nav {
-  background:rgba(16,38,120,.72); border-color:rgba(255,255,255,.16);
-  box-shadow:0 10px 30px -14px rgba(6,20,80,.8);
-}
-.navwrap.stuck .nav { background:rgba(16,38,120,.92); }
+/* ── nav: dark glassy pill, as theirs is ─────────────────────── */
+.nav { background:rgba(14,32,110,.7); border-color:rgba(255,255,255,.16);
+  box-shadow:0 10px 30px -14px rgba(6,20,80,.75); }
+.navwrap.stuck .nav { background:rgba(14,32,110,.92); }
 .nav .brand b { color:#fff; }
 .nav a.link { color:#c3d6f8; }
 .nav a.link:hover, .nav a.link.here { color:#fff; background:rgba(255,255,255,.1); }
 .nav .tel { color:#fff; }
-.nav .tel:hover { color:var(--sky); }
-.nav .brand .mark::after { background:#16308f; }
+.nav .tel:hover { color:#9fcaff; }
+.nav .brand .mark::after { background:#10267c; }
 
-footer { background:transparent; color:var(--muted); }
-footer b { color:#fff; }
-footer a { color:var(--sky); }
-
-/* demo band: the base sheet inverts this card using --ink, which is white here */
-.demo-band .panel { background:#2a4fba !important; border-color:rgba(255,255,255,.14);
-  color:var(--body); }
-.demo-band h2.sec, .demo-band .panel-head h3, .demo-band .demo-h3 { color:#fff; }
-.demo-band .sec-sub, .demo-band .panel-head p, .demo-band .sms-cap,
-.demo-band .statusline, .demo-band .under-btn { color:var(--muted); }
-.demo-band .pick { background:rgba(255,255,255,.1); color:var(--on-dark);
-  border-color:rgba(255,255,255,.24); }
-.demo-band .pick.on { background:#fff; color:#16308f; border-color:#fff; }
-.demo-band .placeholder b { color:#fff; }
-.demo-band .bubble .who { color:var(--sky); }
-.rule-am { background:var(--sky); }
+/* ── body: softer corners, still light ───────────────────────── */
+.panel, .report, .find, .ben, .cside, .sms, .s3grid li, .svc, #cal-inline, .co {
+  border-radius:18px;
+}
+.close-block {
+  background:
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px) 0 0/64px 64px,
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px) 0 0/64px 64px,
+    linear-gradient(180deg, #16308f, #10267c);
+}
+footer { background:#10267c; }
