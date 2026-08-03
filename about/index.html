@@ -447,6 +447,39 @@
   }
 
 
+  /* ── mobile height ───────────────────────────────────────────
+     The page ran to 7.2 phone screens. Most of that was padding and one very
+     tall embedded calendar, not prose. */
+  @media (max-width:899px) {
+    /* An 845px booking widget mid-page for 16 words of heading. The nav CTA,
+       the hero CTA and the closing CTA all reach the same calendar, and the
+       contact page still embeds it, so nothing is lost by dropping it here. */
+    .bookwrap { display:none; }
+  }
+  @media (max-width:640px) {
+    section { padding:34px 0; }
+    .hero { padding-top:96px; padding-bottom:34px; }
+    .contrast { padding:38px 0; }
+    .contrast p { font-size:20px; margin-bottom:14px; }
+    .sec-head { margin-bottom:22px; }
+    .s3grid, .find-grid, .ben-grid, .either { gap:14px; }
+    .s3grid li, .find, .ben, .svc { padding:20px 18px; }
+    .close-block { padding:40px 20px; }
+    .demo-wrap { gap:22px; }
+    .sms-wrap { margin-top:22px; }
+    .findings-note { margin-top:18px; }
+    .hero .report-wrap { margin-top:26px; }
+  }
+
+
+  @media (max-width:899px) {
+    /* The demo band shows a sample text message AND the live call panel. On a
+       phone they stack into two tall cards making the same point. The live one
+       is the proof, so the sample goes. */
+    .demo-band .sms-wrap { display:none; }
+  }
+
+
   .navwrap { position:sticky; top:0; z-index:70; padding:14px 20px;
     display:flex; justify-content:center; pointer-events:none; }
   .nav { pointer-events:auto; display:flex; align-items:center; gap:6px;
