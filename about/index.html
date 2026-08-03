@@ -523,6 +523,33 @@
   .footlinks a { color:var(--amber); text-decoration:none; }
   @media (min-width:820px) { .foot { grid-template-columns:1.4fr 1fr 1fr; gap:40px; } }
 
+  /* Lyfta and Autonomously both put a real face on the page. This is the same
+     idea on the light run: photo one side, a short first-person statement the
+     other. Deliberately short, because the job is "a real person runs this",
+     not a life story. */
+  .founder { background:var(--paper); }
+  .founder-grid { display:grid; gap:32px; align-items:center; }
+  .founder-pic img { display:block; width:100%; height:auto; max-width:320px;
+    border-radius:var(--r,10px); box-shadow:var(--sh-lift); }
+  .founder-eyebrow { display:block; font-family:"Archivo",sans-serif; font-size:11px;
+    font-weight:700; letter-spacing:.13em; text-transform:uppercase;
+    color:var(--amber-dk); margin-bottom:12px; }
+  .founder-copy h2.sec { margin-bottom:16px; }
+  .founder-copy p { font-size:16.5px; color:var(--body); margin-bottom:14px; max-width:46ch; }
+  .founder-meta { display:flex; gap:18px; align-items:center; margin-top:20px;
+    padding-top:18px; border-top:1px solid var(--line); font-size:15px; }
+  .founder-meta a { color:var(--amber-dk); font-weight:600; text-decoration:none; }
+  .founder-meta span { color:var(--muted); }
+  @media (min-width:900px) {
+    .founder-grid { grid-template-columns:320px 1fr; gap:56px; }
+  }
+  @media (max-width:640px) {
+    .founder-grid { justify-items:center; text-align:center; }
+    .founder-pic img { max-width:210px; }
+    .founder-copy p { margin-left:auto; margin-right:auto; }
+    .founder-meta { justify-content:center; }
+  }
+
   .prose p { font-size:18px; color:var(--body); margin-bottom:20px; max-width:64ch; }
   .prose p:first-child { font-size:20px; color:var(--ink); }
 
@@ -565,6 +592,28 @@
         given what I sell.</p>
     </div>
     <a class="btn" style="margin-top:34px" href="https://cal.com/colbybarton-crump/15min">Schedule a call</a>
+  </div>
+</section>
+<section class="founder">
+  <div class="wrap founder-grid">
+    <div class="founder-pic">
+      <img src="/colby.png" width="900" height="900" loading="lazy"
+           alt="Colby Barton-Crump, founder of FieldLine">
+    </div>
+    <div class="founder-copy">
+      <span class="founder-eyebrow">Who you are dealing with</span>
+      <h2 class="sec">You get me, not an account manager</h2>
+      <p>I am Colby. I set up the week, I read the numbers with you, and I build
+        whatever comes out of it. There is no account manager and no handover to
+        somebody you have never spoken to.</p>
+      <p>Before this I did sales at an online estate agency, so I have sat on the
+        other side of it: the enquiries were always there, they just went to
+        whoever picked up first.</p>
+      <div class="founder-meta">
+        <a href="tel:+447999098245">07999 098245</a>
+        <span>Manchester</span>
+      </div>
+    </div>
   </div>
 </section>
 <div class="close-block">
