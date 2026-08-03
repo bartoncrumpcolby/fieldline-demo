@@ -416,6 +416,37 @@
   }
 
 
+  /* ── mobile hero ─────────────────────────────────────────────
+     Below the two-column breakpoint the hero stacks anyway, so left-aligned
+     copy in a 390px column just looks off-centre against a centred nav pill.
+     Centre it, the way Autonomously do, and let the report card sit under the
+     copy rather than beside it. */
+  @media (max-width:899px) {
+    .hero { text-align:center; }
+    .hero h1 { margin-left:auto; margin-right:auto; max-width:16ch; }
+    .hero .lede { margin-left:auto; margin-right:auto; max-width:38ch; }
+    .hero .under-btn, .hero .hero-by { text-align:center; }
+    .hero .hero-by { margin-left:auto; margin-right:auto; max-width:34ch; }
+    .hero .btn { width:100%; }
+    .hero .report-wrap { margin-top:34px; }
+    /* the eyebrow wrapped to two lines and dominated the top of the screen */
+    .hero .eyebrow { font-size:11px; letter-spacing:.1em; }
+  }
+  @media (max-width:640px) {
+    .hero { padding-top:104px; padding-bottom:44px; }
+    .hero h1 { font-size:clamp(30px,8.4vw,38px); }
+    .hero .lede { font-size:17px; }
+    /* headings and body across the rest of the page were sized for desktop */
+    h2.sec { font-size:26px; }
+    .sec-sub { font-size:16px; }
+    .find p, .ben p, .s3grid p, .svc p, .either-col p { font-size:15px; }
+    .findings-note { font-size:16px; }
+    .contrast p { font-size:21px; max-width:20ch; }
+    section { padding:44px 0; }
+    .sec-head { margin-bottom:28px; }
+  }
+
+
   .navwrap { position:sticky; top:0; z-index:70; padding:14px 20px;
     display:flex; justify-content:center; pointer-events:none; }
   .nav { pointer-events:auto; display:flex; align-items:center; gap:6px;

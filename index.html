@@ -416,6 +416,37 @@
   }
 
 
+  /* ── mobile hero ─────────────────────────────────────────────
+     Below the two-column breakpoint the hero stacks anyway, so left-aligned
+     copy in a 390px column just looks off-centre against a centred nav pill.
+     Centre it, the way Autonomously do, and let the report card sit under the
+     copy rather than beside it. */
+  @media (max-width:899px) {
+    .hero { text-align:center; }
+    .hero h1 { margin-left:auto; margin-right:auto; max-width:16ch; }
+    .hero .lede { margin-left:auto; margin-right:auto; max-width:38ch; }
+    .hero .under-btn, .hero .hero-by { text-align:center; }
+    .hero .hero-by { margin-left:auto; margin-right:auto; max-width:34ch; }
+    .hero .btn { width:100%; }
+    .hero .report-wrap { margin-top:34px; }
+    /* the eyebrow wrapped to two lines and dominated the top of the screen */
+    .hero .eyebrow { font-size:11px; letter-spacing:.1em; }
+  }
+  @media (max-width:640px) {
+    .hero { padding-top:104px; padding-bottom:44px; }
+    .hero h1 { font-size:clamp(30px,8.4vw,38px); }
+    .hero .lede { font-size:17px; }
+    /* headings and body across the rest of the page were sized for desktop */
+    h2.sec { font-size:26px; }
+    .sec-sub { font-size:16px; }
+    .find p, .ben p, .s3grid p, .svc p, .either-col p { font-size:15px; }
+    .findings-note { font-size:16px; }
+    .contrast p { font-size:21px; max-width:20ch; }
+    section { padding:44px 0; }
+    .sec-head { margin-bottom:28px; }
+  }
+
+
   .navwrap { position:sticky; top:0; z-index:70; padding:14px 20px;
     display:flex; justify-content:center; pointer-events:none; }
   .nav { pointer-events:auto; display:flex; align-items:center; gap:6px;
@@ -504,13 +535,12 @@
     <span class="eyebrow rise d1">Systems for businesses where the phone matters</span>
     <h1 class="rise d2">Find out what you're<br><span class="hl">already missing.</span></h1>
     <p class="lede rise d3">Either you are losing work that already found you, or not enough
-      is finding you. Most people cannot tell you which. <b>We put something on your line for
-      a week, free, and at the end you get the real numbers</b> and we fix whichever one it
-      turns out to be.</p>
+      is finding you. Most people cannot tell which. <b>A free week on your line gives you the
+      real numbers</b>, then we fix whichever it turns out to be.</p>
     <div class="rise d4">
       <a class="btn" href="https://cal.com/colbybarton-crump/15min">Schedule a call</a>
-      <p class="under-btn">15 minutes to set up, live on your line within 48 hours. Nothing changes about how you work.</p>
-        <p class="hero-by">Run by Colby Barton-Crump, Manchester. You deal with me, not an account manager.</p>
+      <p class="under-btn">15 minutes to set up. Nothing changes about how you work.</p>
+        <p class="hero-by">Run by Colby Barton-Crump, Manchester. You deal with me directly.</p>
       </div>
     </div>
     <div class="report-wrap">
@@ -534,26 +564,24 @@
   <div class="wrap">
     <div class="sec-head">
       <h2 class="sec">How the free week works</h2>
-      <p class="sec-sub">Three steps, seven days, and a number at the end of it. Nothing to sign and nothing to install.</p>
+      <p class="sec-sub">Seven days, and a number at the end of it.</p>
     </div>
     <ol class="s3grid">
       <li>
         <span class="s3n">Step 1</span>
         <h3>Book the week</h3>
-        <p>Fifteen minutes on the phone to check your line is a fit, then we set it up.
-          No new handsets, no downtime, and no change to how your team works.</p>
+        <p>Fifteen minutes on the phone, then we set it up. No new handsets, no downtime.</p>
       </li>
       <li>
         <span class="s3n">Step 2</span>
         <h3>We count what you miss</h3>
-        <p>For seven days every unanswered call gets logged, and every caller gets a text
-          asking what they needed. Their answers come straight to you.</p>
+        <p>Every unanswered call gets logged. Every caller gets a text asking what they
+          needed, and their answers come straight to you.</p>
       </li>
       <li>
         <span class="s3n">Step 3</span>
         <h3>You see what it was worth</h3>
-        <p>You get the list, priced against your own average job. Then you know what the
-          phone is costing you, and what it takes to stop it.</p>
+        <p>The list, priced against your own average job. Now you know what it is costing you.</p>
       </li>
     </ol>
   </div>
@@ -562,15 +590,13 @@
   <div class="wrap">
     <div class="sec-head">
       <h2 class="sec">Then one of two things is true</h2>
-      <p class="sec-sub">The week does not just hand you a number, it tells you which problem you have got. They are different problems and they need different work.</p>
+      <p class="sec-sub">Two different problems. They need different work.</p>
     </div>
     <div class="either">
       <div class="either-col">
         <span class="pathnum">Path one</span>
         <h3>The number is high</h3>
-        <p>You are losing work that already found you. Every enquiry gets answered,
-          qualified and logged, the quotes that go quiet get chased, and jobs go in the
-          diary without anyone typing them out.</p>
+        <p>You are losing work that already found you. So we catch it.</p>
         <ul class="pathlist">
           <li>Call handling, including out of hours</li>
           <li>Missed call follow up</li>
@@ -580,9 +606,7 @@
       <div class="either-col">
         <span class="pathnum">Path two</span>
         <h3>The number is low</h3>
-        <p>Then missed calls are not your problem, not enough people are ringing at all.
-          That is a different job and it happens further up: being findable, and giving
-          people a reason to pick up the phone.</p>
+        <p>Missed calls are not your problem. Not enough people are ringing at all.</p>
         <ul class="pathlist">
           <li>A site built to turn a search into a call</li>
           <li>Your Google listing and local search</li>
@@ -590,12 +614,10 @@
         </ul>
       </div>
     </div>
-    <p class="findings-note">Either way you finish the week knowing which one you are, which
-      is more than most people running a business can tell you. We will say which we would
-      do in your position, and if the answer is nothing, we will say that too.</p>
+    <p class="findings-note">Either way you finish the week knowing which one you are. If the
+      answer is that nothing needs doing, we will say that too.</p>
     <p class="findings-note" style="margin-top:14px;font-size:15.5px;color:var(--muted)">
-      Want a rough idea before we measure anything?
-      <a href="/calculator/" style="color:var(--amber-dk);font-weight:600">Have a play with the numbers</a>.
+      <a href="/calculator/" style="color:var(--amber-dk);font-weight:600">Rough out the numbers first</a>.
     </p>
   </div>
 </section>
@@ -605,10 +627,8 @@
       <div class="demo-copy">
         <div class="rule-am"></div>
         <h2 class="sec">If you want the calls answered too</h2>
-        <p class="sec-sub">Text back catches them. This one picks up and has the conversation,
-          works out what the job is and how urgent, then sends it on.</p>
-        <p class="sec-sub">Pick an industry and ring it yourself. It is a live call, not a
-          recording, and it is the same system configured three different ways.</p>
+        <p class="sec-sub">Text back catches them. This one picks up, works out what the job is,
+          and sends it on. Ring it yourself, it is live.</p>
         <div class="sms-wrap">
           <div class="sms">
             <div class="from">New enquiry · FieldLine</div>
@@ -618,13 +638,13 @@
                Happy to wait until the morning.</p>
             <div class="meta">Logged 8:47pm, Sunday</div>
           </div>
-          <p class="sms-cap">What lands on the phone once the call ends.</p>
+          <p class="sms-cap">What lands on your phone afterwards.</p>
         </div>
       </div>
 <div class="panel">
       <div class="panel-head">
         <h3 class="demo-h3">Hear it for yourself</h3>
-        <p>A real call, not a recording. Pick a business and ring it.</p>
+        <p>Pick a business and ring it.</p>
       </div>
       <!-- The selector does more work than any copy on this page. It proves the
            system is configured per business rather than one bot for plumbers,
