@@ -384,9 +384,9 @@ footer{background:var(--ink);color:#7f93a5}
       <p class="eyebrow">The measurement week</p>
       <hr class="datum">
       <div class="stat-row">
-        <div class="stat"><b data-count="7" data-suffix=" days">7 days</b><span>of live measurement on your existing setup</span></div>
-        <div class="stat"><b data-count="15" data-suffix=" minutes">15 minutes</b><span>to put in place, with no downtime</span></div>
-        <div class="stat"><b data-count="0" data-prefix="&pound;">&pound;0</b><span>and no obligation at the end of it</span></div>
+        <div class="stat"><b>7 days</b><span>of live measurement on your existing setup</span></div>
+        <div class="stat"><b>15 minutes</b><span>to put in place, with no downtime</span></div>
+        <div class="stat"><b>&pound;0</b><span>and no obligation at the end of it</span></div>
       </div>
       <hr class="datum">
       <p class="small" style="color:#8ea3b5">You finish the week holding a number instead
@@ -620,26 +620,6 @@ window.addEventListener("scroll", function(){
 }, { passive:true });
 window.addEventListener("resize", draw, { passive:true });
 draw();
-
-/* ---- hero counters. Only the three facts about the free week; there are no
-        client numbers to show, so none are invented. ---- */
-if (!reduced && "IntersectionObserver" in window) {
-  var cio = new IntersectionObserver(function(es){
-    es.forEach(function(e){
-      if (!e.isIntersecting) return;
-      var el = e.target, end = parseInt(el.dataset.count, 10);
-      var pre = el.dataset.prefix || "", suf = el.dataset.suffix || "", t0 = null;
-      function tick(t){
-        if (t0 === null) t0 = t;
-        var k = Math.min((t - t0) / 900, 1);
-        el.textContent = pre + Math.round(end * (1 - Math.pow(1 - k, 3))) + suf;
-        if (k < 1) requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick); cio.unobserve(el);
-    });
-  }, { rootMargin:"0px 0px 15% 0px", threshold:.25 });
-  document.querySelectorAll("[data-count]").forEach(function(n){ cio.observe(n); });
-}
 
 /* ---- the instrument ---- */
 var enq = document.getElementById("enq"),
