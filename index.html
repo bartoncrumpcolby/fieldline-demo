@@ -56,8 +56,8 @@ a{color:inherit}
 
 .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.17em;
   text-transform:uppercase;color:var(--graphite);margin:0}
-h1{font-family:var(--display);font-weight:700;font-size:clamp(33px,5.6vw,60px);
-  line-height:1.03;letter-spacing:-.032em;margin:0}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(34px,6vw,66px);
+  line-height:1.01;letter-spacing:-.035em;margin:0}
 h2{font-family:var(--display);font-weight:700;font-size:clamp(25px,3.4vw,36px);
   line-height:1.1;letter-spacing:-.026em;text-wrap:balance;margin:0}
 h3{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:-.008em;margin:0}
@@ -135,11 +135,11 @@ nav.stuck .nav-in{padding-block:13px}
 
 /* ---- reveal ---- */
 .js .reveal{opacity:0;transform:translateY(16px);
-  transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--d,0ms)}
+  transition:opacity .5s var(--ease),transform .5s var(--ease);transition-delay:var(--d,0ms)}
 .js .reveal.in{opacity:1;transform:none}
 .lines .ln{display:block;overflow:hidden}
 .js .lines .ln>span{display:block;transform:translateY(105%);
-  transition:transform .9s var(--ease);transition-delay:var(--d,0ms)}
+  transition:transform .7s var(--ease);transition-delay:var(--d,0ms)}
 .js .lines.in .ln>span{transform:none}
 .js .rule{transform:scaleX(0)}
 
@@ -151,7 +151,7 @@ nav .bub .bubble{will-change:transform;
   animation:settle 1.25s cubic-bezier(.22,1.14,.36,1) .3s both}
 
 /* ---- hero ---- */
-.hero{background:var(--ink);color:var(--paper);padding-block:clamp(52px,8vw,100px)}
+.hero{background:var(--ink);color:var(--paper);padding-block:clamp(44px,6vw,76px) clamp(52px,8vw,96px)}
 .hero-grid{display:grid;gap:clamp(34px,5vw,58px);grid-template-columns:1.22fr .95fr;align-items:start}
 .hero h1{color:var(--paper)}
 .hero .lede{color:#b9c8d6;max-width:44ch}
@@ -351,21 +351,21 @@ footer{background:var(--ink);color:#7f93a5}
     <div class="hero-copy">
       <p class="eyebrow reveal">For UK agencies, clinics and maintenance firms</p>
       <h1 class="lines" id="heroLines">
-        <span class="ln"><span style="--d:60ms">The work your</span></span>
-        <span class="ln"><span style="--d:150ms">business still</span></span>
-        <span class="ln"><span style="--d:240ms">does by hand</span></span>
+        <span class="ln"><span style="--d:30ms">The work your</span></span>
+        <span class="ln"><span style="--d:90ms">business still</span></span>
+        <span class="ln"><span style="--d:150ms">does by hand</span></span>
       </h1>
-      <p class="lede reveal" style="--d:420ms">We measure what it is costing you, then build
+      <p class="lede reveal" style="--d:230ms">We measure what it is costing you, then build
         the system that does it instead. The first week costs nothing and you keep the
         numbers either way.</p>
-      <div class="cta-row reveal" style="--d:520ms">
-        <a class="btn btn-solid btn-lg" href="#book">Book a 15 minute call</a>
+      <div class="cta-row reveal" style="--d:290ms">
+        <a class="btn btn-cta btn-lg" href="#book">Book a 15 minute call</a>
         <a class="btn btn-ghost btn-lg" href="#cost">See what it is costing you</a>
       </div>
-      <p class="hero-note reveal" style="--d:600ms">No obligation &middot; Nothing changes about how you work</p>
+      <p class="hero-note reveal" style="--d:340ms">No obligation &middot; Nothing changes about how you work</p>
     </div>
 
-    <aside class="hero-panel reveal" style="--d:680ms">
+    <aside class="hero-panel reveal" style="--d:200ms">
       <p class="eyebrow">The measurement week</p>
       <hr class="datum">
       <div class="stat-row">
@@ -447,7 +447,7 @@ footer{background:var(--ink);color:#7f93a5}
           three numbers you have just guessed at, which is exactly the position most
           businesses are in. The measurement week replaces it with the real figure, taken
           off your own line over seven days, at no cost.</p>
-        <div class="cta-row"><a class="btn btn-solid" href="#book">Get the real number</a></div>
+        <div class="cta-row"><a class="btn btn-cta" href="#book">Get the real number</a></div>
       </div>
     </div>
   </div>
@@ -553,7 +553,7 @@ footer{background:var(--ink);color:#7f93a5}
     <p class="lede reveal" style="--d:180ms">Fifteen minutes to work out whether there is
       anything worth measuring. If there is not, I will tell you and we will leave it there.</p>
     <div class="cta-row reveal" style="--d:240ms">
-      <a class="btn btn-solid btn-lg" href="https://cal.com/colbybarton-crump/15min">Book a 15 minute call</a>
+      <a class="btn btn-cta btn-lg" href="https://cal.com/colbybarton-crump/15min">Book a 15 minute call</a>
       <a class="btn btn-ghost btn-lg" href="mailto:colby@ordane.co.uk">colby@ordane.co.uk</a>
     </div>
   </div>
