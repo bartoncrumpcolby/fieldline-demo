@@ -105,10 +105,10 @@ nav{position:sticky;top:0;z-index:30;background:var(--ink);color:var(--paper)}
 
 /* ---- the bubble finding level ---- */
 @keyframes settle{from{transform:translateX(8px)}to{transform:translateX(0)}}
-.hero-mark{width:76px;height:76px;color:var(--paper)}
-.hero-mark .bubble,nav .bub .bubble{will-change:transform;
-  animation:settle 1.15s cubic-bezier(.22,1.12,.36,1) .25s both}
-@media(max-width:860px){.hero-mark{width:58px;height:58px}}
+/* One mark on the page, in the nav. Repeating it large in the hero put the same
+   logo twice within 100px and knocked the hero column out of rhythm. */
+nav .bub .bubble{will-change:transform;
+  animation:settle 1.25s cubic-bezier(.22,1.14,.36,1) .3s both}
 
 /* ---- hero ---- */
 .hero{background:var(--ink);color:var(--paper);padding-block:clamp(52px,8vw,100px)}
@@ -258,7 +258,7 @@ footer{background:var(--ink);color:#7f93a5}
   .reveal{opacity:1!important;transform:none!important;transition:none!important}
   .lines .ln>span{transform:none!important;transition:none!important}
   .rule{transform:scaleX(1)!important}
-  .hero-mark .bubble,nav .bub .bubble{animation:none!important}
+  nav .bub .bubble{animation:none!important}
 }
 </style>
 </head>
@@ -282,11 +282,6 @@ footer{background:var(--ink);color:#7f93a5}
 <header class="hero" id="top">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <svg class="hero-mark" viewBox="0 0 100 100" role="img" aria-label="Ordane">
-        <circle class="f bubble" cx="50" cy="50" r="27"/>
-        <rect class="f" x="4" y="29" width="11" height="42"/>
-        <rect class="f" x="85" y="29" width="11" height="42"/>
-      </svg>
       <p class="eyebrow reveal">For UK agencies, clinics and maintenance firms</p>
       <h1 class="lines" id="heroLines">
         <span class="ln"><span style="--d:60ms">The work your</span></span>
