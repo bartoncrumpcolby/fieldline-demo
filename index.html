@@ -1,7 +1,8 @@
 <!doctype html>
-<html lang="en-GB">
+<html lang="en-GB" class="no-js">
 <head>
 <meta charset="utf-8">
+<script>document.documentElement.className="js"</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ordane | AI systems for the work you still do by hand</title>
 <meta name="description" content="For UK agencies, clinics and maintenance firms. We measure what manual work is costing you, then build the system that does it instead. The first week costs nothing.">
@@ -48,6 +49,9 @@ img,svg{display:block;max-width:100%}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--ochre);outline-offset:3px;border-radius:1px}
 .wrap{max-width:1080px;margin:0 auto;padding-inline:var(--pad)}
+.skip{position:absolute;left:-9999px;top:0;z-index:60;background:var(--ochre-lit);
+  color:var(--ink);font-family:var(--display);font-weight:700;font-size:14px;padding:12px 18px}
+.skip:focus{left:12px;top:12px}
 .narrow{max-width:720px}
 
 .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.17em;
@@ -130,13 +134,14 @@ nav.stuck .nav-in{padding-block:13px}
 .progress{position:absolute;left:0;bottom:-1px;height:2px;background:var(--ochre);width:0}
 
 /* ---- reveal ---- */
-.reveal{opacity:0;transform:translateY(16px);
+.js .reveal{opacity:0;transform:translateY(16px);
   transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--d,0ms)}
-.reveal.in{opacity:1;transform:none}
+.js .reveal.in{opacity:1;transform:none}
 .lines .ln{display:block;overflow:hidden}
-.lines .ln>span{display:block;transform:translateY(105%);
+.js .lines .ln>span{display:block;transform:translateY(105%);
   transition:transform .9s var(--ease);transition-delay:var(--d,0ms)}
-.lines.in .ln>span{transform:none}
+.js .lines.in .ln>span{transform:none}
+.js .rule{transform:scaleX(0)}
 
 /* ---- the bubble finding level ---- */
 @keyframes settle{from{transform:translateX(8px)}to{transform:translateX(0)}}
@@ -169,7 +174,7 @@ section{padding-block:clamp(48px,6.4vw,80px)}
 .sec-head{display:grid;gap:13px;max-width:48ch}
 .sec-no{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--ochre)}
 .rule{height:1px;background:var(--rule);border:0;margin:0;
-  transform:scaleX(0);transform-origin:left;transition:transform 1.1s var(--ease)}
+  transform-origin:left;transition:transform 1.1s var(--ease)}
 .rule.in{transform:scaleX(1)}
 
 /* The hairlines are the container background showing through 1px gaps, which is
@@ -296,10 +301,35 @@ footer{background:var(--ink);color:#7f93a5}
   nav .bub .bubble{animation:none!important}
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ProfessionalService",
+  "name":"Ordane",
+  "description":"AI systems consultancy. We measure what manual work is costing a business, then build the system that does it instead.",
+  "url":"https://ordane.co.uk/",
+  "logo":"https://ordane.co.uk/icon-512.png",
+  "image":"https://ordane.co.uk/icon-512.png",
+  "telephone":"+447999098245",
+  "email":"colby@ordane.co.uk",
+  "founder":{"@type":"Person","name":"Colby Barton-Crump"},
+  "address":{"@type":"PostalAddress","addressLocality":"Manchester","addressCountry":"GB"},
+  "areaServed":{"@type":"Country","name":"United Kingdom"},
+  "knowsAbout":["Call handling","Workflow automation","Internal tools","Lead generation","Business process measurement"],
+  "makesOffer":{
+    "@type":"Offer",
+    "name":"The measurement week",
+    "description":"Seven days of live measurement on a business's existing setup, at no cost and with no obligation.",
+    "price":"0",
+    "priceCurrency":"GBP"
+  }
+}
+</script>
 </head>
 <body>
 
-<nav>
+<a class="skip" href="#main">Skip to content</a>
+<nav aria-label="Primary">
   <div class="wrap nav-in">
     <a class="lock" href="#top" aria-label="Ordane, home">
       <span class="bar"></span><span class="wm"><span class="bub"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="f bubble" cx="50" cy="50" r="50"/></svg></span>rdane</span><span class="bar"></span>
@@ -315,6 +345,7 @@ footer{background:var(--ink);color:#7f93a5}
   <div class="progress" id="progress"></div>
 </nav>
 
+<main id="main">
 <header class="hero" id="top">
   <div class="wrap hero-grid">
     <div class="hero-copy">
@@ -527,6 +558,8 @@ footer{background:var(--ink);color:#7f93a5}
     </div>
   </div>
 </section>
+
+</main>
 
 <footer>
   <div class="wrap foot-in">
