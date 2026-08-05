@@ -1,6 +1,4 @@
 User-agent: *
-Disallow: /ks/
-Disallow: /fusion/
-Disallow: /fusion2/
+Allow: /
 
-Sitemap: https://getfieldline.co.uk/sitemap.xml
+Sitemap: https://ordane.co.uk/sitemap.xml
