@@ -15,6 +15,9 @@
 <meta property="og:description" content="We measure what manual work is costing you, then build the system that does it instead.">
 <meta property="og:image" content="https://ordane.co.uk/icon-512.png">
 <meta name="format-detection" content="telephone=no">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..400&display=swap">
 
 <style>
 /* ===========================================================================
@@ -27,8 +30,8 @@
   --paper:#f3f0e9; --paper-2:#e9e4d9; --rule:#cec7b7;
   --graphite:#545e69; --ochre:#a9762f; --ochre-lit:#c8973f;
 
-  --display:"Helvetica Neue",Helvetica,Arial,sans-serif;
-  --body:ui-serif,Georgia,"Iowan Old Style","Times New Roman",serif;
+  --display:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --body:"Newsreader",ui-serif,Georgia,"Times New Roman",serif;
   --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
 
   /* one scale, used everywhere, so nothing is an arbitrary size */
@@ -39,7 +42,7 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
-  font-size:var(--t-base);line-height:1.62;-webkit-font-smoothing:antialiased;
+  font-size:var(--t-base);line-height:1.6;-webkit-font-smoothing:antialiased;font-optical-sizing:auto;
   overflow-x:hidden;font-variant-numeric:tabular-nums}
 img,svg{display:block;max-width:100%}
 a{color:inherit}
@@ -64,7 +67,7 @@ p{margin:0}
   white-space:nowrap;text-decoration:none;color:inherit;display:inline-flex;align-items:center;gap:.42em}
 .lock .bar{display:block;width:.13em;height:.95em;background:currentColor;flex:none}
 .lock .wm{display:inline-flex;align-items:baseline;letter-spacing:.30em;margin-right:-.30em}
-.bub{position:relative;display:inline-block;height:.735em;width:.735em;
+.bub{position:relative;display:inline-block;height:.755em;width:.755em;
   vertical-align:baseline;top:.012em;margin-right:.30em;flex:none}
 .bub svg{width:100%;height:100%}
 svg .f{fill:currentColor}
@@ -84,15 +87,47 @@ svg .f{fill:currentColor}
 .btn-line:hover{background:var(--ink);color:var(--paper)}
 
 /* ---- nav ---- */
-nav{position:sticky;top:0;z-index:30;background:var(--ink);color:var(--paper)}
-.nav-in{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:16px}
+/* ---- header ------------------------------------------------------------
+   Wayfinding set in mono, uppercase and tightly tracked, so the nav reads as
+   the index of an instrument rather than a row of website links. One loud
+   element only: the booking CTA, which is the single thing this page is for.
+   The phone number sits beside it because a UK firm ringing you is a better
+   outcome than a form, and half of them will.
+   ------------------------------------------------------------------------ */
+nav{position:sticky;top:0;z-index:30;background:var(--ink);color:var(--paper);
+  border-bottom:1px solid transparent;transition:border-color .25s var(--ease),
+  background .25s var(--ease)}
+nav.stuck{border-bottom-color:#22394b;background:rgba(13,22,32,.94);
+  backdrop-filter:saturate(150%) blur(10px);-webkit-backdrop-filter:saturate(150%) blur(10px)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding-block:19px;transition:padding-block .25s var(--ease)}
+nav.stuck .nav-in{padding-block:13px}
 .nav-in .lock{font-size:15px}
-.nav-links{display:flex;align-items:center;gap:28px}
-.nav-links a{font-family:var(--display);font-size:13.5px;font-weight:600;
-  text-decoration:none;color:#b9c8d6;transition:color .18s var(--ease)}
-.nav-links a:hover{color:var(--paper)}
-@media(max-width:800px){.nav-links a:not(.btn){display:none}}
-.progress{position:absolute;left:0;bottom:0;height:2px;background:var(--ochre);width:0}
+.nav-links{display:flex;align-items:center;gap:clamp(16px,2.2vw,30px)}
+
+/* :not(.btn) matters. Without it this rule outranks .btn-solid on specificity
+   and repaints the CTA's text pale blue on cream, which is what made the
+   button look broken. */
+.nav-links a:not(.btn){position:relative;font-family:var(--mono);font-size:11px;
+  font-weight:500;letter-spacing:.13em;text-transform:uppercase;text-decoration:none;
+  color:#8ea3b5;padding-block:4px;transition:color .2s var(--ease)}
+.nav-links a:not(.btn)::after{content:"";position:absolute;left:0;bottom:0;height:1px;
+  width:100%;background:var(--ochre);transform:scaleX(0);transform-origin:left;
+  transition:transform .28s var(--ease)}
+.nav-links a:not(.btn):hover{color:var(--paper)}
+.nav-links a:not(.btn):hover::after{transform:scaleX(1)}
+.nav-tel{color:var(--paper)!important;font-variant-numeric:tabular-nums}
+
+/* The one loud thing. Ochre is reserved for whatever is live, and on this page
+   the live thing is the booking. Lit ochre against ink clears 6:1 on the label. */
+.btn-cta{background:var(--ochre-lit);color:var(--ink);font-weight:700;
+  letter-spacing:-.005em;box-shadow:0 1px 0 rgba(255,255,255,.18) inset}
+.btn-cta:hover{background:#d8a94e}
+.btn-cta:active{transform:translateY(1px)}
+
+@media(max-width:900px){.nav-links a:not(.btn):not(.nav-tel){display:none}}
+@media(max-width:520px){.nav-tel{display:none}}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;background:var(--ochre);width:0}
 
 /* ---- reveal ---- */
 .reveal{opacity:0;transform:translateY(16px);
@@ -270,10 +305,11 @@ footer{background:var(--ink);color:#7f93a5}
       <span class="bar"></span><span class="wm"><span class="bub"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="f bubble" cx="50" cy="50" r="50"/></svg></span>rdane</span><span class="bar"></span>
     </a>
     <div class="nav-links">
-      <a href="#cost">What it costs you</a>
+      <a href="#cost">What it costs</a>
       <a href="#how">How it works</a>
       <a href="#founder">Who you get</a>
-      <a class="btn btn-solid" href="#book">Book a call</a>
+      <a class="nav-tel" href="tel:+447999098245">07999&nbsp;098245</a>
+      <a class="btn btn-cta" href="#book">Book a call</a>
     </div>
   </div>
   <div class="progress" id="progress"></div>
@@ -524,9 +560,11 @@ if (reduced || !("IntersectionObserver" in window)) {
 
 /* ---- scroll progress, drawn as the brand's own datum ---- */
 var bar = document.getElementById("progress"), ticking = false;
+var navEl = document.querySelector("nav");
 function draw(){
   var h = document.documentElement.scrollHeight - window.innerHeight;
   bar.style.width = ((h > 0 ? window.scrollY / h : 0) * 100).toFixed(2) + "%";
+  navEl.classList.toggle("stuck", window.scrollY > 12);
 }
 window.addEventListener("scroll", function(){
   if (ticking) return; ticking = true;
