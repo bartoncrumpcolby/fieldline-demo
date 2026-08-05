@@ -153,10 +153,10 @@ nav.stuck .nav-in{padding-block:13px}
 @keyframes settle{from{transform:translateX(8px)}to{transform:translateX(0)}}
 /* Hero entrance, CSS only. No dependency on script, so the fold is painted as
    soon as styles apply rather than after parse plus a frame. */
-@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes rise{from{transform:translateY(12px)}to{transform:none}}
 @keyframes lift{from{transform:translateY(105%)}to{transform:none}}
-.hero .reveal{animation:rise .5s var(--ease) both;animation-delay:var(--d,0ms)}
-.hero .lines .ln>span{display:block;animation:lift .7s var(--ease) both;
+.hero .reveal{opacity:1;animation:rise .45s var(--ease) both;animation-delay:var(--d,0ms)}
+.hero .lines .ln>span{display:block;animation:lift .48s var(--ease) both;
   animation-delay:var(--d,0ms)}
 @media(prefers-reduced-motion:reduce){
   .hero .reveal,.hero .lines .ln>span{animation:none}}
@@ -366,21 +366,21 @@ footer{background:var(--ink);color:#7f93a5}
     <div class="hero-copy">
       <p class="eyebrow reveal">For UK agencies, clinics and maintenance firms</p>
       <h1 class="lines" id="heroLines">
-        <span class="ln"><span style="--d:30ms">The work your</span></span>
-        <span class="ln"><span style="--d:90ms">business still</span></span>
-        <span class="ln"><span style="--d:150ms">does by hand</span></span>
+        <span class="ln"><span style="--d:0ms">The work your</span></span>
+        <span class="ln"><span style="--d:70ms">business still</span></span>
+        <span class="ln"><span style="--d:140ms">does by hand</span></span>
       </h1>
-      <p class="lede reveal" style="--d:230ms">We measure what it is costing you, then build
+      <p class="lede reveal" style="--d:120ms">We measure what it is costing you, then build
         the system that does it instead. The first week costs nothing and you keep the
         numbers either way.</p>
-      <div class="cta-row reveal" style="--d:290ms">
+      <div class="cta-row reveal" style="--d:170ms">
         <a class="btn btn-cta btn-lg" href="#book">Book a 15 minute call</a>
         <a class="btn btn-ghost btn-lg" href="#cost">See what it is costing you</a>
       </div>
-      <p class="hero-note reveal" style="--d:340ms">No obligation &middot; Nothing changes about how you work</p>
+      <p class="hero-note reveal" style="--d:210ms">No obligation &middot; Nothing changes about how you work</p>
     </div>
 
-    <aside class="hero-panel reveal" style="--d:200ms">
+    <aside class="hero-panel reveal" style="--d:130ms">
       <p class="eyebrow">The measurement week</p>
       <hr class="datum">
       <div class="stat-row">
