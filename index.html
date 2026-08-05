@@ -19,7 +19,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..400&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..400&display=swap">
+<link rel="stylesheet" media="print" onload="this.media='all';this.onload=null"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..400&display=swap">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..400&display=swap"></noscript>
 
 <style>
 /* ===========================================================================
@@ -149,6 +151,15 @@ nav.stuck .nav-in{padding-block:13px}
 
 /* ---- the bubble finding level ---- */
 @keyframes settle{from{transform:translateX(8px)}to{transform:translateX(0)}}
+/* Hero entrance, CSS only. No dependency on script, so the fold is painted as
+   soon as styles apply rather than after parse plus a frame. */
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes lift{from{transform:translateY(105%)}to{transform:none}}
+.hero .reveal{animation:rise .5s var(--ease) both;animation-delay:var(--d,0ms)}
+.hero .lines .ln>span{display:block;animation:lift .7s var(--ease) both;
+  animation-delay:var(--d,0ms)}
+@media(prefers-reduced-motion:reduce){
+  .hero .reveal,.hero .lines .ln>span{animation:none}}
 /* One mark on the page, in the nav. Repeating it large in the hero put the same
    logo twice within 100px and knocked the hero column out of rhythm. */
 nav .bub .bubble{will-change:transform;
