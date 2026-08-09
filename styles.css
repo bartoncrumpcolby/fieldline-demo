@@ -181,7 +181,10 @@ section{padding-block:clamp(48px,6.4vw,80px)}
 .g6{grid-template-columns:repeat(3,1fr)}
 @media(max-width:1000px){.g4,.g6{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:580px){.g4,.g6{grid-template-columns:1fr}}
-.cell{background:#fbf9f5;padding:26px;display:grid;gap:10px;align-content:start;
+/* A cell carries its own ink. It sets a light background, so inheriting the
+   text colour from whichever band it sits in leaves pale text on a pale card
+   the moment one is used inside a dark section. */
+.cell{background:#fbf9f5;color:var(--ink);padding:26px;display:grid;gap:10px;align-content:start;
   transition:background .25s var(--ease)}
 .cell:hover{background:var(--paper-2)}
 .cell .q{font-family:var(--display);font-weight:700;font-size:16.5px;letter-spacing:-.01em}
