@@ -306,3 +306,8 @@ footer{background:var(--ink);color:#7f93a5}
 .sec-head + .lede,
 .sec-head + .founder-copy{margin-top:22px}
 .sec-head + .founder-copy > :first-child{margin-top:0}
+
+/* A group label sitting between a section heading and its cells needs room
+   above it, or it reads as part of the heading rather than a new group. */
+.sec-head + .eyebrow{margin-top:30px}
+.cells + .eyebrow{margin-top:46px}
