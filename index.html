@@ -1,340 +1,431 @@
 <!doctype html>
-<html lang="en-GB" class="no-js">
+<html lang="en-GB">
 <head>
 <meta charset="utf-8">
-<script>document.documentElement.className="js"</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ordane Compliance | Compliance software for children&rsquo;s homes</title>
-<meta name="description" content="Compliance software for UK children's homes. Recruitment files, training, supervisions, absence, rota, safety checks, vehicles and petty cash in one place. Built from a real provider's own paperwork.">
+<title>Ordane | Compliance software for children&rsquo;s homes</title>
+<meta name="description" content="The staff and premises compliance file for children's homes. Training, DBS renewals, supervisions, rotas and checks, in one place instead of a spreadsheet. £99 a month, monthly rolling.">
 <link rel="canonical" href="https://ordane.co.uk/">
-<meta name="theme-color" content="#0d1620">
-<link rel="icon" href="/favicon-32.png" sizes="32x32">
-<link rel="apple-touch-icon" href="/icon-512.png">
-<meta property="og:type" content="website">
+<meta property="og:title" content="Ordane | Compliance software for children's homes">
+<meta property="og:description" content="Everything Ofsted asks about your staff, in one place. Not a spreadsheet.">
 <meta property="og:url" content="https://ordane.co.uk/">
-<meta property="og:title" content="Ordane Compliance | Compliance software for children&rsquo;s homes">
-<meta property="og:description" content="Recruitment files, training, supervisions, absence and rotas in one place. Built from a real provider's own paperwork.">
-<meta property="og:image" content="https://ordane.co.uk/icon-512.png">
-<meta name="format-detection" content="telephone=no">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..400&display=swap">
-<link rel="stylesheet" media="print" onload="this.media='all';this.onload=null"
-  href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..400&display=swap">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..400&display=swap"></noscript>
-<link rel="stylesheet" href="/styles.css">
+<meta property="og:image" content="https://ordane.co.uk/img/og.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+/* =============================================================================
+   Ordane marketing site. One brand with the product: the site wears the app's
+   own light system so the click from here into app.ordane.co.uk changes
+   nothing but the data. The only licence the marketing surface takes is a
+   little more air and one soft ambient shadow under the screenshots, because
+   a landing page is allowed to breathe in a way a rota is not.
+   ============================================================================= */
+:root{
+  --bg:#f5f7f9; --surface:#ffffff; --ink:#12283c; --ink-2:#42505e; --ink-3:#5d6a77;
+  --line:#dfe5ea; --accent:#1c3d5a; --accent-deep:#14304a; --amber:#e8b04b;
+  --valid:#1f6b46; --valid-bg:#cbe7d8;
+  --ease:cubic-bezier(0.32,0.72,0,1);
+  --shell:rgba(13,22,32,.05);
+}
+*{margin:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);
+  font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,sans-serif;
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.wordmark{font-family:Archivo,Inter,sans-serif;letter-spacing:-0.02em}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+
+/* Reveal on entry: a gentle heavy rise, once, honoured under reduced motion. */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.rv{opacity:1;transform:none;transition:none}}
+
+/* ── Nav: a quiet floating pill, detached from the edge ─────────────────── */
+.nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:40;
+  display:flex;align-items:center;gap:6px;padding:8px 10px 8px 16px;
+  background:rgba(255,255,255,.82);backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(13,22,32,.08);border-radius:999px;
+  box-shadow:0 12px 40px rgba(13,22,32,.10)}
+.nav .brand{display:flex;align-items:center;gap:10px;margin-right:10px;
+  font-family:Archivo;font-weight:700;font-size:17px;text-decoration:none}
+.nav .brand svg{width:22px;height:22px}
+.nav a.item{font-size:13.5px;font-weight:500;color:var(--ink-2);text-decoration:none;
+  padding:8px 12px;border-radius:999px;transition:background-color .3s var(--ease)}
+.nav a.item:hover{background:rgba(13,22,32,.05)}
+.nav a.cta{font-size:13.5px;font-weight:600;color:#fff;background:var(--accent);
+  text-decoration:none;padding:9px 16px;border-radius:999px;margin-left:6px;
+  transition:background-color .3s var(--ease),transform .3s var(--ease)}
+.nav a.cta:hover{background:var(--accent-deep)}
+.nav a.cta:active{transform:scale(.97)}
+@media (max-width:760px){.nav a.item{display:none}.nav{gap:2px}}
+
+/* ── Buttons: pill, with the arrow in its own little room ───────────────── */
+.btn{display:inline-flex;align-items:center;gap:12px;text-decoration:none;
+  font-weight:600;font-size:15.5px;border-radius:999px;padding:13px 8px 13px 24px;
+  background:var(--accent);color:#fff;
+  transition:background-color .35s var(--ease),transform .35s var(--ease)}
+.btn:hover{background:var(--accent-deep)}
+.btn:active{transform:scale(.98)}
+.btn .cap{width:34px;height:34px;border-radius:999px;background:rgba(255,255,255,.16);
+  display:grid;place-items:center;transition:transform .35s var(--ease)}
+.btn:hover .cap{transform:translate(2px,-1px)}
+.btn .cap svg{width:15px;height:15px}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);
+  padding:12px 22px}
+.btn.ghost:hover{background:#fff}
+
+/* ── Hero: the split. Words left, the real product right. ───────────────── */
+.hero{padding:150px 0 96px}
+.hero .grid{display:grid;grid-template-columns:minmax(0,10fr) minmax(0,11fr);
+  gap:clamp(28px,5vw,72px);align-items:center}
+.hero h1{font-size:clamp(34px,4.6vw,56px);font-weight:700;line-height:1.08;
+  text-wrap:balance}
+.hero .sub{margin-top:22px;font-size:18px;color:var(--ink-2);max-width:44ch}
+.hero .acts{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.hero .beneath{margin-top:26px;font-size:14px;color:var(--ink-3)}
+
+/* The double bezel: a screenshot never sits naked on the page. An outer tray
+   holds an inner plate, concentric radii, one soft ambient shadow. */
+.shell{background:var(--shell);border:1px solid rgba(13,22,32,.07);
+  border-radius:22px;padding:8px;
+  box-shadow:0 30px 90px rgba(13,22,32,.13)}
+.shell .plate{border-radius:14px;overflow:hidden;background:#fff;
+  border:1px solid rgba(13,22,32,.06)}
+/* The strip under the screenshot is a real miniature of the product's own
+   counts row, and its numbers are the same ones visible in the image above
+   it. It counts up once, on entry: the one authored moment on the page. */
+.ministrip{display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  padding:14px 6px 8px}
+.ministrip span{display:flex;flex-direction:column;align-items:flex-start;
+  padding:0 14px;border-right:1px solid rgba(13,22,32,.08);
+  font-size:12px;color:var(--ink-3)}
+.ministrip span:last-child{border-right:0}
+.ministrip b{font-family:Archivo;font-size:24px;font-weight:700;
+  letter-spacing:-0.02em;color:var(--ink);font-variant-numeric:tabular-nums;
+  line-height:1.2}
+
+/* ── The origin line: one sentence, full width, no decoration ───────────── */
+.origin{border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:#fff}
+.origin p{padding:26px 0;font-size:17px;color:var(--ink-2);text-align:center;
+  text-wrap:balance}
+.origin b{color:var(--ink);font-weight:600}
+
+/* ── Sections ─────────────────────────────────────────────────────────────── */
+section{padding:96px 0}
+h2{font-size:clamp(26px,3vw,36px);font-weight:700;line-height:1.15;text-wrap:balance}
+.lede{margin-top:14px;font-size:17px;color:var(--ink-2);max-width:60ch}
+
+/* What it holds: an uneven grid, because the contents are uneven. */
+.bento{margin-top:44px;display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+.cell{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px}
+.cell h3{font-size:17px;font-weight:600;margin-bottom:8px}
+.cell p{font-size:14.5px;color:var(--ink-2)}
+.c-a{grid-column:span 5}
+.c-b{grid-column:span 7}
+.c-c{grid-column:span 4}
+.c-wide{grid-column:span 8;padding:8px;display:flex;flex-direction:column}
+.c-wide .plate{flex:1}
+.c-wide .capline{padding:14px 18px 10px;font-size:14px;color:var(--ink-2)}
+.c-amber{background:#fdf6e6;border-color:#eddaaa}
+@media (max-width:860px){.c-a,.c-b,.c-c,.c-wide{grid-column:span 12}}
+
+/* Where it stops: three statements, big, no cards. */
+.stops{background:var(--accent);color:#eef3f8}
+.stops h2{color:#fff}
+.stops .lede{color:#b9c9d8}
+.stopline{border-top:1px solid rgba(255,255,255,.14);padding:30px 0;
+  display:grid;grid-template-columns:minmax(200px,1fr) 2fr;gap:10px 40px}
+.stopline:last-of-type{border-bottom:1px solid rgba(255,255,255,.14)}
+.stopline h3{font-size:21px;font-weight:600;color:#fff}
+.stopline p{font-size:15.5px;color:#b9c9d8;max-width:56ch}
+.stops .list{margin-top:44px}
+@media (max-width:760px){.stopline{grid-template-columns:1fr}}
+
+/* Price: one card, one number. */
+.price .card{margin-top:44px;background:#fff;border:1px solid var(--line);
+  border-radius:22px;padding:8px;max-width:660px}
+.price .inner{border-radius:14px;border:1px solid var(--line);padding:36px 38px}
+.price .figure{font-family:Archivo;font-size:52px;font-weight:700;letter-spacing:-0.03em}
+.price .per{font-size:16px;color:var(--ink-3);font-weight:500}
+.price ul{list-style:none;margin:22px 0 28px;display:grid;gap:10px}
+.price li{display:flex;gap:11px;align-items:baseline;font-size:15.5px;color:var(--ink-2)}
+.price li::before{content:"";width:7px;height:7px;border-radius:50%;
+  background:var(--valid);flex:none;position:relative;top:-2px}
+.founding{margin-top:14px;font-size:14.5px;color:var(--ink-2);
+  background:#fdf6e6;border:1px solid #eddaaa;border-radius:10px;padding:12px 16px;
+  max-width:660px}
+
+/* FAQ: native disclosure, no javascript to fail. */
+.faq{margin-top:40px;max-width:760px}
+.faq details{border-top:1px solid var(--line)}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{padding:20px 4px;font-weight:600;font-size:16.5px;cursor:pointer;
+  list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:22px;font-weight:400;color:var(--ink-3);
+  transition:transform .35s var(--ease)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq .a{padding:0 4px 22px;font-size:15.5px;color:var(--ink-2);max-width:64ch}
+
+/* Footer */
+footer{border-top:1px solid var(--line);padding:70px 0 60px;background:#fff}
+.foot-grid{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;
+  align-items:flex-start}
+.foot-brand{display:flex;align-items:center;gap:10px;font-family:Archivo;
+  font-weight:700;font-size:18px}
+.foot-brand svg{width:22px;height:22px}
+footer .meta{margin-top:14px;font-size:14px;color:var(--ink-3);line-height:1.9}
+footer .meta a{color:var(--ink-2);text-decoration:none}
+footer .meta a:hover{text-decoration:underline}
+</style>
 </head>
 <body>
 
-<a class="skip" href="#main">Skip to content</a>
-<nav aria-label="Primary">
-  <div class="wrap nav-in">
-    <a class="lock" href="/compliance/" aria-label="Ordane, home">
-      <span class="bar"></span><span class="wm"><span class="bub"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="f bubble" cx="50" cy="50" r="50"/></svg></span>rdane</span><span class="bar"></span>
-    </a>
-    <div class="nav-links">
-      <a href="#inside">What it holds</a>
-      <a href="#alongside">Where it stops</a>
-      <a href="#founder">Who you get</a>
-      <a class="nav-tel" href="tel:+447999098245">07999&nbsp;098245</a>
-      <a class="btn btn-cta" href="#book">Book a call</a>
-    </div>
-  </div>
-  <div class="progress" id="progress"></div>
+<nav class="nav" aria-label="Main">
+  <a class="brand" href="/">
+    <svg viewBox="0 0 48 48" fill="none" stroke="#1c3d5a" stroke-width="7" aria-hidden="true">
+      <path d="M19 5 H43 V29 a14 14 0 0 1 -14 14 H19 a14 14 0 0 1 -14 -14 V19 a14 14 0 0 1 14 -14 Z"/>
+    </svg>
+    Ordane
+  </a>
+  <a class="item" href="#holds">What it holds</a>
+  <a class="item" href="#stops">Where it stops</a>
+  <a class="item" href="#price">Price</a>
+  <a class="cta" href="mailto:colby@ordane.co.uk?subject=A%20look%20at%20Ordane">Book a look</a>
 </nav>
 
-<main id="main">
-<header class="hero" id="top">
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <p class="eyebrow reveal">For UK children&rsquo;s home providers</p>
-      <h1 class="lines" id="heroLines">
-        <span class="ln"><span style="--d:0ms">Everything that</span></span>
-        <span class="ln"><span style="--d:70ms">expires, in one</span></span>
-        <span class="ln"><span style="--d:140ms">place</span></span>
-      </h1>
-      <p class="lede reveal" style="--d:120ms">Recruitment files, training, supervisions,
-        absence, the rota, safety checks, vehicles and petty cash. Everything a
-        children&rsquo;s home has to keep current, telling you what has run out before an
-        inspector does. Built from a real provider&rsquo;s own paperwork.</p>
-      <div class="cta-row reveal" style="--d:170ms">
-        <a class="btn btn-cta btn-lg" href="#book">Book a 15 minute look</a>
-        <a class="btn btn-ghost btn-lg" href="#inside">See what it holds</a>
+<header class="hero">
+  <div class="wrap grid" style="display:grid;grid-template-columns:minmax(0,10fr) minmax(0,11fr);gap:clamp(28px,5vw,72px);align-items:center">
+    <div>
+      <h1 class="rv">The compliance file for children&rsquo;s homes.</h1>
+      <p class="sub rv" style="transition-delay:80ms">
+        Everything Ofsted asks about your staff, in one place and in date.
+        Not a spreadsheet one person maintains on a Sunday night.
+      </p>
+      <div class="acts rv" style="transition-delay:160ms">
+        <a class="btn" href="mailto:colby@ordane.co.uk?subject=A%20look%20at%20Ordane">
+          Book a look
+          <span class="cap"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13 13 3M6 3h7v7"/></svg></span>
+        </a>
+        <a class="btn ghost" href="#holds">See what it holds</a>
       </div>
-      <p class="hero-note reveal" style="--d:210ms">Everything but the care records &middot; Those stay where they are</p>
+      <p class="beneath rv" style="transition-delay:240ms">
+        &pound;99 a month per home. Monthly, cancel any month.
+      </p>
     </div>
-
-    <aside class="hero-panel reveal" style="--d:130ms">
-      <p class="eyebrow">What it replaces</p>
-      <hr class="datum">
-      <div class="stat-row">
-        <div class="stat"><b>116 checks</b><span>the full Schedule 2 recruitment file, and what is still outstanding on each person</span></div>
-        <div class="stat"><b>38 courses</b><span>training across every member of staff, with the expiry worked out rather than counted in somebody&rsquo;s head</span></div>
-        <div class="stat"><b>24 safety checks</b><span>fire, water, food, vehicle and maintenance, each on its own frequency</span></div>
-      </div>
-      <hr class="datum">
-      <p class="small" style="color:#8ea3b5">If that is four spreadsheets, a Word document
-        and a clipboard in the office, this is aimed at you.</p>
-    </aside>
-  </div>
-</header>
-
-<section id="problem">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="sec-no reveal">_01_</p>
-      <p class="eyebrow reveal" style="--d:60ms">The problem</p>
-      <h2 class="reveal" style="--d:120ms">None of it is hard. All of it is remembering.</h2>
-    </div>
-    <div class="cells g4 reveal">
-      <div class="cell"><span class="q">&ldquo;Whose first aid runs out next month?&rdquo;</span>
-        <p>The answer is in a spreadsheet where somebody wrote the date it was completed, and works out the expiry in their head. Thirty eight courses times nine staff is over three hundred sums nobody is doing.</p></div>
-      <div class="cell"><span class="q">&ldquo;Did that supervision actually happen?&rdquo;</span>
-        <p>There is a blank in March. Nobody can remember whether that was a missed session or the fortnight somebody was signed off, and the person who would know has left.</p></div>
-      <div class="cell"><span class="q">&ldquo;Is this file complete?&rdquo;</span>
-        <p>Schedule 2 is not ambiguous about what a staff file needs. Whether a particular file has all of it is a different question, and it usually gets asked for the first time by an inspector.</p></div>
-      <div class="cell"><span class="q">&ldquo;Who has seen the new policy?&rdquo;</span>
-        <p>It went out on WhatsApp. Some people replied with a thumbs up. That is not a record of who read it, and it is not evidence of anything.</p></div>
-    </div>
-  </div>
-</section>
-
-<hr class="rule">
-
-<section id="inside">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="sec-no reveal">_02_</p>
-      <p class="eyebrow reveal" style="--d:60ms">What it holds</p>
-      <h2 class="reveal" style="--d:120ms">The staff, and the building they work in</h2>
-    </div>
-    <p class="eyebrow reveal">Staff</p>
-    <div class="cells g6 reveal">
-      <div class="cell entry"><span class="q">Recruitment files</span>
-        <p>All 116 Schedule 2 checks, section by section, with what is outstanding on each person&rsquo;s file. Somebody who started before their file was complete is flagged as exactly that rather than quietly passing.</p></div>
-      <div class="cell"><span class="q">Training</span>
-        <p>Courses down, people across, mandatory and essential and additional. Every cell carries the date it was done and the date it runs out, coloured by whether it already has.</p></div>
-      <div class="cell"><span class="q">Supervisions</span>
-        <p>One to one, single subject, group, reflective practice and annual appraisal. Staff sign and comment in their own words, and no manager can edit what they wrote.</p></div>
-      <div class="cell"><span class="q">Absence</span>
-        <p>Paid and unpaid days, self certified or fit note, return to work conversations chased. Recorded absence stops sickness reading as a missed supervision.</p></div>
-      <div class="cell"><span class="q">Pay</span>
-        <p>Hourly or salaried. Readable by the person it belongs to and the Responsible Individual, and by nobody else. A manager builds the rota without seeing what the team earns.</p></div>
-      <div class="cell"><span class="q">Staff logins</span>
-        <p>People upload their own certificates, sign their own supervisions and agree policies. A manager verifies anything submitted before it counts.</p></div>
-    </div>
-
-    <p class="eyebrow reveal">The home</p>
-    <div class="cells g6 reveal">
-      <div class="cell"><span class="q">Checks and chores</span>
-        <p>Fire alarm tests, drills, emergency lighting, water and fridge temperatures, window restrictors, vehicle walk rounds, gas and electrical certificates. Twenty four checks ready to go, each on its own frequency, and the statutory ones marked as such.</p></div>
-      <div class="cell"><span class="q">Assets and vehicles</span>
-        <p>MOT, road tax, insurance, service, warranty, lease. Renewals supersede rather than delete, so last year&rsquo;s certificate is still there when somebody asks whether the minibus was legal last year.</p></div>
-      <div class="cell"><span class="q">Petty cash</span>
-        <p>The float, what went out of it, and which receipts are missing. Staff claim expenses back with a photo; a manager approves before money moves.</p></div>
-      <div class="cell"><span class="q">Policies</span>
-        <p>Publish a version and everyone goes back in the queue to read and agree it. Previous agreements stay on file as evidence of what was agreed and when.</p></div>
-      <div class="cell"><span class="q">Rota</span>
-        <p>A month at a time, your own shift codes, hours per person and per day. Built as a draft nobody sees until you publish, then released as provisional or confirmed.</p></div>
-      <div class="cell"><span class="q">Location risk assessment</span>
-        <p>Reviewed annually alongside the fire and legionella assessments, in the same place as everything else with a review date on it.</p></div>
-    </div>
-
-    <div class="sec-head" style="margin-top:64px">
-      <p class="eyebrow reveal">And one part that is deliberately different</p>
-      <h2 class="reveal" style="--d:60ms">Disciplinary and safeguarding records, sealed</h2>
-    </div>
-    <p class="lede reveal" style="--d:120ms">Allegations and disciplinary matters sit behind
-      their own lock, readable by the Responsible Individual and nobody else. Not the
-      manager, not a senior, not the person it concerns. That is enforced in the database
-      rather than by hiding a menu, and there is a test that proves it on every change.</p>
-  </div>
-</section>
-
-<hr class="rule">
-
-<section id="alongside" class="instr">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="sec-no reveal">_03_</p>
-      <p class="eyebrow reveal" style="--d:60ms">Where it stops</p>
-      <h2 class="reveal" style="--d:120ms">Everything except the care records</h2>
-    </div>
-    <div class="cells g4 reveal">
-      <div class="cell"><span class="q">Your care system does not move</span>
-        <p>Care planning, daily logs, the children&rsquo;s records. Whatever you use for those keeps doing them, and nothing about it changes.</p></div>
-      <div class="cell"><span class="q">This is everything else</span>
-        <p>Staff, rota, safety checks, vehicles, petty cash, policies. The parts still kept on spreadsheets and clipboards at most providers even where the care system is good.</p></div>
-      <div class="cell"><span class="q">Nothing to migrate on day one</span>
-        <p>Your existing spreadsheets go in as they are, spelled the way you spell them. Your shift codes stay your shift codes. Retyping a rota is not a change anybody agreed to.</p></div>
-      <div class="cell"><span class="q">If you already have this covered</span>
-        <p>Then you do not need it, and I would rather tell you that on a fifteen minute call than sell you a second system you will not open.</p></div>
-    </div>
-  </div>
-</section>
-
-<hr class="rule">
-
-<section id="built">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="sec-no reveal">_04_</p>
-      <p class="eyebrow reveal" style="--d:60ms">Where it came from</p>
-      <h2 class="reveal" style="--d:120ms">Built beside a Responsible Individual, from her real files</h2>
-    </div>
-    <div class="founder-copy reveal" style="max-width:66ch">
-      <p>This was built alongside the Responsible Individual for two children&rsquo;s homes,
-        working from her actual documents rather than a description of them: her
-        supervision matrix, her training records, her staff profile form, her hundred and
-        sixteen point recruitment checklist, her rota with its forty two shift codes.</p>
-      <p>That matters more than it sounds. Every system I looked at first got the shape
-        wrong in the same way, by inventing a tidy version of a job that is not tidy. Hers
-        is a calendar with leavers still on it, because whether somebody
-        was supervised while they worked for you does not stop mattering when they go.
-        Nothing I would have designed from scratch would have had that in it.</p>
-      <p>It is still built that way. A provider asks for something on the Monday
-        because of a thing that happened on the Sunday, and it is in by the end of the
-        week. That is the whole reason to work with somebody who wrote the system rather
-        than somebody who sells it.</p>
-    </div>
-  </div>
-</section>
-
-<hr class="rule">
-
-<section id="data">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="sec-no reveal">_05_</p>
-      <p class="eyebrow reveal" style="--d:60ms">Data protection</p>
-      <h2 class="reveal" style="--d:120ms">Staff records are the sensitive kind</h2>
-    </div>
-    <div class="cells g4 reveal">
-      <div class="cell"><span class="q">DBS, recorded properly</span>
-        <p>Certificate number, dates and status. Never what a disclosure says. That is criminal offence data under Article 10 and it does not belong in a system every manager can open.</p></div>
-      <div class="cell"><span class="q">Separated at the database</span>
-        <p>One provider cannot reach another provider&rsquo;s records, and it is the database that refuses rather than the screen choosing not to show it. Sixty one automated checks prove it on every change.</p></div>
-      <div class="cell"><span class="q">Staff see their own record</span>
-        <p>A support worker with a login sees their own file, the rota, and their own pay. Not a colleague&rsquo;s wage, not a colleague&rsquo;s health information, not a colleague&rsquo;s file.</p></div>
-      <div class="cell"><span class="q">You own your data</span>
-        <p>Export everything, per person or whole organisation, in a form you can hand to an inspector. If you leave, you leave with it.</p></div>
-    </div>
-  </div>
-</section>
-
-<hr class="rule">
-
-<section id="founder">
-  <div class="wrap">
-    <div class="sec-head" style="margin-bottom:34px">
-      <p class="sec-no reveal">_06_</p>
-      <p class="eyebrow reveal" style="--d:60ms">Who you are dealing with</p>
-      <h2 class="reveal" style="--d:120ms">You get me, not an account manager</h2>
-    </div>
-    <div class="founder">
-      <img class="reveal" src="/colby.png" width="800" height="800" loading="lazy"
-           alt="Colby Barton-Crump, founder of Ordane">
-      <div class="founder-copy reveal" style="--d:120ms">
-        <p>I am Colby. I built this, I will show it to you, and I am the one who picks up
-          when something is wrong with it. You will not be handed to somebody who has
-          never spoken to you and does not know how your homes run.</p>
-        <p>What you get instead is somebody who will change the thing you asked about that
-          week rather than putting it on a roadmap. Most of what is in here now exists
-          because a Responsible Individual said the version I had built was wrong.</p>
-        <p class="small soft">Manchester based, and I will come and see you if you would
-          rather do this in person than on a call.</p>
-        <div class="founder-meta">
-          <a href="tel:+447999098245">07999 098245</a>
-          <a href="mailto:colby@ordane.co.uk">colby@ordane.co.uk</a>
-          <span>Manchester</span>
+    <div class="rv" style="transition-delay:140ms">
+      <div class="shell">
+        <div class="plate">
+          <img src="/img/dashboard.jpg" width="1536" height="784"
+               alt="The Ordane dashboard opening with the sentence: 10 items have expired, across 3 people, with the people to chase listed underneath.">
+        </div>
+        <div class="ministrip" aria-label="The demo home's counts: 10 expired, 3 due within 30 days, 7 due within 90 days, 5 with no date set">
+          <span><b class="count" data-n="10" style="color:#b3261e">0</b>expired</span>
+          <span><b class="count" data-n="3" style="color:#8a5a11">0</b>due in 30 days</span>
+          <span><b class="count" data-n="7">0</b>due in 90 days</span>
+          <span><b class="count" data-n="5">0</b>no date set</span>
         </div>
       </div>
     </div>
   </div>
-</section>
+</header>
 
-<hr class="rule">
+<div class="origin rv">
+  <div class="wrap">
+    <p>Built alongside a serving <b>Responsible Individual</b> in Manchester,
+       on the spreadsheets her homes actually run on.</p>
+  </div>
+</div>
 
-<section id="faq">
-  <div class="wrap narrow">
-    <div class="sec-head">
-      <p class="sec-no reveal">_07_</p>
-      <p class="eyebrow reveal" style="--d:60ms">Reasonable questions</p>
-      <h2 class="reveal" style="--d:120ms">The things providers ask first</h2>
-    </div>
-    <div class="faq">
-      <details class="reveal"><summary>We already have a care system. Why would we run two?</summary><p>You would not, for the same job. Clearcare and the rest hold the children&rsquo;s records and do it well. This holds the staff side, which at most providers is still a folder of spreadsheets even where the care system is solid. If your staff compliance is genuinely handled already and people find it easy, you do not need this and I will say so.</p></details>
-      <details class="reveal" style="--d:60ms"><summary>How long does it take to set up?</summary><p>Your training and supervision records and your staff list go in as they are. The recruitment checklist is already loaded with all hundred and sixteen points. Realistically you are looking at an afternoon, and I do most of it with you on a call rather than sending you a help article.</p></details>
-      <details class="reveal" style="--d:100ms"><summary>Can staff log in themselves?</summary><p>Yes, and it is worth doing. They upload their own certificates, sign their supervisions and comment on them in their own words, agree policies, and see the rota so nobody is working off a screenshot from last week. A manager verifies anything a member of staff submits before it counts, because it is your name against the record at inspection.</p></details>
-      <details class="reveal" style="--d:140ms"><summary>What happens to our data if we stop using it?</summary><p>You export it, per person or the whole organisation, and it is yours. No exit fee and no holding it hostage. I would rather you left with your records than stayed because leaving was painful.</p></details>
-      <details class="reveal" style="--d:180ms"><summary>Does it do care planning or daily logs?</summary><p>No, and it is not going to. That is a different job, it is well served already, and building a worse version of what you have helps nobody.</p></details>
-      <details class="reveal" style="--d:200ms"><summary>What does it cost?</summary><p>It is priced per home rather than per person, so taking on more support workers does not change your bill. What that comes to depends on how many homes you run, and there is a founding rate at the moment. I will give you the number on the call rather than make you work it out from a table that would not fit your setup anyway.</p></details>
-      <details class="reveal" style="--d:240ms"><summary>What if we want something it does not do?</summary><p>Tell me and I will usually build it. Most of what is in here exists because a Responsible Individual said the version I had was wrong: the supervision types, the absence handling, the fact that leavers stay on the grid. That is the advantage of a system with one person behind it rather than a roadmap and a queue.</p></details>
+<section id="holds">
+  <div class="wrap">
+    <h2 class="rv">One place for the things an inspection asks about</h2>
+    <p class="lede rv" style="transition-delay:80ms">
+      The training matrix, the supervision record, the safer recruitment file,
+      the rota and the home&rsquo;s own checks. Each one knows its renewal
+      dates, and the dashboard opens with whatever needs chasing first.
+    </p>
+    <div class="bento">
+      <div class="cell c-a rv">
+        <h3>Training &amp; DBS</h3>
+        <p>Every course and check with its renewal date. What has expired, what is due within 30 days, and who to ring about it, sorted worst first.</p>
+      </div>
+      <div class="cell c-b rv" style="transition-delay:60ms">
+        <h3>Safer recruitment</h3>
+        <p>The full recruitment checklist per person, signed off item by item,
+        so the file an inspector opens is the file you already keep. References,
+        identity, right to work, overseas checks where they apply.</p>
+      </div>
+      <div class="cell c-wide rv" style="transition-delay:90ms">
+        <div class="plate">
+          <img src="/img/rota.jpg" width="1536" height="784"
+               alt="The Ordane rota: a month painted in shift codes with hours totalled per person, sleep-ins marked, and a publish step before the team sees changes.">
+        </div>
+        <p class="capline">The rota is painted, not typed: pick a shift, drag
+        across the week. The team sees nothing until you publish it.</p>
+      </div>
+      <div class="cell c-c rv" style="transition-delay:120ms">
+        <h3>Supervisions</h3>
+        <p>Who is due, who is overdue, and the record of every one held,
+        against the schedule Regulation 33 expects.</p>
+      </div>
+      <div class="cell c-c rv" style="transition-delay:150ms">
+        <h3>Checks &amp; premises</h3>
+        <p>Fire, water, vehicles, first aid and the rest, on their own
+        intervals, with who did what and when.</p>
+      </div>
+      <div class="cell c-c c-amber rv" style="transition-delay:180ms">
+        <h3>The Monday email</h3>
+        <p>Every Monday at 7am, owners and managers get one plain email:
+        what expired, what is coming due, who to chase. A quiet week sends
+        nothing, so silence means clear.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="close" id="book">
-  <div class="wrap close-in">
-    <p class="sec-no reveal">_08_</p>
-    <p class="eyebrow reveal" style="--d:60ms;color:#8ea3b5">Next step</p>
-    <h2 class="reveal" style="--d:120ms">Fifteen minutes and your own spreadsheet on screen</h2>
-    <p class="lede reveal" style="--d:180ms">Bring the one you actually use. I will
-      show you the same information in here and you can decide whether it is better. If it
-      is not, that is a useful fifteen minutes for both of us.</p>
-    <div class="cta-row reveal" style="--d:240ms">
-      <a class="btn btn-cta btn-lg" href="https://cal.com/colbybarton-crump/15min">Book a 15 minute look</a>
-      <a class="btn btn-ghost btn-lg" href="mailto:colby@ordane.co.uk">colby@ordane.co.uk</a>
+<section class="stops" id="stops">
+  <div class="wrap">
+    <h2 class="rv">Where it deliberately stops</h2>
+    <p class="lede rv" style="transition-delay:80ms">
+      The boundaries are structural, not settings someone can change later.
+    </p>
+    <div class="list">
+      <div class="stopline rv">
+        <h3>No child records</h3>
+        <p>There is no child record in Ordane and no field intended for one.
+        It is a staff and premises system, and it stays one.</p>
+      </div>
+      <div class="stopline rv" style="transition-delay:60ms">
+        <h3>No DBS content</h3>
+        <p>Certificate number, dates and status. There is nowhere to type what
+        a disclosure says, on purpose.</p>
+      </div>
+      <div class="stopline rv" style="transition-delay:120ms">
+        <h3>Pay stays private</h3>
+        <p>A support worker sees their own record and the rota. Wages are
+        visible to the Responsible Individual and nobody else, enforced in the
+        database rather than promised in a policy.</p>
+      </div>
     </div>
   </div>
 </section>
 
-</main>
+<section id="price" class="price">
+  <div class="wrap">
+    <h2 class="rv">One price, no contract</h2>
+    <p class="lede rv" style="transition-delay:80ms">
+      Per home, not per employee, so it does not quietly grow with your team.
+      The established providers in this market sell 24 to 60 month terms.
+      Ordane is monthly because the product should be the reason you stay.
+    </p>
+    <div class="card rv" style="transition-delay:120ms">
+      <div class="inner">
+        <div><span class="figure">&pound;99</span> <span class="per">per home, per month</span></div>
+        <ul>
+          <li>Every feature, every role, unlimited staff logins</li>
+          <li>UK GDPR paperwork ready to sign, including the processor agreement</li>
+          <li>Your data exported to you and deleted within 30 days if you leave</li>
+          <li>Founder support, from the person who built it</li>
+        </ul>
+        <a class="btn" href="mailto:colby@ordane.co.uk?subject=A%20look%20at%20Ordane">
+          Book a look
+          <span class="cap"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13 13 3M6 3h7v7"/></svg></span>
+        </a>
+      </div>
+    </div>
+    <p class="founding rv" style="transition-delay:160ms">
+      <b>Founding homes pay &pound;79</b>, locked for 24 months. That price
+      exists because early customers shape the product, and it genuinely ends.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="rv">Reasonable questions</h2>
+    <div class="faq rv" style="transition-delay:80ms">
+      <details>
+        <summary>Who can see what?</summary>
+        <p class="a">Four roles. A support worker sees their own file and the
+        rota. A senior adds the team&rsquo;s checks. A manager runs training,
+        supervisions and the rota, but never pay or restricted records. The
+        Responsible Individual sees everything. The database enforces this,
+        not the screens, so it holds even if the software has a bug.</p>
+      </details>
+      <details>
+        <summary>Where does the data live?</summary>
+        <p class="a">UK GDPR applies in full. Hosting providers and their
+        regions are named in the processor agreement you sign before any real
+        record is entered, so where your data sits is on paper, not on trust.</p>
+      </details>
+      <details>
+        <summary>What happens when staff record their own training?</summary>
+        <p class="a">It waits. Nothing a support worker records counts towards
+        compliance until a manager confirms it, because it is your name against
+        the record at inspection.</p>
+      </details>
+      <details>
+        <summary>How does leaving work?</summary>
+        <p class="a">One email. Everything the system holds for your
+        organisation is exported to you, then deleted within 30 days, subject
+        only to records you are required to retain, which leave with you first.</p>
+      </details>
+    </div>
+  </div>
+</section>
 
 <footer>
-  <div class="wrap foot-in">
-    <span class="lock"><span class="bar"></span><span class="wm"><span class="bub"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="f" cx="50" cy="50" r="50"/></svg></span>rdane</span><span class="bar"></span></span>
-    <span><a href="tel:+447999098245">07999 098245</a></span>
-    <span><a href="mailto:colby@ordane.co.uk">colby@ordane.co.uk</a></span>
-    <span><a href="/">Automation work</a></span>
-    <span>Manchester, UK</span>
+  <div class="wrap foot-grid">
+    <div>
+      <div class="foot-brand">
+        <svg viewBox="0 0 48 48" fill="none" stroke="#1c3d5a" stroke-width="7" aria-hidden="true">
+          <path d="M19 5 H43 V29 a14 14 0 0 1 -14 14 H19 a14 14 0 0 1 -14 -14 V19 a14 14 0 0 1 14 -14 Z"/>
+        </svg>
+        Ordane
+      </div>
+      <p class="meta">Compliance software for children&rsquo;s homes.<br>
+        Founder led, deliberately small, Manchester.</p>
+    </div>
+    <p class="meta">
+      <a href="mailto:colby@ordane.co.uk">colby@ordane.co.uk</a><br>
+      <a href="https://app.ordane.co.uk">Sign in to Ordane</a><br>
+      <a href="/compliance/">The long version of this page</a>
+    </p>
   </div>
 </footer>
 
 <script>
-(function(){
-"use strict";
-var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+/* The counts. Once, on entry, 900ms with a strong ease-out so the last few
+   digits land slowly, which is what makes a number feel counted rather than
+   swapped. Reduced motion gets the finished number straight away. */
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const cio=new IntersectionObserver((es)=>{
+  for(const e of es){
+    if(!e.isIntersecting)continue;
+    cio.unobserve(e.target);
+    const n=+e.target.dataset.n;
+    if(reduce){e.target.textContent=n;continue;}
+    const t0=performance.now(),D=900;
+    const step=(t)=>{
+      const p=Math.min(1,(t-t0)/D),eased=1-Math.pow(1-p,3);
+      e.target.textContent=Math.round(n*eased);
+      if(p<1)requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+},{threshold:0.4});
+document.querySelectorAll('.count').forEach(el=>cio.observe(el));
 
-/* ---- reveal on enter ---- */
-var targets = document.querySelectorAll(".reveal,.rule,.lines");
-if (reduced || !("IntersectionObserver" in window)) {
-  targets.forEach(function(el){ el.classList.add("in"); });
-} else {
-  var io = new IntersectionObserver(function(es){
-    es.forEach(function(e){
-      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
-    });
-  }, { rootMargin:"0px 0px 22% 0px", threshold:0 });
-  targets.forEach(function(el){ io.observe(el); });
-  requestAnimationFrame(function(){
-    document.querySelectorAll(".hero .reveal,#heroLines").forEach(function(el){ el.classList.add("in"); });
-  });
-}
-
-/* ---- scroll progress, drawn as the brand's own datum ---- */
-var bar = document.getElementById("progress"), ticking = false;
-function draw(){
-  var h = document.documentElement.scrollHeight - window.innerHeight;
-  bar.style.transform = "scaleX(" + (h > 0 ? Math.min(1, window.scrollY / h) : 0) + ")";
-  ticking = false;
-}
-window.addEventListener("scroll", function(){
-  if (!ticking) { ticking = true; requestAnimationFrame(draw); }
-}, { passive:true });
-draw();
-})();
+/* Entry reveals via IntersectionObserver, nothing on scroll handlers. */
+const io=new IntersectionObserver((es)=>{
+  for(const e of es){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}
+},{threshold:0.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 </script>
-
 </body>
 </html>
