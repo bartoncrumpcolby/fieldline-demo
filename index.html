@@ -47,7 +47,7 @@ img{max-width:100%;display:block}
 @media (prefers-reduced-motion: reduce){.rv{opacity:1;transform:none;transition:none}}
 
 /* ── Nav: a quiet floating pill, detached from the edge ─────────────────── */
-.nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:40;
+.nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:40;width:max-content;
   display:flex;align-items:center;gap:6px;padding:8px 10px 8px 16px;
   background:rgba(255,255,255,.82);backdrop-filter:blur(14px);
   -webkit-backdrop-filter:blur(14px);
@@ -122,7 +122,7 @@ img{max-width:100%;display:block}
              transform .14s cubic-bezier(0.23,1,0.32,1)}
 .seg button:active{transform:scale(.97)}
 .seg button.on{background:var(--accent);color:#fff}
-.views{position:relative;aspect-ratio:1503/812}
+.views{position:relative;aspect-ratio:840/640}
 .view{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   opacity:0;transform:translateY(6px);
   transition:opacity .22s cubic-bezier(0.23,1,0.32,1),
@@ -151,23 +151,10 @@ img{max-width:100%;display:block}
 .origin b{color:var(--ink);font-weight:600}
 
 /* ── Sections ─────────────────────────────────────────────────────────────── */
-section{padding:96px 0}
+section{padding:96px 0;scroll-margin-top:110px}
 h2{font-size:clamp(26px,3vw,36px);font-weight:700;line-height:1.15;text-wrap:balance}
 .lede{margin-top:14px;font-size:17px;color:var(--ink-2);max-width:60ch}
 
-/* What it holds: an uneven grid, because the contents are uneven. */
-.bento{margin-top:44px;display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
-.cell{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px}
-.cell h3{font-size:17px;font-weight:600;margin-bottom:8px}
-.cell p{font-size:14.5px;color:var(--ink-2)}
-.c-a{grid-column:span 5}
-.c-b{grid-column:span 7}
-.c-c{grid-column:span 4}
-.c-wide{grid-column:span 8;padding:8px;display:flex;flex-direction:column}
-.c-wide .plate{flex:1}
-.c-wide .capline{padding:14px 18px 10px;font-size:14px;color:var(--ink-2)}
-.c-amber{background:#fdf6e6;border-color:#eddaaa}
-@media (max-width:860px){.c-a,.c-b,.c-c,.c-wide{grid-column:span 12}}
 
 /* The explorer: a list of what the product holds on the left, the real
    screen for each on the right, cropped at native scale so nothing turns
@@ -218,9 +205,8 @@ h2{font-size:clamp(26px,3vw,36px);font-weight:700;line-height:1.15;text-wrap:bal
 .price .card{margin-top:44px;background:#fff;border:1px solid var(--line);
   border-radius:22px;padding:8px;max-width:660px}
 .price .inner{border-radius:14px;border:1px solid var(--line);padding:36px 38px}
-.price .figure{font-family:Archivo;font-size:52px;font-weight:700;letter-spacing:-0.03em}
 .price .per{font-size:16px;color:var(--ink-3);font-weight:500}
-.price ul{list-style:none;margin:22px 0 28px;display:grid;gap:10px}
+.price ul{list-style:none;margin:22px 0 28px;padding:0;display:grid;gap:10px}
 .price li{display:flex;gap:11px;align-items:baseline;font-size:15.5px;color:var(--ink-2)}
 .price li::before{content:"";width:7px;height:7px;border-radius:50%;
   background:var(--valid);flex:none;position:relative;top:-2px}
@@ -248,7 +234,7 @@ footer{border-top:1px solid var(--line);padding:70px 0 60px;background:#fff}
   font-weight:700;font-size:18px}
 .foot-brand svg{width:22px;height:22px}
 footer .meta{margin-top:14px;font-size:14px;color:var(--ink-3);line-height:1.9}
-footer .meta a{color:var(--ink-2);text-decoration:none}
+footer .meta a{color:var(--ink-2);text-decoration:none;display:inline-block;padding:7px 0}
 footer .meta a:hover{text-decoration:underline}
 </style>
 </head>
@@ -264,7 +250,7 @@ footer .meta a:hover{text-decoration:underline}
   <a class="item" href="#holds">What it holds</a>
   <a class="item" href="#stops">Where it stops</a>
   <a class="item" href="#start">How it starts</a>
-  <a class="cta" href="mailto:colby@ordane.co.uk?subject=A%20look%20at%20Ordane">Book a look</a>
+  <a class="cta" href="mailto:colby@ordane.co.uk?subject=A%20look%20at%20Ordane&body=I%20would%20like%20a%20look%20at%20Ordane.%20My%20home%20is%20">Book a look</a>
 </nav>
 
 <header class="hero">
@@ -276,14 +262,15 @@ footer .meta a:hover{text-decoration:underline}
         place and in date, instead of a spreadsheet.
       </p>
       <div class="acts rv" style="transition-delay:160ms">
-        <a class="btn" href="mailto:colby@ordane.co.uk?subject=A%20look%20at%20Ordane">
+        <a class="btn" href="mailto:colby@ordane.co.uk?subject=A%20look%20at%20Ordane&body=I%20would%20like%20a%20look%20at%20Ordane.%20My%20home%20is%20">
           Book a look
           <span class="cap"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13 13 3M6 3h7v7"/></svg></span>
         </a>
         <a class="btn ghost" href="#holds">See what it holds</a>
       </div>
       <p class="beneath rv" style="transition-delay:240ms">
-        Priced per home, monthly, cancel any month.
+        Fifteen minutes, on a call, on the demo home. Or write to
+        colby@ordane.co.uk. Monthly, cancel any month.
       </p>
     </div>
     <div class="rv" style="transition-delay:140ms">
@@ -296,9 +283,9 @@ footer .meta a:hover{text-decoration:underline}
         <div class="plate views">
           <img class="view on" src="/img/dashboard.jpg" width="1503" height="812"
                alt="The Ordane dashboard opening with the sentence: 10 items have expired, with the people to chase listed underneath.">
-          <img class="view" src="/img/rota.jpg" width="1503" height="812" loading="lazy"
+          <img class="view" src="/img/ex-rota.png" width="1250" height="952" loading="lazy"
                alt="The Ordane rota: a month painted in shift codes, hours totalled per person, sleep-ins marked, a publish step before the team sees changes.">
-          <img class="view" src="/img/checks.jpg" width="1503" height="812" loading="lazy"
+          <img class="view" src="/img/ex-checks.png" width="1250" height="952" loading="lazy"
                alt="The Ordane checks screen: fire, water and premises checks with how late each one is, in plain language.">
         </div>
         <div class="ministrip" aria-label="The demo home's counts: 10 expired, 3 due within 30 days, 7 due within 90 days, 5 with no date set">
@@ -350,7 +337,7 @@ footer .meta a:hover{text-decoration:underline}
         </button>
         <button type="button" data-ex="5" aria-selected="false">
           <b>The Monday email</b>
-          <span>One plain email of what needs chasing. A quiet week sends nothing.</span>
+          <span>One plain email of what needs chasing, every Monday at 7am.</span>
         </button>
       </div>
       <div class="shell expanel">
@@ -429,7 +416,7 @@ needs attention. A quiet week sends nothing.</pre>
           <li>Leave any month; your data is exported to you and deleted</li>
           <li>Support from the person who built it</li>
         </ul>
-        <a class="btn" href="mailto:colby@ordane.co.uk?subject=A%20look%20at%20Ordane">
+        <a class="btn" href="mailto:colby@ordane.co.uk?subject=A%20look%20at%20Ordane&body=I%20would%20like%20a%20look%20at%20Ordane.%20My%20home%20is%20">
           Book a look
           <span class="cap"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13 13 3M6 3h7v7"/></svg></span>
         </a>
@@ -491,7 +478,7 @@ needs attention. A quiet week sends nothing.</pre>
     <p class="meta">
       <a href="mailto:colby@ordane.co.uk">colby@ordane.co.uk</a><br>
       <a href="https://app.ordane.co.uk">Sign in to Ordane</a><br>
-      <a href="/compliance/">The detailed version</a>
+      <a href="/compliance/">The detailed version, for your DPO</a>
     </p>
   </div>
 </footer>
@@ -520,7 +507,7 @@ document.querySelectorAll('.count').forEach(el=>cio.observe(el));
 /* Same fail-open as the reveals: a throttled tab must never leave the
    strip claiming zero expired items. */
 setTimeout(()=>document.querySelectorAll('.count').forEach(el=>{
-  if(el.textContent==='0')el.textContent=el.dataset.n;
+  if(el.textContent!==el.dataset.n)el.textContent=el.dataset.n;
 }),1400);
 
 /* The view switcher. */
@@ -539,6 +526,9 @@ exBtns.forEach(b=>b.addEventListener('click',()=>{
   const i=+b.dataset.ex;
   exBtns.forEach((x,j)=>{x.classList.toggle('on',j===i);x.setAttribute('aria-selected',j===i)});
   exViews.forEach((v,j)=>v.classList.toggle('on',j===i));
+  if(matchMedia('(max-width:860px)').matches){
+    document.querySelector('.expanel').scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
 }));
 
 /* Entry reveals via IntersectionObserver, nothing on scroll handlers. */
