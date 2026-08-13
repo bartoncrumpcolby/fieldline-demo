@@ -53,13 +53,13 @@ img{max-width:100%;display:block}
   -webkit-backdrop-filter:blur(14px);
   border:1px solid rgba(13,22,32,.08);border-radius:999px;
   box-shadow:0 12px 40px rgba(13,22,32,.10)}
-.nav .brand{display:flex;align-items:center;gap:10px;margin-right:10px;
+.nav .brand{display:flex;align-items:center;gap:10px;margin-right:10px;white-space:nowrap;
   font-family:Archivo;font-weight:700;font-size:17px;text-decoration:none}
 .nav .brand svg{width:22px;height:22px}
 .nav a.item{font-size:13.5px;font-weight:500;color:var(--ink-2);text-decoration:none;
   padding:8px 12px;border-radius:999px;transition:background-color .3s var(--ease)}
 .nav a.item:hover{background:rgba(13,22,32,.05)}
-.nav a.cta{font-size:13.5px;font-weight:600;color:#fff;background:var(--accent);
+.nav a.cta{font-size:13.5px;font-weight:600;color:#fff;background:var(--accent);white-space:nowrap;
   text-decoration:none;padding:9px 16px;border-radius:999px;margin-left:6px;
   transition:background-color .3s var(--ease),transform .3s var(--ease)}
 .nav a.cta:hover{background:var(--accent-deep)}
@@ -83,6 +83,18 @@ img{max-width:100%;display:block}
 
 /* ── Hero: the split. Words left, the real product right. ───────────────── */
 .hero{padding:150px 0 96px}
+.herogrid{display:grid;grid-template-columns:minmax(0,10fr) minmax(0,11fr);
+  gap:clamp(28px,5vw,72px);align-items:center}
+@media (max-width:860px){
+  .hero{padding:110px 0 56px}
+  .herogrid{grid-template-columns:1fr;gap:34px}
+  section{padding:64px 0}
+  .ministrip{grid-template-columns:repeat(2,1fr);row-gap:12px;padding-bottom:12px}
+  .ministrip span:nth-child(2){border-right:0}
+  .origin p{font-size:15px}
+  .price .inner{padding:26px 22px}
+  .stops .stopline{padding:22px 0}
+}
 .hero .grid{display:grid;grid-template-columns:minmax(0,10fr) minmax(0,11fr);
   gap:clamp(28px,5vw,72px);align-items:center}
 .hero h1{font-size:clamp(32px,3.5vw,46px);font-weight:700;line-height:1.08;
@@ -176,8 +188,8 @@ h2{font-size:clamp(26px,3vw,36px);font-weight:700;line-height:1.15;text-wrap:bal
 .exlist button.on b,.exlist button.on span{color:#fff}
 .exlist button.on span{color:#c3d2df}
 .expanel{position:sticky;top:96px}
-.exviews{position:relative;aspect-ratio:740/430;background:#fff}
-.exv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top left;
+.exviews{position:relative;aspect-ratio:840/640;background:#fff}
+.exv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;
   opacity:0;transform:translateY(6px);
   transition:opacity .22s cubic-bezier(0.23,1,0.32,1),
              transform .22s cubic-bezier(0.23,1,0.32,1)}
@@ -256,7 +268,7 @@ footer .meta a:hover{text-decoration:underline}
 </nav>
 
 <header class="hero">
-  <div class="wrap grid" style="display:grid;grid-template-columns:minmax(0,10fr) minmax(0,11fr);gap:clamp(28px,5vw,72px);align-items:center">
+  <div class="wrap herogrid">
     <div>
       <h1 class="rv">The compliance file for children&rsquo;s homes.</h1>
       <p class="sub rv" style="transition-delay:80ms">
@@ -343,15 +355,15 @@ footer .meta a:hover{text-decoration:underline}
       </div>
       <div class="shell expanel">
         <div class="plate exviews">
-          <img class="exv on" src="/img/ex-training.jpg" width="720" height="430"
+          <img class="exv on" src="/img/ex-training.png" width="1250" height="952"
                alt="Training and DBS counts with the people to chase, from the live product.">
-          <img class="exv" src="/img/ex-recruitment.jpg" width="740" height="430" loading="lazy"
+          <img class="exv" src="/img/ex-recruitment.png" width="1250" height="952" loading="lazy"
                alt="A safer recruitment checklist section with per item sign off, from the live product.">
-          <img class="exv" src="/img/ex-rota.jpg" width="740" height="400" loading="lazy"
+          <img class="exv" src="/img/ex-rota.png" width="1250" height="952" loading="lazy"
                alt="The rota grid painted in shift codes with the code palette above it, from the live product.">
-          <img class="exv" src="/img/ex-supervisions.jpg" width="740" height="350" loading="lazy"
+          <img class="exv" src="/img/ex-supervisions.png" width="1250" height="952" loading="lazy"
                alt="The supervisions screen showing who is overdue and who is up to date, from the live product.">
-          <img class="exv" src="/img/ex-checks.jpg" width="740" height="430" loading="lazy"
+          <img class="exv" src="/img/ex-checks.png" width="1250" height="952" loading="lazy"
                alt="The premises checks table with how late each one is, from the live product.">
           <div class="exv exmail" aria-label="An example of the Monday morning email">
             <p class="from">Ordane &lt;alerts@ordane.co.uk&gt;</p>
