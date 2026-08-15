@@ -46,6 +46,21 @@ h1,h2,h3,.wordmark{font-family:Archivo,Inter,sans-serif;letter-spacing:-0.02em}
 a{color:inherit}
 img{max-width:100%;display:block}
 .wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+::selection{background:var(--accent);color:#fff}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.stops :focus-visible{outline-color:#fff}
+
+/* Keyboard route past the nav. Hidden until focused, then a real button. */
+.skip{position:fixed;top:18px;left:18px;z-index:50;background:var(--accent);color:#fff;
+  font-size:13.5px;font-weight:600;text-decoration:none;padding:10px 18px;
+  border-radius:999px;transform:translateY(-72px);transition:transform .2s var(--ease)}
+.skip:focus-visible{transform:none}
+
+/* The address as a fallback for the mailto buttons: on machines with no mail
+   client the primary CTA fails silently, so the plain address copies itself
+   instead. Without javascript it stays an ordinary mailto link. */
+.copymail{color:var(--ink);font-weight:600;text-decoration:underline;
+  text-underline-offset:3px;cursor:pointer}
 
 /* Reveal on entry: a gentle heavy rise, once, honoured under reduced motion. */
 .rv{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
@@ -70,7 +85,22 @@ img{max-width:100%;display:block}
   transition:background-color .3s var(--ease),transform .3s var(--ease)}
 .nav a.cta:hover{background:var(--accent-deep)}
 .nav a.cta:active{transform:scale(.97)}
-@media (max-width:760px){.nav a.item{display:none}.nav{gap:2px}}
+/* On phones the anchor links move into a native disclosure, so a 5000px page
+   still has a way to jump to Security or the FAQ. No javascript to fail. */
+.nav .menu{display:none;position:relative}
+.nav .menu summary{list-style:none;cursor:pointer;font-size:13.5px;font-weight:500;
+  color:var(--ink-2);padding:8px 12px;border-radius:999px}
+.nav .menu summary::-webkit-details-marker{display:none}
+.nav .menu[open] summary{background:rgba(13,22,32,.05)}
+.nav .menu .sheet{position:absolute;top:calc(100% + 16px);right:-64px;width:max-content;
+  display:grid;gap:2px;padding:8px;background:rgba(255,255,255,.96);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(13,22,32,.08);border-radius:16px;
+  box-shadow:0 12px 40px rgba(13,22,32,.12)}
+.nav .menu .sheet a{font-size:14px;font-weight:500;color:var(--ink-2);
+  text-decoration:none;padding:9px 14px;border-radius:10px}
+.nav .menu .sheet a:hover{background:rgba(13,22,32,.05)}
+@media (max-width:760px){.nav a.item{display:none}.nav{gap:2px}.nav .menu{display:block}}
 
 /* ── Buttons: pill, with the arrow in its own little room ───────────────── */
 .btn{display:inline-flex;align-items:center;gap:12px;text-decoration:none;
@@ -95,14 +125,10 @@ img{max-width:100%;display:block}
   .hero{padding:110px 0 56px}
   .herogrid{grid-template-columns:1fr;gap:34px}
   section{padding:64px 0}
-  .ministrip{grid-template-columns:repeat(2,1fr);row-gap:12px;padding-bottom:12px}
-  .ministrip span:nth-child(2){border-right:0}
   .origin p{font-size:15px}
-  .price .inner{padding:26px 22px}
+  .start .inner{padding:26px 22px}
   .stops .stopline{padding:22px 0}
 }
-.hero .grid{display:grid;grid-template-columns:minmax(0,10fr) minmax(0,11fr);
-  gap:clamp(28px,5vw,72px);align-items:center}
 .hero h1{font-size:clamp(32px,3.5vw,46px);font-weight:700;line-height:1.08;
   text-wrap:balance}
 .hero .sub{margin-top:22px;font-size:18px;color:var(--ink-2);max-width:44ch}
@@ -116,39 +142,6 @@ img{max-width:100%;display:block}
   box-shadow:0 30px 90px rgba(13,22,32,.13)}
 .shell .plate{border-radius:14px;overflow:hidden;background:#fff;
   border:1px solid rgba(13,22,32,.06)}
-/* The view switcher. Transitions rather than keyframes, because somebody
-   clicking through quickly should retarget mid-motion, never restart. The
-   incoming view rises 6px on a strong ease-out; 220ms, felt not watched. */
-.seg{display:inline-flex;gap:4px;background:#fff;border:1px solid var(--line);
-  border-radius:999px;padding:4px;margin-bottom:14px}
-.seg button{font:inherit;font-size:13.5px;font-weight:600;color:var(--ink-2);
-  background:none;border:0;border-radius:999px;padding:7px 16px;cursor:pointer;
-  transition:background-color .18s cubic-bezier(0.23,1,0.32,1),
-             color .18s cubic-bezier(0.23,1,0.32,1),
-             transform .14s cubic-bezier(0.23,1,0.32,1)}
-.seg button:active{transform:scale(.97)}
-.seg button.on{background:var(--accent);color:#fff}
-.views{position:relative;aspect-ratio:840/640}
-.view{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  opacity:0;transform:translateY(6px);
-  transition:opacity .22s cubic-bezier(0.23,1,0.32,1),
-             transform .22s cubic-bezier(0.23,1,0.32,1)}
-.view.on{opacity:1;transform:none}
-@media (prefers-reduced-motion: reduce){.view{transition:opacity .22s ease;transform:none}}
-
-/* The strip under the screenshot is a real miniature of the product's own
-   counts row, and its numbers are the same ones visible in the image above
-   it. It counts up once, on entry: the one authored moment on the page. */
-.ministrip{display:grid;grid-template-columns:repeat(4,1fr);gap:0;
-  padding:14px 6px 8px}
-.ministrip span{display:flex;flex-direction:column;align-items:flex-start;
-  padding:0 14px;border-right:1px solid rgba(13,22,32,.08);
-  font-size:12px;color:var(--ink-2)}
-.ministrip span:last-child{border-right:0}
-.ministrip b{font-family:Archivo;font-size:24px;font-weight:700;
-  letter-spacing:-0.02em;color:var(--ink);font-variant-numeric:tabular-nums;
-  line-height:1.2}
-
 /* ── The origin line: one sentence, full width, no decoration ───────────── */
 .origin{border-top:1px solid var(--line);border-bottom:1px solid var(--line);
   background:#fff}
@@ -168,13 +161,22 @@ h2{font-size:clamp(26px,3vw,36px);font-weight:700;line-height:1.15;text-wrap:bal
 .explore{margin-top:44px;display:grid;grid-template-columns:minmax(280px,5fr) 7fr;
   gap:22px;align-items:start}
 .exlist{display:grid;gap:8px}
-.exlist button{font:inherit;text-align:left;background:#fff;
-  border:1px solid var(--line);border-radius:14px;padding:16px 18px;cursor:pointer;
+/* Eight equal cards is over anyone's working memory, so the list is staged
+   into three named clusters, and the proof reads as the crescendo it is. */
+.exgroup{font-size:11.5px;font-weight:600;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink-3);margin:14px 0 2px}
+.exgroup:first-child{margin-top:0}
+.exlist button{font:inherit;text-align:left;background:#fff;position:relative;
+  border:1px solid var(--line);border-radius:14px;padding:16px 44px 16px 18px;cursor:pointer;
   display:grid;gap:3px;
   transition:background-color .18s cubic-bezier(0.23,1,0.32,1),
              border-color .18s cubic-bezier(0.23,1,0.32,1),
              transform .14s cubic-bezier(0.23,1,0.32,1)}
+.exlist button:hover{border-color:#c2cdd6;background:#fbfcfd}
 .exlist button:active{transform:scale(.985)}
+.exlist button .chev{position:absolute;right:16px;top:50%;width:14px;height:14px;
+  transform:translateY(-50%);color:var(--ink-3)}
+.exlist button.on .chev{color:#c3d2df}
 .exlist button b{font-family:Archivo;font-size:15.5px;font-weight:600;color:var(--ink)}
 .exlist button span{font-size:13px;color:var(--ink-2);line-height:1.45}
 .exlist button.on{background:var(--accent);border-color:var(--accent)}
@@ -224,7 +226,8 @@ h2{font-size:clamp(26px,3vw,36px);font-weight:700;line-height:1.15;text-wrap:bal
    by the same tokens as everything else, so nothing reads as a pasted-in
    picture. Numbers and names are the demo home's. */
 .exmock,.board{background:#fff;padding:clamp(18px,2.2vw,26px)}
-.exmock{overflow:auto}
+.exmock{overflow:auto;display:flex;flex-direction:column}
+.exmock .mfoot{margin-top:auto;padding-top:12px}
 .mh{font-family:Archivo;font-weight:600;font-size:15.5px;margin:0 0 8px}
 .mrow{display:flex;align-items:center;gap:12px;padding:10px 0;
   border-top:1px solid var(--line);font-size:13.5px}
@@ -308,18 +311,28 @@ h2{font-size:clamp(26px,3vw,36px);font-weight:700;line-height:1.15;text-wrap:bal
 .stops .list{margin-top:44px}
 @media (max-width:760px){.stopline{grid-template-columns:1fr}}
 
-/* Price: one card, one number. */
-.price .card{margin-top:44px;background:#fff;border:1px solid var(--line);
-  border-radius:22px;padding:8px;max-width:660px}
-.price .inner{border-radius:14px;border:1px solid var(--line);padding:36px 38px}
-.price .per{font-size:16px;color:var(--ink-3);font-weight:500}
-.price ul{list-style:none;margin:22px 0 28px;padding:0;display:grid;gap:10px}
-.price li{display:flex;gap:11px;align-items:baseline;font-size:15.5px;color:var(--ink-2)}
-.price li::before{content:"";width:7px;height:7px;border-radius:50%;
+/* How it starts: the card and the founding note share the row, so the
+   section does not sit lopsided against an empty right half. */
+.start .duo{margin-top:44px;display:grid;
+  grid-template-columns:minmax(0,620px) minmax(240px,1fr);
+  gap:28px;align-items:end}
+@media (max-width:860px){.start .duo{grid-template-columns:1fr;gap:16px}}
+.start .card{background:#fff;border:1px solid var(--line);
+  border-radius:22px;padding:8px}
+.start .inner{border-radius:14px;border:1px solid var(--line);padding:36px 38px}
+.start ul{list-style:none;margin:22px 0 28px;padding:0;display:grid;gap:10px}
+.start li{display:flex;gap:11px;align-items:baseline;font-size:15.5px;color:var(--ink-2)}
+.start li::before{content:"";width:7px;height:7px;border-radius:50%;
   background:var(--valid);flex:none;position:relative;top:-2px}
-.founding{margin-top:14px;font-size:14.5px;color:var(--ink-2);
+.start .alt{margin-top:18px;font-size:14px;color:var(--ink-3)}
+.founding{font-size:14.5px;color:var(--ink-2);
   background:#fdf6e6;border:1px solid #eddaaa;border-radius:10px;padding:12px 16px;
   max-width:660px}
+
+/* The closer: the page should end on the door, not on a collapsed FAQ. */
+.closer{padding-top:40px}
+.closer .acts{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.closer .beneath{margin-top:22px;font-size:14px;color:var(--ink-3)}
 
 /* FAQ: native disclosure, no javascript to fail. */
 .faq{margin-top:40px;max-width:760px}
@@ -347,6 +360,8 @@ footer .meta a:hover{text-decoration:underline}
 </head>
 <body>
 
+<a class="skip" href="#main">Skip to content</a>
+
 <nav class="nav" aria-label="Main">
   <a class="brand" href="/">
     <svg viewBox="0 0 48 48" fill="none" stroke="#1c3d5a" stroke-width="7" aria-hidden="true">
@@ -356,13 +371,23 @@ footer .meta a:hover{text-decoration:underline}
   </a>
   <a class="item" href="#holds">What it holds</a>
   <a class="item" href="#stops">Where it stops</a>
-  <a class="item" href="#compare">Why Ordane</a>
+  <a class="item" href="#compare">Why the staff side</a>
   <a class="item" href="/compliance/">Security</a>
   <a class="item" href="#start">How it starts</a>
-  <a class="cta" href="mailto:colby@ordane.co.uk?subject=A%20look%20at%20Ordane&body=I%20would%20like%20a%20look%20at%20Ordane.%20My%20home%20is%20">Book a look</a>
+  <details class="menu">
+    <summary>Menu</summary>
+    <div class="sheet">
+      <a href="#holds">What it holds</a>
+      <a href="#stops">Where it stops</a>
+      <a href="#compare">Why the staff side</a>
+      <a href="/compliance/">Security</a>
+      <a href="#start">How it starts</a>
+    </div>
+  </details>
+  <a class="cta" href="mailto:colby@ordane.co.uk?subject=A%20look%20at%20Ordane&body=I%20would%20like%20a%20look%20at%20Ordane.%0A%0AMy%20home%20or%20group%3A%20%0AA%20good%20time%20to%20call%3A%20">Book a look</a>
 </nav>
 
-<header class="hero">
+<header class="hero" id="main">
   <div class="wrap herogrid">
     <div class="heroleft">
       <h1 class="rv">The compliance file for children&rsquo;s homes.</h1>
@@ -371,7 +396,7 @@ footer .meta a:hover{text-decoration:underline}
         place and in date, instead of a spreadsheet.
       </p>
       <div class="acts rv" style="transition-delay:160ms">
-        <a class="btn" href="mailto:colby@ordane.co.uk?subject=A%20look%20at%20Ordane&body=I%20would%20like%20a%20look%20at%20Ordane.%20My%20home%20is%20">
+        <a class="btn" href="mailto:colby@ordane.co.uk?subject=A%20first%20look%20at%20Ordane&body=I%20would%20like%20a%20look%20at%20Ordane.%0A%0AMy%20home%20or%20group%3A%20%0AA%20good%20time%20to%20call%3A%20">
           Book a look
           <span class="cap"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13 13 3M6 3h7v7"/></svg></span>
         </a>
@@ -379,7 +404,7 @@ footer .meta a:hover{text-decoration:underline}
       </div>
       <p class="beneath rv" style="transition-delay:240ms">
         Fifteen minutes, on a call, on the demo home. Or write to
-        colby@ordane.co.uk.
+        <a class="copymail" href="mailto:colby@ordane.co.uk">colby@ordane.co.uk</a>.
       </p>
     </div>
     <div class="heropeek rv" style="transition-delay:180ms">
@@ -407,10 +432,10 @@ footer .meta a:hover{text-decoration:underline}
               <span class="afbtn" aria-hidden="true">Evidence pack</span>
             </div>
             <div class="afstats" aria-label="The demo home&rsquo;s counts: 10 expired, 3 due within 30 days, 7 due within 90 days, 5 with no date set">
-              <span><b class="count" data-n="10" style="color:#b3261e">0</b>expired</span>
-              <span><b class="count" data-n="3" style="color:#8a5a11">0</b>due in 30 days</span>
-              <span><b class="count" data-n="7">0</b>due in 90 days</span>
-              <span><b class="count" data-n="5">0</b>no date set</span>
+              <span><b class="count" data-n="10" style="color:#b3261e">10</b>expired</span>
+              <span><b class="count" data-n="3" style="color:#8a5a11">3</b>due in 30 days</span>
+              <span><b class="count" data-n="7">7</b>due in 90 days</span>
+              <span><b class="count" data-n="5">5</b>no date set</span>
             </div>
             <p class="bsent"><b>10 items have expired.</b> These first:</p>
             <div class="mrow"><span class="who">Grace Ellison</span>
@@ -454,38 +479,49 @@ footer .meta a:hover{text-decoration:underline}
       whatever needs chasing first.
     </p>
     <div class="explore rv" style="transition-delay:120ms">
-      <div class="exlist" role="tablist" aria-label="What Ordane holds">
-        <button type="button" class="on" data-ex="0" aria-selected="true">
+      <div class="exlist" aria-label="What Ordane holds">
+        <p class="exgroup">The records</p>
+        <button type="button" class="on" data-ex="0" aria-pressed="true">
           <b>Training &amp; DBS</b>
           <span>Every course and check with its renewal date, sorted worst first.</span>
+          <svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4l4 4-4 4"/></svg>
         </button>
-        <button type="button" data-ex="1" aria-selected="false">
+        <button type="button" data-ex="1" aria-pressed="false">
           <b>Safer recruitment</b>
           <span>The full checklist per person, signed off item by item.</span>
+          <svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4l4 4-4 4"/></svg>
         </button>
-        <button type="button" data-ex="2" aria-selected="false">
-          <b>The rota</b>
-          <span>Drag shifts across the week, sleep-ins included. Publish when ready.</span>
-        </button>
-        <button type="button" data-ex="3" aria-selected="false">
+        <button type="button" data-ex="3" aria-pressed="false">
           <b>Supervisions</b>
           <span>Who is due and who is overdue, against Regulation 33.</span>
+          <svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4l4 4-4 4"/></svg>
         </button>
-        <button type="button" data-ex="4" aria-selected="false">
+        <p class="exgroup">The week</p>
+        <button type="button" data-ex="2" aria-pressed="false">
+          <b>The rota</b>
+          <span>Drag shifts across the week, sleep-ins included. Publish when ready.</span>
+          <svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4l4 4-4 4"/></svg>
+        </button>
+        <button type="button" data-ex="4" aria-pressed="false">
           <b>Checks &amp; premises</b>
           <span>Fire, water, vehicles and the rest, on their own intervals.</span>
+          <svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4l4 4-4 4"/></svg>
         </button>
-        <button type="button" data-ex="5" aria-selected="false">
+        <p class="exgroup">The proof</p>
+        <button type="button" data-ex="5" aria-pressed="false">
           <b>Tasks, with receipts</b>
           <span>Sent, seen, done. You know who has read it and who has finished it.</span>
+          <svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4l4 4-4 4"/></svg>
         </button>
-        <button type="button" data-ex="6" aria-selected="false">
+        <button type="button" data-ex="6" aria-pressed="false">
           <b>The paper trail</b>
           <span>An audit trail nobody can edit, and an evidence pack in one click.</span>
+          <svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4l4 4-4 4"/></svg>
         </button>
-        <button type="button" data-ex="7" aria-selected="false">
+        <button type="button" data-ex="7" aria-pressed="false">
           <b>The Monday email</b>
           <span>One plain email of what needs chasing, every Monday at 7am.</span>
+          <svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4l4 4-4 4"/></svg>
         </button>
       </div>
       <div class="shell expanel">
@@ -767,32 +803,36 @@ needs attention. A quiet week sends nothing.</pre>
   </div>
 </section>
 
-<section id="start" class="price">
+<section id="start" class="start">
   <div class="wrap">
     <h2 class="rv">How it starts</h2>
     <p class="lede rv" style="transition-delay:80ms">
       Nothing to install and no contract to start. Per home rather than per
       employee, monthly rather than a 24 to 60 month term.
     </p>
-    <div class="card rv" style="transition-delay:120ms">
-      <div class="inner">
-        <ul style="margin-top:0">
-          <li>A fifteen minute look at the demo home, on a call</li>
-          <li>Then a free trial with your own data, once the agreement is signed</li>
-          <li>Every feature and every staff login included, nothing gated</li>
-          <li>Leave any month; your data is exported to you and deleted</li>
-          <li>Support from the person who built it</li>
-        </ul>
-        <a class="btn" href="mailto:colby@ordane.co.uk?subject=A%20look%20at%20Ordane&body=I%20would%20like%20a%20look%20at%20Ordane.%20My%20home%20is%20">
-          Book a look
-          <span class="cap"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13 13 3M6 3h7v7"/></svg></span>
-        </a>
+    <div class="duo">
+      <div class="card rv" style="transition-delay:120ms">
+        <div class="inner">
+          <ul style="margin-top:0">
+            <li>A fifteen minute look at the demo home, on a call</li>
+            <li>Then a free trial with your own data, once the agreement is signed</li>
+            <li>Every feature and every staff login included, nothing gated</li>
+            <li>Leave any month; your data is exported to you and deleted</li>
+            <li>Support from the person who built it</li>
+          </ul>
+          <a class="btn" href="mailto:colby@ordane.co.uk?subject=Booking%20a%20look%20at%20Ordane&body=I%20would%20like%20a%20look%20at%20Ordane.%0A%0AMy%20home%20or%20group%3A%20%0AA%20good%20time%20to%20call%3A%20">
+            Book a look
+            <span class="cap"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13 13 3M6 3h7v7"/></svg></span>
+          </a>
+          <p class="alt">If the button does nothing on your machine, write to
+            <a class="copymail" href="mailto:colby@ordane.co.uk">colby@ordane.co.uk</a>.</p>
+        </div>
       </div>
+      <p class="founding rv" style="transition-delay:160ms">
+        There is a founding rate for the first homes, locked for two years.
+        Ask on the call.
+      </p>
     </div>
-    <p class="founding rv" style="transition-delay:160ms">
-      There is a founding rate for the first homes, locked for two years.
-      Ask on the call.
-    </p>
   </div>
 </section>
 
@@ -810,9 +850,10 @@ needs attention. A quiet week sends nothing.</pre>
       </details>
       <details>
         <summary>Where does the data live?</summary>
-        <p class="a">UK GDPR applies in full. Hosting providers and their
-        regions are named in the processor agreement you sign before any real
-        record is entered, so where your data sits is on paper, not on trust.</p>
+        <p class="a">UK GDPR applies in full. The providers are named openly
+        on <a href="/compliance/">the security page</a>, and their regions are
+        fixed in the processor agreement you sign before any real record is
+        entered, so where your data sits is on paper, not on trust.</p>
       </details>
       <details>
         <summary>What happens when staff record their own training?</summary>
@@ -827,6 +868,25 @@ needs attention. A quiet week sends nothing.</pre>
         only to records you are required to retain, which leave with you first.</p>
       </details>
     </div>
+  </div>
+</section>
+
+<section class="closer">
+  <div class="wrap">
+    <h2 class="rv">Fifteen minutes, on the demo home.</h2>
+    <p class="lede rv" style="transition-delay:80ms">
+      One call, no slides, the real product on demo data. You will know
+      within the first five whether it fits your homes.
+    </p>
+    <div class="acts rv" style="transition-delay:140ms">
+      <a class="btn" href="mailto:colby@ordane.co.uk?subject=A%20look%20at%20the%20demo%20home&body=I%20would%20like%20a%20look%20at%20Ordane.%0A%0AMy%20home%20or%20group%3A%20%0AA%20good%20time%20to%20call%3A%20">
+        Book a look
+        <span class="cap"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13 13 3M6 3h7v7"/></svg></span>
+      </a>
+    </div>
+    <p class="beneath rv" style="transition-delay:200ms">
+      Or write to <a class="copymail" href="mailto:colby@ordane.co.uk">colby@ordane.co.uk</a>.
+    </p>
   </div>
 </section>
 
@@ -855,6 +915,9 @@ needs attention. A quiet week sends nothing.</pre>
    digits land slowly, which is what makes a number feel counted rather than
    swapped. Reduced motion gets the finished number straight away. */
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* The finished numbers live in the markup, so a visitor without javascript
+   reads the truth. Only a running script earns the zero-and-count-up. */
+if(!reduce)document.querySelectorAll('.count').forEach(el=>el.textContent='0');
 const cio=new IntersectionObserver((es)=>{
   for(const e of es){
     if(!e.isIntersecting)continue;
@@ -877,28 +940,37 @@ setTimeout(()=>document.querySelectorAll('.count').forEach(el=>{
   if(el.textContent!==el.dataset.n)el.textContent=el.dataset.n;
 }),1400);
 
-/* The view switcher. */
-const segBtns=[...document.querySelectorAll('.seg button')];
-const views=[...document.querySelectorAll('.view')];
-segBtns.forEach(b=>b.addEventListener('click',()=>{
-  const i=+b.dataset.view;
-  segBtns.forEach((x,j)=>{x.classList.toggle('on',j===i);x.setAttribute('aria-selected',j===i)});
-  views.forEach((v,j)=>v.classList.toggle('on',j===i));
-}));
-
 /* The explorer. */
 const exBtns=[...document.querySelectorAll('.exlist button')];
 const exViews=[...document.querySelectorAll('.exv')];
 const exDs=[...document.querySelectorAll('.exd')];
 exBtns.forEach(b=>b.addEventListener('click',()=>{
   const i=+b.dataset.ex;
-  exBtns.forEach((x,j)=>{x.classList.toggle('on',j===i);x.setAttribute('aria-selected',j===i)});
+  exBtns.forEach(x=>{const on=+x.dataset.ex===i;
+    x.classList.toggle('on',on);x.setAttribute('aria-pressed',on)});
   exViews.forEach((v,j)=>v.classList.toggle('on',j===i));
   exDs.forEach((d,j)=>d.classList.toggle('on',j===i));
   if(matchMedia('(max-width:860px)').matches){
     document.querySelector('.expanel').scrollIntoView({behavior:'smooth',block:'nearest'});
   }
 }));
+
+/* The address copies itself, because the machine most likely to be reading
+   this page has no mail client registered and a mailto that does nothing.
+   If the clipboard is unavailable the link falls through to plain mailto. */
+document.querySelectorAll('.copymail').forEach(a=>a.addEventListener('click',ev=>{
+  if(!navigator.clipboard)return;
+  ev.preventDefault();
+  navigator.clipboard.writeText('colby@ordane.co.uk').then(()=>{
+    const was=a.textContent;a.textContent='Copied to clipboard';
+    setTimeout(()=>{a.textContent=was},1600);
+  }).catch(()=>{location.href=a.href});
+}));
+
+/* The phone menu closes itself once a destination is chosen. */
+const menu=document.querySelector('.nav .menu');
+if(menu)menu.querySelectorAll('a').forEach(a=>
+  a.addEventListener('click',()=>menu.removeAttribute('open')));
 
 /* Entry reveals via IntersectionObserver, nothing on scroll handlers. */
 const io=new IntersectionObserver((es)=>{
