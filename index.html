@@ -181,7 +181,7 @@ h2{font-size:clamp(26px,3vw,36px);font-weight:700;line-height:1.15;text-wrap:bal
 .exlist button.on b,.exlist button.on span{color:#fff}
 .exlist button.on span{color:#c3d2df}
 .expanel{position:sticky;top:96px}
-.exviews{position:relative;aspect-ratio:840/640;background:#fff}
+.exviews{position:relative;aspect-ratio:840/500;background:#fff}
 .exv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;
   opacity:0;transform:translateY(6px);
   transition:opacity .22s cubic-bezier(0.23,1,0.32,1),
@@ -218,6 +218,43 @@ h2{font-size:clamp(26px,3vw,36px);font-weight:700;line-height:1.15;text-wrap:bal
 .compare .after{margin-top:26px;font-size:15.5px;color:var(--ink-2);max-width:62ch}
 .compare .after b{color:var(--ink)}
 @media (max-width:760px){.compare .cline{grid-template-columns:1fr;gap:4px;padding:20px 0}}
+
+/* Screenshots are gone. The product is shown as rendered vignettes in real
+   markup: sharp at any width, honest about what the screens say, and styled
+   by the same tokens as everything else, so nothing reads as a pasted-in
+   picture. Numbers and names are the demo home's. */
+.exmock,.board{background:#fff;padding:clamp(18px,2.2vw,26px)}
+.exmock{overflow:auto}
+.mh{font-family:Archivo;font-weight:600;font-size:15.5px;margin:0 0 8px}
+.mrow{display:flex;align-items:center;gap:12px;padding:10px 0;
+  border-top:1px solid var(--line);font-size:13.5px}
+.mrow .who{font-weight:600;white-space:nowrap}
+.mrow .what{color:var(--ink-3);flex:1;min-width:0}
+.mp{font-size:11.5px;font-weight:600;border-radius:999px;padding:3px 10px;
+  white-space:nowrap;margin-left:auto}
+.mp.red{background:#f4d7d3;color:#8f1f16}
+.mp.amber{background:#f3e4c3;color:#7a5410}
+.mp.green{background:var(--valid-bg);color:var(--valid)}
+.mfoot{margin-top:12px;font-size:12.5px;color:var(--ink-3)}
+.mgrid{display:grid;grid-template-columns:76px repeat(7,1fr);gap:4px;
+  font-size:11px;margin-top:6px}
+.mgrid .gh{color:var(--ink-3);text-align:center;font-weight:600}
+.mgrid .gn{font-weight:600;font-size:12px;align-self:center;white-space:nowrap}
+.mc{border-radius:5px;padding:6px 0;text-align:center;font-weight:600;
+  position:relative;background:#eef2f6;color:var(--ink-2)}
+.mc.e{background:#dbe7f3;color:#1c3d5a}
+.mc.d{background:#e3ead9;color:#3c5a2a}
+.mc.n{background:var(--accent);color:#fff}
+.mc.off{background:transparent;border:1px dashed var(--line);color:var(--ink-3);font-weight:400}
+.mc .sleep{position:absolute;top:3px;right:4px;width:5px;height:5px;
+  border-radius:50%;background:var(--amber)}
+
+/* The hero board: the dashboard's opening sentence and the people to chase. */
+.board .bsent{font-family:Archivo;font-weight:600;letter-spacing:-.01em;
+  font-size:clamp(17px,1.8vw,21px);margin:0 0 8px}
+.board .bsent b{color:#b3261e;font-weight:700}
+.stopnote{margin-top:30px;font-size:15px;color:#b9c9d8;max-width:56ch}
+.stopnote a{color:#fff;text-decoration:underline;text-underline-offset:3px}
 @media (max-width:860px){.exd ul{grid-template-columns:1fr}}
 @media (max-width:860px){.explore{grid-template-columns:1fr}.expanel{position:static;order:-1}}
 @media (prefers-reduced-motion: reduce){.exv{transition:opacity .22s ease;transform:none}}
@@ -283,6 +320,7 @@ footer .meta a:hover{text-decoration:underline}
   <a class="item" href="#holds">What it holds</a>
   <a class="item" href="#stops">Where it stops</a>
   <a class="item" href="#compare">Why Ordane</a>
+  <a class="item" href="/compliance/">Security</a>
   <a class="item" href="#start">How it starts</a>
   <a class="cta" href="mailto:colby@ordane.co.uk?subject=A%20look%20at%20Ordane&body=I%20would%20like%20a%20look%20at%20Ordane.%20My%20home%20is%20">Book a look</a>
 </nav>
@@ -308,19 +346,23 @@ footer .meta a:hover{text-decoration:underline}
       </p>
     </div>
     <div class="rv" style="transition-delay:140ms">
-      <div class="seg" role="tablist" aria-label="Product views">
-        <button type="button" class="on" data-view="0" aria-selected="true">Dashboard</button>
-        <button type="button" data-view="1" aria-selected="false">Rota</button>
-        <button type="button" data-view="2" aria-selected="false">Checks</button>
-      </div>
       <div class="shell">
-        <div class="plate views">
-          <img class="view on" src="/img/dashboard.jpg" width="1503" height="812"
-               alt="The Ordane dashboard opening with the sentence: 10 items have expired, with the people to chase listed underneath.">
-          <img class="view" src="/img/ex-rota.png" width="1250" height="952" loading="lazy"
-               alt="The Ordane rota: a month painted in shift codes, hours totalled per person, sleep-ins marked, a publish step before the team sees changes.">
-          <img class="view" src="/img/ex-checks.png" width="1250" height="952" loading="lazy"
-               alt="The Ordane checks screen: fire, water and premises checks with how late each one is, in plain language.">
+        <div class="plate board" aria-label="The dashboard's opening: 10 items have expired, with the people to chase">
+          <p class="bsent"><b>10 items have expired.</b> These first:</p>
+          <div class="mrow"><span class="who">Grace Ellison</span>
+            <span class="what">Fire safety training</span>
+            <span class="mp red">157d over</span></div>
+          <div class="mrow"><span class="who">Daniel Mercer</span>
+            <span class="what">First aid</span>
+            <span class="mp red">12d over</span></div>
+          <div class="mrow"><span class="who">Priya Raman</span>
+            <span class="what">DVLA driving licence</span>
+            <span class="mp amber">in 9 days</span></div>
+          <div class="mrow"><span class="who">Sam Ogden</span>
+            <span class="what">DBS renewal</span>
+            <span class="mp green">in 210 days</span></div>
+          <p class="mfoot">The dashboard opens with whatever needs chasing first.
+            Worst at the top, one click to make it somebody's task.</p>
         </div>
         <div class="ministrip" aria-label="The demo home's counts: 10 expired, 3 due within 30 days, 7 due within 90 days, 5 with no date set">
           <span><b class="count" data-n="10" style="color:#b3261e">0</b>expired</span>
@@ -384,16 +426,82 @@ footer .meta a:hover{text-decoration:underline}
       </div>
       <div class="shell expanel">
         <div class="plate exviews">
-          <img class="exv on" src="/img/ex-training.png" width="1250" height="952"
-               alt="Training and DBS counts with the people to chase, from the live product.">
-          <img class="exv" src="/img/ex-recruitment.png" width="1250" height="952" loading="lazy"
-               alt="A safer recruitment checklist section with per item sign off, from the live product.">
-          <img class="exv" src="/img/ex-rota.png" width="1250" height="952" loading="lazy"
-               alt="The rota grid painted in shift codes with the code palette above it, from the live product.">
-          <img class="exv" src="/img/ex-supervisions.png" width="1250" height="952" loading="lazy"
-               alt="The supervisions screen showing who is overdue and who is up to date, from the live product.">
-          <img class="exv" src="/img/ex-checks.png" width="1250" height="952" loading="lazy"
-               alt="The premises checks table with how late each one is, from the live product.">
+          <div class="exv exmock on" aria-label="Training and DBS, the demo home">
+            <p class="mh">Training and DBS</p>
+            <div class="mrow"><span class="who">Grace Ellison</span>
+              <span class="what">Fire safety training</span><span class="mp red">157d over</span></div>
+            <div class="mrow"><span class="who">Daniel Mercer</span>
+              <span class="what">First aid</span><span class="mp red">12d over</span></div>
+            <div class="mrow"><span class="who">Priya Raman</span>
+              <span class="what">DVLA driving licence</span><span class="mp amber">in 9 days</span></div>
+            <div class="mrow"><span class="who">Sam Ogden</span>
+              <span class="what">DBS renewal</span><span class="mp green">in 210 days</span></div>
+            <p class="mfoot">Sorted worst first, certificate attached to each
+              item, one click to make an expiry somebody's task.</p>
+          </div>
+          <div class="exv exmock" aria-label="Safer recruitment, one person's checklist">
+            <p class="mh">Safer recruitment: Daniel Mercer</p>
+            <div class="mrow"><span class="what">Two references, verified</span>
+              <span class="mp green">3 Mar</span></div>
+            <div class="mrow"><span class="what">Enhanced DBS with barred lists</span>
+              <span class="mp green">3 Mar</span></div>
+            <div class="mrow"><span class="what">Right to work</span>
+              <span class="mp green">12 Mar</span></div>
+            <div class="mrow"><span class="what">Full employment history explained</span>
+              <span class="mp amber">Outstanding</span></div>
+            <p class="mfoot">The file is COMPLETE or INCOMPLETE. There is no
+              comfortable middle.</p>
+          </div>
+          <div class="exv exmock" aria-label="A week of the rota">
+            <p class="mh">The week, painted in the home's own codes</p>
+            <div class="mgrid">
+              <span class="gn"></span>
+              <span class="gh">M</span><span class="gh">T</span><span class="gh">W</span>
+              <span class="gh">T</span><span class="gh">F</span><span class="gh">S</span><span class="gh">S</span>
+              <span class="gn">Grace</span>
+              <span class="mc e">E</span><span class="mc e">E</span><span class="mc d">D</span>
+              <span class="mc off">–</span><span class="mc d">D</span>
+              <span class="mc n">N<span class="sleep"></span></span>
+              <span class="mc n">N<span class="sleep"></span></span>
+              <span class="gn">Daniel</span>
+              <span class="mc n">N<span class="sleep"></span></span><span class="mc off">–</span>
+              <span class="mc e">E</span><span class="mc e">E</span><span class="mc d">D</span>
+              <span class="mc off">–</span><span class="mc e">E</span>
+              <span class="gn">Priya</span>
+              <span class="mc d">D</span><span class="mc d">D</span><span class="mc off">–</span>
+              <span class="mc n">N<span class="sleep"></span></span><span class="mc off">–</span>
+              <span class="mc e">E</span><span class="mc d">D</span>
+            </div>
+            <p class="mfoot">The dot is a sleep-in, on any worked shift. Drafts
+              stay drafts until the week is published. Wages stay with the
+              Responsible Individual.</p>
+          </div>
+          <div class="exv exmock" aria-label="Supervisions, who is due">
+            <p class="mh">Supervisions</p>
+            <div class="mrow"><span class="who">Priya Raman</span>
+              <span class="what">Supervision</span><span class="mp red">11d overdue</span></div>
+            <div class="mrow"><span class="who">Daniel Mercer</span>
+              <span class="what">Probation review</span><span class="mp amber">due in 6 days</span></div>
+            <div class="mrow"><span class="who">Grace Ellison</span>
+              <span class="what">Supervision, signed by Grace</span><span class="mp green">3 Aug</span></div>
+            <div class="mrow"><span class="who">Sam Ogden</span>
+              <span class="what">Return to work</span><span class="mp green">28 Jul</span></div>
+            <p class="mfoot">Every kind on one matrix, against the home's own
+              frequency. Staff sign their own record.</p>
+          </div>
+          <div class="exv exmock" aria-label="The premises checks">
+            <p class="mh">Checks and premises</p>
+            <div class="mrow"><span class="who">Legionella flush</span>
+              <span class="what">Weekly</span><span class="mp red">3d late</span></div>
+            <div class="mrow"><span class="who">Gas certificate</span>
+              <span class="what">Yearly, required by regulation</span><span class="mp amber">due in 20 days</span></div>
+            <div class="mrow"><span class="who">Fridge temperatures</span>
+              <span class="what">Daily, 4.2C this morning</span><span class="mp green">done</span></div>
+            <div class="mrow"><span class="who">Fire alarm call point</span>
+              <span class="what">Weekly, point 3 this week</span><span class="mp green">done Tue</span></div>
+            <p class="mfoot">Anyone on shift can record one, because the person
+              testing the alarm at 2am is not a manager.</p>
+          </div>
           <div class="exv exmail" aria-label="An example task with its receipts">
             <p class="from">Task board, Maple House</p>
             <p class="subj">Fire drill record, due Friday</p>
@@ -543,6 +651,10 @@ needs attention. A quiet week sends nothing.</pre>
         database rather than promised in a policy.</p>
       </div>
     </div>
+    <p class="stopnote rv">The detailed version of these boundaries, and how
+      the system that holds your staff records is itself protected, has its
+      own page: <a href="/compliance/">the security page</a>. Written for the
+      person who asks how it is built before they ask what it costs.</p>
   </div>
 </section>
 
