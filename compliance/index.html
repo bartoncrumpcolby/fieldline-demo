@@ -1,340 +1,263 @@
 <!doctype html>
-<html lang="en-GB" class="no-js">
+<html lang="en-GB">
 <head>
 <meta charset="utf-8">
-<script>document.documentElement.className="js"</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ordane Compliance | Compliance software for children&rsquo;s homes</title>
-<meta name="description" content="Compliance software for UK children's homes. Recruitment files, training, supervisions, absence, rota, safety checks, vehicles and petty cash in one place. Built from a real provider's own paperwork.">
-<link rel="canonical" href="https://ordane.co.uk/">
-<meta name="theme-color" content="#0d1620">
-<link rel="icon" href="/favicon-32.png" sizes="32x32">
-<link rel="apple-touch-icon" href="/icon-512.png">
-<meta property="og:type" content="website">
+<title>Ordane | The detailed version</title>
+<meta name="description" content="How Ordane holds and protects staff compliance data for children's homes: tenant isolation in the database, an append-only audit trail, private file storage, and the boundaries the system refuses to cross.">
+<link rel="canonical" href="https://ordane.co.uk/compliance/">
+<meta property="og:title" content="Ordane | The detailed version">
+<meta property="og:description" content="How Ordane holds and protects staff compliance data, for the person who asks how it is built before they ask what it costs.">
 <meta property="og:url" content="https://ordane.co.uk/compliance/">
-<meta property="og:title" content="Ordane Compliance | Compliance software for children&rsquo;s homes">
-<meta property="og:description" content="Recruitment files, training, supervisions, absence and rotas in one place. Built from a real provider's own paperwork.">
-<meta property="og:image" content="https://ordane.co.uk/icon-512.png">
-<meta name="format-detection" content="telephone=no">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..400&display=swap">
-<link rel="stylesheet" media="print" onload="this.media='all';this.onload=null"
-  href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..400&display=swap">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..400&display=swap"></noscript>
-<link rel="stylesheet" href="/styles.css">
+<meta property="og:image" content="https://ordane.co.uk/img/og.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/fonts.css">
+<style>
+/* =============================================================================
+   The detailed version: the page for the person who asks how Ordane is built
+   before they ask what it costs. Same light system as the front page and the
+   product, because a trust page in a different outfit reads as a costume.
+   ============================================================================= */
+:root{
+  --bg:#f5f7f9; --surface:#ffffff; --ink:#12283c; --ink-2:#42505e; --ink-3:#5d6a77;
+  --line:#dfe5ea; --accent:#1c3d5a; --accent-deep:#14304a;
+  --ease:cubic-bezier(0.32,0.72,0,1);
+}
+*{margin:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);
+  font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,sans-serif;
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Archivo,Inter,sans-serif;letter-spacing:-0.02em}
+a{color:inherit}
+.wrap{max-width:880px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+
+.nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:40;width:max-content;
+  display:flex;align-items:center;gap:6px;padding:8px 10px 8px 16px;
+  background:rgba(255,255,255,.82);backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(13,22,32,.08);border-radius:999px;
+  box-shadow:0 12px 40px rgba(13,22,32,.10)}
+.nav .brand{display:flex;align-items:center;gap:10px;margin-right:10px;white-space:nowrap;
+  font-family:Archivo;font-weight:700;font-size:17px;text-decoration:none}
+.nav .brand svg{width:22px;height:22px}
+.nav a.cta{font-size:13.5px;font-weight:600;color:#fff;background:var(--accent);white-space:nowrap;
+  text-decoration:none;padding:9px 16px;border-radius:999px;margin-left:6px;
+  transition:background-color .3s var(--ease)}
+.nav a.cta:hover{background:var(--accent-deep)}
+
+header{padding:132px 0 24px}
+h1{font-size:clamp(30px,3.4vw,44px);line-height:1.08;text-wrap:balance}
+.lede{margin-top:20px;font-size:17.5px;color:var(--ink-2);max-width:58ch}
+.lede a{color:var(--accent);font-weight:600}
+
+section{padding:34px 0}
+h2{font-size:clamp(21px,2.4vw,27px);margin-bottom:6px}
+.since{font-size:14px;color:var(--ink-3);margin-bottom:18px}
+
+.row{border-top:1px solid var(--line);padding:20px 0;display:grid;
+  grid-template-columns:minmax(180px,240px) 1fr;gap:10px 28px}
+.row:last-of-type{border-bottom:1px solid var(--line)}
+.row h3{font-size:16.5px;font-weight:600}
+.row p{font-size:15px;color:var(--ink-2);max-width:60ch}
+.row p+p{margin-top:8px}
+@media (max-width:640px){.row{grid-template-columns:1fr;gap:4px}}
+
+.plain{background:var(--surface);border:1px solid var(--line);border-radius:16px;
+  padding:24px 26px;font-size:15px;color:var(--ink-2)}
+.plain b{color:var(--ink)}
+.plain p+p{margin-top:10px}
+
+.cta-band{margin:44px 0 0;padding:44px 0 84px}
+.btn{display:inline-flex;align-items:center;gap:12px;text-decoration:none;
+  font-weight:600;font-size:15.5px;border-radius:999px;padding:13px 24px;
+  background:var(--accent);color:#fff;
+  transition:background-color .35s var(--ease)}
+.btn:hover{background:var(--accent-deep)}
+.beneath{margin-top:18px;font-size:14px;color:var(--ink-3)}
+
+footer{border-top:1px solid var(--line);padding:34px 0 44px}
+footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+footer p{font-size:14px;color:var(--ink-3)}
+footer a{text-decoration:underline;text-underline-offset:3px}
+</style>
 </head>
 <body>
 
-<a class="skip" href="#main">Skip to content</a>
-<nav aria-label="Primary">
-  <div class="wrap nav-in">
-    <a class="lock" href="/compliance/" aria-label="Ordane, home">
-      <span class="bar"></span><span class="wm"><span class="bub"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="f bubble" cx="50" cy="50" r="50"/></svg></span>rdane</span><span class="bar"></span>
-    </a>
-    <div class="nav-links">
-      <a href="#inside">What it holds</a>
-      <a href="#alongside">Where it stops</a>
-      <a href="#founder">Who you get</a>
-      <a class="nav-tel" href="tel:+447999098245">07999&nbsp;098245</a>
-      <a class="btn btn-cta" href="#book">Book a call</a>
-    </div>
-  </div>
-  <div class="progress" id="progress"></div>
+<nav class="nav" aria-label="Main">
+  <a class="brand" href="/">
+    <svg viewBox="0 0 48 48" fill="none" stroke="#1c3d5a" stroke-width="7" aria-hidden="true">
+      <path d="M19 5 H43 V29 a14 14 0 0 1 -14 14 H19 a14 14 0 0 1 -14 -14 V19 a14 14 0 0 1 14 -14 Z"/>
+    </svg>
+    Ordane
+  </a>
+  <a class="cta" href="mailto:colby@ordane.co.uk?subject=A%20look%20at%20Ordane">Book a look</a>
 </nav>
 
-<main id="main">
-<header class="hero" id="top">
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <p class="eyebrow reveal">For UK children&rsquo;s home providers</p>
-      <h1 class="lines" id="heroLines">
-        <span class="ln"><span style="--d:0ms">Everything that</span></span>
-        <span class="ln"><span style="--d:70ms">expires, in one</span></span>
-        <span class="ln"><span style="--d:140ms">place</span></span>
-      </h1>
-      <p class="lede reveal" style="--d:120ms">Recruitment files, training, supervisions,
-        absence, the rota, safety checks, vehicles and petty cash. Everything a
-        children&rsquo;s home has to keep current, telling you what has run out before an
-        inspector does. Built from a real provider&rsquo;s own paperwork.</p>
-      <div class="cta-row reveal" style="--d:170ms">
-        <a class="btn btn-cta btn-lg" href="#book">Book a 15 minute look</a>
-        <a class="btn btn-ghost btn-lg" href="#inside">See what it holds</a>
-      </div>
-      <p class="hero-note reveal" style="--d:210ms">Everything but the care records &middot; Those stay where they are</p>
-    </div>
-
-    <aside class="hero-panel reveal" style="--d:130ms">
-      <p class="eyebrow">What it replaces</p>
-      <hr class="datum">
-      <div class="stat-row">
-        <div class="stat"><b>116 checks</b><span>the full Schedule 2 recruitment file, and what is still outstanding on each person</span></div>
-        <div class="stat"><b>38 courses</b><span>training across every member of staff, with the expiry worked out rather than counted in somebody&rsquo;s head</span></div>
-        <div class="stat"><b>24 safety checks</b><span>fire, water, food, vehicle and maintenance, each on its own frequency</span></div>
-      </div>
-      <hr class="datum">
-      <p class="small" style="color:#8ea3b5">If that is four spreadsheets, a Word document
-        and a clipboard in the office, this is aimed at you.</p>
-    </aside>
+<header>
+  <div class="wrap">
+    <h1>The detailed version.</h1>
+    <p class="lede">For the person who asks how it is built before they ask
+      what it costs. What Ordane holds, what it refuses to hold, and how the
+      system that keeps your staff records is itself kept. The short version
+      lives on the <a href="/">front page</a>.</p>
   </div>
 </header>
 
-<section id="problem">
+<section>
   <div class="wrap">
-    <div class="sec-head">
-      <p class="sec-no reveal">_01_</p>
-      <p class="eyebrow reveal" style="--d:60ms">The problem</p>
-      <h2 class="reveal" style="--d:120ms">None of it is hard. All of it is remembering.</h2>
+    <h2>What it holds, and what it never will</h2>
+    <p class="since">The boundaries are structural. They are not settings, and
+      no future update quietly moves them.</p>
+    <div class="row">
+      <h3>Staff and premises only</h3>
+      <p>Training and DBS renewals, the Schedule 2 recruitment checklist,
+        supervisions, rotas, the home&rsquo;s own checks, tasks and the audit
+        trail. The working file for the people and the building.</p>
     </div>
-    <div class="cells g4 reveal">
-      <div class="cell"><span class="q">&ldquo;Whose first aid runs out next month?&rdquo;</span>
-        <p>The answer is in a spreadsheet where somebody wrote the date it was completed, and works out the expiry in their head. Thirty eight courses times nine staff is over three hundred sums nobody is doing.</p></div>
-      <div class="cell"><span class="q">&ldquo;Did that supervision actually happen?&rdquo;</span>
-        <p>There is a blank in March. Nobody can remember whether that was a missed session or the fortnight somebody was signed off, and the person who would know has left.</p></div>
-      <div class="cell"><span class="q">&ldquo;Is this file complete?&rdquo;</span>
-        <p>Schedule 2 is not ambiguous about what a staff file needs. Whether a particular file has all of it is a different question, and it usually gets asked for the first time by an inspector.</p></div>
-      <div class="cell"><span class="q">&ldquo;Who has seen the new policy?&rdquo;</span>
-        <p>It went out on WhatsApp. Some people replied with a thumbs up. That is not a record of who read it, and it is not evidence of anything.</p></div>
+    <div class="row">
+      <h3>No child records</h3>
+      <p>There is no child record in Ordane and no field intended for one. It
+        does not replace a care records system and does not try to. That is a
+        boundary, and it is also the point: trying Ordane never puts a young
+        person&rsquo;s data anywhere new.</p>
+    </div>
+    <div class="row">
+      <h3>No DBS content</h3>
+      <p>Certificate number, dates and status. There is nowhere to type what a
+        disclosure says, on purpose.</p>
+    </div>
+    <div class="row">
+      <h3>Sealed records</h3>
+      <p>Disciplinary and safeguarding records about staff open to the
+        Responsible Individual only, behind a fresh password check, and every
+        open is written to the audit trail.</p>
+    </div>
+    <div class="row">
+      <h3>Pay stays private</h3>
+      <p>A support worker sees their own record and the published rota. Wages
+        are visible to the Responsible Individual and nobody else, enforced in
+        the database rather than promised in a policy.</p>
     </div>
   </div>
 </section>
 
-<hr class="rule">
-
-<section id="inside">
+<section>
   <div class="wrap">
-    <div class="sec-head">
-      <p class="sec-no reveal">_02_</p>
-      <p class="eyebrow reveal" style="--d:60ms">What it holds</p>
-      <h2 class="reveal" style="--d:120ms">The staff, and the building they work in</h2>
+    <h2>How it is protected</h2>
+    <p class="since">Staff records are the sensitive kind. The protections are
+      in the database and the infrastructure, where they cannot be forgotten
+      by a screen.</p>
+    <div class="row">
+      <h3>One provider cannot see another</h3>
+      <p>Every table in the database carries row level security scoped to your
+        organisation. The screens are a convenience; the database is the
+        control. Even a bug in a page cannot cross the boundary, because the
+        boundary is not in the pages.</p>
     </div>
-    <p class="eyebrow reveal">Staff</p>
-    <div class="cells g6 reveal">
-      <div class="cell entry"><span class="q">Recruitment files</span>
-        <p>All 116 Schedule 2 checks, section by section, with what is outstanding on each person&rsquo;s file. Somebody who started before their file was complete is flagged as exactly that rather than quietly passing.</p></div>
-      <div class="cell"><span class="q">Training</span>
-        <p>Courses down, people across, mandatory and essential and additional. Every cell carries the date it was done and the date it runs out, coloured by whether it already has.</p></div>
-      <div class="cell"><span class="q">Supervisions</span>
-        <p>One to one, single subject, group, reflective practice and annual appraisal. Staff sign and comment in their own words, and no manager can edit what they wrote.</p></div>
-      <div class="cell"><span class="q">Absence</span>
-        <p>Paid and unpaid days, self certified or fit note, return to work conversations chased. Recorded absence stops sickness reading as a missed supervision.</p></div>
-      <div class="cell"><span class="q">Pay</span>
-        <p>Hourly or salaried. Readable by the person it belongs to and the Responsible Individual, and by nobody else. A manager builds the rota without seeing what the team earns.</p></div>
-      <div class="cell"><span class="q">Staff logins</span>
-        <p>People upload their own certificates, sign their own supervisions and agree policies. A manager verifies anything submitted before it counts.</p></div>
+    <div class="row">
+      <h3>Files are private by default</h3>
+      <p>Certificates and documents live in private storage. Opening one
+        issues a link that dies after sixty seconds, and the open is logged
+        against the person who did it.</p>
     </div>
-
-    <p class="eyebrow reveal">The home</p>
-    <div class="cells g6 reveal">
-      <div class="cell"><span class="q">Checks and chores</span>
-        <p>Fire alarm tests, drills, emergency lighting, water and fridge temperatures, window restrictors, vehicle walk rounds, gas and electrical certificates. Twenty four checks ready to go, each on its own frequency, and the statutory ones marked as such.</p></div>
-      <div class="cell"><span class="q">Assets and vehicles</span>
-        <p>MOT, road tax, insurance, service, warranty, lease. Renewals supersede rather than delete, so last year&rsquo;s certificate is still there when somebody asks whether the minibus was legal last year.</p></div>
-      <div class="cell"><span class="q">Petty cash</span>
-        <p>The float, what went out of it, and which receipts are missing. Staff claim expenses back with a photo; a manager approves before money moves.</p></div>
-      <div class="cell"><span class="q">Policies</span>
-        <p>Publish a version and everyone goes back in the queue to read and agree it. Previous agreements stay on file as evidence of what was agreed and when.</p></div>
-      <div class="cell"><span class="q">Rota</span>
-        <p>A month at a time, your own shift codes, hours per person and per day. Built as a draft nobody sees until you publish, then released as provisional or confirmed.</p></div>
-      <div class="cell"><span class="q">Location risk assessment</span>
-        <p>Reviewed annually alongside the fire and legionella assessments, in the same place as everything else with a review date on it.</p></div>
+    <div class="row">
+      <h3>An audit trail nobody can edit</h3>
+      <p>Append only. There is no edit and no delete, for anyone, including
+        the owner of the organisation. That is what makes it worth showing an
+        inspector.</p>
     </div>
-
-    <div class="sec-head" style="margin-top:64px">
-      <p class="eyebrow reveal">And one part that is deliberately different</p>
-      <h2 class="reveal" style="--d:60ms">Disciplinary and safeguarding records, sealed</h2>
+    <div class="row">
+      <h3>Encrypted and locked down</h3>
+      <p>Everything travels over HTTPS, enforced for a year at a time in the
+        browser itself. The app cannot be framed inside another site, and
+        nothing in it is allowed to appear in a search engine.</p>
     </div>
-    <p class="lede reveal" style="--d:120ms">Allegations and disciplinary matters sit behind
-      their own lock, readable by the Responsible Individual and nobody else. Not the
-      manager, not a senior, not the person it concerns. That is enforced in the database
-      rather than by hiding a menu, and there is a test that proves it on every change.</p>
+    <div class="row">
+      <h3>Backed up daily</h3>
+      <p>The database is backed up every day on managed infrastructure, so a
+        mistake is a restore rather than a rebuild.</p>
+    </div>
+    <div class="row">
+      <h3>Keys stay server side</h3>
+      <p>No privileged key is ever sent to a browser. The scheduled jobs that
+        send the Monday digest carry their own secret and can do nothing
+        else.</p>
+    </div>
   </div>
 </section>
 
-<hr class="rule">
-
-<section id="alongside" class="instr">
+<section>
   <div class="wrap">
-    <div class="sec-head">
-      <p class="sec-no reveal">_03_</p>
-      <p class="eyebrow reveal" style="--d:60ms">Where it stops</p>
-      <h2 class="reveal" style="--d:120ms">Everything except the care records</h2>
-    </div>
-    <div class="cells g4 reveal">
-      <div class="cell"><span class="q">Your care system does not move</span>
-        <p>Care planning, daily logs, the children&rsquo;s records. Whatever you use for those keeps doing them, and nothing about it changes.</p></div>
-      <div class="cell"><span class="q">This is everything else</span>
-        <p>Staff, rota, safety checks, vehicles, petty cash, policies. The parts still kept on spreadsheets and clipboards at most providers even where the care system is good.</p></div>
-      <div class="cell"><span class="q">Nothing to migrate on day one</span>
-        <p>Your existing spreadsheets go in as they are, spelled the way you spell them. Your shift codes stay your shift codes. Retyping a rota is not a change anybody agreed to.</p></div>
-      <div class="cell"><span class="q">If you already have this covered</span>
-        <p>Then you do not need it, and I would rather tell you that on a fifteen minute call than sell you a second system you will not open.</p></div>
+    <h2>Where it runs</h2>
+    <div class="plain">
+      <p>Ordane runs on <b>Vercel</b> and <b>Supabase</b>, the same managed
+        infrastructure used by banks and health services, with alert emails
+        sent through <b>Resend</b> from EU infrastructure. Your data is
+        exported to you and deleted when you leave, in the same month you
+        leave.</p>
+      <p>Ordane is built and run by one person in Manchester, which means the
+        person answering a data question is the person who wrote the code.
+        Company registration and ICO details are being finalised and will be
+        listed here, in full, as each completes. Until then, and after, data
+        questions go to <b>colby@ordane.co.uk</b> and get answered by a
+        person.</p>
     </div>
   </div>
 </section>
 
-<hr class="rule">
-
-<section id="built">
+<section>
   <div class="wrap">
-    <div class="sec-head">
-      <p class="sec-no reveal">_04_</p>
-      <p class="eyebrow reveal" style="--d:60ms">Where it came from</p>
-      <h2 class="reveal" style="--d:120ms">Built beside a Responsible Individual, from her real files</h2>
+    <h2>The things providers ask first</h2>
+    <div class="row">
+      <h3>Can staff see each other&rsquo;s records?</h3>
+      <p>No. A support worker sees their own file, their own tasks and the
+        published rota, and can record a premises check. Everything else needs
+        a manager login, and the sealed records need the Responsible
+        Individual.</p>
     </div>
-    <div class="founder-copy reveal" style="max-width:66ch">
-      <p>This was built alongside the Responsible Individual for two children&rsquo;s homes,
-        working from her actual documents rather than a description of them: her
-        supervision matrix, her training records, her staff profile form, her hundred and
-        sixteen point recruitment checklist, her rota with its forty two shift codes.</p>
-      <p>That matters more than it sounds. Every system I looked at first got the shape
-        wrong in the same way, by inventing a tidy version of a job that is not tidy. Hers
-        is a calendar with leavers still on it, because whether somebody
-        was supervised while they worked for you does not stop mattering when they go.
-        Nothing I would have designed from scratch would have had that in it.</p>
-      <p>It is still built that way. A provider asks for something on the Monday
-        because of a thing that happened on the Sunday, and it is in by the end of the
-        week. That is the whole reason to work with somebody who wrote the system rather
-        than somebody who sells it.</p>
+    <div class="row">
+      <h3>What happens when we leave?</h3>
+      <p>You can leave any month. Your data is exported to you in files a
+        human can read, spreadsheets and the documents themselves, and then
+        deleted.</p>
+    </div>
+    <div class="row">
+      <h3>What does an inspector actually get?</h3>
+      <p>An evidence pack: one zip for a named person or the whole home, the
+        spreadsheets plus the certificates, with a plain README. Generating it
+        is itself logged, so the handover is on the record too.</p>
+    </div>
+    <div class="row">
+      <h3>Do we need training?</h3>
+      <p>A manager is working in it the same afternoon. Support workers get a
+        login, see their own list, and tick things off. If anything needs
+        explaining, that is a defect, and you tell the person who can fix
+        it.</p>
     </div>
   </div>
 </section>
 
-<hr class="rule">
-
-<section id="data">
+<section class="cta-band">
   <div class="wrap">
-    <div class="sec-head">
-      <p class="sec-no reveal">_05_</p>
-      <p class="eyebrow reveal" style="--d:60ms">Data protection</p>
-      <h2 class="reveal" style="--d:120ms">Staff records are the sensitive kind</h2>
-    </div>
-    <div class="cells g4 reveal">
-      <div class="cell"><span class="q">DBS, recorded properly</span>
-        <p>Certificate number, dates and status. Never what a disclosure says. That is criminal offence data under Article 10 and it does not belong in a system every manager can open.</p></div>
-      <div class="cell"><span class="q">Separated at the database</span>
-        <p>One provider cannot reach another provider&rsquo;s records, and it is the database that refuses rather than the screen choosing not to show it. Sixty one automated checks prove it on every change.</p></div>
-      <div class="cell"><span class="q">Staff see their own record</span>
-        <p>A support worker with a login sees their own file, the rota, and their own pay. Not a colleague&rsquo;s wage, not a colleague&rsquo;s health information, not a colleague&rsquo;s file.</p></div>
-      <div class="cell"><span class="q">You own your data</span>
-        <p>Export everything, per person or whole organisation, in a form you can hand to an inspector. If you leave, you leave with it.</p></div>
-    </div>
+    <h2>Fifteen minutes, on the demo home</h2>
+    <p class="lede" style="margin-bottom:26px">Bring the spreadsheet you run
+      today. If Ordane does not obviously beat it, keep the spreadsheet.</p>
+    <a class="btn" href="mailto:colby@ordane.co.uk?subject=A%20look%20at%20Ordane&body=I%20would%20like%20a%20look%20at%20Ordane.%20My%20home%20is%20">Book a look</a>
+    <p class="beneath">Or write to colby@ordane.co.uk.</p>
   </div>
 </section>
-
-<hr class="rule">
-
-<section id="founder">
-  <div class="wrap">
-    <div class="sec-head" style="margin-bottom:34px">
-      <p class="sec-no reveal">_06_</p>
-      <p class="eyebrow reveal" style="--d:60ms">Who you are dealing with</p>
-      <h2 class="reveal" style="--d:120ms">You get me, not an account manager</h2>
-    </div>
-    <div class="founder">
-      <img class="reveal" src="/colby.png" width="800" height="800" loading="lazy"
-           alt="Colby Barton-Crump, founder of Ordane">
-      <div class="founder-copy reveal" style="--d:120ms">
-        <p>I am Colby. I built this, I will show it to you, and I am the one who picks up
-          when something is wrong with it. You will not be handed to somebody who has
-          never spoken to you and does not know how your homes run.</p>
-        <p>What you get instead is somebody who will change the thing you asked about that
-          week rather than putting it on a roadmap. Most of what is in here now exists
-          because a Responsible Individual said the version I had built was wrong.</p>
-        <p class="small soft">Manchester based, and I will come and see you if you would
-          rather do this in person than on a call.</p>
-        <div class="founder-meta">
-          <a href="tel:+447999098245">07999 098245</a>
-          <a href="mailto:colby@ordane.co.uk">colby@ordane.co.uk</a>
-          <span>Manchester</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="rule">
-
-<section id="faq">
-  <div class="wrap narrow">
-    <div class="sec-head">
-      <p class="sec-no reveal">_07_</p>
-      <p class="eyebrow reveal" style="--d:60ms">Reasonable questions</p>
-      <h2 class="reveal" style="--d:120ms">The things providers ask first</h2>
-    </div>
-    <div class="faq">
-      <details class="reveal"><summary>We already have a care system. Why would we run two?</summary><p>You would not, for the same job. Clearcare and the rest hold the children&rsquo;s records and do it well. This holds the staff side, which at most providers is still a folder of spreadsheets even where the care system is solid. If your staff compliance is genuinely handled already and people find it easy, you do not need this and I will say so.</p></details>
-      <details class="reveal" style="--d:60ms"><summary>How long does it take to set up?</summary><p>Your training and supervision records and your staff list go in as they are. The recruitment checklist is already loaded with all hundred and sixteen points. Realistically you are looking at an afternoon, and I do most of it with you on a call rather than sending you a help article.</p></details>
-      <details class="reveal" style="--d:100ms"><summary>Can staff log in themselves?</summary><p>Yes, and it is worth doing. They upload their own certificates, sign their supervisions and comment on them in their own words, agree policies, and see the rota so nobody is working off a screenshot from last week. A manager verifies anything a member of staff submits before it counts, because it is your name against the record at inspection.</p></details>
-      <details class="reveal" style="--d:140ms"><summary>What happens to our data if we stop using it?</summary><p>You export it, per person or the whole organisation, and it is yours. No exit fee and no holding it hostage. I would rather you left with your records than stayed because leaving was painful.</p></details>
-      <details class="reveal" style="--d:180ms"><summary>Does it do care planning or daily logs?</summary><p>No, and it is not going to. That is a different job, it is well served already, and building a worse version of what you have helps nobody.</p></details>
-      <details class="reveal" style="--d:200ms"><summary>What does it cost?</summary><p>It is priced per home rather than per person, so taking on more support workers does not change your bill. What that comes to depends on how many homes you run, and there is a founding rate at the moment. I will give you the number on the call rather than make you work it out from a table that would not fit your setup anyway.</p></details>
-      <details class="reveal" style="--d:240ms"><summary>What if we want something it does not do?</summary><p>Tell me and I will usually build it. Most of what is in here exists because a Responsible Individual said the version I had was wrong: the supervision types, the absence handling, the fact that leavers stay on the grid. That is the advantage of a system with one person behind it rather than a roadmap and a queue.</p></details>
-    </div>
-  </div>
-</section>
-
-<section class="close" id="book">
-  <div class="wrap close-in">
-    <p class="sec-no reveal">_08_</p>
-    <p class="eyebrow reveal" style="--d:60ms;color:#8ea3b5">Next step</p>
-    <h2 class="reveal" style="--d:120ms">Fifteen minutes and your own spreadsheet on screen</h2>
-    <p class="lede reveal" style="--d:180ms">Bring the one you actually use. I will
-      show you the same information in here and you can decide whether it is better. If it
-      is not, that is a useful fifteen minutes for both of us.</p>
-    <div class="cta-row reveal" style="--d:240ms">
-      <a class="btn btn-cta btn-lg" href="https://cal.com/colbybarton-crump/15min">Book a 15 minute look</a>
-      <a class="btn btn-ghost btn-lg" href="mailto:colby@ordane.co.uk">colby@ordane.co.uk</a>
-    </div>
-  </div>
-</section>
-
-</main>
 
 <footer>
-  <div class="wrap foot-in">
-    <span class="lock"><span class="bar"></span><span class="wm"><span class="bub"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="f" cx="50" cy="50" r="50"/></svg></span>rdane</span><span class="bar"></span></span>
-    <span><a href="tel:+447999098245">07999 098245</a></span>
-    <span><a href="mailto:colby@ordane.co.uk">colby@ordane.co.uk</a></span>
-    <span><a href="/">Automation work</a></span>
-    <span>Manchester, UK</span>
+  <div class="wrap">
+    <p>Ordane. Compliance software for children&rsquo;s homes.</p>
+    <p><a href="/">ordane.co.uk</a> &nbsp;&middot;&nbsp;
+       <a href="https://app.ordane.co.uk">Sign in</a> &nbsp;&middot;&nbsp;
+       <a href="mailto:colby@ordane.co.uk">colby@ordane.co.uk</a></p>
   </div>
 </footer>
 
-<script>
-(function(){
-"use strict";
-var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-/* ---- reveal on enter ---- */
-var targets = document.querySelectorAll(".reveal,.rule,.lines");
-if (reduced || !("IntersectionObserver" in window)) {
-  targets.forEach(function(el){ el.classList.add("in"); });
-} else {
-  var io = new IntersectionObserver(function(es){
-    es.forEach(function(e){
-      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
-    });
-  }, { rootMargin:"0px 0px 22% 0px", threshold:0 });
-  targets.forEach(function(el){ io.observe(el); });
-  requestAnimationFrame(function(){
-    document.querySelectorAll(".hero .reveal,#heroLines").forEach(function(el){ el.classList.add("in"); });
-  });
-}
-
-/* ---- scroll progress, drawn as the brand's own datum ---- */
-var bar = document.getElementById("progress"), ticking = false;
-function draw(){
-  var h = document.documentElement.scrollHeight - window.innerHeight;
-  bar.style.transform = "scaleX(" + (h > 0 ? Math.min(1, window.scrollY / h) : 0) + ")";
-  ticking = false;
-}
-window.addEventListener("scroll", function(){
-  if (!ticking) { ticking = true; requestAnimationFrame(draw); }
-}, { passive:true });
-draw();
-})();
-</script>
-
+<script data-goatcounter="https://ordane.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
