@@ -183,12 +183,17 @@ h2{font-size:clamp(26px,3vw,36px);font-weight:700;line-height:1.15;text-wrap:bal
 .exlist button.on b,.exlist button.on span{color:#fff}
 .exlist button.on span{color:#c3d2df}
 .expanel{position:sticky;top:96px}
-.exviews{position:relative;aspect-ratio:840/500;background:#fff}
-.exv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;
-  opacity:0;transform:translateY(6px);
+/* The panel is a grid stack sized by its tallest vignette, so short views
+   never float in dead white. Hidden views go visibility:hidden at the end
+   of their fade, which also keeps them out of the accessibility tree and
+   stops the outgoing view ghosting through a fast switch. */
+.exviews{position:relative;display:grid;background:#fff}
+.exv{grid-area:1/1;width:100%;min-height:0;
+  opacity:0;visibility:hidden;transform:translateY(6px);
   transition:opacity .22s cubic-bezier(0.23,1,0.32,1),
-             transform .22s cubic-bezier(0.23,1,0.32,1)}
-.exv.on{opacity:1;transform:none}
+             transform .22s cubic-bezier(0.23,1,0.32,1),
+             visibility .22s}
+.exv.on{opacity:1;visibility:visible;transform:none}
 .exmail{background:#fff;padding:26px 30px;overflow:auto}
 .exmail .from{font-size:13px;color:var(--ink-3)}
 .exmail .subj{font-weight:600;font-size:16px;margin:6px 0 14px;font-family:Archivo}
@@ -297,7 +302,15 @@ h2{font-size:clamp(26px,3vw,36px);font-weight:700;line-height:1.15;text-wrap:bal
 .stopnote a{color:#fff;text-decoration:underline;text-underline-offset:3px}
 @media (max-width:860px){.exd ul{grid-template-columns:1fr}}
 @media (max-width:860px){.explore{grid-template-columns:1fr}.expanel{position:static;order:-1}}
-@media (prefers-reduced-motion: reduce){.exv{transition:opacity .22s ease;transform:none}}
+@media (prefers-reduced-motion: reduce){.exv{transition:opacity .22s ease,visibility .22s;transform:none}}
+/* Small phones: the row label drops below the name, so "Before the first
+   journey" never wraps one word per line against the pill. The rota grid
+   gives its name column back to the days. */
+@media (max-width:480px){
+  .mrow{display:grid;grid-template-columns:1fr auto;align-items:center;row-gap:1px}
+  .mrow .what{grid-column:1/-1;grid-row:2}
+  .mgrid{grid-template-columns:52px repeat(7,1fr)}
+}
 
 /* Where it stops: three statements, big, no cards. */
 .stops{background:var(--accent);color:#eef3f8}
@@ -431,25 +444,25 @@ footer .meta a:hover{text-decoration:underline}
               <span class="afhome">Maple House</span>
               <span class="afbtn" aria-hidden="true">Evidence pack</span>
             </div>
-            <div class="afstats" aria-label="The demo home&rsquo;s counts: 10 expired, 3 due within 30 days, 7 due within 90 days, 5 with no date set">
-              <span><b class="count" data-n="10" style="color:#b3261e">10</b>expired</span>
-              <span><b class="count" data-n="3" style="color:#8a5a11">3</b>due in 30 days</span>
+            <div class="afstats" aria-label="The demo home&rsquo;s counts: 2 expired, 4 due within 30 days, 7 due within 90 days, 2 with no date set">
+              <span><b class="count" data-n="2" style="color:#b3261e">2</b>expired</span>
+              <span><b class="count" data-n="4" style="color:#8a5a11">4</b>due in 30 days</span>
               <span><b class="count" data-n="7">7</b>due in 90 days</span>
-              <span><b class="count" data-n="5">5</b>no date set</span>
+              <span><b class="count" data-n="2">2</b>no date set</span>
             </div>
-            <p class="bsent"><b>10 items have expired.</b> These first:</p>
+            <p class="bsent"><b>2 items still expired</b>, down from 10 this month:</p>
             <div class="mrow"><span class="who">Grace Ellison</span>
               <span class="what">Fire safety training</span>
               <span class="mp red">157d over</span></div>
             <div class="mrow"><span class="who">Daniel Mercer</span>
-              <span class="what">First aid</span>
+              <span class="what">First aid, renewal booked</span>
               <span class="mp red">12d over</span></div>
             <div class="mrow"><span class="who">Priya Raman</span>
               <span class="what">DVLA driving licence</span>
               <span class="mp amber">in 9 days</span></div>
             <div class="mrow"><span class="who">Sam Ogden</span>
               <span class="what">DBS renewal</span>
-              <span class="mp green">in 210 days</span></div>
+              <span class="mp green">renewed Tue</span></div>
             <p class="mh" style="margin-top:18px">Checks due today</p>
             <div class="mrow"><span class="who">Fridge temperatures</span>
               <span class="what">Daily</span>
@@ -572,9 +585,9 @@ footer .meta a:hover{text-decoration:underline}
               <span class="mc n">N<span class="sleep"></span></span><span class="mc off">–</span>
               <span class="mc e">E</span><span class="mc d">D</span>
             </div>
-            <p class="mfoot">The dot is a sleep-in, on any worked shift. Drafts
-              stay drafts until the week is published. Wages stay with the
-              Responsible Individual.</p>
+            <p class="mfoot">E early, D day, N night, and the dot is a sleep-in,
+              on any worked shift. Drafts stay drafts until the week is
+              published. Wages stay with the Responsible Individual.</p>
           </div>
           <div class="exv exmock" aria-label="Supervisions, who is due">
             <p class="mh">Supervisions</p>
@@ -631,7 +644,7 @@ makes it worth showing an inspector.</pre>
           </div>
           <div class="exv exmail" aria-label="An example of the Monday morning email">
             <p class="from">Ordane &lt;alerts@ordane.co.uk&gt;</p>
-            <p class="subj">3 items have expired at Alder Lodge</p>
+            <p class="subj">2 items have expired at Maple House</p>
             <pre>Expired:
   - Grace Ellison: Fire, 157 days over
   - Daniel Mercer: First Aid, 12 days over
