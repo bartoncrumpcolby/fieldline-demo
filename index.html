@@ -249,10 +249,48 @@ h2{font-size:clamp(26px,3vw,36px);font-weight:700;line-height:1.15;text-wrap:bal
 .mc .sleep{position:absolute;top:3px;right:4px;width:5px;height:5px;
   border-radius:50%;background:var(--amber)}
 
-/* The hero board: the dashboard's opening sentence and the people to chase. */
-.board .bsent{font-family:Archivo;font-weight:600;letter-spacing:-.01em;
-  font-size:clamp(17px,1.8vw,21px);margin:0 0 8px}
-.board .bsent b{color:#b3261e;font-weight:700}
+/* The hero: words centred, then the product itself, rendered in markup and
+   cropped by the fold. Standing at the door of the app, not looking at a
+   picture of it. */
+.herocenter{text-align:center}
+.herocenter h1{margin:0 auto;max-width:20ch}
+.herocenter .sub{margin:22px auto 0}
+.herocenter .acts{justify-content:center}
+.peekwrap{position:relative;margin-top:58px}
+.peek{max-height:clamp(320px,40vw,460px);overflow:hidden}
+.peekwrap::after{content:"";position:absolute;left:0;right:0;bottom:0;height:96px;
+  background:linear-gradient(rgba(245,247,249,0),var(--bg));pointer-events:none}
+.appframe{display:grid;grid-template-columns:196px 1fr;min-height:560px}
+.afside{border-right:1px solid var(--line);padding:18px 12px;display:flex;
+  flex-direction:column;gap:2px;background:#fafbfc}
+.afbrand{display:flex;align-items:center;gap:8px;font-family:Archivo;font-weight:700;
+  font-size:15px;padding:0 10px 14px}
+.afbrand svg{width:18px;height:18px}
+.afitem{font-size:13px;font-weight:500;color:var(--ink-2);padding:7px 10px;
+  border-radius:8px}
+.afitem.on{background:var(--accent);color:#fff;font-weight:600}
+.afmain{padding:20px 26px}
+.aftop{display:flex;align-items:center;gap:12px}
+.aftop b{font-family:Archivo;font-size:17px}
+.afhome{font-size:12px;font-weight:600;color:var(--accent);background:#e6edf4;
+  border-radius:999px;padding:3px 11px}
+.afbtn{margin-left:auto;font-size:12.5px;font-weight:600;color:var(--ink-2);
+  border:1px solid var(--line);border-radius:999px;padding:6px 14px}
+.afstats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);
+  border-radius:12px;margin:16px 0 20px;padding:12px 0}
+.afstats span{text-align:center;font-size:12px;color:var(--ink-3)}
+.afstats span+span{border-left:1px solid var(--line)}
+.afstats b{display:block;font-family:Archivo;font-size:22px;color:var(--ink)}
+.bsent{font-family:Archivo;font-weight:600;letter-spacing:-.01em;
+  font-size:clamp(16px,1.6vw,19px);margin:0 0 6px}
+.bsent b{color:#b3261e;font-weight:700}
+@media (max-width:760px){
+  .appframe{grid-template-columns:1fr;min-height:0}
+  .afside{display:none}
+  .afstats{grid-template-columns:repeat(2,1fr);row-gap:10px}
+  .afstats span:nth-child(3){border-left:0}
+  .peek{max-height:420px}
+}
 .stopnote{margin-top:30px;font-size:15px;color:#b9c9d8;max-width:56ch}
 .stopnote a{color:#fff;text-decoration:underline;text-underline-offset:3px}
 @media (max-width:860px){.exd ul{grid-template-columns:1fr}}
@@ -326,49 +364,76 @@ footer .meta a:hover{text-decoration:underline}
 </nav>
 
 <header class="hero">
-  <div class="wrap herogrid">
-    <div>
-      <h1 class="rv">The compliance file for children&rsquo;s homes.</h1>
-      <p class="sub rv" style="transition-delay:80ms">
-        Training, DBS, supervisions, rotas and the home&rsquo;s checks, in one
-        place and in date, instead of a spreadsheet.
-      </p>
-      <div class="acts rv" style="transition-delay:160ms">
-        <a class="btn" href="mailto:colby@ordane.co.uk?subject=A%20look%20at%20Ordane&body=I%20would%20like%20a%20look%20at%20Ordane.%20My%20home%20is%20">
-          Book a look
-          <span class="cap"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13 13 3M6 3h7v7"/></svg></span>
-        </a>
-        <a class="btn ghost" href="#holds">See what it holds</a>
-      </div>
-      <p class="beneath rv" style="transition-delay:240ms">
-        Fifteen minutes, on a call, on the demo home. Or write to
-        colby@ordane.co.uk.
-      </p>
+  <div class="wrap herocenter">
+    <h1 class="rv">The compliance file for children&rsquo;s homes.</h1>
+    <p class="sub rv" style="transition-delay:80ms">
+      Training, DBS, supervisions, rotas and the home&rsquo;s checks, in one
+      place and in date, instead of a spreadsheet.
+    </p>
+    <div class="acts rv" style="transition-delay:160ms">
+      <a class="btn" href="mailto:colby@ordane.co.uk?subject=A%20look%20at%20Ordane&body=I%20would%20like%20a%20look%20at%20Ordane.%20My%20home%20is%20">
+        Book a look
+        <span class="cap"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13 13 3M6 3h7v7"/></svg></span>
+      </a>
+      <a class="btn ghost" href="#holds">See what it holds</a>
     </div>
-    <div class="rv" style="transition-delay:140ms">
+    <p class="beneath rv" style="transition-delay:240ms">
+      Fifteen minutes, on a call, on the demo home. Or write to
+      colby@ordane.co.uk.
+    </p>
+  </div>
+  <div class="wrap peekwrap rv" style="transition-delay:200ms">
+    <div class="peek">
       <div class="shell">
-        <div class="plate board" aria-label="The dashboard's opening: 10 items have expired, with the people to chase">
-          <p class="bsent"><b>10 items have expired.</b> These first:</p>
-          <div class="mrow"><span class="who">Grace Ellison</span>
-            <span class="what">Fire safety training</span>
-            <span class="mp red">157d over</span></div>
-          <div class="mrow"><span class="who">Daniel Mercer</span>
-            <span class="what">First aid</span>
-            <span class="mp red">12d over</span></div>
-          <div class="mrow"><span class="who">Priya Raman</span>
-            <span class="what">DVLA driving licence</span>
-            <span class="mp amber">in 9 days</span></div>
-          <div class="mrow"><span class="who">Sam Ogden</span>
-            <span class="what">DBS renewal</span>
-            <span class="mp green">in 210 days</span></div>
-          <p class="mfoot">The dashboard opens with whatever needs chasing first.
-            Worst at the top, one click to make it somebody's task.</p>
-        </div>
-        <div class="ministrip" aria-label="The demo home's counts: 10 expired, 3 due within 30 days, 7 due within 90 days, 5 with no date set">
-          <span><b class="count" data-n="10" style="color:#b3261e">0</b>expired</span>
-          <span><b class="count" data-n="3" style="color:#8a5a11">0</b>due in 30 days</span>
-          <span><b class="count" data-n="7">0</b>due in 90 days</span>
-          <span><b class="count" data-n="5">0</b>no date set</span>
+        <div class="plate appframe" aria-label="The Ordane dashboard, rendered as a preview">
+          <div class="afside" aria-hidden="true">
+            <span class="afbrand">
+              <svg viewBox="0 0 48 48" fill="none" stroke="#1c3d5a" stroke-width="7"><path d="M19 5 H43 V29 a14 14 0 0 1 -14 14 H19 a14 14 0 0 1 -14 -14 V19 a14 14 0 0 1 14 -14 Z"/></svg>
+              Ordane
+            </span>
+            <span class="afitem on">Dashboard</span>
+            <span class="afitem">Staff</span>
+            <span class="afitem">Training &amp; DBS</span>
+            <span class="afitem">Recruitment</span>
+            <span class="afitem">Supervisions</span>
+            <span class="afitem">Rota</span>
+            <span class="afitem">Checks</span>
+            <span class="afitem">Tasks</span>
+            <span class="afitem">Documents</span>
+          </div>
+          <div class="afmain">
+            <div class="aftop">
+              <b>Dashboard</b>
+              <span class="afhome">Maple House</span>
+              <span class="afbtn" aria-hidden="true">Evidence pack</span>
+            </div>
+            <div class="afstats" aria-label="The demo home&rsquo;s counts: 10 expired, 3 due within 30 days, 7 due within 90 days, 5 with no date set">
+              <span><b class="count" data-n="10" style="color:#b3261e">0</b>expired</span>
+              <span><b class="count" data-n="3" style="color:#8a5a11">0</b>due in 30 days</span>
+              <span><b class="count" data-n="7">0</b>due in 90 days</span>
+              <span><b class="count" data-n="5">0</b>no date set</span>
+            </div>
+            <p class="bsent"><b>10 items have expired.</b> These first:</p>
+            <div class="mrow"><span class="who">Grace Ellison</span>
+              <span class="what">Fire safety training</span>
+              <span class="mp red">157d over</span></div>
+            <div class="mrow"><span class="who">Daniel Mercer</span>
+              <span class="what">First aid</span>
+              <span class="mp red">12d over</span></div>
+            <div class="mrow"><span class="who">Priya Raman</span>
+              <span class="what">DVLA driving licence</span>
+              <span class="mp amber">in 9 days</span></div>
+            <div class="mrow"><span class="who">Sam Ogden</span>
+              <span class="what">DBS renewal</span>
+              <span class="mp green">in 210 days</span></div>
+            <p class="mh" style="margin-top:18px">Checks due today</p>
+            <div class="mrow"><span class="who">Fridge temperatures</span>
+              <span class="what">Daily</span>
+              <span class="mp amber">due</span></div>
+            <div class="mrow"><span class="who">Vehicle walk round</span>
+              <span class="what">Before the first journey</span>
+              <span class="mp green">done 07:40</span></div>
+          </div>
         </div>
       </div>
     </div>
