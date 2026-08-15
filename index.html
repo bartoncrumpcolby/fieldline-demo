@@ -261,12 +261,14 @@ h2{font-size:clamp(26px,3vw,36px);font-weight:700;line-height:1.15;text-wrap:bal
    cropped by the fold. Standing at the door of the app, not looking at a
    picture of it. */
 .hero{overflow-x:clip}
-/* The frame renders at its natural comfortable width and bleeds off the
-   right edge of the screen rather than shrinking to fit its column. What
-   the visitor sees is legible; the crop says there is more. */
+/* The frame renders at its natural comfortable width and anchors to the
+   right edge of the viewport: on narrower screens it bleeds off and the
+   crop says there is more; on wider screens it kisses the edge instead of
+   floating short of it, which kept the composition from looking centred. */
 .heropeek{position:relative}
-.heropeek .shell{width:min(720px,94vw);max-width:none;margin-left:clamp(-46px,-3vw,0px)}
-@media (max-width:860px){.heropeek .shell{width:100%}}
+.heropeek .shell{width:min(720px,94vw);max-width:none;margin-left:auto;
+  margin-right:calc(-1 * (max((100vw - 1180px)/2, 0px) + clamp(20px,4vw,48px)))}
+@media (max-width:860px){.heropeek .shell{width:100%;margin:0}}
 .appframe{display:grid;grid-template-columns:196px 1fr;min-height:560px}
 .afside{border-right:1px solid var(--line);padding:18px 12px;display:flex;
   flex-direction:column;gap:2px;background:#fafbfc}
