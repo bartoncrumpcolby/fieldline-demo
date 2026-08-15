@@ -195,6 +195,22 @@ h2{font-size:clamp(26px,3vw,36px);font-weight:700;line-height:1.15;text-wrap:bal
 .exmail .subj{font-weight:600;font-size:16px;margin:6px 0 14px;font-family:Archivo}
 .exmail pre{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:13px;
   line-height:1.7;color:var(--ink-2);white-space:pre-wrap}
+/* The breakdown under each capture: what the open tab actually holds, as a
+   flat list rather than adjectives. This is the part a director comparing
+   systems actually reads. */
+.exds{background:#fff;border:1px solid rgba(13,22,32,.06);border-radius:14px;
+  padding:18px 20px 16px;margin-top:8px}
+.exd{display:none}
+.exd.on{display:block}
+.exd ul{list-style:none;margin:0;padding:0;display:grid;
+  grid-template-columns:1fr 1fr;gap:9px 20px}
+.exd li{font-size:13.5px;line-height:1.5;color:var(--ink-2);
+  padding-left:14px;position:relative}
+.exd li::before{content:"";position:absolute;left:0;top:.62em;
+  width:6px;height:2px;background:var(--accent)}
+.exd li b{color:var(--ink);font-weight:600}
+.exd .reg{margin:12px 0 0;font-size:12.5px;color:var(--ink-3)}
+@media (max-width:860px){.exd ul{grid-template-columns:1fr}}
 @media (max-width:860px){.explore{grid-template-columns:1fr}.expanel{position:static;order:-1}}
 @media (prefers-reduced-motion: reduce){.exv{transition:opacity .22s ease;transform:none}}
 
@@ -345,6 +361,14 @@ footer .meta a:hover{text-decoration:underline}
           <span>Fire, water, vehicles and the rest, on their own intervals.</span>
         </button>
         <button type="button" data-ex="5" aria-selected="false">
+          <b>Tasks, with receipts</b>
+          <span>Sent, seen, done. You know who has read it and who has finished it.</span>
+        </button>
+        <button type="button" data-ex="6" aria-selected="false">
+          <b>The paper trail</b>
+          <span>An audit trail nobody can edit, and an evidence pack in one click.</span>
+        </button>
+        <button type="button" data-ex="7" aria-selected="false">
           <b>The Monday email</b>
           <span>One plain email of what needs chasing, every Monday at 7am.</span>
         </button>
@@ -361,6 +385,33 @@ footer .meta a:hover{text-decoration:underline}
                alt="The supervisions screen showing who is overdue and who is up to date, from the live product.">
           <img class="exv" src="/img/ex-checks.png" width="1250" height="952" loading="lazy"
                alt="The premises checks table with how late each one is, from the live product.">
+          <div class="exv exmail" aria-label="An example task with its receipts">
+            <p class="from">Task board, Maple House</p>
+            <p class="subj">Fire drill record, due Friday</p>
+            <pre>Grace     sent 09:12   seen 09:31   done 14:02
+Daniel    sent 09:12   seen 11:47
+Priya     sent 09:12
+
+Each of them got one email. Grace's completion
+note came back to the manager who set it.
+
+If Friday passes it goes overdue, loudest thing
+on the board, one nudge email, then it rides
+the Monday digest until it is done.</pre>
+          </div>
+          <div class="exv exmail" aria-label="An example of the audit trail">
+            <p class="from">Audit trail, Maple House</p>
+            <p class="subj">Written by the system, edited by nobody</p>
+            <pre>09:31  Grace Ellison opened a restricted
+       document. Logged against her name.
+09:33  Evidence pack generated for Daniel
+       Mercer: 12 documents, each one logged
+       as it went in.
+
+Append only. There is no edit and no delete,
+for anyone, including the owner. That is what
+makes it worth showing an inspector.</pre>
+          </div>
           <div class="exv exmail" aria-label="An example of the Monday morning email">
             <p class="from">Ordane &lt;alerts@ordane.co.uk&gt;</p>
             <p class="subj">3 items have expired at Alder Lodge</p>
@@ -375,6 +426,83 @@ Open Ordane to chase them.
 
 You get this on Monday mornings when something
 needs attention. A quiet week sends nothing.</pre>
+          </div>
+        </div>
+        <div class="exds">
+          <div class="exd on">
+            <ul>
+              <li><b>Every certificate</b> with its issue and renewal dates, sorted worst first</li>
+              <li><b>DBS renewals</b> and the annual self declaration, tracked per person</li>
+              <li><b>The scanned certificate</b> attached to the item it proves</li>
+              <li><b>A 30 day warning window</b>, and expired is always the loudest thing on screen</li>
+              <li><b>One click</b> turns an expiry into a task with a name and a due date</li>
+              <li><b>Health assessments</b> and their review dates on the same board</li>
+            </ul>
+            <p class="reg">This is the staff file evidence Schedule 2 of the Children's Homes Regulations 2015 expects a home to hold.</p>
+          </div>
+          <div class="exd">
+            <ul>
+              <li><b>The full Schedule 2 checklist</b> per person, item by item</li>
+              <li><b>Complete, outstanding or not applicable</b>, each with its date</li>
+              <li><b>Evidence attached</b> against the individual check, not a folder somewhere</li>
+              <li><b>A file is COMPLETE or INCOMPLETE</b>, with no comfortable middle</li>
+              <li><b>Exports to a spreadsheet</b> an inspector can read without a login</li>
+            </ul>
+            <p class="reg">Safer recruitment under Schedule 2, kept per person from day one.</p>
+          </div>
+          <div class="exd">
+            <ul>
+              <li><b>Shift codes painted across the week</b>, with the palette the home already uses</li>
+              <li><b>Drafts stay drafts</b> until the week is published to staff</li>
+              <li><b>Sleep-ins marked on any worked shift</b>, including training days</li>
+              <li><b>Leave and absence</b> recorded against the same week</li>
+              <li><b>Support workers see who they are on with.</b> Wages stay with the Responsible Individual, enforced in the database</li>
+            </ul>
+          </div>
+          <div class="exd">
+            <ul>
+              <li><b>Every kind on one matrix:</b> supervisions, appraisals, probation reviews, return to work, counselling, observations</li>
+              <li><b>Who is due and who is overdue</b>, against the home's own frequency</li>
+              <li><b>Notes and agreed actions</b> recorded, or the signed paper form uploaded</li>
+              <li><b>Staff sign their own supervision</b> from their portal, so the record is theirs too</li>
+            </ul>
+            <p class="reg">The supervision record Regulation 33 expects, without the ring binder.</p>
+          </div>
+          <div class="exd">
+            <ul>
+              <li><b>The checks a home actually runs</b>, seeded on day one: fire alarm tests, drills, emergency lighting, legionella flushes, fridge temperatures, window restrictors, vehicle walk rounds, the gas certificate and more</li>
+              <li><b>Each on its own interval</b>, daily through to five yearly</li>
+              <li><b>The statutory ones flagged</b>, so a missed legal check never looks like missed housekeeping</li>
+              <li><b>Readings recorded</b> where they matter: water and fridge temperatures</li>
+              <li><b>Pass, needed something doing, or failed</b>, and a check never done is due from the day it was switched on</li>
+              <li><b>Anyone on shift can record one</b>, because the person testing the fire alarm at 2am is not a manager</li>
+            </ul>
+          </div>
+          <div class="exd">
+            <ul>
+              <li><b>Write it once, tick the names</b>, and everyone gets their own copy by email</li>
+              <li><b>Sent, seen, done</b>, each with its timestamp on the manager's board</li>
+              <li><b>Due dates</b>, and overdue is the loudest state on the screen</li>
+              <li><b>One overdue nudge, ever.</b> After that it rides the Monday digest, because a repeating alarm trains people to delete it</li>
+              <li><b>Completion notes</b> come back to whoever set the task</li>
+            </ul>
+          </div>
+          <div class="exd">
+            <ul>
+              <li><b>Append only.</b> No edit, no delete, for anyone, including the owner</li>
+              <li><b>Every document open is logged:</b> who, which file, when</li>
+              <li><b>The evidence pack:</b> one zip per person or per home, the spreadsheets plus the certificates themselves</li>
+              <li><b>Every document in a pack is logged</b> as it goes in, so the handover itself is accounted for</li>
+              <li><b>Restricted records</b> open to the Responsible Individual only, and every open is on the record</li>
+            </ul>
+            <p class="reg">Built for the conversation where an inspector asks how you know.</p>
+          </div>
+          <div class="exd">
+            <ul>
+              <li><b>Expired items, expiries within 30 days and overdue tasks</b>, in one plain email</li>
+              <li><b>Monday, 7am</b>, to the people who run the home</li>
+              <li><b>A quiet week sends nothing</b>, so when it arrives it means something</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -531,10 +659,12 @@ segBtns.forEach(b=>b.addEventListener('click',()=>{
 /* The explorer. */
 const exBtns=[...document.querySelectorAll('.exlist button')];
 const exViews=[...document.querySelectorAll('.exv')];
+const exDs=[...document.querySelectorAll('.exd')];
 exBtns.forEach(b=>b.addEventListener('click',()=>{
   const i=+b.dataset.ex;
   exBtns.forEach((x,j)=>{x.classList.toggle('on',j===i);x.setAttribute('aria-selected',j===i)});
   exViews.forEach((v,j)=>v.classList.toggle('on',j===i));
+  exDs.forEach((d,j)=>d.classList.toggle('on',j===i));
   if(matchMedia('(max-width:860px)').matches){
     document.querySelector('.expanel').scrollIntoView({behavior:'smooth',block:'nearest'});
   }
