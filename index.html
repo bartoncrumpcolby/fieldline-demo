@@ -252,14 +252,13 @@ h2{font-size:clamp(26px,3vw,36px);font-weight:700;line-height:1.15;text-wrap:bal
 /* The hero: words centred, then the product itself, rendered in markup and
    cropped by the fold. Standing at the door of the app, not looking at a
    picture of it. */
-.herocenter{text-align:center}
-.herocenter h1{margin:0 auto;max-width:20ch}
-.herocenter .sub{margin:22px auto 0}
-.herocenter .acts{justify-content:center}
-.peekwrap{position:relative;margin-top:58px}
-.peek{max-height:clamp(320px,40vw,460px);overflow:hidden}
-.peekwrap::after{content:"";position:absolute;left:0;right:0;bottom:0;height:96px;
-  background:linear-gradient(rgba(245,247,249,0),var(--bg));pointer-events:none}
+.hero{overflow-x:clip}
+/* The frame renders at its natural comfortable width and bleeds off the
+   right edge of the screen rather than shrinking to fit its column. What
+   the visitor sees is legible; the crop says there is more. */
+.heropeek{position:relative}
+.heropeek .shell{width:min(720px,94vw);max-width:none;margin-left:clamp(-46px,-3vw,0px)}
+@media (max-width:860px){.heropeek .shell{width:100%}}
 .appframe{display:grid;grid-template-columns:196px 1fr;min-height:560px}
 .afside{border-right:1px solid var(--line);padding:18px 12px;display:flex;
   flex-direction:column;gap:2px;background:#fafbfc}
@@ -364,26 +363,26 @@ footer .meta a:hover{text-decoration:underline}
 </nav>
 
 <header class="hero">
-  <div class="wrap herocenter">
-    <h1 class="rv">The compliance file for children&rsquo;s homes.</h1>
-    <p class="sub rv" style="transition-delay:80ms">
-      Training, DBS, supervisions, rotas and the home&rsquo;s checks, in one
-      place and in date, instead of a spreadsheet.
-    </p>
-    <div class="acts rv" style="transition-delay:160ms">
-      <a class="btn" href="mailto:colby@ordane.co.uk?subject=A%20look%20at%20Ordane&body=I%20would%20like%20a%20look%20at%20Ordane.%20My%20home%20is%20">
-        Book a look
-        <span class="cap"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13 13 3M6 3h7v7"/></svg></span>
-      </a>
-      <a class="btn ghost" href="#holds">See what it holds</a>
+  <div class="wrap herogrid">
+    <div class="heroleft">
+      <h1 class="rv">The compliance file for children&rsquo;s homes.</h1>
+      <p class="sub rv" style="transition-delay:80ms">
+        Training, DBS, supervisions, rotas and the home&rsquo;s checks, in one
+        place and in date, instead of a spreadsheet.
+      </p>
+      <div class="acts rv" style="transition-delay:160ms">
+        <a class="btn" href="mailto:colby@ordane.co.uk?subject=A%20look%20at%20Ordane&body=I%20would%20like%20a%20look%20at%20Ordane.%20My%20home%20is%20">
+          Book a look
+          <span class="cap"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13 13 3M6 3h7v7"/></svg></span>
+        </a>
+        <a class="btn ghost" href="#holds">See what it holds</a>
+      </div>
+      <p class="beneath rv" style="transition-delay:240ms">
+        Fifteen minutes, on a call, on the demo home. Or write to
+        colby@ordane.co.uk.
+      </p>
     </div>
-    <p class="beneath rv" style="transition-delay:240ms">
-      Fifteen minutes, on a call, on the demo home. Or write to
-      colby@ordane.co.uk.
-    </p>
-  </div>
-  <div class="wrap peekwrap rv" style="transition-delay:200ms">
-    <div class="peek">
+    <div class="heropeek rv" style="transition-delay:180ms">
       <div class="shell">
         <div class="plate appframe" aria-label="The Ordane dashboard, rendered as a preview">
           <div class="afside" aria-hidden="true">
