@@ -86,6 +86,28 @@
   .step .k{font-size:13px;font-weight:650;color:var(--navy);letter-spacing:.06em;margin:0 0 12px}
   .step h3{margin:0 0 8px;font-size:17.5px;font-weight:650}
   .step p{margin:0;color:var(--mut);font-size:15px}
+  .mini{margin-top:18px;border:1px solid var(--line);border-radius:10px;padding:13px 15px;
+    background:#fafcfe;font-size:12.5px;text-align:left}
+  .mini .mrow{display:flex;justify-content:space-between;gap:8px;padding:5px 0}
+  .mini .mrow+.mrow{border-top:1px solid var(--line)}
+  .mini .bar{height:7px;border-radius:99px;background:#e8edf3;overflow:hidden;margin:7px 0}
+  .mini .bar i{display:block;height:100%;width:92%;background:var(--navy);border-radius:99px}
+  .mini .mt{color:var(--mut)}
+  .mini .chip{font-size:10.5px;padding:2px 8px}
+  .stamps{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(215px,1fr);gap:16px;
+    overflow-x:auto;padding:4px 4px 12px;scroll-snap-type:x proximity}
+  .stamp{border:1px solid var(--line);border-radius:14px;padding:24px 22px;background:#fff;
+    scroll-snap-align:start;text-align:left}
+  .stamp .badge{width:62px;height:62px;border:1.5px solid var(--navy);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;margin-bottom:16px;
+    font-size:10.5px;font-weight:700;letter-spacing:.06em;color:var(--navy);
+    box-shadow:inset 0 0 0 3px #fff,inset 0 0 0 4px var(--line)}
+  .stamp h3{margin:0 0 5px;font-size:16px;font-weight:650}
+  .stamp p{margin:0;color:var(--mut);font-size:13.5px}
+  .statement{font-family:"Iowan Old Style","Palatino","Georgia",serif;font-weight:500;
+    font-size:clamp(40px,7vw,84px);line-height:1.05;letter-spacing:-.015em;margin:0 0 18px;
+    text-align:center;text-wrap:balance}
+  .statesub{text-align:center;color:var(--mut);font-size:17px;max-width:52ch;margin:0 auto}
   .duo{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
   @media(max-width:840px){.duo{grid-template-columns:1fr}}
   .mail{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px;
@@ -106,7 +128,12 @@
   details:first-of-type{border-top:1px solid var(--line)}
   summary{font-weight:650;cursor:pointer;font-size:16.5px}
   details p{color:var(--mut);margin:12px 0 0;max-width:62ch}
-  .closer{background:var(--band);text-align:center;padding:104px 0}
+  .closer{background:var(--navy-deep);text-align:center;padding:104px 0;color:#fff}
+  .closer h2{color:#fff}
+  .closer .slede{color:#b7c6d6}
+  .closer .cap{border-color:rgba(255,255,255,.28);background:#fff}
+  .closer .btn{background:var(--navy)}
+  .closer .btn:hover{background:#0d2233}
   footer{padding:36px 0;color:var(--mut);font-size:13.5px;line-height:1.9;text-align:center}
   footer a{color:inherit}
   .rv{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
@@ -120,7 +147,8 @@
 <a class="skip" href="#main">Skip to the content</a>
 <nav><div class="wrap">
   <span class="brand"><svg width="26" height="26" viewBox="0 0 48 48" fill="none" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"><rect x="9" y="7" width="30" height="34" rx="5" stroke="#1c3d5a"/><path d="M25 7 V24 L30.5 19 L36 24 V7" stroke="#a9762f"/></svg>Staffbook</span>
-  <span class="links"><a href="#how">Product</a><a href="#quote">Pricing</a><a href="#faq">Questions</a></span>
+  <span class="links"><a href="#how">Product</a><a href="#holds">What it holds</a><a href="#quote">Pricing</a><a href="#faq">Questions</a></span>
+  <a class="btn line" href="https://app.ordane.co.uk">Sign in</a>
   <a class="btn" href="#cap">Book a look</a>
 </div></nav>
 
@@ -163,13 +191,27 @@
   <div class="steps">
     <div class="step rv"><p class="k">STEP ONE</p><h3>Paste the sheet</h3>
       <p>Copy the training matrix out of Excel. Staffbook reads names, courses and dates,
-      shows what it understood, and asks about anything it is not sure of. Three minutes.</p></div>
+      shows what it understood, and asks about anything it is not sure of. Three minutes.</p>
+      <div class="mini" aria-hidden="true">
+        <span class="mt">Importing Maple House&hellip;</span>
+        <div class="bar"><i></i></div>
+        <span class="mt">13 records &middot; 4 people &middot; 5 courses &middot; renewals worked out</span>
+      </div></div>
     <div class="step rv"><p class="k">STEP TWO</p><h3>The matrix comes alive</h3>
       <p>Every certificate gets its renewal worked out. Expired is red today, due-soon turns
-      amber ahead of time, and the dashboard names who to chase first.</p></div>
+      amber ahead of time, and the dashboard names who to chase first.</p>
+      <div class="mini" aria-hidden="true">
+        <div class="mrow"><span><b>Grace Ellison</b> &middot; Fire safety</span><span class="chip c-red">157d over</span></div>
+        <div class="mrow"><span><b>Priya Raman</b> &middot; DVLA licence</span><span class="chip c-am">due in 9d</span></div>
+      </div></div>
     <div class="step rv"><p class="k">STEP THREE</p><h3>Monday reports in</h3>
       <p>One plain email before the week starts: expired, due soon, who has not signed the
-      new policy. A quiet week sends nothing at all.</p></div>
+      new policy. A quiet week sends nothing at all.</p>
+      <div class="mini" aria-hidden="true">
+        <span class="mt">Staffbook &lt;alerts@staffbook.co.uk&gt;</span>
+        <div class="mrow"><b>2 items have expired at Maple House</b></div>
+        <span class="mt">Monday, 07:00. Open Staffbook to chase them.</span>
+      </div></div>
   </div>
 </section>
 
@@ -204,6 +246,26 @@ Open Staffbook to chase them.</pre>
   </div>
 </section>
 
+<section id="holds" class="wrap">
+  <h2 class="rv">What the book holds</h2>
+  <p class="slede rv">Six sections, one file. Every one of them is what an inspector
+    actually asks for, kept in date rather than found on the day.</p>
+  <div class="stamps">
+    <div class="stamp rv"><div class="badge">TRAINING</div><h3>Training and DBS</h3>
+      <p>The full matrix by home, every expiry chased before it lapses.</p></div>
+    <div class="stamp rv"><div class="badge">RECRUIT</div><h3>Safer recruitment</h3>
+      <p>The checks file per person, gaps visible before an inspector finds them.</p></div>
+    <div class="stamp rv"><div class="badge">SUPER</div><h3>Supervisions</h3>
+      <p>Scheduled, recorded, evidenced, on pattern.</p></div>
+    <div class="stamp rv"><div class="badge">POLICY</div><h3>Policies, agreed</h3>
+      <p>Every member of staff signs "read and understood". You see 12 of 14, and who is outstanding.</p></div>
+    <div class="stamp rv"><div class="badge">CHECKS</div><h3>The home&rsquo;s checks</h3>
+      <p>Fridge temperatures to fire doors, done and dated, rota beside them.</p></div>
+    <div class="stamp rv"><div class="badge">EVIDENCE</div><h3>The evidence pack</h3>
+      <p>One click, one file, everything an inspection asks about your staff.</p></div>
+  </div>
+</section>
+
 <section id="quote" class="wrap center">
   <h2 class="rv">Your whole quote, no call required</h2>
   <div class="quote rv" style="margin-top:34px">
@@ -215,6 +277,12 @@ Open Staffbook to chase them.</pre>
       as you stay. Unlimited staff accounts. Cancel any time and every record exports with you.</p>
     <a class="btn" href="#cap">Book a look</a>
   </div>
+</section>
+
+<section class="wrap">
+  <p class="statement rv">Run it by the book.</p>
+  <p class="statesub rv">Everything Ofsted asks about your staff: written down, in date,
+    and provable in one click.</p>
 </section>
 
 <section id="faq" class="wrap" style="max-width:780px">
@@ -239,7 +307,10 @@ Open Staffbook to chase them.</pre>
     <h2 class="rv">See it on a demo home this week</h2>
     <p class="slede rv" style="margin:0 auto 30px">Fifteen minutes, on a call. Bring your
       spreadsheet if you want the good bit.</p>
-    <a class="btn rv" href="#cap">Book a look</a>
+    <form class="cap rv" data-cap>
+      <input type="email" placeholder="manager@maplehouse.co.uk" required aria-label="Work email">
+      <button class="btn" type="submit">Book a look</button>
+    </form>
   </div>
 </div>
 
@@ -260,12 +331,14 @@ Open Staffbook to chase them.</pre>
     document.getElementById('total').textContent = (n * 79).toLocaleString();
   };
   s.addEventListener('input', upd); upd();
-  document.getElementById('cap').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const em = document.getElementById('l_email').value;
-    location.href = 'mailto:colby@ordane.co.uk?subject=' +
-      encodeURIComponent('A look at Staffbook') + '&body=' +
-      encodeURIComponent(`My email: ${em}\nMy home or group: \nA good time to call: `);
+  document.querySelectorAll('form.cap').forEach((f) => {
+    f.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const em = f.querySelector('input[type=email]').value;
+      location.href = 'mailto:colby@ordane.co.uk?subject=' +
+        encodeURIComponent('A look at Staffbook') + '&body=' +
+        encodeURIComponent(`My email: ${em}\nMy home or group: \nA good time to call: `);
+    });
   });
   const io = new IntersectionObserver((es) => {
     for (const e of es) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
