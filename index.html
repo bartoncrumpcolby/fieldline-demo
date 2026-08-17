@@ -65,6 +65,9 @@
   .cap .btn{padding:12px 22px;flex:none}
   .capnote{display:none;font-size:13.5px;margin-top:12px}
   .capnote.show{display:block}
+  .capnote a{color:inherit;font-weight:600}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+  .btn:disabled{opacity:.75;cursor:default}
   .under{color:var(--mut);font-size:14px;margin-top:16px}
   .under b{color:var(--ink);font-weight:600}
   .stage{position:relative;max-width:920px;margin:-96px auto 0;padding:0 26px}
@@ -237,6 +240,7 @@
       Safer recruitment &middot; Supervisions &middot; Policies &middot; Checks</p>
     <form class="cap rv" style="transition-delay:210ms" id="cap">
       <input type="email" placeholder="manager@maplehouse.co.uk" required aria-label="Work email">
+      <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="btn" type="submit">Book a look</button>
     </form>
     <p class="capnote" aria-live="polite">If your email app did not open, write to
@@ -450,6 +454,7 @@ Open Staffbook to chase them.</pre>
       spreadsheet if you want the good bit.</p>
     <form class="cap rv" id="cap2">
       <input type="email" placeholder="manager@maplehouse.co.uk" required aria-label="Work email">
+      <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="btn" type="submit">Book a look</button>
     </form>
     <p class="capnote" aria-live="polite" style="color:#b7c6d6">If your email app did not open,
@@ -466,26 +471,55 @@ Open Staffbook to chase them.</pre>
 </div></footer>
 
 <script>
+  // The capture posts to the product's own lead endpoint. Success replaces
+  // the form with a sentence; failure keeps the visitor in control with the
+  // address, a prefilled-email link they can choose to open, and a clipboard
+  // copy that is only claimed once the async write actually succeeds.
   document.querySelectorAll('form.cap').forEach((f) => {
-    f.addEventListener('submit', (e) => {
+    const note = f.parentElement.querySelector('.capnote');
+    const btn = f.querySelector('button');
+    f.addEventListener('submit', async (e) => {
       e.preventDefault();
       const em = f.querySelector('input[type=email]').value;
-      // The mailto may silently do nothing on machines without a mail app, so
-      // a visible line offers the address. The clipboard claim is only made
-      // once the async write actually succeeds; a rejected promise would
-      // otherwise skip a bare try/catch and leave the page asserting a lie.
-      const note = f.parentElement.querySelector('.capnote');
-      const base = 'If your email app did not open, write to colby@ordane.co.uk.';
-      if (note) {
-        note.textContent = base;
-        note.classList.add('show');
-        navigator.clipboard?.writeText('colby@ordane.co.uk')
-          .then(() => { note.textContent = base + ' The address is on your clipboard.'; })
-          .catch(() => {});
+      const label = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      let ok = false;
+      try {
+        const ctl = new AbortController();
+        const t = setTimeout(() => ctl.abort(), 7000);
+        const res = await fetch('https://app.ordane.co.uk/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: em, company: f.querySelector('input[name=company]')?.value ?? '' }),
+          signal: ctl.signal,
+        });
+        clearTimeout(t);
+        ok = res.ok;
+      } catch {}
+      if (ok) {
+        f.style.display = 'none';
+        if (note) {
+          note.textContent = `Done. Colby will reply to ${em} today.`;
+          note.classList.add('show');
+        }
+      } else {
+        btn.disabled = false;
+        btn.textContent = label;
+        if (note) {
+          note.textContent = 'That did not send. Write to colby@ordane.co.uk, or ';
+          const a = document.createElement('a');
+          a.href = 'mailto:colby@ordane.co.uk?subject=' +
+            encodeURIComponent('A look at Staffbook') + '&body=' +
+            encodeURIComponent(`My email: ${em}\nMy home or group: \nA good time to call: `);
+          a.textContent = 'open a prefilled email';
+          note.append(a, '.');
+          note.classList.add('show');
+          navigator.clipboard?.writeText('colby@ordane.co.uk')
+            .then(() => { note.append(' The address is on your clipboard.'); })
+            .catch(() => {});
+        }
       }
-      location.href = 'mailto:colby@ordane.co.uk?subject=' +
-        encodeURIComponent('A look at Staffbook') + '&body=' +
-        encodeURIComponent(`My email: ${em}\nMy home or group: \nA good time to call: `);
     });
   });
   document.querySelectorAll('a[href="#cap"], a[href="#cap2"]').forEach((a) => {
