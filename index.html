@@ -127,6 +127,20 @@
     box-shadow:inset 0 0 0 3px #fff,inset 0 0 0 4px var(--line)}
   .stamp h3{margin:0 0 5px;font-size:16px;font-weight:650}
   .stamp p{margin:0;color:var(--mut);font-size:13.5px}
+  .profile{background:#fff;border-radius:16px;padding:24px 26px;
+    box-shadow:0 22px 48px -30px rgba(19,44,66,.3);font-size:14px}
+  .phead{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .phead b{font-size:17px}
+  .psub{color:var(--mut);font-size:13px;margin:2px 0 14px}
+  .pgroup{border-top:1px solid var(--line);padding:10px 0}
+  .pt{display:block;font-size:11.5px;font-weight:700;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--mut);margin-bottom:6px}
+  .pline{display:flex;gap:9px;align-items:baseline;padding:2px 0;color:var(--ink)}
+  .pline i{width:8px;height:8px;border-radius:50%;flex:none;position:relative;top:-1px}
+  .pline i.ok{background:var(--ok)}
+  .pline i.am{background:var(--am)}
+  .pfoot{border-top:1px solid var(--line);padding-top:12px;margin-top:2px;
+    color:var(--mut);font-size:12.5px}
   .statement{font-family:"Iowan Old Style","Palatino","Georgia",serif;font-weight:500;
     font-size:clamp(40px,7vw,84px);line-height:1.05;letter-spacing:-.015em;margin:0 0 18px;
     text-align:center;text-wrap:balance}
@@ -327,6 +341,37 @@ Open Staffbook to chase them.</pre>
     <p class="fine" style="text-align:left;margin-top:18px">There is a founding rate for the
       first homes, locked for as long as they stay. Ask on the call.</p>
     <div style="text-align:center"><a class="btn" href="#cap2">Book a look</a></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="duo">
+    <div>
+      <h2 class="rv">One person, one screen, nothing missing</h2>
+      <p class="slede rv" style="margin-bottom:16px">Open any member of staff and their whole
+        file is one glance: recruitment checks, training, DBS, supervisions, documents. Green
+        means evidenced. Amber means Staffbook is already chasing it.</p>
+      <p class="slede rv" style="margin-bottom:0">This is the screen you open when the
+        inspector says "show me". It is also the screen that means you never have to
+        prepare for that moment again.</p>
+    </div>
+    <div class="profile rv" aria-label="A staff file, as a preview">
+      <div class="phead">
+        <b>Priya Raman</b>
+        <span class="chip c-ok">file 98% complete</span>
+      </div>
+      <p class="psub">Senior Support Worker &middot; Beechwood House &middot; started March 2024</p>
+      <div class="pgroup"><span class="pt">Recruitment</span>
+        <div class="pline"><i class="ok"></i>References, right to work, history: all evidenced</div></div>
+      <div class="pgroup"><span class="pt">Training</span>
+        <div class="pline"><i class="ok"></i>Safeguarding, first aid, medication: in date</div>
+        <div class="pline"><i class="am"></i>DVLA licence check due in 9 days, chased Monday</div></div>
+      <div class="pgroup"><span class="pt">DBS</span>
+        <div class="pline"><i class="ok"></i>Enhanced, child workforce &middot; expires May 2027</div></div>
+      <div class="pgroup"><span class="pt">Supervisions</span>
+        <div class="pline"><i class="ok"></i>Last held 4 August &middot; next due 21 September</div></div>
+      <div class="pfoot">12 documents on file &middot; evidence pack ready</div>
+    </div>
   </div>
 </section>
 
