@@ -45,8 +45,9 @@
   @media(max-width:760px){nav .links{display:none}}
   .btn{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;
     font-weight:550;font-size:15.5px;padding:13px 26px;border-radius:999px;text-decoration:none;border:0;cursor:pointer}
-  .btn{transition:background .15s ease}
+  .btn{transition:background .15s ease,transform 160ms cubic-bezier(.23,1,.32,1)}
   .btn:hover{background:var(--navy-deep)}
+  .btn:active{transform:scale(.97)}
   .btn:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
   .btn.line{background:transparent;color:var(--ink);border:1.5px solid rgba(22,32,44,.25)}
   .hero{background:var(--band);text-align:center;padding:84px 0 150px}
@@ -59,6 +60,7 @@
   .cap{display:flex;max-width:520px;margin:0 auto;background:#fff;border:1.5px solid rgba(22,32,44,.2);
     border-radius:999px;padding:6px 6px 6px 22px;align-items:center;gap:10px}
   .cap input{flex:1;border:0;outline:0;font:inherit;font-size:15.5px;min-width:0;background:transparent}
+  .cap{transition:border-color .15s ease,box-shadow .15s ease}
   .cap:focus-within{border-color:var(--navy);box-shadow:0 0 0 3px rgba(28,61,90,.15)}
   .cap .btn{padding:12px 22px;flex:none}
   .capnote{display:none;font-size:13.5px;margin-top:12px}
@@ -189,7 +191,27 @@
   footer a{color:inherit}
   .rv{opacity:0;transform:translateY(10px);transition:opacity .45s cubic-bezier(.16,1,.3,1),transform .45s cubic-bezier(.16,1,.3,1)}
   .rv.in{opacity:1;transform:none}
-  @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+  .rv-r{transform:translateX(22px)}
+  .rv-l{transform:translateX(-22px)}
+  .rv-blur{filter:blur(7px);transform:scale(.985);
+    transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1),filter .7s cubic-bezier(.16,1,.3,1)}
+  .rv-blur.in{filter:blur(0)}
+  .pop{transform:scale(.85) translateY(6px);
+    transition:opacity .5s cubic-bezier(.34,1.56,.64,1),transform .5s cubic-bezier(.34,1.56,.64,1)}
+  .rise{transform:translateY(26px)}
+  .rise.in{transform:none}
+  .steps .step:nth-child(2){transition-delay:60ms}
+  .steps .step:nth-child(3){transition-delay:120ms}
+  .stamps .stamp:nth-child(2){transition-delay:40ms}
+  .stamps .stamp:nth-child(3){transition-delay:80ms}
+  .stamps .stamp:nth-child(4){transition-delay:120ms}
+  .stamps .stamp:nth-child(5){transition-delay:160ms}
+  .stamps .stamp:nth-child(6){transition-delay:200ms}
+  @media(prefers-reduced-motion:reduce){
+    .rv{opacity:1;transform:none;transition:none;transition-delay:0ms!important;filter:none}
+    summary::after{transition:none}
+    .btn{transition:background .15s ease}
+  }
 </style>
 </head>
 <body>
@@ -205,25 +227,25 @@
 
 <header class="hero" id="main">
   <div class="wrap">
-    <h1>In date is everything</h1>
-    <p class="lede">Staffbook keeps the staff records of children&rsquo;s homes inspection-ready.
-      When the inspector asks, it is already written down.</p>
-    <p class="cats" aria-hidden="true">DBS &middot; Training &middot; Safer recruitment &middot;
-      Supervisions &middot; Policies &middot; Checks</p>
-    <form class="cap" id="cap">
+    <h1 class="rv">In date is everything</h1>
+    <p class="lede rv" style="transition-delay:90ms">Staffbook keeps the staff records of
+      children&rsquo;s homes inspection-ready. When the inspector asks, it is already written down.</p>
+    <p class="cats rv" style="transition-delay:150ms" aria-hidden="true">DBS &middot; Training &middot;
+      Safer recruitment &middot; Supervisions &middot; Policies &middot; Checks</p>
+    <form class="cap rv" style="transition-delay:210ms" id="cap">
       <input type="email" placeholder="manager@maplehouse.co.uk" required aria-label="Work email">
       <button class="btn" type="submit">Book a look</button>
     </form>
     <p class="capnote" aria-live="polite">If your email app did not open, write to
       <b>colby@ordane.co.uk</b>. The address is on your clipboard.</p>
-    <p class="under">15 minutes on a demo home &middot; no card, no contract &middot; built with a
-      serving RI, <b>20 years in children&rsquo;s homes</b></p>
+    <p class="under rv" style="transition-delay:280ms">15 minutes on a demo home &middot; no card,
+      no contract &middot; built with a serving RI, <b>20 years in children&rsquo;s homes</b></p>
   </div>
 </header>
 
-<div class="stage rv in">
-  <div class="float f1">DBS renewed<small>Sam Ogden &middot; Tuesday</small></div>
-  <div class="float f2">Fire safety due in 9 days<small>chased automatically</small></div>
+<div class="stage rv rise" style="transition-delay:360ms">
+  <div class="float f1 rv pop" style="transition-delay:900ms">DBS renewed<small>Sam Ogden &middot; Tuesday</small></div>
+  <div class="float f2 rv pop" style="transition-delay:1050ms">Fire safety due in 9 days<small>chased automatically</small></div>
   <div class="app" aria-label="The Staffbook dashboard, as a preview">
     <div class="side" aria-hidden="true">
       <span class="sb"><svg width="18" height="18" viewBox="0 0 48 48" fill="none" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"><rect x="9" y="7" width="30" height="34" rx="5" stroke="#1c3d5a"/><path d="M25 7 V24 L30.5 19 L36 24 V7" stroke="#a9762f"/></svg>Staffbook</span>
@@ -238,7 +260,7 @@
     <div class="main">
       <div class="apphead">
         <b>Dashboard</b><span class="home">Maple House &middot; 14 staff</span>
-        <span class="readychip">96% inspection-ready</span>
+        <span class="readychip"><span id="rpct">96</span>% inspection-ready</span>
       </div>
       <h3><b>2 items still expired</b>, down from 10 this month</h3>
       <p class="sub">Monday 9 March &middot; evidence pack ready</p>
@@ -303,7 +325,7 @@
         Individual with twenty years in children&rsquo;s residential care. The screens answer
         what inspections actually ask, because she kept asking.</p>
     </div>
-    <div class="mail rv" aria-label="The Monday email, as a preview">
+    <div class="mail rv rv-r" aria-label="The Monday email, as a preview">
       <p class="from">Staffbook &lt;alerts@staffbook.co.uk&gt;</p>
       <p class="subj">2 items have expired at Maple House</p>
       <pre>Expired:
@@ -368,7 +390,7 @@ Open Staffbook to chase them.</pre>
         inspector says "show me". It is also the screen that means you never have to
         prepare for that moment again.</p>
     </div>
-    <div class="profile rv" aria-label="A staff file, as a preview">
+    <div class="profile rv rv-r" aria-label="A staff file, as a preview">
       <div class="phead">
         <b>Priya Raman</b>
         <span class="chip c-ok">file 98% complete</span>
@@ -389,7 +411,7 @@ Open Staffbook to chase them.</pre>
 </section>
 
 <section class="wrap">
-  <p class="statement rv">Inspection week is just a week.</p>
+  <p class="statement rv rv-blur">Inspection week is just a week.</p>
   <p class="statesub rv">Because everything Ofsted asks about your staff is already written
     down, in date, and provable in one click.</p>
 </section>
@@ -459,6 +481,20 @@ Open Staffbook to chase them.</pre>
       if (f) setTimeout(() => f.querySelector('input')?.focus({ preventScroll: true }), 450);
     });
   });
+  // The readiness number counts up once, easing out so the last digits land
+  // slowly. Reduced motion gets the finished number straight away.
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const el = document.getElementById('rpct');
+    const target = 96, t0 = performance.now() + 500, dur = 1100;
+    const tick = (t) => {
+      const p = Math.min(1, Math.max(0, (t - t0) / dur));
+      el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    el.textContent = '0';
+    requestAnimationFrame(tick);
+  }
+
   const io = new IntersectionObserver((es) => {
     for (const e of es) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
   }, { threshold: 0.1, rootMargin: '0px 0px -5%' });
