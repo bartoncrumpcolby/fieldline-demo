@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Staffbook | Compliance software for children&rsquo;s homes</title>
-<meta name="description" content="The staff and premises compliance file for children's homes. Training, DBS renewals, supervisions, rotas and checks, in one place instead of a spreadsheet. Priced per home, monthly rolling.">
+<meta name="description" content="The staff compliance file for children's homes. Training, DBS renewals, supervisions, policies and the home's checks, kept in date and inspection-ready. From your spreadsheet to a live matrix in three minutes. £79 per home per month.">
 <link rel="canonical" href="https://ordane.co.uk/">
 <meta property="og:title" content="Staffbook | Compliance software for children's homes">
-<meta property="og:description" content="Everything Ofsted asks about your staff, in one place. Not a spreadsheet.">
+<meta property="og:description" content="In date is everything. The staff records of children's homes, kept inspection-ready.">
 <meta property="og:url" content="https://ordane.co.uk/">
 <meta property="og:image" content="https://ordane.co.uk/img/og.png">
 <script type="application/ld+json">
@@ -15,7 +15,7 @@
  "name":"Staffbook",
  "applicationCategory":"BusinessApplication",
  "operatingSystem":"Web",
- "description":"Staff and premises compliance software for children's homes: training and DBS renewals, safer recruitment checks, supervisions, rotas and premises checks.",
+ "description":"Staff compliance software for children's homes: training and DBS renewals, safer recruitment checks, supervisions, policy sign-off and premises checks.",
  "url":"https://ordane.co.uk/",
  "publisher":{"@type":"Organization","name":"Ordane Systems Ltd","url":"https://ordane.co.uk/"}}
 </script>
@@ -23,985 +23,254 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/fonts.css">
 <style>
-/* =============================================================================
-   Staffbook marketing site. One brand with the product: the site wears the app's
-   own light system so the click from here into app.ordane.co.uk changes
-   nothing but the data. The only licence the marketing surface takes is a
-   little more air and one soft ambient shadow under the screenshots, because
-   a landing page is allowed to breathe in a way a rota is not.
-   ============================================================================= */
-:root{
-  --bg:#f5f7f9; --surface:#ffffff; --ink:#12283c; --ink-2:#42505e; --ink-3:#5d6a77;
-  --line:#dfe5ea; --accent:#1c3d5a; --accent-deep:#14304a; --amber:#e8b04b;
-  --valid:#1f6b46; --valid-bg:#cbe7d8;
-  --ease:cubic-bezier(0.32,0.72,0,1);
-  --shell:rgba(13,22,32,.05);
-}
-*{margin:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);
-  font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,sans-serif;
-  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
-h1,h2,h3,.wordmark{font-family:Archivo,Inter,sans-serif;letter-spacing:-0.02em}
-a{color:inherit}
-img{max-width:100%;display:block}
-.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
-::selection{background:var(--accent);color:#fff}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.stops :focus-visible{outline-color:#fff}
-
-/* Keyboard route past the nav. Hidden until focused, then a real button. */
-.skip{position:fixed;top:18px;left:18px;z-index:50;background:var(--accent);color:#fff;
-  font-size:13.5px;font-weight:600;text-decoration:none;padding:10px 18px;
-  border-radius:999px;transform:translateY(-72px);transition:transform .2s var(--ease)}
-.skip:focus-visible{transform:none}
-
-/* The address as a fallback for the mailto buttons: on machines with no mail
-   client the primary CTA fails silently, so the plain address copies itself
-   instead. Without javascript it stays an ordinary mailto link. */
-.copymail{color:var(--ink);font-weight:600;text-decoration:underline;
-  text-underline-offset:3px;cursor:pointer}
-
-/* Reveal on entry: a gentle heavy rise, once, honoured under reduced motion. */
-.rv{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
-.rv.in{opacity:1;transform:none}
-@media (prefers-reduced-motion: reduce){.rv{opacity:1;transform:none;transition:none}}
-
-/* ── Nav: a quiet floating pill, detached from the edge ─────────────────── */
-.nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:40;width:max-content;
-  display:flex;align-items:center;gap:6px;padding:8px 10px 8px 16px;
-  background:rgba(255,255,255,.82);backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-  border:1px solid rgba(13,22,32,.08);border-radius:999px;
-  box-shadow:0 12px 40px rgba(13,22,32,.10)}
-.nav .brand{display:flex;align-items:center;gap:10px;margin-right:10px;white-space:nowrap;
-  font-family:Archivo;font-weight:700;font-size:17px;text-decoration:none}
-.nav .brand svg{width:22px;height:22px}
-.nav a.item{font-size:13.5px;font-weight:500;color:var(--ink-2);text-decoration:none;
-  padding:8px 12px;border-radius:999px;transition:background-color .3s var(--ease)}
-.nav a.item:hover{background:rgba(13,22,32,.05)}
-.nav a.cta{font-size:13.5px;font-weight:600;color:#fff;background:var(--accent);white-space:nowrap;
-  text-decoration:none;padding:9px 16px;border-radius:999px;margin-left:6px;
-  transition:background-color .3s var(--ease),transform .3s var(--ease)}
-.nav a.cta:hover{background:var(--accent-deep)}
-.nav a.cta:active{transform:scale(.97)}
-/* On phones the anchor links move into a native disclosure, so a 5000px page
-   still has a way to jump to Security or the FAQ. No javascript to fail. */
-.nav .menu{display:none;position:relative}
-.nav .menu summary{list-style:none;cursor:pointer;font-size:13.5px;font-weight:500;
-  color:var(--ink-2);padding:8px 12px;border-radius:999px}
-.nav .menu summary::-webkit-details-marker{display:none}
-.nav .menu[open] summary{background:rgba(13,22,32,.05)}
-.nav .menu .sheet{position:absolute;top:calc(100% + 16px);right:-64px;width:max-content;
-  display:grid;gap:2px;padding:8px;background:rgba(255,255,255,.96);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  border:1px solid rgba(13,22,32,.08);border-radius:16px;
-  box-shadow:0 12px 40px rgba(13,22,32,.12)}
-.nav .menu .sheet a{font-size:14px;font-weight:500;color:var(--ink-2);
-  text-decoration:none;padding:9px 14px;border-radius:10px}
-.nav .menu .sheet a:hover{background:rgba(13,22,32,.05)}
-@media (max-width:760px){.nav a.item{display:none}.nav{gap:2px}.nav .menu{display:block}}
-
-/* ── Buttons: pill, with the arrow in its own little room ───────────────── */
-.btn{display:inline-flex;align-items:center;gap:12px;text-decoration:none;
-  font-weight:600;font-size:15.5px;border-radius:999px;padding:13px 8px 13px 24px;
-  background:var(--accent);color:#fff;
-  transition:background-color .35s var(--ease),transform .35s var(--ease)}
-.btn:hover{background:var(--accent-deep)}
-.btn:active{transform:scale(.98)}
-.btn .cap{width:34px;height:34px;border-radius:999px;background:rgba(255,255,255,.16);
-  display:grid;place-items:center;transition:transform .35s var(--ease)}
-.btn:hover .cap{transform:translate(2px,-1px)}
-.btn .cap svg{width:15px;height:15px}
-.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);
-  padding:12px 22px}
-.btn.ghost:hover{background:#fff}
-
-/* ── Hero: the split. Words left, the real product right. ───────────────── */
-.hero{padding:132px 0 96px}
-.herogrid{display:grid;grid-template-columns:minmax(0,10fr) minmax(0,11fr);
-  gap:clamp(28px,5vw,72px);align-items:center}
-@media (max-width:860px){
-  .hero{padding:110px 0 56px}
-  .herogrid{grid-template-columns:1fr;gap:34px}
-  section{padding:64px 0}
-  .origin p{font-size:15px}
-  .start .inner{padding:26px 22px}
-  .stops .stopline{padding:22px 0}
-}
-.hero h1{font-size:clamp(32px,3.5vw,46px);font-weight:700;line-height:1.08;
-  text-wrap:balance}
-.hero .sub{margin-top:22px;font-size:18px;color:var(--ink-2);max-width:44ch}
-.hero .acts{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-.hero .beneath{margin-top:26px;font-size:14px;color:var(--ink-3)}
-
-/* The double bezel: a screenshot never sits naked on the page. An outer tray
-   holds an inner plate, concentric radii, one soft ambient shadow. */
-.shell{background:var(--shell);border:1px solid rgba(13,22,32,.07);
-  border-radius:22px;padding:8px;
-  box-shadow:0 30px 90px rgba(13,22,32,.13)}
-.shell .plate{border-radius:14px;overflow:hidden;background:#fff;
-  border:1px solid rgba(13,22,32,.06)}
-/* ── The origin line: one sentence, full width, no decoration ───────────── */
-.origin{border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-  background:#fff}
-.origin p{padding:26px 0;font-size:17px;color:var(--ink-2);text-align:center;
-  text-wrap:balance}
-.origin b{color:var(--ink);font-weight:600}
-
-/* ── Sections ─────────────────────────────────────────────────────────────── */
-section{padding:96px 0;scroll-margin-top:110px}
-h2{font-size:clamp(26px,3vw,36px);font-weight:700;line-height:1.15;text-wrap:balance}
-.lede{margin-top:14px;font-size:17px;color:var(--ink-2);max-width:60ch}
-
-
-/* The explorer: a list of what the product holds on the left, the real
-   screen for each on the right, cropped at native scale so nothing turns
-   to soup. Same transition grammar as the hero switcher. */
-.explore{margin-top:44px;display:grid;grid-template-columns:minmax(280px,5fr) 7fr;
-  gap:22px;align-items:start}
-.exlist{display:grid;gap:8px}
-/* Eight equal cards is over anyone's working memory, so the list is staged
-   into three named clusters, and the proof reads as the crescendo it is. */
-.exgroup{font-size:11.5px;font-weight:600;letter-spacing:.07em;
-  text-transform:uppercase;color:var(--ink-3);margin:14px 0 2px}
-.exgroup:first-child{margin-top:0}
-.exlist button{font:inherit;text-align:left;background:#fff;position:relative;
-  border:1px solid var(--line);border-radius:14px;padding:16px 44px 16px 18px;cursor:pointer;
-  display:grid;gap:3px;
-  transition:background-color .18s cubic-bezier(0.23,1,0.32,1),
-             border-color .18s cubic-bezier(0.23,1,0.32,1),
-             transform .14s cubic-bezier(0.23,1,0.32,1)}
-.exlist button:hover{border-color:#c2cdd6;background:#fbfcfd}
-.exlist button:active{transform:scale(.985)}
-.exlist button .chev{position:absolute;right:16px;top:50%;width:14px;height:14px;
-  transform:translateY(-50%);color:var(--ink-3)}
-.exlist button.on .chev{color:#c3d2df}
-.exlist button b{font-family:Archivo;font-size:15.5px;font-weight:600;color:var(--ink)}
-.exlist button span{font-size:13px;color:var(--ink-2);line-height:1.45}
-.exlist button.on{background:var(--accent);border-color:var(--accent)}
-.exlist button.on b,.exlist button.on span{color:#fff}
-.exlist button.on span{color:#c3d2df}
-.expanel{position:sticky;top:96px}
-/* The panel is a grid stack sized by its tallest vignette, so short views
-   never float in dead white. Hidden views go visibility:hidden at the end
-   of their fade, which also keeps them out of the accessibility tree and
-   stops the outgoing view ghosting through a fast switch. */
-.exviews{position:relative;display:grid;background:#fff}
-.exv{grid-area:1/1;width:100%;min-height:0;
-  opacity:0;visibility:hidden;transform:translateY(6px);
-  transition:opacity .22s cubic-bezier(0.23,1,0.32,1),
-             transform .22s cubic-bezier(0.23,1,0.32,1),
-             visibility .22s}
-.exv.on{opacity:1;visibility:visible;transform:none}
-.exmail{background:#fff;padding:26px 30px;overflow:auto}
-.exmail .from{font-size:13px;color:var(--ink-3)}
-.exmail .subj{font-weight:600;font-size:16px;margin:6px 0 14px;font-family:Archivo}
-.exmail pre{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:13px;
-  line-height:1.7;color:var(--ink-2);white-space:pre-wrap}
-/* The breakdown under each capture: what the open tab actually holds, as a
-   flat list rather than adjectives. This is the part a director comparing
-   systems actually reads. */
-.exds{background:#fff;border:1px solid rgba(13,22,32,.06);border-radius:14px;
-  padding:18px 20px 16px;margin-top:8px}
-.exd{display:none}
-.exd.on{display:block}
-.exd ul{list-style:none;margin:0;padding:0;display:grid;
-  grid-template-columns:1fr 1fr;gap:9px 20px}
-.exd li{font-size:13.5px;line-height:1.5;color:var(--ink-2);
-  padding-left:14px;position:relative}
-.exd li::before{content:"";position:absolute;left:0;top:.62em;
-  width:6px;height:2px;background:var(--accent)}
-.exd li b{color:var(--ink);font-weight:600}
-.exd .reg{margin:12px 0 0;font-size:12.5px;color:var(--ink-3)}
-
-/* If you are comparing systems: the honest case, light on white, in rows. */
-.compare .cline{border-top:1px solid var(--line);padding:28px 0;display:grid;
-  grid-template-columns:minmax(180px,260px) 1fr;gap:8px 28px}
-.compare .cline:last-of-type{border-bottom:1px solid var(--line)}
-.compare .cline h3{font-size:19px;font-weight:600}
-.compare .cline p{font-size:15.5px;color:var(--ink-2);max-width:58ch}
-.compare .list{margin-top:44px}
-.compare .after{margin-top:26px;font-size:15.5px;color:var(--ink-2);max-width:62ch}
-.compare .after b{color:var(--ink)}
-@media (max-width:760px){.compare .cline{grid-template-columns:1fr;gap:4px;padding:20px 0}}
-
-/* Screenshots are gone. The product is shown as rendered vignettes in real
-   markup: sharp at any width, honest about what the screens say, and styled
-   by the same tokens as everything else, so nothing reads as a pasted-in
-   picture. Numbers and names are the demo home's. */
-.exmock,.board{background:#fff;padding:clamp(18px,2.2vw,26px)}
-.exmock{overflow:auto;display:flex;flex-direction:column}
-.exmock .mfoot{margin-top:auto;padding-top:12px}
-.mh{font-family:Archivo;font-weight:600;font-size:15.5px;margin:0 0 8px}
-.mrow{display:flex;align-items:center;gap:12px;padding:10px 0;
-  border-top:1px solid var(--line);font-size:13.5px}
-.mrow .who{font-weight:600;white-space:nowrap}
-.mrow .what{color:var(--ink-3);flex:1;min-width:0}
-.mp{font-size:11.5px;font-weight:600;border-radius:999px;padding:3px 10px;
-  white-space:nowrap;margin-left:auto}
-.mp.red{background:#f4d7d3;color:#8f1f16}
-.mp.amber{background:#f3e4c3;color:#7a5410}
-.mp.green{background:var(--valid-bg);color:var(--valid)}
-.mfoot{margin-top:12px;font-size:12.5px;color:var(--ink-3)}
-.mgrid{display:grid;grid-template-columns:76px repeat(7,1fr);gap:4px;
-  font-size:11px;margin-top:6px}
-.mgrid .gh{color:var(--ink-3);text-align:center;font-weight:600}
-.mgrid .gn{font-weight:600;font-size:12px;align-self:center;white-space:nowrap}
-.mc{border-radius:5px;padding:6px 0;text-align:center;font-weight:600;
-  position:relative;background:#eef2f6;color:var(--ink-2)}
-.mc.e{background:#dbe7f3;color:#1c3d5a}
-.mc.d{background:#e3ead9;color:#3c5a2a}
-.mc.n{background:var(--accent);color:#fff}
-.mc.off{background:transparent;border:1px dashed var(--line);color:var(--ink-3);font-weight:400}
-.mc .sleep{position:absolute;top:3px;right:4px;width:5px;height:5px;
-  border-radius:50%;background:var(--amber)}
-
-/* The hero: words centred, then the product itself, rendered in markup and
-   cropped by the fold. Standing at the door of the app, not looking at a
-   picture of it. */
-.hero{overflow-x:clip}
-/* The frame renders at its natural comfortable width and anchors to the
-   right edge of the viewport: on narrower screens it bleeds off and the
-   crop says there is more; on wider screens it kisses the edge instead of
-   floating short of it, which kept the composition from looking centred. */
-.heropeek{position:relative}
-.heropeek .shell{width:min(720px,94vw);max-width:none;margin-left:auto;
-  margin-right:calc(-1 * (max((100vw - 1180px)/2, 0px) + clamp(20px,4vw,48px)))}
-/* Chasing the viewport edge only reads right up to about 1650px. Wider than
-   that it drags the frame away from the words and dumps a void in the middle
-   of the hero, so from there the frame stays with its column and takes a
-   modest fixed overhang instead: symmetric margins, deliberate composition. */
-@media (min-width:1660px){.heropeek .shell{margin-right:-48px}}
-@media (max-width:860px){.heropeek .shell{width:100%;margin:0}}
-.appframe{display:grid;grid-template-columns:196px 1fr;min-height:560px}
-.afside{border-right:1px solid var(--line);padding:18px 12px;display:flex;
-  flex-direction:column;gap:2px;background:#fafbfc}
-.afbrand{display:flex;align-items:center;gap:8px;font-family:Archivo;font-weight:700;
-  font-size:15px;padding:0 10px 14px}
-.afbrand svg{width:18px;height:18px}
-.afitem{font-size:13px;font-weight:500;color:var(--ink-2);padding:7px 10px;
-  border-radius:8px}
-.afitem.on{background:var(--accent);color:#fff;font-weight:600}
-.afmain{padding:20px 26px}
-.aftop{display:flex;align-items:center;gap:12px}
-.aftop b{font-family:Archivo;font-size:17px}
-.afhome{font-size:12px;font-weight:600;color:var(--accent);background:#e6edf4;
-  border-radius:999px;padding:3px 11px}
-.afbtn{margin-left:auto;font-size:12.5px;font-weight:600;color:var(--ink-2);
-  border:1px solid var(--line);border-radius:999px;padding:6px 14px}
-.afstats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);
-  border-radius:12px;margin:16px 0 20px;padding:12px 0}
-.afstats span{text-align:center;font-size:12px;color:var(--ink-3)}
-.afstats span+span{border-left:1px solid var(--line)}
-.afstats b{display:block;font-family:Archivo;font-size:22px;color:var(--ink)}
-.bsent{font-family:Archivo;font-weight:600;letter-spacing:-.01em;
-  font-size:clamp(16px,1.6vw,19px);margin:0 0 6px}
-.bsent b{color:#b3261e;font-weight:700}
-@media (max-width:760px){
-  .appframe{grid-template-columns:1fr;min-height:0}
-  .afside{display:none}
-  .afstats{grid-template-columns:repeat(2,1fr);row-gap:10px}
-  .afstats span:nth-child(3){border-left:0}
-  .peek{max-height:420px}
-}
-.stopnote{margin-top:30px;font-size:15px;color:#b9c9d8;max-width:56ch}
-.stopnote a{color:#fff;text-decoration:underline;text-underline-offset:3px}
-@media (max-width:860px){.exd ul{grid-template-columns:1fr}}
-@media (max-width:860px){.explore{grid-template-columns:1fr}.expanel{position:static;order:-1}}
-@media (prefers-reduced-motion: reduce){.exv{transition:opacity .22s ease,visibility .22s;transform:none}}
-/* Small phones: the row label drops below the name, so "Before the first
-   journey" never wraps one word per line against the pill. The rota grid
-   gives its name column back to the days. */
-@media (max-width:480px){
-  .mrow{display:grid;grid-template-columns:1fr auto;align-items:center;row-gap:1px}
-  .mrow .what{grid-column:1/-1;grid-row:2}
-  .mgrid{grid-template-columns:52px repeat(7,1fr)}
-}
-
-/* Where it stops: three statements, big, no cards. */
-.stops{background:var(--accent);color:#eef3f8}
-.stops h2{color:#fff}
-.stops .lede{color:#b9c9d8}
-.stopline{border-top:1px solid rgba(255,255,255,.14);padding:30px 0;
-  display:grid;grid-template-columns:minmax(200px,1fr) 2fr;gap:10px 40px}
-.stopline:last-of-type{border-bottom:1px solid rgba(255,255,255,.14)}
-.stopline h3{font-size:21px;font-weight:600;color:#fff}
-.stopline p{font-size:15.5px;color:#b9c9d8;max-width:56ch}
-.stops .list{margin-top:44px}
-@media (max-width:760px){.stopline{grid-template-columns:1fr}}
-
-/* How it starts: the card and the founding note share the row, so the
-   section does not sit lopsided against an empty right half. */
-.start .duo{margin-top:44px;display:grid;
-  grid-template-columns:minmax(0,620px) minmax(240px,1fr);
-  gap:28px;align-items:end}
-@media (max-width:860px){.start .duo{grid-template-columns:1fr;gap:16px}}
-.start .card{background:#fff;border:1px solid var(--line);
-  border-radius:22px;padding:8px}
-.start .inner{border-radius:14px;border:1px solid var(--line);padding:36px 38px}
-.start ul{list-style:none;margin:22px 0 28px;padding:0;display:grid;gap:10px}
-.start li{display:flex;gap:11px;align-items:baseline;font-size:15.5px;color:var(--ink-2)}
-.start li::before{content:"";width:7px;height:7px;border-radius:50%;
-  background:var(--valid);flex:none;position:relative;top:-2px}
-.start .alt{margin-top:18px;font-size:14px;color:var(--ink-3)}
-.founding{font-size:14.5px;color:var(--ink-2);
-  background:#fdf6e6;border:1px solid #eddaaa;border-radius:10px;padding:12px 16px;
-  max-width:660px}
-
-/* The closer: the page should end on the door, not on a collapsed FAQ. */
-.closer{padding-top:40px}
-.closer .acts{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-.closer .beneath{margin-top:22px;font-size:14px;color:var(--ink-3)}
-
-/* FAQ: native disclosure, no javascript to fail. */
-.faq{margin-top:40px;max-width:760px}
-.faq details{border-top:1px solid var(--line)}
-.faq details:last-child{border-bottom:1px solid var(--line)}
-.faq summary{padding:20px 4px;font-weight:600;font-size:16.5px;cursor:pointer;
-  list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-size:22px;font-weight:400;color:var(--ink-3);
-  transition:transform .35s var(--ease)}
-.faq details[open] summary::after{transform:rotate(45deg)}
-.faq .a{padding:0 4px 22px;font-size:15.5px;color:var(--ink-2);max-width:64ch}
-
-/* Footer */
-footer{border-top:1px solid var(--line);padding:70px 0 60px;background:#fff}
-.foot-grid{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;
-  align-items:flex-start}
-.foot-brand{display:flex;align-items:center;gap:10px;font-family:Archivo;
-  font-weight:700;font-size:18px}
-.foot-brand svg{width:22px;height:22px}
-footer .meta{margin-top:14px;font-size:14px;color:var(--ink-3);line-height:1.9}
-footer .meta a{color:var(--ink-2);text-decoration:none;display:inline-block;padding:7px 0}
-footer .meta a:hover{text-decoration:underline}
+  :root{
+    --band:#dce6f2; --bg:#ffffff; --ink:#16202c; --mut:#5c6875; --line:#e8e8ee;
+    --navy:#1c3d5a; --navy-deep:#132c42; --ok:#1f7a52; --am:#a86e14; --red:#c34a41;
+  }
+  *{box-sizing:border-box}
+  .skip{position:absolute;left:-9999px;top:0;z-index:60;background:#1c3d5a;color:#fff;
+    font-weight:700;font-size:14px;padding:12px 18px}
+  .skip:focus{left:0}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16.5px/1.62 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+  .serif{font-family:"Iowan Old Style","Palatino","Georgia",serif}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 26px}
+  nav{background:var(--band)}
+  nav .wrap{display:flex;align-items:center;height:72px;gap:10px}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:20px;letter-spacing:-.015em}
+  nav .links{margin-left:auto;display:flex;gap:26px;font-size:15px}
+  nav .links a{color:inherit;text-decoration:none}
+  @media(max-width:760px){nav .links{display:none}}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;
+    font-weight:550;font-size:15.5px;padding:13px 26px;border-radius:999px;text-decoration:none;border:0;cursor:pointer}
+  .btn:hover{background:var(--navy-deep)}
+  .btn.line{background:transparent;color:var(--ink);border:1.5px solid rgba(22,32,44,.25)}
+  .hero{background:var(--band);text-align:center;padding:84px 0 150px}
+  h1{font-family:"Iowan Old Style","Palatino","Georgia",serif;font-weight:500;
+    font-size:clamp(44px,6.6vw,76px);line-height:1.04;letter-spacing:-.015em;margin:0 auto 20px;
+    max-width:18ch;text-wrap:balance}
+  .lede{font-size:clamp(17px,2vw,19.5px);color:var(--ink);max-width:52ch;margin:0 auto 34px}
+  .cap{display:flex;max-width:520px;margin:0 auto;background:#fff;border:1.5px solid rgba(22,32,44,.2);
+    border-radius:999px;padding:6px 6px 6px 22px;align-items:center;gap:10px}
+  .cap input{flex:1;border:0;outline:0;font:inherit;font-size:15.5px;min-width:0;background:transparent}
+  .cap .btn{padding:12px 22px;flex:none}
+  .under{color:var(--mut);font-size:14px;margin-top:16px}
+  .under b{color:var(--ink);font-weight:600}
+  .stage{position:relative;max-width:880px;margin:-96px auto 0;padding:0 26px}
+  .app{background:#fff;border:1px solid var(--line);border-radius:16px;text-align:left;
+    box-shadow:0 34px 70px -38px rgba(19,44,66,.35);padding:24px 28px}
+  .app h3{margin:0 0 3px;font-size:19px;font-weight:650;letter-spacing:-.01em}
+  .app h3 b{color:var(--red)}
+  .app .sub{color:var(--mut);font-size:13.5px;margin:0 0 14px}
+  .row{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-top:1px solid var(--line);font-size:14.5px}
+  .chip{font-size:12.5px;font-weight:600;padding:4px 12px;border-radius:999px;white-space:nowrap}
+  .c-red{background:#faeae9;color:var(--red)} .c-am{background:#f8f0df;color:var(--am)}
+  .c-ok{background:#e6f2ea;color:var(--ok)}
+  .float{position:absolute;background:#fff;border:1px solid var(--line);border-radius:13px;
+    box-shadow:0 16px 36px -20px rgba(19,44,66,.4);padding:11px 15px;font-size:13px;font-weight:650;text-align:left}
+  .float small{display:block;font-weight:400;color:var(--mut);font-size:12px}
+  .f1{top:-20px;right:-6px;color:var(--ok)}
+  .f2{bottom:-18px;left:2px;color:var(--am)}
+  @media(max-width:880px){.f1{right:8px}.f2{left:8px}}
+  .trust{text-align:center;padding:64px 0 0}
+  .trust p{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin:0 0 6px}
+  .trust b{font-size:15px;letter-spacing:0;text-transform:none;color:var(--ink);font-weight:600}
+  section{padding:104px 0}
+  h2{font-family:"Iowan Old Style","Palatino","Georgia",serif;font-weight:500;
+    font-size:clamp(30px,4.4vw,50px);line-height:1.08;letter-spacing:-.012em;margin:0 0 16px;text-wrap:balance}
+  .slede{color:var(--mut);max-width:56ch;margin:0 0 44px;font-size:17.5px}
+  .center{text-align:center}
+  .center .slede{margin-inline:auto}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;text-align:left}
+  .step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px 26px}
+  .step .k{font-size:13px;font-weight:650;color:var(--navy);letter-spacing:.06em;margin:0 0 12px}
+  .step h3{margin:0 0 8px;font-size:17.5px;font-weight:650}
+  .step p{margin:0;color:var(--mut);font-size:15px}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  @media(max-width:840px){.duo{grid-template-columns:1fr}}
+  .mail{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px;
+    box-shadow:0 22px 48px -30px rgba(19,44,66,.3)}
+  .mail .from{color:var(--mut);font-size:13px;margin:0 0 4px}
+  .mail .subj{font-weight:700;margin:0 0 14px}
+  .mail pre{margin:0;font:13px/1.75 ui-monospace,Menlo,monospace;white-space:pre-wrap}
+  .tint{background:#f4f7fb}
+  .quote{max-width:600px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:20px;
+    padding:42px 40px;text-align:center;box-shadow:0 26px 60px -36px rgba(19,44,66,.35)}
+  .quote label{font-weight:650;font-size:16.5px;display:block;margin-bottom:16px}
+  input[type=range]{width:100%;accent-color:var(--navy)}
+  .homes{font-size:15px;color:var(--mut);margin:8px 0 14px}
+  .amount{font-family:"Iowan Old Style","Palatino","Georgia",serif;font-size:60px;font-weight:500;letter-spacing:-.02em}
+  .amount small{font-family:Inter,-apple-system,sans-serif;font-size:15.5px;color:var(--mut)}
+  .fine{color:var(--mut);font-size:14.5px;margin:14px 0 26px}
+  details{border-bottom:1px solid var(--line);padding:20px 0;text-align:left}
+  details:first-of-type{border-top:1px solid var(--line)}
+  summary{font-weight:650;cursor:pointer;font-size:16.5px}
+  details p{color:var(--mut);margin:12px 0 0;max-width:62ch}
+  .closer{background:var(--band);text-align:center;padding:104px 0}
+  footer{padding:36px 0;color:var(--mut);font-size:13.5px;line-height:1.9;text-align:center}
+  footer a{color:inherit}
+  .rv{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+  .rv.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
 </style>
 </head>
 <body>
 
-<a class="skip" href="#main">Skip to content</a>
 
-<nav class="nav" aria-label="Main">
-  <a class="brand" href="/">
-    <svg viewBox="0 0 48 48" fill="none" stroke="#1c3d5a" stroke-width="7" aria-hidden="true">
-      <path d="M19 5 H43 V29 a14 14 0 0 1 -14 14 H19 a14 14 0 0 1 -14 -14 V19 a14 14 0 0 1 14 -14 Z"/>
-    </svg>
-    Staffbook
-  </a>
-  <a class="item" href="#holds">What it holds</a>
-  <a class="item" href="#stops">Where it stops</a>
-  <a class="item" href="#compare">Why the staff side</a>
-  <a class="item" href="/compliance/">Security</a>
-  <a class="item" href="#start">How it starts</a>
-  <details class="menu">
-    <summary>Menu</summary>
-    <div class="sheet">
-      <a href="#holds">What it holds</a>
-      <a href="#stops">Where it stops</a>
-      <a href="#compare">Why the staff side</a>
-      <a href="/compliance/">Security</a>
-      <a href="#start">How it starts</a>
-    </div>
-  </details>
-  <a class="cta" href="mailto:colby@ordane.co.uk?subject=A%20look%20at%20Staffbook&body=I%20would%20like%20a%20look%20at%20Staffbook.%0A%0AMy%20home%20or%20group%3A%20%0AA%20good%20time%20to%20call%3A%20">Book a look</a>
-</nav>
+<a class="skip" href="#main">Skip to the content</a>
+<nav><div class="wrap">
+  <span class="brand"><svg width="26" height="26" viewBox="0 0 48 48" fill="none" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"><rect x="9" y="7" width="30" height="34" rx="5" stroke="#1c3d5a"/><path d="M25 7 V24 L30.5 19 L36 24 V7" stroke="#a9762f"/></svg>Staffbook</span>
+  <span class="links"><a href="#how">Product</a><a href="#quote">Pricing</a><a href="#faq">Questions</a></span>
+  <a class="btn" href="#cap">Book a look</a>
+</div></nav>
 
 <header class="hero" id="main">
-  <div class="wrap herogrid">
-    <div class="heroleft">
-      <h1 class="rv">The compliance file for children&rsquo;s homes.</h1>
-      <p class="sub rv" style="transition-delay:80ms">
-        Training, DBS, supervisions, rotas and the home&rsquo;s checks, in one
-        place and in date, instead of a spreadsheet.
-      </p>
-      <div class="acts rv" style="transition-delay:160ms">
-        <a class="btn" href="mailto:colby@ordane.co.uk?subject=A%20first%20look%20at%20Staffbook&body=I%20would%20like%20a%20look%20at%20Staffbook.%0A%0AMy%20home%20or%20group%3A%20%0AA%20good%20time%20to%20call%3A%20">
-          Book a look
-          <span class="cap"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13 13 3M6 3h7v7"/></svg></span>
-        </a>
-        <a class="btn ghost" href="#holds">See what it holds</a>
-      </div>
-      <p class="beneath rv" style="transition-delay:240ms">
-        Fifteen minutes, on a call, on the demo home. Or write to
-        <a class="copymail" href="mailto:colby@ordane.co.uk">colby@ordane.co.uk</a>.
-      </p>
-    </div>
-    <div class="heropeek rv" style="transition-delay:180ms">
-      <div class="shell">
-        <div class="plate appframe" aria-label="The Staffbook dashboard, rendered as a preview">
-          <div class="afside" aria-hidden="true">
-            <span class="afbrand">
-              <svg viewBox="0 0 48 48" fill="none" stroke="#1c3d5a" stroke-width="7"><path d="M19 5 H43 V29 a14 14 0 0 1 -14 14 H19 a14 14 0 0 1 -14 -14 V19 a14 14 0 0 1 14 -14 Z"/></svg>
-              Staffbook
-            </span>
-            <span class="afitem on">Dashboard</span>
-            <span class="afitem">Staff</span>
-            <span class="afitem">Training &amp; DBS</span>
-            <span class="afitem">Recruitment</span>
-            <span class="afitem">Supervisions</span>
-            <span class="afitem">Rota</span>
-            <span class="afitem">Checks</span>
-            <span class="afitem">Tasks</span>
-            <span class="afitem">Documents</span>
-          </div>
-          <div class="afmain">
-            <div class="aftop">
-              <b>Dashboard</b>
-              <span class="afhome">Maple House</span>
-              <span class="afbtn" aria-hidden="true">Evidence pack</span>
-            </div>
-            <div class="afstats" aria-label="The demo home&rsquo;s counts: 2 expired, 4 due within 30 days, 7 due within 90 days, 2 with no date set">
-              <span><b class="count" data-n="2" style="color:#b3261e">2</b>expired</span>
-              <span><b class="count" data-n="4" style="color:#8a5a11">4</b>due in 30 days</span>
-              <span><b class="count" data-n="7">7</b>due in 90 days</span>
-              <span><b class="count" data-n="2">2</b>no date set</span>
-            </div>
-            <p class="bsent"><b>2 items still expired</b>, down from 10 this month:</p>
-            <div class="mrow"><span class="who">Grace Ellison</span>
-              <span class="what">Fire safety training</span>
-              <span class="mp red">157d over</span></div>
-            <div class="mrow"><span class="who">Daniel Mercer</span>
-              <span class="what">First aid, renewal booked</span>
-              <span class="mp red">12d over</span></div>
-            <div class="mrow"><span class="who">Priya Raman</span>
-              <span class="what">DVLA driving licence</span>
-              <span class="mp amber">in 9 days</span></div>
-            <div class="mrow"><span class="who">Sam Ogden</span>
-              <span class="what">DBS renewal</span>
-              <span class="mp green">renewed Tue</span></div>
-            <p class="mh" style="margin-top:18px">Checks due today</p>
-            <div class="mrow"><span class="who">Fridge temperatures</span>
-              <span class="what">Daily</span>
-              <span class="mp amber">due</span></div>
-            <div class="mrow"><span class="who">Vehicle walk round</span>
-              <span class="what">Before the first journey</span>
-              <span class="mp green">done 07:40</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="wrap">
+    <h1>In date is everything</h1>
+    <p class="lede">Staffbook keeps the staff records of children&rsquo;s homes inspection-ready:
+      training, DBS, supervisions, policies, checks. Earn a calm inspection and prove it.</p>
+    <form class="cap" id="cap">
+      <input type="email" id="l_email" placeholder="manager@maplehouse.co.uk" required aria-label="Work email">
+      <button class="btn" type="submit">Book a look</button>
+    </form>
+    <p class="under">15 minutes on a demo home &middot; no card, no contract &middot; built with a
+      serving RI, <b>20 years in children&rsquo;s homes</b></p>
   </div>
 </header>
 
-<div class="origin rv">
-  <div class="wrap">
-    <p>Built alongside a serving <b>Responsible Individual</b> in Manchester,
-       on the spreadsheets her homes actually run on.</p>
+<div class="stage rv in">
+  <div class="float f1">DBS renewed<small>Sam Ogden &middot; Tuesday</small></div>
+  <div class="float f2">Fire safety due in 9 days<small>chased automatically</small></div>
+  <div class="app" aria-label="The Staffbook dashboard, as a preview">
+    <h3><b>2 items still expired</b>, down from 10 this month</h3>
+    <p class="sub">Maple House &middot; 14 staff &middot; Monday 9 March</p>
+    <div class="row"><span><b>Grace Ellison</b> &middot; Fire safety training</span><span class="chip c-red">157d over</span></div>
+    <div class="row"><span><b>Daniel Mercer</b> &middot; First aid, renewal booked</span><span class="chip c-red">12d over</span></div>
+    <div class="row"><span><b>Priya Raman</b> &middot; DVLA driving licence</span><span class="chip c-am">due in 9 days</span></div>
+    <div class="row"><span><b>Sam Ogden</b> &middot; DBS renewal</span><span class="chip c-ok">renewed Tue</span></div>
   </div>
 </div>
 
-<section id="holds">
-  <div class="wrap">
-    <h2 class="rv">What it holds</h2>
-    <p class="lede rv" style="transition-delay:80ms">
-      Each record knows its renewal date, and the dashboard opens with
-      whatever needs chasing first.
-    </p>
-    <div class="explore rv" style="transition-delay:120ms">
-      <div class="exlist" aria-label="What Staffbook holds">
-        <p class="exgroup">The records</p>
-        <button type="button" class="on" data-ex="0" aria-pressed="true">
-          <b>Training &amp; DBS</b>
-          <span>Every course and check with its renewal date, sorted worst first.</span>
-          <svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4l4 4-4 4"/></svg>
-        </button>
-        <button type="button" data-ex="1" aria-pressed="false">
-          <b>Safer recruitment</b>
-          <span>The full checklist per person, signed off item by item.</span>
-          <svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4l4 4-4 4"/></svg>
-        </button>
-        <button type="button" data-ex="3" aria-pressed="false">
-          <b>Supervisions</b>
-          <span>Who is due and who is overdue, against Regulation 33.</span>
-          <svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4l4 4-4 4"/></svg>
-        </button>
-        <p class="exgroup">The week</p>
-        <button type="button" data-ex="2" aria-pressed="false">
-          <b>The rota</b>
-          <span>Drag shifts across the week, sleep-ins included. Publish when ready.</span>
-          <svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4l4 4-4 4"/></svg>
-        </button>
-        <button type="button" data-ex="4" aria-pressed="false">
-          <b>Checks &amp; premises</b>
-          <span>Fire, water, vehicles and the rest, on their own intervals.</span>
-          <svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4l4 4-4 4"/></svg>
-        </button>
-        <p class="exgroup">The proof</p>
-        <button type="button" data-ex="5" aria-pressed="false">
-          <b>Tasks, with receipts</b>
-          <span>Sent, seen, done. You know who has read it and who has finished it.</span>
-          <svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4l4 4-4 4"/></svg>
-        </button>
-        <button type="button" data-ex="6" aria-pressed="false">
-          <b>The paper trail</b>
-          <span>An audit trail nobody can edit, and an evidence pack in one click.</span>
-          <svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4l4 4-4 4"/></svg>
-        </button>
-        <button type="button" data-ex="7" aria-pressed="false">
-          <b>The Monday email</b>
-          <span>One plain email of what needs chasing, every Monday at 7am.</span>
-          <svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4l4 4-4 4"/></svg>
-        </button>
-      </div>
-      <div class="shell expanel">
-        <div class="plate exviews">
-          <div class="exv exmock on" aria-label="Training and DBS, the demo home">
-            <p class="mh">Training and DBS</p>
-            <div class="mrow"><span class="who">Grace Ellison</span>
-              <span class="what">Fire safety training</span><span class="mp red">157d over</span></div>
-            <div class="mrow"><span class="who">Daniel Mercer</span>
-              <span class="what">First aid</span><span class="mp red">12d over</span></div>
-            <div class="mrow"><span class="who">Priya Raman</span>
-              <span class="what">DVLA driving licence</span><span class="mp amber">in 9 days</span></div>
-            <div class="mrow"><span class="who">Sam Ogden</span>
-              <span class="what">DBS renewal</span><span class="mp green">in 210 days</span></div>
-            <p class="mfoot">Sorted worst first, certificate attached to each
-              item, one click to make an expiry somebody's task.</p>
-          </div>
-          <div class="exv exmock" aria-label="Safer recruitment, one person's checklist">
-            <p class="mh">Safer recruitment: Daniel Mercer</p>
-            <div class="mrow"><span class="what">Two references, verified</span>
-              <span class="mp green">3 Mar</span></div>
-            <div class="mrow"><span class="what">Enhanced DBS with barred lists</span>
-              <span class="mp green">3 Mar</span></div>
-            <div class="mrow"><span class="what">Right to work</span>
-              <span class="mp green">12 Mar</span></div>
-            <div class="mrow"><span class="what">Full employment history explained</span>
-              <span class="mp amber">Outstanding</span></div>
-            <p class="mfoot">The file is COMPLETE or INCOMPLETE. There is no
-              comfortable middle.</p>
-          </div>
-          <div class="exv exmock" aria-label="A week of the rota">
-            <p class="mh">The week, painted in the home's own codes</p>
-            <div class="mgrid">
-              <span class="gn"></span>
-              <span class="gh">M</span><span class="gh">T</span><span class="gh">W</span>
-              <span class="gh">T</span><span class="gh">F</span><span class="gh">S</span><span class="gh">S</span>
-              <span class="gn">Grace</span>
-              <span class="mc e">E</span><span class="mc e">E</span><span class="mc d">D</span>
-              <span class="mc off">–</span><span class="mc d">D</span>
-              <span class="mc n">N<span class="sleep"></span></span>
-              <span class="mc n">N<span class="sleep"></span></span>
-              <span class="gn">Daniel</span>
-              <span class="mc n">N<span class="sleep"></span></span><span class="mc off">–</span>
-              <span class="mc e">E</span><span class="mc e">E</span><span class="mc d">D</span>
-              <span class="mc off">–</span><span class="mc e">E</span>
-              <span class="gn">Priya</span>
-              <span class="mc d">D</span><span class="mc d">D</span><span class="mc off">–</span>
-              <span class="mc n">N<span class="sleep"></span></span><span class="mc off">–</span>
-              <span class="mc e">E</span><span class="mc d">D</span>
-            </div>
-            <p class="mfoot">E early, D day, N night, and the dot is a sleep-in,
-              on any worked shift. Drafts stay drafts until the week is
-              published. Wages stay with the Responsible Individual.</p>
-          </div>
-          <div class="exv exmock" aria-label="Supervisions, who is due">
-            <p class="mh">Supervisions</p>
-            <div class="mrow"><span class="who">Priya Raman</span>
-              <span class="what">Supervision</span><span class="mp red">11d overdue</span></div>
-            <div class="mrow"><span class="who">Daniel Mercer</span>
-              <span class="what">Probation review</span><span class="mp amber">due in 6 days</span></div>
-            <div class="mrow"><span class="who">Grace Ellison</span>
-              <span class="what">Supervision, signed by Grace</span><span class="mp green">3 Aug</span></div>
-            <div class="mrow"><span class="who">Sam Ogden</span>
-              <span class="what">Return to work</span><span class="mp green">28 Jul</span></div>
-            <p class="mfoot">Every kind on one matrix, against the home's own
-              frequency. Staff sign their own record.</p>
-          </div>
-          <div class="exv exmock" aria-label="The premises checks">
-            <p class="mh">Checks and premises</p>
-            <div class="mrow"><span class="who">Legionella flush</span>
-              <span class="what">Weekly</span><span class="mp red">3d late</span></div>
-            <div class="mrow"><span class="who">Gas certificate</span>
-              <span class="what">Yearly, required by regulation</span><span class="mp amber">due in 20 days</span></div>
-            <div class="mrow"><span class="who">Fridge temperatures</span>
-              <span class="what">Daily, 4.2C this morning</span><span class="mp green">done</span></div>
-            <div class="mrow"><span class="who">Fire alarm call point</span>
-              <span class="what">Weekly, point 3 this week</span><span class="mp green">done Tue</span></div>
-            <p class="mfoot">Anyone on shift can record one, because the person
-              testing the alarm at 2am is not a manager.</p>
-          </div>
-          <div class="exv exmail" aria-label="An example task with its receipts">
-            <p class="from">Task board, Maple House</p>
-            <p class="subj">Fire drill record, due Friday</p>
-            <pre>Grace     sent 09:12   seen 09:31   done 14:02
-Daniel    sent 09:12   seen 11:47
-Priya     sent 09:12
+<div class="trust">
+  <p>Built for the sector&rsquo;s 3,900 children&rsquo;s homes</p>
+  <b>Priced for a single one: &pound;79 a month, locked at the founding rate forever</b>
+</div>
 
-Each of them got one email. Grace's completion
-note came back to the manager who set it.
+<section id="how" class="wrap center">
+  <h2 class="rv">It&rsquo;s all in the book</h2>
+  <p class="slede rv">No implementation project, no training day. The spreadsheet the home
+    already keeps is the way in, and the system takes over the remembering.</p>
+  <div class="steps">
+    <div class="step rv"><p class="k">STEP ONE</p><h3>Paste the sheet</h3>
+      <p>Copy the training matrix out of Excel. Staffbook reads names, courses and dates,
+      shows what it understood, and asks about anything it is not sure of. Three minutes.</p></div>
+    <div class="step rv"><p class="k">STEP TWO</p><h3>The matrix comes alive</h3>
+      <p>Every certificate gets its renewal worked out. Expired is red today, due-soon turns
+      amber ahead of time, and the dashboard names who to chase first.</p></div>
+    <div class="step rv"><p class="k">STEP THREE</p><h3>Monday reports in</h3>
+      <p>One plain email before the week starts: expired, due soon, who has not signed the
+      new policy. A quiet week sends nothing at all.</p></div>
+  </div>
+</section>
 
-If Friday passes it goes overdue, loudest thing
-on the board, one nudge email, then it rides
-the Monday digest until it is done.</pre>
-          </div>
-          <div class="exv exmail" aria-label="An example of the audit trail">
-            <p class="from">Audit trail, Maple House</p>
-            <p class="subj">Written by the system, edited by nobody</p>
-            <pre>09:31  Grace Ellison opened a restricted
-       document. Logged against her name.
-09:33  Evidence pack generated for Daniel
-       Mercer: 12 documents, each one logged
-       as it went in.
-
-Append only. There is no edit and no delete,
-for anyone, including the owner. That is what
-makes it worth showing an inspector.</pre>
-          </div>
-          <div class="exv exmail" aria-label="An example of the Monday morning email">
-            <p class="from">Staffbook &lt;alerts@ordane.co.uk&gt;</p>
-            <p class="subj">2 items have expired at Maple House</p>
-            <pre>Expired:
-  - Grace Ellison: Fire, 157 days over
-  - Daniel Mercer: First Aid, 12 days over
+<section class="tint">
+  <div class="wrap duo">
+    <div>
+      <h2 class="rv">No child records. That is the point.</h2>
+      <p class="slede rv" style="margin-bottom:16px">There is no field for a young person
+        anywhere in Staffbook, so trying it never puts a child&rsquo;s data anywhere new. It
+        sits beside whatever care system the home already runs, holding the staff side:
+        training, DBS, safer recruitment, supervisions, policies signed "read and
+        understood", the home&rsquo;s checks, and the one-click evidence pack.</p>
+      <p class="slede rv" style="margin-bottom:0">Built alongside a serving Responsible
+        Individual with twenty years in children&rsquo;s residential care. The screens answer
+        what inspections actually ask, because she kept asking.</p>
+    </div>
+    <div class="mail rv" aria-label="The Monday email, as a preview">
+      <p class="from">Staffbook &lt;alerts@staffbook.co.uk&gt;</p>
+      <p class="subj">2 items have expired at Maple House</p>
+      <pre>Expired:
+  - Grace Ellison: Fire safety, 157 days over
+  - Daniel Mercer: First aid, 12 days over
 
 Due within 30 days:
-  - Priya Raman: DVLA driving licence, in 9 days
+  - Priya Raman: DVLA licence, 9 days
 
-Open Staffbook to chase them.
+Policies awaiting agreement:
+  - Safeguarding v3: 2 of 14 still to agree
 
-You get this on Monday mornings when something
-needs attention. A quiet week sends nothing.</pre>
-          </div>
-        </div>
-        <div class="exds">
-          <div class="exd on">
-            <ul>
-              <li><b>Every certificate</b> with its issue and renewal dates, sorted worst first</li>
-              <li><b>DBS renewals</b> and the annual self declaration, tracked per person</li>
-              <li><b>The scanned certificate</b> attached to the item it proves</li>
-              <li><b>A 30 day warning window</b>, and expired is always the loudest thing on screen</li>
-              <li><b>One click</b> turns an expiry into a task with a name and a due date</li>
-              <li><b>Health assessments</b> and their review dates on the same board</li>
-            </ul>
-            <p class="reg">This is the staff file evidence Schedule 2 of the Children's Homes Regulations 2015 expects a home to hold.</p>
-          </div>
-          <div class="exd">
-            <ul>
-              <li><b>The full Schedule 2 checklist</b> per person, item by item</li>
-              <li><b>Complete, outstanding or not applicable</b>, each with its date</li>
-              <li><b>Evidence attached</b> against the individual check, not a folder somewhere</li>
-              <li><b>A file is COMPLETE or INCOMPLETE</b>, with no comfortable middle</li>
-              <li><b>Exports to a spreadsheet</b> an inspector can read without a login</li>
-            </ul>
-            <p class="reg">Safer recruitment under Schedule 2, kept per person from day one.</p>
-          </div>
-          <div class="exd">
-            <ul>
-              <li><b>Shift codes painted across the week</b>, with the palette the home already uses</li>
-              <li><b>Drafts stay drafts</b> until the week is published to staff</li>
-              <li><b>Sleep-ins marked on any worked shift</b>, including training days</li>
-              <li><b>Leave and absence</b> recorded against the same week</li>
-              <li><b>Support workers see who they are on with.</b> Wages stay with the Responsible Individual, enforced in the database</li>
-            </ul>
-          </div>
-          <div class="exd">
-            <ul>
-              <li><b>Every kind on one matrix:</b> supervisions, appraisals, probation reviews, return to work, counselling, observations</li>
-              <li><b>Who is due and who is overdue</b>, against the home's own frequency</li>
-              <li><b>Notes and agreed actions</b> recorded, or the signed paper form uploaded</li>
-              <li><b>Staff sign their own supervision</b> from their portal, so the record is theirs too</li>
-            </ul>
-            <p class="reg">The supervision record Regulation 33 expects, without the ring binder.</p>
-          </div>
-          <div class="exd">
-            <ul>
-              <li><b>The checks a home actually runs</b>, seeded on day one: fire alarm tests, drills, emergency lighting, legionella flushes, fridge temperatures, window restrictors, vehicle walk rounds, the gas certificate and more</li>
-              <li><b>Each on its own interval</b>, daily through to five yearly</li>
-              <li><b>The statutory ones flagged</b>, so a missed legal check never looks like missed housekeeping</li>
-              <li><b>Readings recorded</b> where they matter: water and fridge temperatures</li>
-              <li><b>Pass, needed something doing, or failed</b>, and a check never done is due from the day it was switched on</li>
-              <li><b>Anyone on shift can record one</b>, because the person testing the fire alarm at 2am is not a manager</li>
-            </ul>
-          </div>
-          <div class="exd">
-            <ul>
-              <li><b>Write it once, tick the names</b>, and everyone gets their own copy by email</li>
-              <li><b>Sent, seen, done</b>, each with its timestamp on the manager's board</li>
-              <li><b>Due dates</b>, and overdue is the loudest state on the screen</li>
-              <li><b>One overdue nudge, ever.</b> After that it rides the Monday digest, because a repeating alarm trains people to delete it</li>
-              <li><b>Completion notes</b> come back to whoever set the task</li>
-            </ul>
-          </div>
-          <div class="exd">
-            <ul>
-              <li><b>Append only.</b> No edit, no delete, for anyone, including the owner</li>
-              <li><b>Every document open is logged:</b> who, which file, when</li>
-              <li><b>The evidence pack:</b> one zip per person or per home, the spreadsheets plus the certificates themselves</li>
-              <li><b>Every document in a pack is logged</b> as it goes in, so the handover itself is accounted for</li>
-              <li><b>Restricted records</b> open to the Responsible Individual only, and every open is on the record</li>
-            </ul>
-            <p class="reg">Built for the conversation where an inspector asks how you know.</p>
-          </div>
-          <div class="exd">
-            <ul>
-              <li><b>Expired items, expiries within 30 days and overdue tasks</b>, in one plain email</li>
-              <li><b>Monday, 7am</b>, to the people who run the home</li>
-              <li><b>A quiet week sends nothing</b>, so when it arrives it means something</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+Open Staffbook to chase them.</pre>
     </div>
   </div>
 </section>
 
-<section class="stops" id="stops">
+<section id="quote" class="wrap center">
+  <h2 class="rv">Your whole quote, no call required</h2>
+  <div class="quote rv" style="margin-top:34px">
+    <label for="homes">How many homes do you run?</label>
+    <input type="range" id="homes" min="1" max="10" value="1">
+    <p class="homes"><b id="hn">1</b> <span id="hw">home</span></p>
+    <div class="amount">&pound;<span id="total">79</span><small> /month</small></div>
+    <p class="fine">Free until 1 October, no card to start. Founding price locked for as long
+      as you stay. Unlimited staff accounts. Cancel any time and every record exports with you.</p>
+    <a class="btn" href="#cap">Book a look</a>
+  </div>
+</section>
+
+<section id="faq" class="wrap" style="max-width:780px">
+  <h2 class="rv">Straight answers</h2>
+  <details class="rv"><summary>We already use a care system. Why this too?</summary>
+    <p>Keep it. Care systems hold the young people&rsquo;s records and treat the staff side as
+    a bolt-on. Staffbook only does the staff side, so it goes deeper, and it sits beside
+    your system rather than replacing it.</p></details>
+  <details class="rv"><summary>Who is behind this?</summary>
+    <p>One person in Manchester, building it with a Responsible Individual who has run homes
+    for twenty years. You talk to the person who built it.</p></details>
+  <details class="rv"><summary>What if you disappear?</summary>
+    <p>Your data is never hostage. Everything exports to plain spreadsheets whenever you like.
+    Worst case, you are back to Excel with better-organised files.</p></details>
+  <details class="rv"><summary>Is the data safe?</summary>
+    <p>UK-hosted, every organisation walled off from every other at the database level, private
+    files, append-only audit trail. The long version is written for your DPO.</p></details>
+</section>
+
+<div class="closer">
   <div class="wrap">
-    <h2 class="rv">Where it deliberately stops</h2>
-    <p class="lede rv" style="transition-delay:80ms">
-      The boundaries are structural, not settings someone can change later.
-    </p>
-    <div class="list">
-      <div class="stopline rv">
-        <h3>No child records</h3>
-        <p>There is no child record in Staffbook and no field intended for one.
-        It is a staff and premises system, and it stays one.</p>
-      </div>
-      <div class="stopline rv" style="transition-delay:60ms">
-        <h3>No DBS content</h3>
-        <p>Certificate number, dates and status. There is nowhere to type what
-        a disclosure says, on purpose.</p>
-      </div>
-      <div class="stopline rv" style="transition-delay:120ms">
-        <h3>Pay stays private</h3>
-        <p>A support worker sees their own record and the rota. Wages are
-        visible to the Responsible Individual and nobody else, enforced in the
-        database rather than promised in a policy.</p>
-      </div>
-    </div>
-    <p class="stopnote rv">The detailed version of these boundaries, and how
-      the system that holds your staff records is itself protected, has its
-      own page: <a href="/compliance/">the security page</a>. Written for the
-      person who asks how it is built before they ask what it costs.</p>
+    <h2 class="rv">See it on a demo home this week</h2>
+    <p class="slede rv" style="margin:0 auto 30px">Fifteen minutes, on a call. Bring your
+      spreadsheet if you want the good bit.</p>
+    <a class="btn rv" href="#cap">Book a look</a>
   </div>
-</section>
+</div>
 
-<section class="compare" id="compare">
-  <div class="wrap">
-    <h2 class="rv">Why it only does the staff side</h2>
-    <p class="lede rv" style="transition-delay:80ms">
-      Not a cut-down anything. The scope is the design: when an inspection
-      goes wrong on paperwork, it is almost always the staff file, and this
-      is the tool built to make that impossible.
-    </p>
-    <div class="list">
-      <div class="cline rv">
-        <h3>One job, done completely</h3>
-        <p>Staff compliance here is the whole product, engineered like it:
-        receipts on every task, sign offs item by item, an audit trail
-        nobody can edit, an evidence pack in one click. A system that does
-        everything gives this job a module. Staffbook gives it everything.</p>
-      </div>
-      <div class="cline rv" style="transition-delay:60ms">
-        <h3>No child data, by design</h3>
-        <p>There is no field for a young person anywhere in it. That is not a
-        missing feature, it is the security model: the most sensitive records
-        in your organisation never enter a new system because of Staffbook, and
-        nobody has to sign that risk off.</p>
-      </div>
-      <div class="cline rv" style="transition-delay:120ms">
-        <h3>Working by Friday</h3>
-        <p>No migration, no retraining, no months of settling in. The manager
-        uploads staff files and reads the board the same day, and nothing
-        about how the home cares for children changes. Software should cost
-        a home an afternoon, not a quarter.</p>
-      </div>
-      <div class="cline rv" style="transition-delay:180ms">
-        <h3>Easy to leave, on purpose</h3>
-        <p>Monthly rolling, leave any month, your data exported to you and
-        deleted. A tool this sure of its own usefulness does not need a 36
-        month contract to keep you, and the exit being clean is exactly why
-        trying it costs nothing.</p>
-      </div>
-    </div>
-    <p class="after rv"><b>It sits beside whatever else you run</b>, paper
-    daily logs or a full care records platform, and owns the one file
-    inspections actually turn on: the staff and premises record, in date,
-    provable.</p>
-  </div>
-</section>
-
-<section id="start" class="start">
-  <div class="wrap">
-    <h2 class="rv">How it starts</h2>
-    <p class="lede rv" style="transition-delay:80ms">
-      Nothing to install and no contract to start. Per home rather than per
-      employee, monthly rather than a 24 to 60 month term.
-    </p>
-    <div class="duo">
-      <div class="card rv" style="transition-delay:120ms">
-        <div class="inner">
-          <ul style="margin-top:0">
-            <li>A fifteen minute look at the demo home, on a call</li>
-            <li>Then a free trial with your own data, once the agreement is signed</li>
-            <li>Every feature and every staff login included, nothing gated</li>
-            <li>Leave any month; your data is exported to you and deleted</li>
-            <li>Support from the person who built it</li>
-          </ul>
-          <a class="btn" href="mailto:colby@ordane.co.uk?subject=Booking%20a%20look%20at%20Staffbook&body=I%20would%20like%20a%20look%20at%20Staffbook.%0A%0AMy%20home%20or%20group%3A%20%0AA%20good%20time%20to%20call%3A%20">
-            Book a look
-            <span class="cap"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13 13 3M6 3h7v7"/></svg></span>
-          </a>
-          <p class="alt">If the button does nothing on your machine, write to
-            <a class="copymail" href="mailto:colby@ordane.co.uk">colby@ordane.co.uk</a>.</p>
-        </div>
-      </div>
-      <p class="founding rv" style="transition-delay:160ms">
-        There is a founding rate for the first homes, locked for two years.
-        Ask on the call.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2 class="rv">Reasonable questions</h2>
-    <div class="faq rv" style="transition-delay:80ms">
-      <details>
-        <summary>Who can see what?</summary>
-        <p class="a">Four roles. A support worker sees their own file and the
-        rota. A senior adds the team&rsquo;s checks. A manager runs training,
-        supervisions and the rota, but never pay or restricted records. The
-        Responsible Individual sees everything. The database enforces this,
-        not the screens, so it holds even if the software has a bug.</p>
-      </details>
-      <details>
-        <summary>Where does the data live?</summary>
-        <p class="a">UK GDPR applies in full. The providers are named openly
-        on <a href="/compliance/">the security page</a>, and their regions are
-        fixed in the processor agreement you sign before any real record is
-        entered, so where your data sits is on paper, not on trust.</p>
-      </details>
-      <details>
-        <summary>What happens when staff record their own training?</summary>
-        <p class="a">It waits. Nothing a support worker records counts towards
-        compliance until a manager confirms it, because it is your name against
-        the record at inspection.</p>
-      </details>
-      <details>
-        <summary>How does leaving work?</summary>
-        <p class="a">One email. Everything the system holds for your
-        organisation is exported to you, then deleted within 30 days, subject
-        only to records you are required to retain, which leave with you first.</p>
-      </details>
-    </div>
-  </div>
-</section>
-
-<section class="closer">
-  <div class="wrap">
-    <h2 class="rv">Fifteen minutes, on the demo home.</h2>
-    <p class="lede rv" style="transition-delay:80ms">
-      One call, no slides, the real product on demo data. You will know
-      within the first five whether it fits your homes.
-    </p>
-    <div class="acts rv" style="transition-delay:140ms">
-      <a class="btn" href="mailto:colby@ordane.co.uk?subject=A%20look%20at%20the%20demo%20home&body=I%20would%20like%20a%20look%20at%20Staffbook.%0A%0AMy%20home%20or%20group%3A%20%0AA%20good%20time%20to%20call%3A%20">
-        Book a look
-        <span class="cap"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13 13 3M6 3h7v7"/></svg></span>
-      </a>
-    </div>
-    <p class="beneath rv" style="transition-delay:200ms">
-      Or write to <a class="copymail" href="mailto:colby@ordane.co.uk">colby@ordane.co.uk</a>.
-    </p>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap foot-grid">
-    <div>
-      <div class="foot-brand">
-        <svg viewBox="0 0 48 48" fill="none" stroke="#1c3d5a" stroke-width="7" aria-hidden="true">
-          <path d="M19 5 H43 V29 a14 14 0 0 1 -14 14 H19 a14 14 0 0 1 -14 -14 V19 a14 14 0 0 1 14 -14 Z"/>
-        </svg>
-        Staffbook
-      </div>
-      <p class="meta">Compliance software for children&rsquo;s homes.<br>
-        Built and run by one person in Manchester.<br>
-        Staffbook is a trading name of Ordane Systems Ltd.</p>
-    </div>
-    <p class="meta">
-      <a href="mailto:colby@ordane.co.uk">colby@ordane.co.uk</a><br>
-      <a href="https://app.ordane.co.uk">Sign in to Staffbook</a><br>
-      <a href="/compliance/">The detailed version, for your DPO</a>
-    </p>
-  </div>
-</footer>
+<footer><div class="wrap">
+  Staffbook. Compliance software for children&rsquo;s homes.<br>
+  <a href="/compliance/">The detailed version, for your DPO</a> &middot;
+  <a href="https://app.ordane.co.uk">Sign in</a> &middot;
+  <a href="mailto:colby@ordane.co.uk">colby@ordane.co.uk</a><br>
+  Staffbook is a trading name of Ordane Systems Ltd.
+</div></footer>
 
 <script>
-/* The counts. Once, on entry, 900ms with a strong ease-out so the last few
-   digits land slowly, which is what makes a number feel counted rather than
-   swapped. Reduced motion gets the finished number straight away. */
-const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-/* The finished numbers live in the markup, so a visitor without javascript
-   reads the truth. Only a running script earns the zero-and-count-up. */
-if(!reduce)document.querySelectorAll('.count').forEach(el=>el.textContent='0');
-const cio=new IntersectionObserver((es)=>{
-  for(const e of es){
-    if(!e.isIntersecting)continue;
-    cio.unobserve(e.target);
-    const n=+e.target.dataset.n;
-    if(reduce){e.target.textContent=n;continue;}
-    const t0=performance.now(),D=900;
-    const step=(t)=>{
-      const p=Math.min(1,(t-t0)/D),eased=1-Math.pow(1-p,3);
-      e.target.textContent=Math.round(n*eased);
-      if(p<1)requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  }
-},{threshold:0.4});
-document.querySelectorAll('.count').forEach(el=>cio.observe(el));
-/* Same fail-open as the reveals: a throttled tab must never leave the
-   strip claiming zero expired items. */
-setTimeout(()=>document.querySelectorAll('.count').forEach(el=>{
-  if(el.textContent!==el.dataset.n)el.textContent=el.dataset.n;
-}),1400);
-
-/* The explorer. */
-const exBtns=[...document.querySelectorAll('.exlist button')];
-const exViews=[...document.querySelectorAll('.exv')];
-const exDs=[...document.querySelectorAll('.exd')];
-exBtns.forEach(b=>b.addEventListener('click',()=>{
-  const i=+b.dataset.ex;
-  exBtns.forEach(x=>{const on=+x.dataset.ex===i;
-    x.classList.toggle('on',on);x.setAttribute('aria-pressed',on)});
-  exViews.forEach((v,j)=>v.classList.toggle('on',j===i));
-  exDs.forEach((d,j)=>d.classList.toggle('on',j===i));
-  if(matchMedia('(max-width:860px)').matches){
-    document.querySelector('.expanel').scrollIntoView({behavior:'smooth',block:'nearest'});
-  }
-}));
-
-/* The address copies itself, because the machine most likely to be reading
-   this page has no mail client registered and a mailto that does nothing.
-   If the clipboard is unavailable the link falls through to plain mailto. */
-document.querySelectorAll('.copymail').forEach(a=>a.addEventListener('click',ev=>{
-  if(!navigator.clipboard)return;
-  ev.preventDefault();
-  navigator.clipboard.writeText('colby@ordane.co.uk').then(()=>{
-    const was=a.textContent;a.textContent='Copied to clipboard';
-    setTimeout(()=>{a.textContent=was},1600);
-  }).catch(()=>{location.href=a.href});
-}));
-
-/* The phone menu closes itself once a destination is chosen. */
-const menu=document.querySelector('.nav .menu');
-if(menu)menu.querySelectorAll('a').forEach(a=>
-  a.addEventListener('click',()=>menu.removeAttribute('open')));
-
-/* Entry reveals via IntersectionObserver, nothing on scroll handlers. */
-const io=new IntersectionObserver((es)=>{
-  for(const e of es){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}
-},{threshold:0});
-document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-/* Reveal-on-scroll is decoration, so its failure mode has to be a visible
-   page. Anything the observer has not reached within a second reveals
-   itself, which also covers throttled tabs and odd embedders. */
-setTimeout(()=>document.querySelectorAll('.rv:not(.in)').forEach(el=>el.classList.add('in')),1000);
+  const s = document.getElementById('homes');
+  const upd = () => {
+    const n = +s.value;
+    document.getElementById('hn').textContent = n;
+    document.getElementById('hw').textContent = n === 1 ? 'home' : 'homes';
+    document.getElementById('total').textContent = (n * 79).toLocaleString();
+  };
+  s.addEventListener('input', upd); upd();
+  document.getElementById('cap').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const em = document.getElementById('l_email').value;
+    location.href = 'mailto:colby@ordane.co.uk?subject=' +
+      encodeURIComponent('A look at Staffbook') + '&body=' +
+      encodeURIComponent(`My email: ${em}\nMy home or group: \nA good time to call: `);
+  });
+  const io = new IntersectionObserver((es) => {
+    for (const e of es) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.rv').forEach((el) => io.observe(el));
 </script>
 <script data-goatcounter="https://ordane.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
