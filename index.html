@@ -53,7 +53,9 @@
   h1{font-family:"Iowan Old Style","Palatino","Georgia",serif;font-weight:500;
     font-size:clamp(44px,6.6vw,76px);line-height:1.04;letter-spacing:-.015em;margin:0 auto 20px;
     max-width:18ch;text-wrap:balance}
-  .lede{font-size:clamp(17px,2vw,19.5px);color:var(--ink);max-width:52ch;margin:0 auto 34px}
+  .lede{font-size:clamp(17px,2vw,19.5px);color:var(--ink);max-width:52ch;margin:0 auto 22px}
+  .cats{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);
+    margin:0 0 30px}
   .cap{display:flex;max-width:520px;margin:0 auto;background:#fff;border:1.5px solid rgba(22,32,44,.2);
     border-radius:999px;padding:6px 6px 6px 22px;align-items:center;gap:10px}
   .cap input{flex:1;border:0;outline:0;font:inherit;font-size:15.5px;min-width:0;background:transparent}
@@ -81,6 +83,8 @@
   .app h3{margin:10px 0 3px;font-size:18px;font-weight:650;letter-spacing:-.01em}
   .app h3 b{color:var(--red)}
   .app .sub{color:var(--mut);font-size:13px;margin:0 0 12px}
+  .feed{border-top:1px solid var(--line);margin-top:10px;padding-top:10px;display:grid;
+    gap:4px;font-size:12px;color:var(--mut);font-variant-numeric:tabular-nums}
   @media(max-width:760px){.app{grid-template-columns:1fr}.side{display:none}}
   .row{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-top:1px solid var(--line);font-size:14.5px}
   .chip{font-size:12.5px;font-weight:600;padding:4px 12px;border-radius:999px;white-space:nowrap}
@@ -171,6 +175,10 @@
   details[open] summary::after{transform:rotate(-135deg);top:11px}
   summary:hover{color:var(--navy)}
   details p{color:var(--mut);margin:12px 0 0;max-width:62ch}
+  .founder{display:flex;gap:12px;align-items:center;margin-top:14px}
+  .founder img{border-radius:50%;width:46px;height:46px;object-fit:cover;flex:none}
+  .founder p{margin:0;font-size:14.5px}
+  .founder a{color:var(--navy)}
   .closer{background:var(--navy-deep);text-align:center;padding:104px 0;color:#fff}
   .closer h2{color:#fff}
   .closer .slede{color:#b7c6d6}
@@ -198,9 +206,10 @@
 <header class="hero" id="main">
   <div class="wrap">
     <h1>In date is everything</h1>
-    <p class="lede">Staffbook keeps the staff records of children&rsquo;s homes inspection-ready:
-      training, DBS, supervisions, policies, checks. When the inspector asks, it is already
-      written down.</p>
+    <p class="lede">Staffbook keeps the staff records of children&rsquo;s homes inspection-ready.
+      When the inspector asks, it is already written down.</p>
+    <p class="cats" aria-hidden="true">DBS &middot; Training &middot; Safer recruitment &middot;
+      Supervisions &middot; Policies &middot; Checks</p>
     <form class="cap" id="cap">
       <input type="email" placeholder="manager@maplehouse.co.uk" required aria-label="Work email">
       <button class="btn" type="submit">Book a look</button>
@@ -237,6 +246,10 @@
       <div class="row"><span><b>Daniel Mercer</b> &middot; First aid, renewal booked</span><span class="chip c-red">12d over</span></div>
       <div class="row"><span><b>Priya Raman</b> &middot; DVLA driving licence</span><span class="chip c-am">due in 9 days</span></div>
       <div class="row"><span><b>Sam Ogden</b> &middot; DBS renewal</span><span class="chip c-ok">renewed Tue</span></div>
+      <div class="feed" aria-hidden="true">
+        <span>09:31 &middot; Grace Ellison booked the fire safety refresher</span>
+        <span>09:33 &middot; Evidence pack generated for Maple House</span>
+      </div>
     </div>
   </div>
 </div>
@@ -389,7 +402,12 @@ Open Staffbook to chase them.</pre>
     your system rather than replacing it.</p></details>
   <details class="rv"><summary>Who is behind this?</summary>
     <p>One person in Manchester, building it with a Responsible Individual who has run homes
-    for twenty years. You talk to the person who built it.</p></details>
+    for twenty years. You talk to the person who built it.</p>
+    <div class="founder">
+      <img src="/colby.png" alt="Colby, who builds Staffbook" width="46" height="46">
+      <p>Colby builds it, answers the emails and does the calls.
+        <a href="mailto:colby@ordane.co.uk">colby@ordane.co.uk</a></p>
+    </div></details>
   <details class="rv"><summary>What if you disappear?</summary>
     <p>Your data is never hostage. Everything exports to plain spreadsheets whenever you like.
     Worst case, you are back to Excel with better-organised files.</p></details>
