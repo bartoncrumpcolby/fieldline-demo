@@ -236,15 +236,18 @@
     <h1 class="rv">In date is everything</h1>
     <p class="lede rv" style="transition-delay:90ms">Staffbook keeps the staff records of
       children&rsquo;s homes inspection-ready. When the inspector asks, it is already written down.</p>
-    <p class="cats rv" style="transition-delay:150ms" aria-hidden="true">DBS &middot; Training &middot;
+    <p class="cats rv" style="transition-delay:150ms">DBS &middot; Training &middot;
       Safer recruitment &middot; Supervisions &middot; Policies &middot; Checks</p>
-    <form class="cap rv" style="transition-delay:210ms" id="cap">
+    <form class="cap rv" style="transition-delay:210ms" id="cap"
+      method="post" action="https://app.ordane.co.uk/api/lead">
       <input type="email" placeholder="manager@maplehouse.co.uk" required aria-label="Work email">
       <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="btn" type="submit">Book a look</button>
     </form>
     <p class="capnote" aria-live="polite">If your email app did not open, write to
       <b>colby@ordane.co.uk</b>. The address is on your clipboard.</p>
+    <noscript><p class="capnote show">JavaScript is off in your browser, so this form
+      cannot confirm. Write to colby@ordane.co.uk and Colby will reply today.</p></noscript>
     <p class="under rv" style="transition-delay:280ms">Fifteen minutes, on a demo home. No card,
       no contract.<br>Built with a serving RI, <b>20 years in children&rsquo;s homes</b>.</p>
   </div>
@@ -426,7 +429,7 @@ Open Staffbook to chase them.</pre>
 </section>
 
 <section id="faq" class="wrap" style="max-width:780px">
-  <h2 class="rv">Straight answers</h2>
+  <h2 class="rv">Questions, answered straight</h2>
   <details class="rv"><summary>We already use a care system. Why this too?</summary>
     <p>Keep it. Care systems hold the young people&rsquo;s records and treat the staff side as
     a bolt-on. Staffbook only does the staff side, so it goes deeper, and it sits beside
@@ -452,7 +455,8 @@ Open Staffbook to chase them.</pre>
     <h2 class="rv">See it on a demo home this week</h2>
     <p class="slede rv" style="margin:0 auto 30px">Fifteen minutes, on a call. Bring your
       spreadsheet if you want the good bit.</p>
-    <form class="cap rv" id="cap2">
+    <form class="cap rv" id="cap2"
+      method="post" action="https://app.ordane.co.uk/api/lead">
       <input type="email" placeholder="manager@maplehouse.co.uk" required aria-label="Work email">
       <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="btn" type="submit">Book a look</button>
@@ -464,10 +468,11 @@ Open Staffbook to chase them.</pre>
 
 <footer><div class="wrap">
   Staffbook. Compliance software for children&rsquo;s homes.<br>
-  <a href="/compliance/">The detailed version, for your DPO</a> &middot;
+  <a href="/compliance/">Privacy, security and data, the detailed version</a> &middot;
   <a href="https://app.ordane.co.uk">Sign in</a> &middot;
   <a href="mailto:colby@ordane.co.uk">colby@ordane.co.uk</a><br>
-  Staffbook is a trading name of Ordane Systems Ltd.
+  Staffbook is a trading name of Ordane Systems Ltd, registered in England
+  and Wales, company no. 17402902.
 </div></footer>
 
 <script>
@@ -500,7 +505,19 @@ Open Staffbook to chase them.</pre>
       if (ok) {
         f.style.display = 'none';
         if (note) {
-          note.textContent = `Done. Colby will reply to ${em} today.`;
+          note.textContent = `Done. Colby will reply to ${em} today. `;
+          const again = document.createElement('a');
+          again.href = '#';
+          again.textContent = 'Wrong address? Try again';
+          again.addEventListener('click', (ev) => {
+            ev.preventDefault();
+            f.style.display = '';
+            note.classList.remove('show');
+            btn.disabled = false;
+            btn.textContent = label;
+            f.querySelector('input[type=email]').focus();
+          });
+          note.append(again);
           note.classList.add('show');
         }
       } else {
