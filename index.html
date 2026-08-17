@@ -152,7 +152,9 @@
     text-align:center;text-wrap:balance}
   .statesub{text-align:center;color:var(--mut);font-size:17px;max-width:52ch;margin:0 auto}
   .duo{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-  @media(max-width:840px){.duo{grid-template-columns:1fr}}
+  .duo.flip>:first-child{order:2}
+  @media(max-width:840px){.duo{grid-template-columns:1fr}
+    .duo.flip>:first-child{order:0}}
   .mail{background:#fff;border-radius:16px;padding:26px;
     box-shadow:0 22px 48px -30px rgba(19,44,66,.3)}
   .mail .from{color:var(--mut);font-size:13px;margin:0 0 4px}
@@ -238,8 +240,8 @@
     </form>
     <p class="capnote" aria-live="polite">If your email app did not open, write to
       <b>colby@ordane.co.uk</b>. The address is on your clipboard.</p>
-    <p class="under rv" style="transition-delay:280ms">15 minutes on a demo home &middot; no card,
-      no contract &middot; built with a serving RI, <b>20 years in children&rsquo;s homes</b></p>
+    <p class="under rv" style="transition-delay:280ms">Fifteen minutes, on a demo home. No card,
+      no contract.<br>Built with a serving RI, <b>20 years in children&rsquo;s homes</b>.</p>
   </div>
 </header>
 
@@ -380,7 +382,7 @@ Open Staffbook to chase them.</pre>
 </section>
 
 <section class="wrap">
-  <div class="duo">
+  <div class="duo flip">
     <div>
       <h2 class="rv">One person, one screen, nothing missing</h2>
       <p class="slede rv" style="margin-bottom:16px">Open any member of staff and their whole
@@ -390,7 +392,7 @@ Open Staffbook to chase them.</pre>
         inspector says "show me". It is also the screen that means you never have to
         prepare for that moment again.</p>
     </div>
-    <div class="profile rv rv-r" aria-label="A staff file, as a preview">
+    <div class="profile rv rv-l" aria-label="A staff file, as a preview">
       <div class="phead">
         <b>Priya Raman</b>
         <span class="chip c-ok">file 98% complete</span>
