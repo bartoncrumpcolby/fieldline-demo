@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Staffbook | Compliance software for children&rsquo;s homes</title>
-<meta name="description" content="The staff compliance file for children's homes. Training, DBS renewals, supervisions, policies and the home's checks, kept in date and inspection-ready. From your spreadsheet to a live matrix in three minutes. £79 per home per month.">
+<meta name="description" content="The staff compliance file for children's homes. Training, DBS renewals, supervisions, policies and the home's checks, kept in date and inspection-ready. From your spreadsheet to a live matrix in three minutes.">
 <link rel="canonical" href="https://ordane.co.uk/">
 <meta property="og:title" content="Staffbook | Compliance software for children's homes">
 <meta property="og:description" content="In date is everything. The staff records of children's homes, kept inspection-ready.">
@@ -25,7 +25,7 @@
 <style>
   :root{
     --band:#dce6f2; --bg:#ffffff; --ink:#16202c; --mut:#5c6875; --line:#e8e8ee;
-    --navy:#1c3d5a; --navy-deep:#132c42; --ok:#1f7a52; --am:#a86e14; --red:#c34a41;
+    --navy:#1c3d5a; --navy-deep:#132c42; --ok:#1f6b49; --am:#8a5a0e; --red:#b03a31;
   }
   *{box-sizing:border-box}
   .skip{position:absolute;left:-9999px;top:0;z-index:60;background:#1c3d5a;color:#fff;
@@ -34,7 +34,9 @@
   body{margin:0;background:var(--bg);color:var(--ink);
     font:16.5px/1.62 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
   .serif{font-family:"Iowan Old Style","Palatino","Georgia",serif}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 26px}
+  .wrap{max-width:1120px;margin:0 auto;padding-inline:26px}
+  ::selection{background:var(--navy);color:#fff}
+  input{caret-color:var(--navy)}
   nav{background:var(--band)}
   nav .wrap{display:flex;align-items:center;height:72px;gap:10px}
   .brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:20px;letter-spacing:-.015em}
@@ -43,7 +45,9 @@
   @media(max-width:760px){nav .links{display:none}}
   .btn{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;
     font-weight:550;font-size:15.5px;padding:13px 26px;border-radius:999px;text-decoration:none;border:0;cursor:pointer}
+  .btn{transition:background .15s ease}
   .btn:hover{background:var(--navy-deep)}
+  .btn:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
   .btn.line{background:transparent;color:var(--ink);border:1.5px solid rgba(22,32,44,.25)}
   .hero{background:var(--band);text-align:center;padding:84px 0 150px}
   h1{font-family:"Iowan Old Style","Palatino","Georgia",serif;font-weight:500;
@@ -53,11 +57,14 @@
   .cap{display:flex;max-width:520px;margin:0 auto;background:#fff;border:1.5px solid rgba(22,32,44,.2);
     border-radius:999px;padding:6px 6px 6px 22px;align-items:center;gap:10px}
   .cap input{flex:1;border:0;outline:0;font:inherit;font-size:15.5px;min-width:0;background:transparent}
+  .cap:focus-within{border-color:var(--navy);box-shadow:0 0 0 3px rgba(28,61,90,.15)}
   .cap .btn{padding:12px 22px;flex:none}
+  .capnote{display:none;font-size:13.5px;margin-top:12px}
+  .capnote.show{display:block}
   .under{color:var(--mut);font-size:14px;margin-top:16px}
   .under b{color:var(--ink);font-weight:600}
   .stage{position:relative;max-width:880px;margin:-96px auto 0;padding:0 26px}
-  .app{background:#fff;border:1px solid var(--line);border-radius:16px;text-align:left;
+  .app{background:#fff;border-radius:16px;text-align:left;
     box-shadow:0 34px 70px -38px rgba(19,44,66,.35);padding:24px 28px}
   .app h3{margin:0 0 3px;font-size:19px;font-weight:650;letter-spacing:-.01em}
   .app h3 b{color:var(--red)}
@@ -72,6 +79,7 @@
   .f1{top:-20px;right:-6px;color:var(--ok)}
   .f2{bottom:-18px;left:2px;color:var(--am)}
   @media(max-width:880px){.f1{right:8px}.f2{left:8px}}
+  @media(max-width:640px){.float{display:none}nav .btn.line{display:none}}
   .trust{text-align:center;padding:64px 0 0}
   .trust p{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin:0 0 6px}
   .trust b{font-size:15px;letter-spacing:0;text-transform:none;color:var(--ink);font-weight:600}
@@ -83,8 +91,9 @@
   .center .slede{margin-inline:auto}
   .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;text-align:left}
   .step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px 26px}
-  .step .k{font-size:13px;font-weight:650;color:var(--navy);letter-spacing:.06em;margin:0 0 12px}
-  .step h3{margin:0 0 8px;font-size:17.5px;font-weight:650}
+  .step h3{margin:0 0 8px;font-size:17.5px;font-weight:650;display:flex;align-items:center;gap:10px}
+  .step h3 .n{width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;
+    display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:none}
   .step p{margin:0;color:var(--mut);font-size:15px}
   .mini{margin-top:18px;border:1px solid var(--line);border-radius:10px;padding:13px 15px;
     background:#fafcfe;font-size:12.5px;text-align:left}
@@ -93,9 +102,10 @@
   .mini .bar{height:7px;border-radius:99px;background:#e8edf3;overflow:hidden;margin:7px 0}
   .mini .bar i{display:block;height:100%;width:92%;background:var(--navy);border-radius:99px}
   .mini .mt{color:var(--mut)}
-  .mini .chip{font-size:10.5px;padding:2px 8px}
+  .mini .chip{font-size:11.5px;padding:2px 9px}
   .stamps{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(215px,1fr);gap:16px;
     overflow-x:auto;padding:4px 4px 12px;scroll-snap-type:x proximity}
+  @media(min-width:1000px){.stamps{grid-auto-flow:row;grid-template-columns:repeat(3,1fr);overflow:visible}}
   .stamp{border:1px solid var(--line);border-radius:14px;padding:24px 22px;background:#fff;
     scroll-snap-align:start;text-align:left}
   .stamp .badge{width:62px;height:62px;border:1.5px solid var(--navy);border-radius:50%;
@@ -110,23 +120,29 @@
   .statesub{text-align:center;color:var(--mut);font-size:17px;max-width:52ch;margin:0 auto}
   .duo{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
   @media(max-width:840px){.duo{grid-template-columns:1fr}}
-  .mail{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px;
+  .mail{background:#fff;border-radius:16px;padding:26px;
     box-shadow:0 22px 48px -30px rgba(19,44,66,.3)}
   .mail .from{color:var(--mut);font-size:13px;margin:0 0 4px}
   .mail .subj{font-weight:700;margin:0 0 14px}
   .mail pre{margin:0;font:13px/1.75 ui-monospace,Menlo,monospace;white-space:pre-wrap}
   .tint{background:#f4f7fb}
-  .quote{max-width:600px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:20px;
+  .quote{max-width:600px;margin:0 auto;background:#fff;border-radius:20px;
     padding:42px 40px;text-align:center;box-shadow:0 26px 60px -36px rgba(19,44,66,.35)}
-  .quote label{font-weight:650;font-size:16.5px;display:block;margin-bottom:16px}
-  input[type=range]{width:100%;accent-color:var(--navy)}
-  .homes{font-size:15px;color:var(--mut);margin:8px 0 14px}
-  .amount{font-family:"Iowan Old Style","Palatino","Georgia",serif;font-size:60px;font-weight:500;letter-spacing:-.02em}
-  .amount small{font-family:Inter,-apple-system,sans-serif;font-size:15.5px;color:var(--mut)}
+  .startlist{list-style:none;margin:0;padding:0}
+  .startlist li{padding:9px 0 9px 30px;position:relative;font-size:15.5px;border-bottom:1px solid var(--line)}
+  .startlist li:last-child{border-bottom:0}
+  .startlist li::before{content:"";position:absolute;left:2px;top:17px;width:13px;height:7px;
+    border-left:2px solid var(--navy);border-bottom:2px solid var(--navy);transform:rotate(-45deg)}
   .fine{color:var(--mut);font-size:14.5px;margin:14px 0 26px}
   details{border-bottom:1px solid var(--line);padding:20px 0;text-align:left}
   details:first-of-type{border-top:1px solid var(--line)}
-  summary{font-weight:650;cursor:pointer;font-size:16.5px}
+  summary{font-weight:650;cursor:pointer;font-size:16.5px;list-style:none;position:relative;padding-right:34px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"";position:absolute;right:8px;top:7px;width:9px;height:9px;
+    border-right:2px solid var(--navy);border-bottom:2px solid var(--navy);
+    transform:rotate(45deg);transition:transform .2s ease}
+  details[open] summary::after{transform:rotate(-135deg);top:11px}
+  summary:hover{color:var(--navy)}
   details p{color:var(--mut);margin:12px 0 0;max-width:62ch}
   .closer{background:var(--navy-deep);text-align:center;padding:104px 0;color:#fff}
   .closer h2{color:#fff}
@@ -136,7 +152,7 @@
   .closer .btn:hover{background:#0d2233}
   footer{padding:36px 0;color:var(--mut);font-size:13.5px;line-height:1.9;text-align:center}
   footer a{color:inherit}
-  .rv{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+  .rv{opacity:0;transform:translateY(10px);transition:opacity .45s cubic-bezier(.16,1,.3,1),transform .45s cubic-bezier(.16,1,.3,1)}
   .rv.in{opacity:1;transform:none}
   @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
 </style>
@@ -147,7 +163,7 @@
 <a class="skip" href="#main">Skip to the content</a>
 <nav><div class="wrap">
   <span class="brand"><svg width="26" height="26" viewBox="0 0 48 48" fill="none" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"><rect x="9" y="7" width="30" height="34" rx="5" stroke="#1c3d5a"/><path d="M25 7 V24 L30.5 19 L36 24 V7" stroke="#a9762f"/></svg>Staffbook</span>
-  <span class="links"><a href="#how">Product</a><a href="#holds">What it holds</a><a href="#quote">Pricing</a><a href="#faq">Questions</a></span>
+  <span class="links"><a href="#how">Product</a><a href="#holds">What it holds</a><a href="#quote">How it starts</a><a href="#faq">Questions</a></span>
   <a class="btn line" href="https://app.ordane.co.uk">Sign in</a>
   <a class="btn" href="#cap">Book a look</a>
 </div></nav>
@@ -156,11 +172,14 @@
   <div class="wrap">
     <h1>In date is everything</h1>
     <p class="lede">Staffbook keeps the staff records of children&rsquo;s homes inspection-ready:
-      training, DBS, supervisions, policies, checks. Earn a calm inspection and prove it.</p>
+      training, DBS, supervisions, policies, checks. When the inspector asks, it is already
+      written down.</p>
     <form class="cap" id="cap">
-      <input type="email" id="l_email" placeholder="manager@maplehouse.co.uk" required aria-label="Work email">
+      <input type="email" placeholder="manager@maplehouse.co.uk" required aria-label="Work email">
       <button class="btn" type="submit">Book a look</button>
     </form>
+    <p class="capnote" aria-live="polite">If your email app did not open, write to
+      <b>colby@ordane.co.uk</b>. The address is on your clipboard.</p>
     <p class="under">15 minutes on a demo home &middot; no card, no contract &middot; built with a
       serving RI, <b>20 years in children&rsquo;s homes</b></p>
   </div>
@@ -181,7 +200,7 @@
 
 <div class="trust">
   <p>Built for the sector&rsquo;s 3,900 children&rsquo;s homes</p>
-  <b>Priced for a single one: &pound;79 a month, locked at the founding rate forever</b>
+  <b>Priced per home, monthly rolling, cancel any time</b>
 </div>
 
 <section id="how" class="wrap center">
@@ -189,7 +208,7 @@
   <p class="slede rv">No implementation project, no training day. The spreadsheet the home
     already keeps is the way in, and the system takes over the remembering.</p>
   <div class="steps">
-    <div class="step rv"><p class="k">STEP ONE</p><h3>Paste the sheet</h3>
+    <div class="step rv"><h3><span class="n">1</span>Paste the sheet</h3>
       <p>Copy the training matrix out of Excel. Staffbook reads names, courses and dates,
       shows what it understood, and asks about anything it is not sure of. Three minutes.</p>
       <div class="mini" aria-hidden="true">
@@ -197,14 +216,14 @@
         <div class="bar"><i></i></div>
         <span class="mt">13 records &middot; 4 people &middot; 5 courses &middot; renewals worked out</span>
       </div></div>
-    <div class="step rv"><p class="k">STEP TWO</p><h3>The matrix comes alive</h3>
+    <div class="step rv"><h3><span class="n">2</span>The matrix comes alive</h3>
       <p>Every certificate gets its renewal worked out. Expired is red today, due-soon turns
       amber ahead of time, and the dashboard names who to chase first.</p>
       <div class="mini" aria-hidden="true">
         <div class="mrow"><span><b>Grace Ellison</b> &middot; Fire safety</span><span class="chip c-red">157d over</span></div>
         <div class="mrow"><span><b>Priya Raman</b> &middot; DVLA licence</span><span class="chip c-am">due in 9d</span></div>
       </div></div>
-    <div class="step rv"><p class="k">STEP THREE</p><h3>Monday reports in</h3>
+    <div class="step rv"><h3><span class="n">3</span>Monday reports in</h3>
       <p>One plain email before the week starts: expired, due soon, who has not signed the
       new policy. A quiet week sends nothing at all.</p>
       <div class="mini" aria-hidden="true">
@@ -253,9 +272,9 @@ Open Staffbook to chase them.</pre>
   <div class="stamps">
     <div class="stamp rv"><div class="badge">TRAINING</div><h3>Training and DBS</h3>
       <p>The full matrix by home, every expiry chased before it lapses.</p></div>
-    <div class="stamp rv"><div class="badge">RECRUIT</div><h3>Safer recruitment</h3>
+    <div class="stamp rv"><div class="badge">VETTING</div><h3>Safer recruitment</h3>
       <p>The checks file per person, gaps visible before an inspector finds them.</p></div>
-    <div class="stamp rv"><div class="badge">SUPER</div><h3>Supervisions</h3>
+    <div class="stamp rv"><div class="badge">1:1s</div><h3>Supervisions</h3>
       <p>Scheduled, recorded, evidenced, on pattern.</p></div>
     <div class="stamp rv"><div class="badge">POLICY</div><h3>Policies, agreed</h3>
       <p>Every member of staff signs "read and understood". You see 12 of 14, and who is outstanding.</p></div>
@@ -267,15 +286,18 @@ Open Staffbook to chase them.</pre>
 </section>
 
 <section id="quote" class="wrap center">
-  <h2 class="rv">Your whole quote, no call required</h2>
-  <div class="quote rv" style="margin-top:34px">
-    <label for="homes">How many homes do you run?</label>
-    <input type="range" id="homes" min="1" max="10" value="1">
-    <p class="homes"><b id="hn">1</b> <span id="hw">home</span></p>
-    <div class="amount">&pound;<span id="total">79</span><small> /month</small></div>
-    <p class="fine">Free until 1 October, no card to start. Founding price locked for as long
-      as you stay. Unlimited staff accounts. Cancel any time and every record exports with you.</p>
-    <a class="btn" href="#cap">Book a look</a>
+  <h2 class="rv">How it starts</h2>
+  <div class="quote rv" style="margin-top:34px;text-align:left">
+    <ul class="startlist">
+      <li>A fifteen minute look at the demo home, on a call</li>
+      <li>Then a free trial with your own data, no card to start</li>
+      <li>Priced per home, monthly rolling, no long contract</li>
+      <li>Unlimited staff and manager accounts, nothing gated</li>
+      <li>Leave any month; every record exports with you</li>
+    </ul>
+    <p class="fine" style="text-align:left;margin-top:18px">There is a founding rate for the
+      first homes, locked for as long as they stay. Ask on the call.</p>
+    <div style="text-align:center"><a class="btn" href="#cap2">Book a look</a></div>
   </div>
 </section>
 
@@ -307,10 +329,12 @@ Open Staffbook to chase them.</pre>
     <h2 class="rv">See it on a demo home this week</h2>
     <p class="slede rv" style="margin:0 auto 30px">Fifteen minutes, on a call. Bring your
       spreadsheet if you want the good bit.</p>
-    <form class="cap rv" data-cap>
+    <form class="cap rv" id="cap2">
       <input type="email" placeholder="manager@maplehouse.co.uk" required aria-label="Work email">
       <button class="btn" type="submit">Book a look</button>
     </form>
+    <p class="capnote" aria-live="polite" style="color:#b7c6d6">If your email app did not open,
+      write to <b style="color:#fff">colby@ordane.co.uk</b>. The address is on your clipboard.</p>
   </div>
 </div>
 
@@ -323,26 +347,29 @@ Open Staffbook to chase them.</pre>
 </div></footer>
 
 <script>
-  const s = document.getElementById('homes');
-  const upd = () => {
-    const n = +s.value;
-    document.getElementById('hn').textContent = n;
-    document.getElementById('hw').textContent = n === 1 ? 'home' : 'homes';
-    document.getElementById('total').textContent = (n * 79).toLocaleString();
-  };
-  s.addEventListener('input', upd); upd();
   document.querySelectorAll('form.cap').forEach((f) => {
     f.addEventListener('submit', (e) => {
       e.preventDefault();
       const em = f.querySelector('input[type=email]').value;
+      // The mailto may silently do nothing on machines without a mail app,
+      // so the address also lands on the clipboard and a visible line says so.
+      try { navigator.clipboard.writeText('colby@ordane.co.uk'); } catch {}
+      const note = f.parentElement.querySelector('.capnote');
+      if (note) note.classList.add('show');
       location.href = 'mailto:colby@ordane.co.uk?subject=' +
         encodeURIComponent('A look at Staffbook') + '&body=' +
         encodeURIComponent(`My email: ${em}\nMy home or group: \nA good time to call: `);
     });
   });
+  document.querySelectorAll('a[href="#cap"], a[href="#cap2"]').forEach((a) => {
+    a.addEventListener('click', () => {
+      const f = document.querySelector(a.getAttribute('href'));
+      if (f) setTimeout(() => f.querySelector('input')?.focus({ preventScroll: true }), 450);
+    });
+  });
   const io = new IntersectionObserver((es) => {
     for (const e of es) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-  }, { threshold: 0.15 });
+  }, { threshold: 0.1, rootMargin: '0px 0px -5%' });
   document.querySelectorAll('.rv').forEach((el) => io.observe(el));
 </script>
 <script data-goatcounter="https://ordane.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
