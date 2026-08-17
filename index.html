@@ -63,12 +63,25 @@
   .capnote.show{display:block}
   .under{color:var(--mut);font-size:14px;margin-top:16px}
   .under b{color:var(--ink);font-weight:600}
-  .stage{position:relative;max-width:880px;margin:-96px auto 0;padding:0 26px}
-  .app{background:#fff;border-radius:16px;text-align:left;
-    box-shadow:0 34px 70px -38px rgba(19,44,66,.35);padding:24px 28px}
-  .app h3{margin:0 0 3px;font-size:19px;font-weight:650;letter-spacing:-.01em}
+  .stage{position:relative;max-width:920px;margin:-96px auto 0;padding:0 26px}
+  .app{background:#fff;border-radius:14px;text-align:left;overflow:hidden;
+    box-shadow:0 34px 70px -38px rgba(19,44,66,.35);display:grid;grid-template-columns:172px 1fr}
+  .side{background:#f7f9fb;border-right:1px solid var(--line);padding:16px 0 18px;font-size:13px}
+  .side .sb{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;
+    padding:2px 16px 12px;letter-spacing:-.01em}
+  .side a{display:block;padding:6.5px 16px;color:var(--mut);text-decoration:none}
+  .side a.on{color:var(--ink);background:#eceff3;font-weight:600;
+    box-shadow:inset 2px 0 0 var(--navy)}
+  .main{padding:20px 26px 24px;min-width:0}
+  .apphead{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:2px}
+  .apphead b{font-size:15px}
+  .apphead .home{color:var(--mut);font-size:13px}
+  .apphead .readychip{margin-left:auto;font-size:12.5px;font-weight:700;color:var(--ok);
+    background:#e6f2ea;padding:4px 12px;border-radius:999px;font-variant-numeric:tabular-nums}
+  .app h3{margin:10px 0 3px;font-size:18px;font-weight:650;letter-spacing:-.01em}
   .app h3 b{color:var(--red)}
-  .app .sub{color:var(--mut);font-size:13.5px;margin:0 0 14px}
+  .app .sub{color:var(--mut);font-size:13px;margin:0 0 12px}
+  @media(max-width:760px){.app{grid-template-columns:1fr}.side{display:none}}
   .row{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-top:1px solid var(--line);font-size:14.5px}
   .chip{font-size:12.5px;font-weight:600;padding:4px 12px;border-radius:999px;white-space:nowrap}
   .c-red{background:#faeae9;color:var(--red)} .c-am{background:#f8f0df;color:var(--am)}
@@ -76,7 +89,7 @@
   .float{position:absolute;background:#fff;border:1px solid var(--line);border-radius:13px;
     box-shadow:0 16px 36px -20px rgba(19,44,66,.4);padding:11px 15px;font-size:13px;font-weight:650;text-align:left}
   .float small{display:block;font-weight:400;color:var(--mut);font-size:12px}
-  .f1{top:-20px;right:-6px;color:var(--ok)}
+  .f1{top:-52px;right:-10px;color:var(--ok)}
   .f2{bottom:-18px;left:2px;color:var(--am)}
   @media(max-width:880px){.f1{right:8px}.f2{left:8px}}
   @media(max-width:640px){.float{display:none}nav .btn.line{display:none}}
@@ -189,12 +202,28 @@
   <div class="float f1">DBS renewed<small>Sam Ogden &middot; Tuesday</small></div>
   <div class="float f2">Fire safety due in 9 days<small>chased automatically</small></div>
   <div class="app" aria-label="The Staffbook dashboard, as a preview">
-    <h3><b>2 items still expired</b>, down from 10 this month</h3>
-    <p class="sub">Maple House &middot; 14 staff &middot; Monday 9 March</p>
-    <div class="row"><span><b>Grace Ellison</b> &middot; Fire safety training</span><span class="chip c-red">157d over</span></div>
-    <div class="row"><span><b>Daniel Mercer</b> &middot; First aid, renewal booked</span><span class="chip c-red">12d over</span></div>
-    <div class="row"><span><b>Priya Raman</b> &middot; DVLA driving licence</span><span class="chip c-am">due in 9 days</span></div>
-    <div class="row"><span><b>Sam Ogden</b> &middot; DBS renewal</span><span class="chip c-ok">renewed Tue</span></div>
+    <div class="side" aria-hidden="true">
+      <span class="sb"><svg width="18" height="18" viewBox="0 0 48 48" fill="none" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"><rect x="9" y="7" width="30" height="34" rx="5" stroke="#1c3d5a"/><path d="M25 7 V24 L30.5 19 L36 24 V7" stroke="#a9762f"/></svg>Staffbook</span>
+      <a class="on">Dashboard</a>
+      <a>Staff</a>
+      <a>Training &amp; DBS</a>
+      <a>Supervisions</a>
+      <a>Policies</a>
+      <a>Checks</a>
+      <a>Documents</a>
+    </div>
+    <div class="main">
+      <div class="apphead">
+        <b>Dashboard</b><span class="home">Maple House &middot; 14 staff</span>
+        <span class="readychip">96% inspection-ready</span>
+      </div>
+      <h3><b>2 items still expired</b>, down from 10 this month</h3>
+      <p class="sub">Monday 9 March &middot; evidence pack ready</p>
+      <div class="row"><span><b>Grace Ellison</b> &middot; Fire safety training</span><span class="chip c-red">157d over</span></div>
+      <div class="row"><span><b>Daniel Mercer</b> &middot; First aid, renewal booked</span><span class="chip c-red">12d over</span></div>
+      <div class="row"><span><b>Priya Raman</b> &middot; DVLA driving licence</span><span class="chip c-am">due in 9 days</span></div>
+      <div class="row"><span><b>Sam Ogden</b> &middot; DBS renewal</span><span class="chip c-ok">renewed Tue</span></div>
+    </div>
   </div>
 </div>
 
