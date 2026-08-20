@@ -237,7 +237,7 @@
 <nav><div class="wrap">
   <span class="brand"><svg width="26" height="26" viewBox="0 0 48 48" fill="none" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"><rect x="9" y="7" width="30" height="34" rx="5" stroke="#1c3d5a"/><path d="M25 7 V24 L30.5 19 L36 24 V7" stroke="#a9762f"/></svg>Staffbook</span>
   <span class="links"><a href="#how">Product</a><a href="#holds">What it holds</a><a href="#quote">How it starts</a><a class="q" href="#faq">Questions</a></span>
-  <a class="btn line" href="https://app.ordane.co.uk">Sign in</a>
+  <a class="btn line" href="https://app.staffbook.co.uk">Sign in</a>
   <a class="btn" href="#cap">Book a look</a>
 </div></nav>
 
@@ -249,15 +249,15 @@
     <p class="cats rv" style="transition-delay:150ms">DBS &middot; Training &middot;
       Safer recruitment &middot; Supervisions &middot; Policies &middot; Checks</p>
     <form class="cap rv" style="transition-delay:210ms" id="cap"
-      method="post" action="https://app.ordane.co.uk/api/lead">
+      method="post" action="https://app.staffbook.co.uk/api/lead">
       <input type="email" name="email" autocomplete="email" placeholder="manager@maplehouse.co.uk" required aria-label="Work email">
       <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="btn" type="submit">Book a look</button>
     </form>
     <p class="capnote" aria-live="polite">If your email app did not open, write to
-      <b>colby@ordane.co.uk</b>. The address is on your clipboard.</p>
+      <b>colby@staffbook.co.uk</b>. The address is on your clipboard.</p>
     <noscript><p class="capnote show">JavaScript is off in your browser, so this form
-      cannot confirm. Write to colby@ordane.co.uk and Colby will reply today.</p></noscript>
+      cannot confirm. Write to colby@staffbook.co.uk and Colby will reply today.</p></noscript>
     <p class="under rv" style="transition-delay:280ms">Fifteen minutes, on a demo home. No card,
       no contract.<br>Built with a serving RI, <b>20 years in children&rsquo;s homes</b>.</p>
   </div>
@@ -450,7 +450,7 @@ Open Staffbook to chase them.</pre>
     <div class="founder">
       <img src="/colby.png" alt="Colby, who builds Staffbook" width="46" height="46">
       <p>Colby builds it, answers the emails and does the calls.
-        <a href="mailto:colby@ordane.co.uk">colby@ordane.co.uk</a></p>
+        <a href="mailto:colby@staffbook.co.uk">colby@staffbook.co.uk</a></p>
     </div></details>
   <details class="rv"><summary>What if you disappear?</summary>
     <p>Your data is never hostage. Everything exports to plain spreadsheets whenever you like.
@@ -466,21 +466,21 @@ Open Staffbook to chase them.</pre>
     <p class="slede rv" style="margin:0 auto 30px">Fifteen minutes, on a call. Bring your
       spreadsheet if you want the good bit.</p>
     <form class="cap rv" id="cap2"
-      method="post" action="https://app.ordane.co.uk/api/lead">
+      method="post" action="https://app.staffbook.co.uk/api/lead">
       <input type="email" name="email" autocomplete="email" placeholder="manager@maplehouse.co.uk" required aria-label="Work email">
       <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="btn" type="submit">Book a look</button>
     </form>
     <p class="capnote" aria-live="polite" style="color:#b7c6d6">If your email app did not open,
-      write to <b style="color:#fff">colby@ordane.co.uk</b>. The address is on your clipboard.</p>
+      write to <b style="color:#fff">colby@staffbook.co.uk</b>. The address is on your clipboard.</p>
   </div>
 </div>
 
 <footer><div class="wrap">
   Staffbook. Compliance software for children&rsquo;s homes.<br>
   <a href="/compliance/">Privacy, security and data, the detailed version</a> &middot;
-  <a href="https://app.ordane.co.uk">Sign in</a> &middot;
-  <a href="mailto:colby@ordane.co.uk">colby@ordane.co.uk</a><br>
+  <a href="https://app.staffbook.co.uk">Sign in</a> &middot;
+  <a href="mailto:colby@staffbook.co.uk">colby@staffbook.co.uk</a><br>
   Staffbook is a trading name of Ordane Systems Ltd, registered in England
   and Wales, company no. 17402902.
 </div></footer>
@@ -503,7 +503,7 @@ Open Staffbook to chase them.</pre>
       try {
         const ctl = new AbortController();
         const t = setTimeout(() => ctl.abort(), 7000);
-        const res = await fetch('https://app.ordane.co.uk/api/lead', {
+        const res = await fetch('https://app.staffbook.co.uk/api/lead', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: em, company: f.querySelector('input[name=company]')?.value ?? '' }),
@@ -534,15 +534,15 @@ Open Staffbook to chase them.</pre>
         btn.disabled = false;
         btn.textContent = label;
         if (note) {
-          note.textContent = 'That did not send. Write to colby@ordane.co.uk, or ';
+          note.textContent = 'That did not send. Write to colby@staffbook.co.uk, or ';
           const a = document.createElement('a');
-          a.href = 'mailto:colby@ordane.co.uk?subject=' +
+          a.href = 'mailto:colby@staffbook.co.uk?subject=' +
             encodeURIComponent('A look at Staffbook') + '&body=' +
             encodeURIComponent(`My email: ${em}\nMy home or group: \nA good time to call: `);
           a.textContent = 'open a prefilled email';
           note.append(a, '.');
           note.classList.add('show');
-          navigator.clipboard?.writeText('colby@ordane.co.uk')
+          navigator.clipboard?.writeText('colby@staffbook.co.uk')
             .then(() => { note.append(' The address is on your clipboard.'); })
             .catch(() => {});
         }
