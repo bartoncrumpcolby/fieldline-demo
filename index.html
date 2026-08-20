@@ -23,9 +23,10 @@
 <link rel="icon" type="image/svg+xml" href="/brand/staffbook-favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/newsreader-normal-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/newsreader-italic-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/instrumentsans-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/fonts/fonts.css">
 <script>document.documentElement.classList.add('js')</script>
 <style>
   html,body{margin:0;padding:0;background:#F6F4EC}
@@ -149,13 +150,16 @@
   }
 
   .scrollx{overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .swipehint{display:none}
   @media(max-width:760px){
     .foldertab-x{display:none}
-    .swipehint{display:block;text-align:center;font-size:12.5px;color:#6E6B57;margin:10px 0 0}
-    /* the mock's rail is chrome, not content: give small screens the numbers */
+    /* the mock restacks to one column on small screens: no rail, no sideways
+       scrolling, every widget full width and readable */
     .mockrail{display:none !important}
-    .mockgrid{grid-template-columns:1fr !important;min-width:780px !important;min-height:0 !important}
+    .mockgrid{grid-template-columns:1fr !important;min-width:0 !important;min-height:0 !important}
+    .wgrid{grid-template-columns:1fr !important}
+    .mocksearch{display:none !important}
+    .mocktop{flex-wrap:wrap;row-gap:8px}
+    #anim-pack{margin-left:auto}
   }
 
   /* reveals only arm when JS is present, so content never hides without it */
@@ -294,10 +298,10 @@
       </div>
       <!-- main -->
       <div style="display:flex;flex-direction:column">
-        <div style="display:flex;align-items:center;gap:14px;padding:10px 20px;border-bottom:1px solid #EBEBE8">
+        <div class="mocktop" style="display:flex;align-items:center;gap:14px;padding:10px 20px;border-bottom:1px solid #EBEBE8">
           <span style="display:inline-flex;align-items:center;gap:7px;border:1px solid #D9E2D4;background:#EDF2EA;border-radius:8px;padding:4px 10px;font-size:12px;font-weight:600;color:#0D5C45"><span style="width:7px;height:7px;border-radius:3px;background:#0D5C45"></span>Demo Care Group</span>
           <span style="font-size:12.5px;color:#73757B">Today / Overview</span>
-          <span style="margin-left:auto;display:flex;align-items:center;gap:8px;border:1px solid #E4E4E1;background:#F6F6F4;border-radius:8px;padding:5px 11px;font-size:12px;color:#898B91;width:220px">Search<span class="mono" style="margin-left:auto;font-size:9.5px;background:#FFFFFF;border:1px solid #E4E4E1;border-radius:4px;padding:1px 5px">⌘K</span></span>
+          <span class="mocksearch" style="margin-left:auto;display:flex;align-items:center;gap:8px;border:1px solid #E4E4E1;background:#F6F6F4;border-radius:8px;padding:5px 11px;font-size:12px;color:#898B91;width:220px">Search<span class="mono" style="margin-left:auto;font-size:9.5px;background:#FFFFFF;border:1px solid #E4E4E1;border-radius:4px;padding:1px 5px">⌘K</span></span>
           <span id="anim-pack">
             <span id="pack-btn" style="display:inline-block;background:#0D5C45;color:#FFFFFF;font-size:12px;font-weight:600;padding:7px 13px;border-radius:7px">Evidence pack</span>
             <span id="pack-ready" hidden style="display:inline-block;background:#E9F3E6;color:#147A4B;border:1px solid #D7E8D0;font-size:12px;font-weight:600;padding:6px 13px;border-radius:7px">Evidence pack ready ✓</span>
@@ -309,7 +313,7 @@
           </div>
           <div style="font-size:27px;font-weight:700;letter-spacing:-.02em;margin-top:18px"><span id="head-not">2 items have expired.</span><span id="head-fixed" hidden>1 item still expired.</span></div>
           <div style="font-size:13px;color:#54565B;margin-top:5px">Across 2 people, both already being chased. The oldest is <strong>Fire, 160 days overdue</strong>. <span style="color:#0D5C45;font-weight:600">Open the file</span></div>
-          <div style="display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:12px;margin-top:18px">
+          <div class="wgrid" style="display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:12px;margin-top:18px">
             <div style="border:1px solid #EBEBE8;border-radius:12px;padding:14px 16px">
               <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:13px;font-weight:700">Inspection readiness</span><span class="mono" style="font-size:22px;font-weight:600;color:#147A4B">99%</span></div>
               <div style="height:5px;border-radius:3px;background:#F0F0ED;margin-top:8px;overflow:hidden"><div style="width:99%;height:100%;background:#1B9E62"></div></div>
@@ -336,7 +340,7 @@
               </div>
             </div>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:12px;margin-top:12px">
+          <div class="wgrid" style="display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:12px;margin-top:12px">
             <div style="border:1px solid #EBEBE8;border-radius:12px;padding:14px 16px">
               <div style="font-size:13px;font-weight:700">Training in date</div>
               <div style="display:flex;align-items:center;gap:14px;margin-top:12px">
@@ -391,7 +395,6 @@
     </div>
   </div>
   </div>
-  <p class="swipehint">Slide the dashboard sideways to see all of it →</p>
   <p class="serif" style="text-align:center;color:#6E6B57;margin:26px 0 0;font-style:italic;font-size:17px">Built for the sector&rsquo;s 3,900 children&rsquo;s homes. Priced per home, monthly rolling, cancel any time.</p>
 </section>
 
@@ -559,7 +562,12 @@
 <!-- MID CTA -->
 <section style="background:#F8F8F7;padding:0 clamp(20px,4vw,40px) 84px;text-align:center">
   <p class="serif" style="font-style:italic;font-size:19px;color:#5C594B;margin:0">Six sections, kept in date without anyone standing over them.</p>
-  <a href="#cta" class="pill" style="margin-top:18px;font-size:15px;padding:13px 26px">See it on a demo home</a>
+  <form class="cap" id="cap1" method="post" action="https://app.staffbook.co.uk/api/lead">
+    <input type="email" name="email" autocomplete="email" placeholder="manager@maplehouse.co.uk" required aria-label="Work email">
+    <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="btn" type="submit">Book a look</button>
+  </form>
+  <p class="capnote" aria-live="polite">Fifteen minutes, on a call. No card, no contract.</p>
 </section>
 
 <!-- STAFF PROFILE -->
@@ -667,7 +675,6 @@
       <p class="rv" style="font-size:16.5px;color:#5C594B;margin:22px 0 0;line-height:1.6;text-wrap:pretty">There is no field for a young person anywhere in Staffbook, so trying it never puts a child&rsquo;s data anywhere new. It sits beside whatever care system the home already runs, holding the staff side only.</p>
       <div class="rv" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:24px">
         <span style="font-size:12.5px;font-weight:600;color:#4A483E;border:1px solid #D8D4C2;border-radius:999px;padding:6px 13px;background:#FFFFFF">UK-hosted</span>
-        <span style="font-size:12.5px;font-weight:600;color:#4A483E;border:1px solid #D8D4C2;border-radius:999px;padding:6px 13px;background:#FFFFFF">GDPR-aligned</span>
         <span style="font-size:12.5px;font-weight:600;color:#4A483E;border:1px solid #D8D4C2;border-radius:999px;padding:6px 13px;background:#FFFFFF">No child records</span>
         <span style="font-size:12.5px;font-weight:600;color:#4A483E;border:1px solid #D8D4C2;border-radius:999px;padding:6px 13px;background:#FFFFFF">Export any time</span>
       </div>
