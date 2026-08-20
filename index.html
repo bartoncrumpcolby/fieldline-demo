@@ -30,7 +30,7 @@
   html,body{margin:0;padding:0;background:#F6F4EC}
   body{font-family:'Instrument Sans','Helvetica Neue',sans-serif;color:#21201A;
     -webkit-font-smoothing:antialiased}
-  a{color:#0D5C45;text-decoration:none}
+  a{color:#0D5C45;text-decoration:none;transition:color .15s ease}
   a:hover{color:#0A4735}
   ::selection{background:#DCEAD9}
   h1,h2{text-wrap:balance}
@@ -51,8 +51,10 @@
   .navlinks{display:flex;align-items:center;gap:30px;font-size:14.5px;font-weight:500}
   .navlinks a{color:#4A483E}
   .navlinks a:hover{color:#0D5C45}
-  .pill{display:inline-block;background:#0D5C45;color:#F6F4EC;font-weight:600;border-radius:999px}
+  .pill{display:inline-block;background:#0D5C45;color:#F6F4EC;font-weight:600;border-radius:999px;
+    transition:background-color .15s ease,transform .16s cubic-bezier(.23,1,.32,1)}
   .pill:hover{background:#0A4735;color:#F6F4EC}
+  .pill:active{transform:scale(.97)}
   @media(max-width:760px){.navlinks{display:none}}
 
   /* verdict chips (data colours) */
@@ -76,8 +78,10 @@
     border:1px solid #C9C4AE;background:#FFFFFF;color:#21201A;min-width:min(320px,78vw)}
   form.cap input[type=email]:focus{outline:2px solid #0D5C45;outline-offset:1px;border-color:#0D5C45}
   form.cap .btn{font:inherit;font-size:16px;font-weight:600;background:#0D5C45;color:#F6F4EC;
-    padding:14px 28px;border-radius:999px;border:none;cursor:pointer}
+    padding:14px 28px;border-radius:999px;border:none;cursor:pointer;
+    transition:background-color .15s ease,transform .16s cubic-bezier(.23,1,.32,1)}
   form.cap .btn:hover{background:#0A4735}
+  form.cap .btn:active{transform:scale(.97)}
   form.cap .btn:disabled{opacity:.6;cursor:default}
   .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
   .capnote{font-size:14px;color:#6E6B57;margin:16px 0 0;min-height:1.4em}
@@ -87,7 +91,7 @@
   details summary{list-style:none;position:relative;padding-right:30px}
   details summary::after{content:"+";position:absolute;right:4px;top:0;color:#918D77;
     font-weight:500;font-size:20px;line-height:1}
-  details[open] summary::after{content:"–"}
+  details[open] summary::after{content:"−"}
 
   /* card stack */
   #file-track{height:420vh}
@@ -96,8 +100,10 @@
     border-radius:28px 28px 0 0;box-shadow:0 -20px 50px -20px rgba(46,42,26,.18);
     padding:40px 40px 44px}
   .tabbtn{display:inline-block;font-family:inherit;cursor:pointer;padding:8px 14px;
-    border-radius:999px;transition:all .25s ease;background:transparent;
-    border:1px solid #E3E0D5;opacity:.7}
+    border-radius:999px;background:transparent;border:1px solid #E3E0D5;opacity:.7;
+    transition:background-color .2s ease,border-color .2s ease,box-shadow .2s ease,
+      opacity .2s ease,transform .16s cubic-bezier(.23,1,.32,1)}
+  .tabbtn:active{transform:scale(.97)}
   .tabbtn.on{background:#FFFFFF;border:1px solid #E5E1D3;
     box-shadow:0 8px 18px -10px rgba(46,42,26,.28);opacity:1}
   .tabbtn .num{font-family:'JetBrains Mono',monospace;font-size:11px;color:#6E6B57}
