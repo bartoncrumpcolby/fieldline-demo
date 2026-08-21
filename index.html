@@ -12,13 +12,28 @@
 <meta property="og:url" content="https://staffbook.co.uk/">
 <meta property="og:image" content="https://staffbook.co.uk/img/og.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication",
- "name":"Staffbook",
- "applicationCategory":"BusinessApplication",
- "operatingSystem":"Web",
- "description":"Staff compliance software for children's homes: training and DBS renewals, safer recruitment checks, supervisions, policy sign-off and premises checks.",
- "url":"https://staffbook.co.uk/",
- "publisher":{"@type":"Organization","name":"Staffbook Ltd","url":"https://staffbook.co.uk/"}}
+{"@context":"https://schema.org","@graph":[
+ {"@type":"SoftwareApplication",
+  "name":"Staffbook",
+  "applicationCategory":"BusinessApplication",
+  "operatingSystem":"Web",
+  "description":"Staff compliance software for children's homes: training and DBS renewals, safer recruitment checks, supervisions, policy sign-off and premises checks.",
+  "url":"https://staffbook.co.uk/",
+  "publisher":{"@id":"https://staffbook.co.uk/#org"}},
+ {"@type":"Organization",
+  "@id":"https://staffbook.co.uk/#org",
+  "name":"Staffbook",
+  "legalName":"Staffbook Ltd",
+  "url":"https://staffbook.co.uk/",
+  "logo":"https://staffbook.co.uk/brand/staffbook-favicon.svg",
+  "foundingDate":"2026",
+  "email":"colby@staffbook.co.uk",
+  "address":{"@type":"PostalAddress","streetAddress":"82A James Carter Road","addressLocality":"Mildenhall","postalCode":"IP28 7DE","addressCountry":"GB"},
+  "sameAs":[
+   "https://find-and-update.company-information.service.gov.uk/company/17402902",
+   "https://www.linkedin.com/company/staffbook-uk/"
+  ]}
+]}
 </script>
 <link rel="icon" type="image/svg+xml" href="/brand/staffbook-favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -734,7 +749,7 @@
 <!-- CTA -->
 <section id="cta" style="position:relative;background:#F6F4EC;padding:130px clamp(20px,4vw,40px) 40px;text-align:center">
   <h2 class="serif rv" style="font-size:clamp(38px,6vw,64px);letter-spacing:-.02em;margin:0">See it on a demo home <span style="font-style:italic;color:#0D5C45">this week</span>.</h2>
-  <p class="rv" style="font-size:17px;color:#5C594B;margin:20px auto 0;max-width:460px;line-height:1.6">Fifteen minutes, on a call, on a demo home with a year of records in it.</p>
+  <p class="rv" style="font-size:17px;color:#5C594B;margin:20px auto 0;max-width:460px;line-height:1.6">Fifteen minutes, on a call, on a demo home with a year of records in it. Say yes and your homes are set up the same day. A new registration starts compliant from day one.</p>
   <form class="cap rv" id="cap2" method="post" action="https://app.staffbook.co.uk/api/lead">
     <input type="email" name="email" autocomplete="email" placeholder="manager@maplehouse.co.uk" required aria-label="Work email">
     <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
